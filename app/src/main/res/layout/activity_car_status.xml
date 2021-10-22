@@ -3,94 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <include layout="@layout/activity_my_actionbar"/>
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="15dp">
+    <include layout="@layout/activity_home_page"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/carStatus_destination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FF6F00"
-                android:entries="@array/destination" />
-
-            <Spinner
-                android:id="@+id/carStatus_source"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FF6F00"
-                android:entries="@array/source" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/garageStatus"
+            <TextView
+                android:id="@+id/addIcon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FF6F00"
-                android:text="حالة الكراج"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/news"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:text="آخر الأخبار"
-                android:textColor="#FF6F00"
-                android:textSize="20dp" />
+                android:layout_marginBottom="5dp"
+                android:drawableLeft="@drawable/add_icon"
+                android:drawableRight="@drawable/filter_icon" />
 
         </LinearLayout>
 
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/addIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:drawableLeft="@drawable/add_icon"
-                        android:drawableRight="@drawable/filter_icon" />
-
-                </LinearLayout>
-
-                <ListView
-                    android:id="@+id/myList"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/activity_car_status_list_item" />
+        <ListView
+            android:id="@+id/myList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/activity_car_status_list_item" />
 
 
 
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

@@ -3,99 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="match_parent"
+    android:padding="15dp">
 
-    <include layout="@layout/activity_my_actionbar"/>
+    <include layout="@layout/activity_home_page"/>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/addnew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radius_border"
+            android:ems="10"
+            android:hint="أضف خبرا .."
+            android:inputType="textImeMultiLine" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/myList"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="15dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/destination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/destination"
-                android:text="الوجهة"
-                android:textAlignment="viewEnd" />
-
-            <Spinner
-                android:id="@+id/source"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:backgroundTint="#FF6F00"
-                android:entries="@array/source"
-                android:text="المكان الحالي"
-                android:textAlignment="viewEnd" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/garagestate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FF6F00"
-                android:gravity="center"
-                android:text="حالة الكراج"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/last_new"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FF6F00"
-                android:gravity="center"
-                android:text="اخر الاخبار"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            >
-
-            <EditText
-                android:id="@+id/addnew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-
-                android:background="@drawable/radius_border"
-                android:ems="10"
-                android:hint="أضف خبرا .."
-                android:inputType="textPersonName"
-
-                />
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/myList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/activity_news_list_item" />
+        tools:listitem="@layout/activity_news_list_item" />
     </LinearLayout>
 
 
-</LinearLayout>
