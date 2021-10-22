@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">LastGarageApp</string>
+
+    <string-array name="garage_admin">
+        <item>لم يحدد</item>
+    </string-array>
+
+    <string-array name="am_pm">
+        <item>ص</item>
+        <item>م</item>
+    </string-array>
+
+    <string-array name="source">
+        <item>المكان الحالي</item>
+    </string-array>
+
+    <string-array name="destination">
+        <item>الوجهة</item>
+    </string-array>
+
+    <string-array name="no_of_passenger">
+        <item>7</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="driver">
+        <item>لم يحدد</item>
+    </string-array>
+
+
+</resources>
