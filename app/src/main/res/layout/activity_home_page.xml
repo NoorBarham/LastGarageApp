@@ -35,7 +35,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/garageStatus"
+            android:id="@+id/homePage_statusButt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -44,7 +44,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/news"
+            android:id="@+id/homePage_newsButt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
