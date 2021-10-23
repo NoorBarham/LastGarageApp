@@ -15,14 +15,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/addIcon"
+            android:id="@+id/garageStatus_addIcon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/add_icon" />
 
         <ListView
-            android:id="@+id/myList"
+            android:id="@+id/garageStatys_myList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/activity_garage_status_list_item"

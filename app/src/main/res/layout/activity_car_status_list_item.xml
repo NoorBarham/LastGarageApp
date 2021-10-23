@@ -15,14 +15,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/editIcon"
+            android:id="@+id/carItem_editIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/edit_icon" />
 
         <TextView
-            android:id="@+id/deleteIcon"
+            android:id="@+id/carItem_deleteIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,7 +80,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/availabilty"
+                android:id="@+id/carItem_availabilty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

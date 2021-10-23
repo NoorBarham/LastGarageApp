@@ -6,7 +6,7 @@
     android:background="#FF6F00">
 
     <TextView
-        android:id="@+id/menuIcon"
+        android:id="@+id/myActionBar_menuIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -17,7 +17,7 @@
         android:padding="8dp" />
 
     <ImageView
-        android:id="@+id/searchIcon"
+        android:id="@+id/myActionBar_searchIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -26,7 +26,7 @@
         android:src="@drawable/search_icon" />
 
     <ImageView
-        android:id="@+id/messagesIcon"
+        android:id="@+id/myActionBar_messagesIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -35,7 +35,7 @@
         android:src="@drawable/message_icon" />
 
     <ImageView
-        android:id="@+id/personIcon"
+        android:id="@+id/myActionBar_personIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -44,7 +44,7 @@
         android:src="@drawable/person_icon" />
 
     <ImageView
-        android:id="@+id/notificationsIcon"
+        android:id="@+id/myActionBar_notificationsIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -53,7 +53,7 @@
         android:src="@drawable/notifications_icon" />
 
     <ImageView
-        android:id="@+id/homeIcon"
+        android:id="@+id/myActionBar_homeIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

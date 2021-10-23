@@ -69,7 +69,7 @@
                 tools:text="اترك ملاحظتك هنا" />
 
             <EditText
-                android:id="@+id/writecomplaits"
+                android:id="@+id/writeComplaints_text"
                 android:layout_width="match_parent"
                 android:layout_height="118dp"
                 android:background="@drawable/white_background"
@@ -82,7 +82,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/sendcomplaits"
+                android:id="@+id/writeComplaints_sendButt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="40dp"

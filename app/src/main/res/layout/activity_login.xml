@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/idnumber"
+            android:id="@+id/login_idNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -33,7 +33,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -48,7 +48,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/loginadmin"
+            android:id="@+id/login_loginAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
@@ -62,7 +62,7 @@
             tools:text="تسجيل الدخول" />
 
         <Button
-            android:id="@+id/loginclient"
+            android:id="@+id/login_loginClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"

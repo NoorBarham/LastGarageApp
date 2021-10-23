@@ -39,7 +39,7 @@
                 android:padding="10dp">
 
                 <Spinner
-                    android:id="@+id/sour"
+                    android:id="@+id/addLine_sour"
                     android:layout_width="112dp"
                     android:layout_height="49dp"
                     android:layout_weight="1.1"
@@ -68,7 +68,7 @@
                 android:padding="10dp">
 
                 <Spinner
-                    android:id="@+id/dest"
+                    android:id="@+id/addLine_dest"
                     android:layout_width="114dp"
                     android:layout_height="55dp"
                     android:layout_weight="1"
@@ -106,7 +106,7 @@
                     tools:text="شيكل" />
 
                 <EditText
-                    android:id="@+id/fare"
+                    android:id="@+id/addLine_fare"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -136,7 +136,7 @@
                 android:padding="15dp">
 
                 <Button
-                    android:id="@+id/cancle"
+                    android:id="@+id/addLine_cancle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -148,7 +148,7 @@
                     tools:text="إلغاء" />
 
                 <Button
-                    android:id="@+id/addline"
+                    android:id="@+id/addline_addButt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

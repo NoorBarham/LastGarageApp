@@ -38,14 +38,14 @@
 
 
                     <TextView
-                        android:id="@+id/list_noto_clock"
+                        android:id="@+id/notificationItem_clock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Am" />
 
                     <TextView
-                        android:id="@+id/list_noto_name"
+                        android:id="@+id/notificationItem_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="اسم"
@@ -63,7 +63,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/list_noto_image"
+                android:id="@+id/notificationItem_image"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"

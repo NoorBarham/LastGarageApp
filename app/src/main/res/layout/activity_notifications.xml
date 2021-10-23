@@ -42,7 +42,7 @@
 
 
         <ListView
-            android:id="@+id/listview"
+            android:id="@+id/notification_myList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/activity_notification_list_item" />

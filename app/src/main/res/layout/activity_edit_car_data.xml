@@ -54,12 +54,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/editdatacar_carnumval"
+                        android:id="@+id/editCarData_carNumVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="رقم السيارة"
+                        android:text="-"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
@@ -92,7 +92,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/editdata_fareval"
+                        android:id="@+id/editCarData_fareVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -121,7 +121,7 @@
                     android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/editdatacar_namedriverval"
+                        android:id="@+id/editCarData_nameDriverVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -147,7 +147,7 @@
                     android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/destination"
+                        android:id="@+id/editCarData_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -156,7 +156,7 @@
                         android:textAlignment="viewEnd" />
 
                     <Spinner
-                        android:id="@+id/source"
+                        android:id="@+id/editCarData_source"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -175,7 +175,7 @@
                     android:padding="10dp">
 
                     <Button
-                        android:id="@+id/editdatacar_cancel"
+                        android:id="@+id/editCarData_cancel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -185,7 +185,7 @@
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/editdatacar_savechange"
+                        android:id="@+id/editCarData_saveChange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

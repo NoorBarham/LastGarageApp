@@ -54,7 +54,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editdata_nameval"
+                        android:id="@+id/editPersonalData_nameVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -80,7 +80,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editdata_placeval"
+                        android:id="@+id/editPersonalData_cityVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -106,7 +106,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editdata_phonenumval"
+                        android:id="@+id/editPersonalData_phoneNumVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -133,7 +133,7 @@
                     android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/destination"
+                        android:id="@+id/editPersonalData_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -143,7 +143,7 @@
                         android:textAlignment="viewEnd" />
 
                     <Spinner
-                        android:id="@+id/source"
+                        android:id="@+id/editPersonalData_source"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -162,7 +162,7 @@
                     android:padding="10dp">
 
                     <Button
-                        android:id="@+id/edidata_cancel"
+                        android:id="@+id/editPersonalData_cancel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -172,7 +172,7 @@
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/editdata_savechange"
+                        android:id="@+id/editPersonalData_savechange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"

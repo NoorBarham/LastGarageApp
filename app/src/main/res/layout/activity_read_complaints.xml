@@ -35,7 +35,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/myList"
+            android:id="@+id/read_complaints_myList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/activity_read_complaints_list_item" />

@@ -25,7 +25,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/list_new_delet"
+                    android:id="@+id/newsItem_delet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -34,7 +34,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/list_new_name"
+                    android:id="@+id/newsItem_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -45,7 +45,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/newsItem_image"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="4dp"
@@ -76,14 +76,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/list_new_clock"
+                    android:id="@+id/newsItem_clock"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Am" />
 
                 <TextView
-                    android:id="@+id/list_new_description"
+                    android:id="@+id/newsItem_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
