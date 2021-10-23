@@ -23,26 +23,12 @@ public class my_actionbar extends AppCompatActivity {
         searchIcon=findViewById(R.id.myActionBar_searchIcon);
         menuIcon=findViewById(R.id.myActionBar_menuIcon);
 
-        homeIcon.setColorFilter(Color.WHITE);
-        notificationIcon.setColorFilter(Color.WHITE);
-        personalIcon.setColorFilter(Color.WHITE);
-        messagesIcon.setColorFilter(Color.WHITE);
-        searchIcon.setColorFilter(Color.WHITE);
-        menuIcon.setColorFilter(Color.WHITE);
-
 
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                homeIcon.setColorFilter(0xffff6f00);
                 homeIcon.setBackgroundColor(Color.WHITE);
 
-                notificationIcon.setColorFilter(Color.WHITE);
-                personalIcon.setColorFilter(Color.WHITE);
-                messagesIcon.setColorFilter(Color.WHITE);
-                searchIcon.setColorFilter(Color.WHITE);
-                menuIcon.setColorFilter(Color.WHITE);
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
@@ -57,14 +43,8 @@ public class my_actionbar extends AppCompatActivity {
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                notificationIcon.setColorFilter(0xffff6f00);
                 notificationIcon.setBackgroundColor(Color.WHITE);
 
-                homeIcon.setColorFilter(Color.WHITE);
-                personalIcon.setColorFilter(Color.WHITE);
-                messagesIcon.setColorFilter(Color.WHITE);
-                searchIcon.setColorFilter(Color.WHITE);
-                menuIcon.setColorFilter(Color.WHITE);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
@@ -78,14 +58,8 @@ public class my_actionbar extends AppCompatActivity {
         personalIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                personalIcon.setColorFilter(0xffff6f00);
                 personalIcon.setBackgroundColor(Color.WHITE);
 
-                notificationIcon.setColorFilter(Color.WHITE);
-                homeIcon.setColorFilter(Color.WHITE);
-                messagesIcon.setColorFilter(Color.WHITE);
-                searchIcon.setColorFilter(Color.WHITE);
-                menuIcon.setColorFilter(Color.WHITE);
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
@@ -98,14 +72,8 @@ public class my_actionbar extends AppCompatActivity {
         messagesIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                messagesIcon.setColorFilter(0xffff6f00);
                 messagesIcon.setBackgroundColor(Color.WHITE);
 
-                notificationIcon.setColorFilter(Color.WHITE);
-                personalIcon.setColorFilter(Color.WHITE);
-                homeIcon.setColorFilter(Color.WHITE);
-                searchIcon.setColorFilter(Color.WHITE);
-                menuIcon.setColorFilter(Color.WHITE);
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
@@ -124,14 +92,8 @@ public class my_actionbar extends AppCompatActivity {
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                menuIcon.setColorFilter(0xffff6f00);
                 menuIcon.setBackgroundColor(Color.WHITE);
 
-                notificationIcon.setColorFilter(Color.WHITE);
-                personalIcon.setColorFilter(Color.WHITE);
-                messagesIcon.setColorFilter(Color.WHITE);
-                searchIcon.setColorFilter(Color.WHITE);
-                homeIcon.setColorFilter(Color.WHITE);
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
