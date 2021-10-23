@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/activity_my_actionbar"/>
 
@@ -52,5 +52,16 @@
             android:text="آخر الأخبار"
             android:textColor="@color/white"
             android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/mylll"
+        android:orientation="horizontal">
+
+
     </LinearLayout>
 </LinearLayout>
