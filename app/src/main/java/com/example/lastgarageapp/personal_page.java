@@ -14,7 +14,7 @@ public class personal_page extends AppCompatActivity {
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
     TextView editData,changePass;
-    ImageView messageIcon;
+    ImageView textMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class personal_page extends AppCompatActivity {
         //views in personalPage
         editData = findViewById(R.id.personalPage_editData);
         changePass = findViewById(R.id.personalPage_changePass);
-        messageIcon = findViewById(R.id.personalPage_messageIcon);
+        textMessage = findViewById(R.id.personalPage_messageIcon);
 
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-        messagesIcon.setOnClickListener(new View.OnClickListener() {
+        textMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(personal_page.this ,conversation.class);
