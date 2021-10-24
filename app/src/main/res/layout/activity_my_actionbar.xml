@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical" >
+<!--    android:id="@+id/myActionbar"-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +28,6 @@
 
         </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/myActionBar_searchIcon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1.5"
-            android:padding="8dp"
-            android:src="@drawable/search_icon" />
 
         <ImageView
             android:id="@+id/myActionBar_messagesIcon"
