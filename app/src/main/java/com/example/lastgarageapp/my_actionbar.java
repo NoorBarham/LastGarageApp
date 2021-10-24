@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 public class my_actionbar extends AppCompatActivity {
 
-    ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,searchIcon,menuIcon;
+    ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,6 @@ public class my_actionbar extends AppCompatActivity {
         notificationIcon=findViewById(R.id.myActionBar_notificationsIcon);
         personalIcon=findViewById(R.id.myActionBar_personIcon);
         messagesIcon=findViewById(R.id.myActionBar_messagesIcon);
-        searchIcon=findViewById(R.id.myActionBar_searchIcon);
         menuIcon=findViewById(R.id.myActionBar_menuIcon);
 
 
@@ -32,7 +31,6 @@ public class my_actionbar extends AppCompatActivity {
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
-                searchIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
 
@@ -48,7 +46,6 @@ public class my_actionbar extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
-                searchIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
                 Intent intent= new Intent(my_actionbar.this ,notifications.class);
@@ -63,7 +60,6 @@ public class my_actionbar extends AppCompatActivity {
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
-                searchIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
                 Intent intent= new Intent(my_actionbar.this ,personal_page.class);
                 startActivity(intent);
@@ -74,21 +70,17 @@ public class my_actionbar extends AppCompatActivity {
             public void onClick(View view) {
                 messagesIcon.setBackgroundColor(Color.WHITE);
 
+                //reset the color of the other icons
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
-                searchIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
+
                 Intent intent= new Intent(my_actionbar.this ,messages.class);
                 startActivity(intent);
             }
         });
-//        searchIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,8 +89,8 @@ public class my_actionbar extends AppCompatActivity {
                 notificationIcon.setBackgroundColor(0xFFFF6F00);
                 personalIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
-                searchIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
+
                 Intent intent= new Intent(my_actionbar.this ,menu.class);
                 startActivity(intent);
             }
