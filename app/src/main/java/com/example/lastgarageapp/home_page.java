@@ -75,8 +75,8 @@ public class home_page extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycle_1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new driverAdapter(this, animalNames);
-        recyclerView.setAdapter(adapter);
+      //  adapter = new driverAdapter(this, animalNames);
+      //  recyclerView.setAdapter(adapter);
     }
 
 }

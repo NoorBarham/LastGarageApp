@@ -227,37 +227,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/personalPage_workPlaceVal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="مكان العمل"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/personalimage_workplace"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="مكان العمل"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
                         android:id="@+id/personalPage_placeVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="البلد"
                         android:gravity="center"
+                        android:text="البلد"
                         android:textSize="20sp" />
 
                     <TextView
@@ -276,55 +251,25 @@
                     android:layout_margin="10dp"
                     android:orientation="horizontal">
 
-
                     <TextView
-                        android:id="@+id/personalPage_currentPlaceVal"
+                        android:id="@+id/personalPage_workPlaceVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="المكان الحالي"
                         android:gravity="center"
+                        android:text="مكان العمل"
                         android:textSize="20sp" />
 
-
                     <TextView
-                        android:id="@+id/personalPage_currentplace"
+                        android:id="@+id/personalimage_workplace"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="المكان الحالي"
+                        android:text="الخط الذي يعمل عليه"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
-
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/personalPage_transitionVal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="الوجهة"
-                        android:gravity="center"
-                        android:textSize="20sp" />
-
-
-                    <TextView
-                        android:id="@+id/personalPage_transition"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="الوجهة"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
