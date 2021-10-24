@@ -14,9 +14,10 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         login_loginClient = (Button) findViewById(R.id.login_loginClient);
-        login_loginAdmin = (Button) findViewById(R.id.login_loginClient);
+        login_loginAdmin = (Button) findViewById(R.id.login_loginAdmin);
 
         login_loginClient.setOnClickListener(new View.OnClickListener() {
             @Override

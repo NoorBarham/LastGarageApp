@@ -1,6 +1,8 @@
 package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import com.example.lastgarageapp.adapter.driverAdapter;
 
 public class home_page extends AppCompatActivity {
 
@@ -22,6 +26,7 @@ public class home_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        getSupportActionBar().setTitle("test ");
 
         newsButt=findViewById(R.id.homePage_newsButt);
         statusButt=findViewById(R.id.homePage_statusButt);
@@ -65,5 +70,13 @@ public class home_page extends AppCompatActivity {
 
             }
         });
+
+        driverAdapter adapter;
+
+        RecyclerView recyclerView = findViewById(R.id.recycle_1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new driverAdapter(this, animalNames);
+        recyclerView.setAdapter(adapter);
     }
+
 }
