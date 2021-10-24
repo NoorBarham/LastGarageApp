@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class edit_personal_data extends AppCompatActivity {
+public class  edit_personal_data extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

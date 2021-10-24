@@ -12,7 +12,7 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/editdatagarage"
+            android:id="@+id/editDataGarage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -54,13 +54,13 @@
                     android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/editgarage_garageadmin"
+                        android:id="@+id/editGarage_editGarageAdmin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/editdatagarage_garageadmin"
+                        android:id="@+id/editDataGarage_GarageAdmin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -78,14 +78,14 @@
                     android:orientation="horizontal">
 
                     <MultiAutoCompleteTextView
-                        android:id="@+id/editgarage_editlocation"
+                        android:id="@+id/editGarage_editLocation"
                         android:layout_width="96dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/editgarage_location"
+                        android:id="@+id/editGarage_Location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -104,7 +104,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTextTime2"
+                        android:id="@+id/editGarage_editStartWork"
                         android:layout_width="121dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -113,7 +113,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/editGarage_startWork"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -131,7 +131,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTextTime3"
+                        android:id="@+id/editGarage_editEndWork"
                         android:layout_width="138dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -140,7 +140,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/editGarage_noOfCars"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -157,7 +157,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/editGarage_showNoOfCars"
                         android:layout_width="187dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -166,7 +166,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/editGarage_noOfCars"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -185,7 +185,7 @@
                     android:padding="10dp">
 
                     <Button
-                        android:id="@+id/editCarData_cancel"
+                        android:id="@+id/editGarage_cancel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -195,7 +195,7 @@
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/editCarData_saveChange"
+                        android:id="@+id/editGarage_saveChange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

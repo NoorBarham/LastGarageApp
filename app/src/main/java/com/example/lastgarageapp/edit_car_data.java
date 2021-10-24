@@ -15,7 +15,7 @@ public class edit_car_data extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_car_data);
-        editCarData_cancel = (Button) findViewById(R.id.editCarData_cancel);
+        editCarData_cancel = (Button) findViewById(R.id.editGarage_cancel);
 
         editCarData_cancel.setOnClickListener(new View.OnClickListener() {
             @Override

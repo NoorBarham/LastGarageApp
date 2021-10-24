@@ -12,7 +12,7 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/editdatagarage"
+            android:id="@+id/editDataGarage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -64,7 +64,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/editdatagarage_garageadmin"
+                        android:id="@+id/editDataGarage_GarageAdmin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -175,7 +175,7 @@
                     android:padding="10dp">
 
                     <Button
-                        android:id="@+id/editCarData_cancel"
+                        android:id="@+id/editGarage_cancel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -185,7 +185,7 @@
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/editCarData_saveChange"
+                        android:id="@+id/editGarage_saveChange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
