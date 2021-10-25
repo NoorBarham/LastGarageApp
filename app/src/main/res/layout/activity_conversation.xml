@@ -3,7 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/carStatus_layout"
     android:layout_height="match_parent"
-    tools:context=".conversation">
+    android:orientation="vertical"
+    android:background="#EEEEEE">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff6f00"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/go_icon"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:text="-"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/carStakhklhtus_addIcon"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:maxWidth="350dp"-->
+            <!--                android:padding="12dp"-->
+            <!--                android:layout_marginBottom="3dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="18dp"-->
+            <!--                android:background="@drawable/radius_border"-->
+            <!--                android:text="مرحبا كيفك ؟ ..."/>-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/carStaنتkhklhtusdhsdf_addIcon"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:maxWidth="350dp"-->
+            <!--                android:padding="12dp"-->
+            <!--                android:layout_marginBottom="5dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="18dp"-->
+            <!--                android:background="@drawable/input_background"-->
+            <!--                android:text="شو أخبارك إن شاء الله منيحة ؟"/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxHeight="140dp"
+                android:padding="12dp"
+                android:gravity="right|left"
+                android:background="@drawable/white_background"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:ems="10"
+                android:hint="اكتب رسالة هنا......"
+                android:inputType="textMultiLine" />
+
+            <ImageView
+                android:id="@+id/carStatus_addkkIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_send_icon"
+                android:padding="12dp"
+                android:src="@drawable/send_icon" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 </LinearLayout>
