@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="السائقين"
+        android:text="السائقين  "
         android:textColor="#0C0808"
         android:textSize="30dp"
         android:textStyle="bold" />
