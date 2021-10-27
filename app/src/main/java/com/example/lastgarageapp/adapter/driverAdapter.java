@@ -19,7 +19,7 @@ public class driverAdapter extends RecyclerView.Adapter<driverAdapter.ViewHolder
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    driverAdapter(Context context, List<String> data) {
+    public driverAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -66,6 +66,7 @@ public class driverAdapter extends RecyclerView.Adapter<driverAdapter.ViewHolder
 
     // convenience method for getting data at click position
     String getItem(int id) {
+
         return mData.get(id);
     }
 

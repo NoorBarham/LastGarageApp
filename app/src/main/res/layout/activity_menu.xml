@@ -17,262 +17,387 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:padding="15dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="15dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/menu_showDrivers"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="السائقين"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/menu_addِAdmin"
+                    <TextView
+                        android:id="@+id/personal_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FF6F00"
+                        android:drawableRight="@drawable/person_icon"
+                        android:text="المعلومات الشخصية"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
                     android:padding="15dp"
-                    android:text="إضافة مدير جديد"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    >
 
-                <TextView
-                    android:id="@+id/menu_editGarage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="تعديل معلومات كراج"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/personal_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="الصفحة الشخصية"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        />
 
-                <TextView
-                    android:id="@+id/menu_editLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="تعديل معلومات خط نقل"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00"/>
 
-                <TextView
-                    android:id="@+id/menu_editCar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="تعديل معلومات سيارة"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/edit_personal_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="تعديل البيانات الشخصية"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/menu_readComplaints"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="قراءة الاقتراحات والشكاوي"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"
+                        android:background="#ff6f00" />
 
-                <TextView
-                    android:id="@+id/menu_logOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="تسجيل الخروج"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/change_pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="تغيير كلمة السر"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/add"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FF6F00"
+                        android:drawableRight="@drawable/add_icon"
+                        android:text="إضافة"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/add_new_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="إضافة مدير جديد"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/add_new_driver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="إضافة سائق جديد"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/add_new_car"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="إضافة سيارة جديدة"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider5"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/add_new_garage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="إضافة كراج جديد"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider6"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/add_new_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="إضافة خط جديد"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="5dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingTop="15dp">
+                >
 
-                <TextView
-                    android:id="@+id/menu_editPersonamlInfo"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="تعديل البيانات الشخصية"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    >
 
-                <TextView
-                    android:id="@+id/menu_addDriver"
+
+                    <TextView
+                        android:id="@+id/edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FF6F00"
+                        android:drawableRight="@drawable/edit_icon"
+                        android:text="تعديل"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="إضافة سائق جديد"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/menu_addGarage"
+                    <TextView
+                        android:id="@+id/edit_data_car"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="تعديل بيانات السيارة"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider7"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/edit_data_garage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="تعديل بيانات الكراج"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/edit_data_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="تعديل بيانات الخط"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="إضافة كراج جديد"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/menu_addLine"
+                    <TextView
+                        android:id="@+id/other"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FF6F00"
+                        android:drawableRight="@drawable/add_icon"
+                        android:text="أخرى"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="إضافة خط نقل جديد"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/menu_addCar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="إضافة سيارة جديدة"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/show_driver_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="عرض قائمة السائقين"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/menu_addComplaint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="الاقتراحات و الشكاوي"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <View
+                        android:id="@+id/divider9"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
 
-                <TextView
-                    android:id="@+id/menu_logIn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="تسجيل الدخول "
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/read_complain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="قراءة الشكاوي والاقتراحات"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/menu_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/radius_border"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:text="حول التطبيق"
-                    android:textColor="#ff6f00"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <View
+                        android:id="@+id/divider10"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/add_complain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="إضافة شكوى"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider11"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="حول التطبيق"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
