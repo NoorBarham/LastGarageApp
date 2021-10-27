@@ -12,14 +12,14 @@ import com.example.lastgarageapp.R;
 
 import java.util.List;
 
-public class driverAdapter extends RecyclerView.Adapter<driverAdapter.ViewHolder> {
+public class carAdapter extends RecyclerView.Adapter<carAdapter.ViewHolder> {
 
     private List<String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    driverAdapter(Context context, List<String> data) {
+     carAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -35,7 +35,7 @@ public class driverAdapter extends RecyclerView.Adapter<driverAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String animal = mData.get(position);
-        holder.carItem_availabilty.setText(animal);
+        holder.carItem_editIcon.setText(animal);
     }
 
     // total number of rows
@@ -47,13 +47,13 @@ public class driverAdapter extends RecyclerView.Adapter<driverAdapter.ViewHolder
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView carItem_driverName;
-        TextView carItem_availabilty;
+        //TextView carItem_driverName;
+        TextView carItem_editIcon;
 
         ViewHolder(View itemView) {
             super(itemView);
-            carItem_driverName = itemView.findViewById(R.id.carItem_driverName);
-            carItem_driverName = itemView.findViewById(R.id.carItem_availabilty);
+           // carItem_driverName = itemView.findViewById(R.id.carItem_driverName);
+            carItem_editIcon = itemView.findViewById(R.id.carItem_editIcon);
 
             itemView.setOnClickListener(this);
         }

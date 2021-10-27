@@ -14,7 +14,7 @@ private Button editGarage_cancel;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_garage);
-        editGarage_cancel = (Button) findViewById(R.id.editGarage_cancel);
+        editGarage_cancel = (Button) findViewById(R.id.editCarData_cancel);
 
         editGarage_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
