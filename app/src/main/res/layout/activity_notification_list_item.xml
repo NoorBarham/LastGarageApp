@@ -53,7 +53,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/list_noto_description"
+                        android:id="@+id/list_showDrivers_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="تم النشر بواسطة "
@@ -63,7 +63,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/notificationItem_image"
+                android:id="@+id/showDriversItem_image"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
