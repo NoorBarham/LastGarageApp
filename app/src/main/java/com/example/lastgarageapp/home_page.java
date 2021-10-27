@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 public class home_page extends AppCompatActivity {
 
     Button newsButt, statusButt;
@@ -117,8 +119,14 @@ public class home_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
+//        ArrayList<String> animalNames = new ArrayList<>();
+//        animalNames.add("Horse");
+//        animalNames.add("Cow");
+//        animalNames.add("Camel");
+//        animalNames.add("Sheep");
+//        animalNames.add("Goat");
+//
+//
 //        driverAdapter adapter;
 //
 //        RecyclerView recyclerView = findViewById(R.id.recycle_1);
