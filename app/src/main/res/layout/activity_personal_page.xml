@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <include layout="@layout/activity_my_actionbar"/>
 
@@ -45,7 +45,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -157,6 +157,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="رقم الهوية"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView
@@ -180,8 +181,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="رقم الجوال"
                         android:gravity="center"
+                        android:text="رقم الجوال"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView
@@ -207,6 +209,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="البلد"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView
@@ -232,6 +235,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="مكان العمل"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView
@@ -257,6 +261,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="رقم السيارة"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView

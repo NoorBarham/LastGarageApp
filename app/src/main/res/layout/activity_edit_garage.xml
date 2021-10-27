@@ -82,7 +82,8 @@
                         android:layout_width="96dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:inputType="textImeMultiLine"/>
 
                     <TextView
                         android:id="@+id/editGarage_Location"
@@ -140,7 +141,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/editGarage_noOfCars"
+                        android:id="@+id/editGarage_endWork"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -160,6 +161,7 @@
                         android:id="@+id/editGarage_showNoOfCars"
                         android:layout_width="187dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0"
