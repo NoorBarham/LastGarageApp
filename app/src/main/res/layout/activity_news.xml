@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/Add_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
         <EditText
             android:id="@+id/news_addNew"
             android:layout_width="match_parent"
@@ -23,11 +29,12 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/news_myList"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/activity_news_list_item" />
-    </LinearLayout>
+        android:id="@+id/news_recyview"
+        />
+
+</LinearLayout>
 
 

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/notificationsListItem_layout">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:gravity="center"
-        android:background="@drawable/rectangular_border">
+        android:background="@drawable/rectangular_border"
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,14 +28,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="4dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:orientation="horizontal">
 
 
                     <TextView
@@ -53,7 +54,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/list_showDrivers_name"
+                        android:id="@+id/notificationsItem_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="تم النشر بواسطة "
@@ -63,13 +64,13 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/showDriversItem_image"
+                android:id="@+id/notificationsItem_image"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars"
-                android:background="@drawable/rectangular_border"/>
+                android:background="@drawable/rectangular_border"
+                tools:srcCompat="@tools:sample/avatars" />
         </LinearLayout>
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

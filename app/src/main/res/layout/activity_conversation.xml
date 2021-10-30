@@ -85,7 +85,7 @@
             android:padding="5dp">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/conversation_addText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -100,7 +100,7 @@
                 android:inputType="textMultiLine" />
 
             <ImageView
-                android:id="@+id/carStatus_addkkIcon"
+                android:id="@+id/conversation_send_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_send_icon"

@@ -86,8 +86,10 @@ public class home_page extends AppCompatActivity {
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,home_page.class);
+                Intent intent= new Intent(home_page.this ,news.class);
                 startActivity(intent);
+
+
             }
         });
         notificationIcon.setOnClickListener(new View.OnClickListener() {
