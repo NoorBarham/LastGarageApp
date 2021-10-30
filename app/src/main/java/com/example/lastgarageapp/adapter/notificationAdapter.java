@@ -1,0 +1,73 @@
+package com.example.lastgarageapp.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lastgarageapp.R;
+
+import java.util.ArrayList;
+
+public class notificationAdapter extends RecyclerView.Adapter<notificationAdapter.myViewHolder> {
+    private ArrayList<String> mTextnoto=new ArrayList<>();
+    private ArrayList<String> mTextname=new ArrayList<>();
+    private ArrayList<String> mHourtext=new ArrayList<>();
+    // private ArrayList<String> mImage=new ArrayList<>();
+    private LayoutInflater mInflater;
+
+
+    public notificationAdapter(Context context, ArrayList<String> mTextnoto, ArrayList<String> mTextname, ArrayList<String> mHourtext) {
+        this.mTextnoto = mTextnoto;
+        this.mTextname = mTextname;
+        this.mHourtext = mHourtext;
+        //   this.mImage = mImage;
+        this.mInflater = LayoutInflater.from(context);
+    }
+
+    @NonNull
+    @Override
+    public notificationAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= mInflater.inflate(R.layout.activity_notification_list_item,parent,false);
+        myViewHolder holder =new myViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull notificationAdapter.myViewHolder holder, int position) {
+        String notification = mTextnoto.get(position);
+        holder.mmTextnoto.setText(notification);
+
+        String name = mTextname.get(position);
+        holder.mmTextname.setText(name);
+
+        String hour = mHourtext.get(position);
+        holder.mmHour.setText(hour);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mTextnoto.size();
+    }
+
+    public class myViewHolder extends RecyclerView.ViewHolder{
+
+        TextView mmTextnoto, mmTextname, mmHour;
+        //  ImageView mmImage;
+        RelativeLayout notificationslayout;
+
+        public myViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mmTextnoto=itemView.findViewById(R.id.notificationsItem_text);
+            mmTextname=itemView.findViewById(R.id.notificationItem_name);
+            mmHour=itemView.findViewById(R.id.notificationItem_clock);
+            //    mmImage=itemView.findViewById(R.id.notificationsItem_image);
+            notificationslayout=itemView.findViewById(R.id.notificationsListItem_layout);
+        }
+    }
+}

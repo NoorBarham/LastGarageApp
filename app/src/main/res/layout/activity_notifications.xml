@@ -40,12 +40,10 @@
                 android:backgroundTint="#FF6F00" />
         </LinearLayout>
 
-
-        <ListView
-            android:id="@+id/notification_myList"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notoRecyView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/activity_notification_list_item" />
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
