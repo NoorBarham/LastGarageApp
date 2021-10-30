@@ -4,17 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lastgarageapp.adapter.messageAdapter;
+import com.example.lastgarageapp.adapter.receiverAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 
 public class conversation extends AppCompatActivity {
@@ -34,35 +36,36 @@ public class conversation extends AppCompatActivity {
         conversation_send_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final StringBuilder sb = new StringBuilder(conversation_addText.getText().length());
                 sb.append(conversation_addText.getText());
                 String s= sb.toString();
-
-                Date currentTime = Calendar.getInstance().getTime();
-
-
                 MessagesTexts.add(s);
-                HoureTexts.add(currentTime.toString());
+
+                TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
+                Date currentTime = Calendar.getInstance().getTime();
+                String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
+                HoureTexts.add(timeStamp);
 
                 messageAdapter adapter;
+
                 RecyclerView myRecyclerView = findViewById(R.id.converRecyView);
                 myRecyclerView.setLayoutManager(new LinearLayoutManager(conversation.this));
                 adapter = new messageAdapter(conversation.this,MessagesTexts,HoureTexts);
                 myRecyclerView.setAdapter(adapter);
+
                 conversation_addText.setText("");
             }
         });
+        MessagesTexts.add("Horse");
+        HoureTexts.add("12:00");
+        receiverAdapter adapter;
 
-//        MessagesTexts.add("مرحبا");
-//        HoureTexts.add("12:12");
-//        AM_PM_Texts.add("AM");
-//
-//        messageAdapter adapter;
-//
-//        RecyclerView myRecyclerView = findViewById(R.id.converRecyView);
-//        myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new messageAdapter(this,MessagesTexts,HoureTexts, AM_PM_Texts);
-//        myRecyclerView.setAdapter(adapter);
+        RecyclerView myRecyclerView = findViewById(R.id.converRecyView);
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(conversation.this));
+        adapter = new receiverAdapter(conversation.this,MessagesTexts,HoureTexts);
+        myRecyclerView.setAdapter(adapter);
+
     }
 
 
