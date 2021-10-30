@@ -46,15 +46,11 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.myViewHo
         holder.sendHoureText.setText(houre);
 
         String am_pm = mAM_PM_Texts.get(position);
-        holder.send_am_pmText.setText(am_pm);
-    }
-
+        holder.send_am_pmText.setText(am_pm);    }
     @Override
     public int getItemCount() {
         //how many items in my list
-        return mMessagesTexts.size();
-    }
-
+        return mMessagesTexts.size();    }
     public class myViewHolder extends RecyclerView.ViewHolder{
 
         TextView sendMessageText, sendHoureText, send_am_pmText;
