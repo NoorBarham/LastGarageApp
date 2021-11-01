@@ -88,10 +88,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:visibility="visible">
 
         <TextView
-            android:id="@+id/homePage_addIcon1"
+            android:id="@+id/homePage_addCarIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -99,7 +102,7 @@
             android:drawableLeft="@drawable/add_icon" />
 
         <TextView
-            android:id="@+id/homePage_filter1"
+            android:id="@+id/homePage_filterCar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -112,11 +115,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         android:showDividers="none"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
-            android:id="@+id/homePage_addIcon2"
+            android:id="@+id/homePage_addGarageLineIcon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"

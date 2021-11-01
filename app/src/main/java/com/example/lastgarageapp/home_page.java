@@ -31,7 +31,7 @@ public class home_page extends AppCompatActivity {
     TextView addNewstext;
     Button addNewsButt;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
-
+    TextView iconAdd;
     //my actionbar
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
 
@@ -53,8 +53,12 @@ public class home_page extends AppCompatActivity {
         garageLineStatusLayout=findViewById(R.id.homePage_garageLineStatusLayout);
         myRecycleLayout=findViewById(R.id.homePage_RecycleLayout);
 
+        //news layout
         addNewstext=findViewById(R.id.homePage_addnewstext);
         addNewsButt=findViewById(R.id.homePage_addNewsButt);
+
+        //garageLine layout
+        iconAdd=findViewById(R.id.homePage_addGarageLineIcon);
 
         //default
         statusButt.setBackgroundColor(0xFFFF6F00);
@@ -159,6 +163,14 @@ public class home_page extends AppCompatActivity {
                     recyclerView.setAdapter(adapter2);
 
                 }
+            }
+        });
+        iconAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(home_page.this ,add_garage.class);
+                startActivity(intent);
+
             }
         });
 
