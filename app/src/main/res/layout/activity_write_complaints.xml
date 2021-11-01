@@ -73,12 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="118dp"
                 android:background="@drawable/white_background"
-                android:backgroundTint="#F3BA74"
+                android:backgroundTint="#FFE0B2"
+                android:padding="5dp"
                 android:ellipsize="middle"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-
                 android:textSize="24sp" />
 
             <Button

@@ -19,6 +19,9 @@
             android:name=".conversation"
             android:exported="true" />
         <activity
+        android:name=".write_complaints"
+        android:exported="true" />
+        <activity
             android:name=".edit_garage"
             android:exported="true" />
         <activity
