@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <include layout="@layout/activity_my_actionbar"/>
+
+    <include layout="@layout/activity_my_actionbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,15 +59,82 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear1">
+
+        <Button
+            android:id="@+id/homePage_addButt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF6F00"
+            android:text="إضافة"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/homePage_addnewstext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radius_border"
+            android:ems="10"
+            android:hint="أضف خبرا .."
+            android:inputType="textImeMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear2">
+
+        <TextView
+            android:id="@+id/homePage_addIcon1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/add_icon" />
+
+        <TextView
+            android:id="@+id/homePage_filter1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/filter_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:showDividers="none"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/homePage_addIcon2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/add_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear4"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:id="@+id/mylll"
         android:orientation="horizontal">
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycle_1"
+            android:id="@+id/homePage_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+           />
     </LinearLayout>
+
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,18 +10,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.lastgarageapp.adapter.newsAdapter;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
-
+    private ArrayList<String> textNames =new ArrayList<>();
+    private ArrayList<String> textNews=new ArrayList<>();
+    private ArrayList<String> textHours=new ArrayList<>();
     Button newsButt, statusButt;
     Spinner dest,sour;
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
 //    LinearLayout l;
 //    ListView myList;
-
+    TextView addNewstext;
+    Button add;
+    LinearLayout l1;
+    LinearLayout l2;
+    LinearLayout l3;
+    LinearLayout l4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +48,20 @@ public class home_page extends AppCompatActivity {
 //        l.addView(findViewById(R.id.carStatus_layout));
 
         //views in homePage
+
         newsButt=findViewById(R.id.homePage_newsButt);
         statusButt=findViewById(R.id.homePage_statusButt);
         dest =findViewById(R.id.homePage_destination);
         sour =findViewById(R.id.homePage_source);
+        addNewstext=findViewById(R.id.homePage_addnewstext);
+        add=findViewById(R.id.homePage_addButt);
+        l1=findViewById(R.id.linear1);
+        l2=findViewById(R.id.linear2);
+        l3=findViewById(R.id.linear3);
+        l4=findViewById(R.id.linear4);
 
 
-        newsButt.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 statusButt.setBackgroundColor(0xFFFF6F00);
@@ -45,8 +69,28 @@ public class home_page extends AppCompatActivity {
                 newsButt.setBackgroundColor(Color.WHITE);
                 newsButt.setTextColor(0xFFFF6F00);
 
-                Intent intent= new Intent(home_page.this ,news.class);
-                startActivity(intent);
+
+
+                final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
+                sb.append(addNewstext.getText());
+                String s= sb.toString();
+                textNews.add(addNewstext.getText().toString());
+
+                TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
+                Date currentTime = Calendar.getInstance().getTime();
+                String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
+                textHours.add(timeStamp);
+
+                textNames.add("Alice");
+
+                newsAdapter adapter;
+                RecyclerView myRecyclerView = findViewById(R.id.homePage_recycler);
+                adapter = new newsAdapter(home_page.this,textNames,textNews,textHours);
+                myRecyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
+                myRecyclerView.setAdapter(adapter);
+                addNewstext.setText("");
+
+
             }
         });
 

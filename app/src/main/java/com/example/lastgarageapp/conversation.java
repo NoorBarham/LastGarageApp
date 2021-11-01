@@ -51,7 +51,7 @@ public class conversation extends AppCompatActivity {
 
                 RecyclerView myRecyclerView = findViewById(R.id.converRecyView);
                 myRecyclerView.setLayoutManager(new LinearLayoutManager(conversation.this));
-                adapter = new messageAdapter(conversation.this,MessagesTexts,HoureTexts);
+                adapter = new messageAdapter(conversation.this, MessagesTexts,HoureTexts);
                 myRecyclerView.setAdapter(adapter);
 
                 conversation_addText.setText("");

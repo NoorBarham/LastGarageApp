@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class newsAdapter extends RecyclerView.Adapter<newsAdapter.myViewHolder>{
-    private List<String> textNames ;
+    private ArrayList<String> textNames ;
     private ArrayList<String> textNews;
     private ArrayList<String> textHours;
     private LayoutInflater nInflater;
@@ -57,16 +58,18 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.myViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return textNames.size();
     }
     public class myViewHolder extends RecyclerView.ViewHolder {
            TextView textName,textNews,textHour;
            ImageView imageDelete;
+           RelativeLayout newsListlayout;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             textName=itemView.findViewById(R.id.newsItem_name);
             textHour=itemView.findViewById(R.id.newsItem_clock);
             textNews=itemView.findViewById(R.id.newsItem_description);
+            newsListlayout=itemView.findViewById(R.id.newsList_layout);
           //  imageDelete=itemView.findViewById(R.id.newsItem_delet);
         }
 
