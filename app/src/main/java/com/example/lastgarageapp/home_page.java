@@ -32,11 +32,11 @@ public class home_page extends AppCompatActivity {
 //    LinearLayout l;
 //    ListView myList;
     TextView addNewstext;
-    Button add;
-    LinearLayout l1;
-    LinearLayout l2;
-    LinearLayout l3;
-    LinearLayout l4;
+    Button addNewsButt;
+    LinearLayout newsLayout;
+    LinearLayout carStatusLayout;
+    LinearLayout garageLineStatusLayout;
+    LinearLayout myRecycleLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,20 +48,32 @@ public class home_page extends AppCompatActivity {
 //        l.addView(findViewById(R.id.carStatus_layout));
 
         //views in homePage
-
         newsButt=findViewById(R.id.homePage_newsButt);
         statusButt=findViewById(R.id.homePage_statusButt);
         dest =findViewById(R.id.homePage_destination);
         sour =findViewById(R.id.homePage_source);
+
+        newsLayout=findViewById(R.id.homePage_newsLayout);
+        carStatusLayout=findViewById(R.id.homePage_carStatusLayout);
+        garageLineStatusLayout=findViewById(R.id.homePage_garageLineStatusLayout);
+        myRecycleLayout=findViewById(R.id.homePage_RecycleLayout);
+
         addNewstext=findViewById(R.id.homePage_addnewstext);
-        add=findViewById(R.id.homePage_addButt);
-        l1=findViewById(R.id.linear1);
-        l2=findViewById(R.id.linear2);
-        l3=findViewById(R.id.linear3);
-        l4=findViewById(R.id.linear4);
+        addNewsButt=findViewById(R.id.homePage_addNewsButt);
+
+        //default
+        statusButt.setBackgroundColor(0xFFFF6F00);
+        statusButt.setTextColor(Color.WHITE);
+        newsButt.setBackgroundColor(Color.WHITE);
+        newsButt.setTextColor(0xFFFF6F00);
+
+        newsLayout.setVisibility(View.VISIBLE);
+        garageLineStatusLayout.setVisibility(View.GONE);
+        carStatusLayout.setVisibility(View.GONE);
 
 
-        add.setOnClickListener(new View.OnClickListener() {
+
+        newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 statusButt.setBackgroundColor(0xFFFF6F00);
@@ -69,7 +81,9 @@ public class home_page extends AppCompatActivity {
                 newsButt.setBackgroundColor(Color.WHITE);
                 newsButt.setTextColor(0xFFFF6F00);
 
-
+                newsLayout.setVisibility(View.VISIBLE);
+                garageLineStatusLayout.setVisibility(View.GONE);
+                carStatusLayout.setVisibility(View.GONE);
 
                 final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
                 sb.append(addNewstext.getText());
@@ -97,7 +111,7 @@ public class home_page extends AppCompatActivity {
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
+//                Intent intent;
                 newsButt.setBackgroundColor(0xFFFF6F00);
                 newsButt.setTextColor(Color.WHITE);
                 statusButt.setBackgroundColor(Color.WHITE);
@@ -105,20 +119,29 @@ public class home_page extends AppCompatActivity {
 
                 if(!sour.getSelectedItem().equals("المكان الحالي")){
                     if(!dest.getSelectedItem().equals("الوجهة")){
-                        intent= new Intent(home_page.this ,car_status.class);
+//                        intent= new Intent(home_page.this ,car_status.class);
+                        garageLineStatusLayout.setVisibility(View.GONE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.VISIBLE);
                     }else{
-                        intent= new Intent(home_page.this ,line_status.class);
+//                        intent= new Intent(home_page.this ,line_status.class);
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.GONE);
                     }
 
                 }else{
-                    intent= new Intent(home_page.this ,garage_status.class);
+//                    intent= new Intent(home_page.this ,garage_status.class);
+                    garageLineStatusLayout.setVisibility(View.VISIBLE);
+                    newsLayout.setVisibility(View.GONE);
+                    carStatusLayout.setVisibility(View.GONE);
                 }
-                startActivity(intent);
+//                startActivity(intent);
 
             }
         });
 
-        //views in my actionbarPage
+        //my actionbarPage
         homeIcon=findViewById(R.id.myActionBar_homeIcon);
         notificationIcon=findViewById(R.id.myActionBar_notificationsIcon);
         personalIcon=findViewById(R.id.myActionBar_personIcon);
