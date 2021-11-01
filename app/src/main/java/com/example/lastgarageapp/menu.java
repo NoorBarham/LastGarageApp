@@ -317,7 +317,7 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
-                Intent intent= new Intent(menu.this ,change_password.class);
+                Intent intent= new Intent(menu.this ,show_drivers.class);
                 startActivity(intent);
             }
         });
