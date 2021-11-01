@@ -1,6 +1,7 @@
 package com.example.lastgarageapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.conversation;
+import com.example.lastgarageapp.edit_garage;
+import com.example.lastgarageapp.personal_page;
+import com.example.lastgarageapp.view_notification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +47,18 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.my
 
         String line = lineworkText.get(position);
         holder.LineWorkeText.setText(line);
+
+        holder.iconMesage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(con, conversation.class);
+                con.startActivity(intent);
+
+
+            }
+        });
+
     }
 
     @Override
@@ -54,12 +71,25 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.my
 
         TextView NameText, LineWorkeText;
         RelativeLayout show;
+        TextView iconMesage;
+
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             NameText=itemView.findViewById(R.id.showDriversItem_driverName);
             LineWorkeText=itemView.findViewById(R.id.showDriversItem_driverWork);
             show=itemView.findViewById(R.id.showdriver_listitems);
+            iconMesage=itemView.findViewById(R.id.showDriversItem_messageIcon);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(con, personal_page.class);
+                    con.startActivity(intent);
+                }
+            });
+
         }
+
 
         @Override
         public void onClick(View v) {
