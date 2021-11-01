@@ -85,6 +85,11 @@ public class home_page extends AppCompatActivity {
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
 
+            }
+        });
+        addNewsButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
                 sb.append(addNewstext.getText());
                 String s= sb.toString();
@@ -103,7 +108,6 @@ public class home_page extends AppCompatActivity {
                 myRecyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
                 myRecyclerView.setAdapter(adapter);
                 addNewstext.setText("");
-
 
             }
         });
