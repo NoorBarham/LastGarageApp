@@ -21,7 +21,7 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.myViewHo
     private ArrayList<String> mHoureTexts ;
     private LayoutInflater mInflater;
 
-    public messageAdapter(Context context, ArrayList<String> textNames, ArrayList<String> mMessagesTexts) {
+    public messageAdapter(Context context, ArrayList<String> mMessagesTexts, ArrayList<String> mHoureTexts) {
         this.mMessagesTexts = mMessagesTexts;
         this.mHoureTexts = mHoureTexts;
         this.mInflater = LayoutInflater.from(context);

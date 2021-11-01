@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
 
 import java.text.SimpleDateFormat;
@@ -23,29 +25,22 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
-    private ArrayList<String> textNames =new ArrayList<>();
-    private ArrayList<String> textNews=new ArrayList<>();
-    private ArrayList<String> textHours=new ArrayList<>();
+
     Button newsButt, statusButt;
     Spinner dest,sour;
-    ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
-//    LinearLayout l;
-//    ListView myList;
     TextView addNewstext;
     Button addNewsButt;
-    LinearLayout newsLayout;
-    LinearLayout carStatusLayout;
-    LinearLayout garageLineStatusLayout;
-    LinearLayout myRecycleLayout;
+    LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
+
+    //my actionbar
+    ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-//        Toolbar myttt = (Toolbar)findViewById(R.id.myActionbar);
-//        getSupportActionBar();
-//        l=findViewById(R.id.mylll);
-//        l.addView(findViewById(R.id.carStatus_layout));
 
         //views in homePage
         newsButt=findViewById(R.id.homePage_newsButt);
@@ -70,8 +65,27 @@ public class home_page extends AppCompatActivity {
         newsLayout.setVisibility(View.VISIBLE);
         garageLineStatusLayout.setVisibility(View.GONE);
         carStatusLayout.setVisibility(View.GONE);
+        //
 
+        //for recycleView
+        //news
+        ArrayList<String> textNames =new ArrayList<>();
+        ArrayList<String> textNews=new ArrayList<>();
+        ArrayList<String> textHours=new ArrayList<>();
+        //garage
+        ArrayList<String> toHoure= new ArrayList<>();
+        ArrayList<String> fromHoure= new ArrayList<>();
+        ArrayList<String> noOfCars= new ArrayList<>();
+        ArrayList<String> adminName= new ArrayList<>();
+        ArrayList<String> cityName = new ArrayList<>();
 
+        newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
+        garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
+        RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
+
+        //default Adapter
+        recyclerView.setAdapter(adapter1);
 
         newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +98,8 @@ public class home_page extends AppCompatActivity {
                 newsLayout.setVisibility(View.VISIBLE);
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
+
+                recyclerView.setAdapter(adapter1);
 
             }
         });
@@ -101,12 +117,6 @@ public class home_page extends AppCompatActivity {
                 textHours.add(timeStamp);
 
                 textNames.add("Alice");
-
-                newsAdapter adapter;
-                RecyclerView myRecyclerView = findViewById(R.id.homePage_recycler);
-                adapter = new newsAdapter(home_page.this,textNames,textNews,textHours);
-                myRecyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
-                myRecyclerView.setAdapter(adapter);
                 addNewstext.setText("");
 
             }
@@ -115,7 +125,7 @@ public class home_page extends AppCompatActivity {
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent;
+
                 newsButt.setBackgroundColor(0xFFFF6F00);
                 newsButt.setTextColor(Color.WHITE);
                 statusButt.setBackgroundColor(Color.WHITE);
@@ -139,9 +149,16 @@ public class home_page extends AppCompatActivity {
                     garageLineStatusLayout.setVisibility(View.VISIBLE);
                     newsLayout.setVisibility(View.GONE);
                     carStatusLayout.setVisibility(View.GONE);
-                }
-//                startActivity(intent);
 
+                    toHoure.add("6:00 PM");
+                    fromHoure.add("6:00 AM");
+                    noOfCars.add("15");
+                    adminName.add("أحمد محمد");
+                    cityName.add("قلقيلية");
+
+                    recyclerView.setAdapter(adapter2);
+
+                }
             }
         });
 
