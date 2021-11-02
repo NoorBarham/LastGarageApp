@@ -1,35 +1,46 @@
 package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.lastgarageapp.adapter.garageAdapter;
+import com.example.lastgarageapp.adapter.newsAdapter;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
 
     Button newsButt, statusButt;
     Spinner dest,sour;
+    TextView addNewstext;
+    Button addNewsButt;
+    LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
+    TextView iconAdd;
+    //my actionbar
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
-//    LinearLayout l;
-//    ListView myList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-//        Toolbar myttt = (Toolbar)findViewById(R.id.myActionbar);
-//        getSupportActionBar();
-//        l=findViewById(R.id.mylll);
-//        l.addView(findViewById(R.id.carStatus_layout));
 
         //views in homePage
         newsButt=findViewById(R.id.homePage_newsButt);
@@ -37,6 +48,48 @@ public class home_page extends AppCompatActivity {
         dest =findViewById(R.id.homePage_destination);
         sour =findViewById(R.id.homePage_source);
 
+        newsLayout=findViewById(R.id.homePage_newsLayout);
+        carStatusLayout=findViewById(R.id.homePage_carStatusLayout);
+        garageLineStatusLayout=findViewById(R.id.homePage_garageLineStatusLayout);
+        myRecycleLayout=findViewById(R.id.homePage_RecycleLayout);
+
+        //news layout
+        addNewstext=findViewById(R.id.homePage_addnewstext);
+        addNewsButt=findViewById(R.id.homePage_addNewsButt);
+
+        //garageLine layout
+        iconAdd=findViewById(R.id.homePage_addGarageLineIcon);
+
+        //default
+        statusButt.setBackgroundColor(0xFFFF6F00);
+        statusButt.setTextColor(Color.WHITE);
+        newsButt.setBackgroundColor(Color.WHITE);
+        newsButt.setTextColor(0xFFFF6F00);
+
+        newsLayout.setVisibility(View.VISIBLE);
+        garageLineStatusLayout.setVisibility(View.GONE);
+        carStatusLayout.setVisibility(View.GONE);
+        //
+
+        //for recycleView
+        //news
+        ArrayList<String> textNames =new ArrayList<>();
+        ArrayList<String> textNews=new ArrayList<>();
+        ArrayList<String> textHours=new ArrayList<>();
+        //garage
+        ArrayList<String> toHoure= new ArrayList<>();
+        ArrayList<String> fromHoure= new ArrayList<>();
+        ArrayList<String> noOfCars= new ArrayList<>();
+        ArrayList<String> adminName= new ArrayList<>();
+        ArrayList<String> cityName = new ArrayList<>();
+
+        newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
+        garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
+        RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
+
+        //default Adapter
+        recyclerView.setAdapter(adapter1);
 
         newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,41 +99,82 @@ public class home_page extends AppCompatActivity {
                 newsButt.setBackgroundColor(Color.WHITE);
                 newsButt.setTextColor(0xFFFF6F00);
 
-                Intent intent= new Intent(home_page.this ,news.class);
-                startActivity(intent);
+                newsLayout.setVisibility(View.VISIBLE);
+                garageLineStatusLayout.setVisibility(View.GONE);
+                carStatusLayout.setVisibility(View.GONE);
+
+                recyclerView.setAdapter(adapter1);
+
+            }
+        });
+        addNewsButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
+                sb.append(addNewstext.getText());
+                String s= sb.toString();
+                textNews.add(addNewstext.getText().toString());
+
+                TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
+                Date currentTime = Calendar.getInstance().getTime();
+                String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
+                textHours.add(timeStamp);
+
+                textNames.add("Alice");
+                addNewstext.setText("");
+
             }
         });
 
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
+
                 newsButt.setBackgroundColor(0xFFFF6F00);
                 newsButt.setTextColor(Color.WHITE);
                 statusButt.setBackgroundColor(Color.WHITE);
                 statusButt.setTextColor(0xFFFF6F00);
 
-
-
-                if(sour.getSelectedItem().equals("طولكرم")){
-                    intent= new Intent(home_page.this ,line_status.class);
-                       startActivity(intent);
-
+                if(!sour.getSelectedItem().equals("المكان الحالي")){
                     if(!dest.getSelectedItem().equals("الوجهة")){
-                        intent= new Intent(home_page.this ,car_status.class);
+//                        intent= new Intent(home_page.this ,car_status.class);
+                        garageLineStatusLayout.setVisibility(View.GONE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.VISIBLE);
                     }else{
-                        intent= new Intent(home_page.this ,line_status.class);
+//                        intent= new Intent(home_page.this ,line_status.class);
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.GONE);
                     }
 
                 }else{
-                    intent= new Intent(home_page.this ,garage_status.class);
+//                    intent= new Intent(home_page.this ,garage_status.class);
+                    garageLineStatusLayout.setVisibility(View.VISIBLE);
+                    newsLayout.setVisibility(View.GONE);
+                    carStatusLayout.setVisibility(View.GONE);
+
+                    toHoure.add("6:00 PM");
+                    fromHoure.add("6:00 AM");
+                    noOfCars.add("15");
+                    adminName.add("أحمد محمد");
+                    cityName.add("قلقيلية");
+
+                    recyclerView.setAdapter(adapter2);
+
                 }
+            }
+        });
+        iconAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(home_page.this ,add_garage.class);
                 startActivity(intent);
 
             }
         });
 
-        //views in my actionbarPage
+        //my actionbarPage
         homeIcon=findViewById(R.id.myActionBar_homeIcon);
         notificationIcon=findViewById(R.id.myActionBar_notificationsIcon);
         personalIcon=findViewById(R.id.myActionBar_personIcon);
