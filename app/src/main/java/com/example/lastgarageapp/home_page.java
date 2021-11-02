@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -59,7 +60,12 @@ public class home_page extends AppCompatActivity {
                 statusButt.setBackgroundColor(Color.WHITE);
                 statusButt.setTextColor(0xFFFF6F00);
 
-                if(!sour.getSelectedItem().equals("المكان الحالي")){
+
+
+                if(sour.getSelectedItem().equals("طولكرم")){
+                    intent= new Intent(home_page.this ,line_status.class);
+                       startActivity(intent);
+
                     if(!dest.getSelectedItem().equals("الوجهة")){
                         intent= new Intent(home_page.this ,car_status.class);
                     }else{

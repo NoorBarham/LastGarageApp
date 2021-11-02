@@ -14,14 +14,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/garageItem_editIcon"
+            android:id="@+id/garageItemSwap_editIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/edit_icon" />
 
         <TextView
-            android:id="@+id/garageItem_deleteIcon"
+            android:id="@+id/garageItemSwap_deleteIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

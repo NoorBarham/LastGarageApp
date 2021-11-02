@@ -16,7 +16,7 @@ public class garage_status_list_item extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garage_status_list_item);
-        garageItem_editIcon = (TextView) findViewById(R.id.garageItem_editIcon);
+        garageItem_editIcon = (TextView) findViewById(R.id.garageItemSwap_editIcon);
 
         garageItem_editIcon.setOnClickListener(new View.OnClickListener() {
             @Override

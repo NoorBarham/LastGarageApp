@@ -12,10 +12,20 @@
 
     <string-array name="source">
         <item>المكان الحالي</item>
+        <item>طولكرم</item>
+        <item>نابلس</item>
+        <item>رام الله</item>
+        <item>قلقيلية</item>
+        <item>جنين</item>
     </string-array>
 
     <string-array name="destination">
         <item>الوجهة</item>
+        <item>طولكرم</item>
+        <item>نابلس</item>
+        <item>رام الله</item>
+        <item>قلقيلية</item>
+        <item>جنين</item>
     </string-array>
 
     <string-array name="driver_or_admin">
