@@ -9,7 +9,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="@drawable/rectangular_border"
         android:gravity="center">
 
         <LinearLayout
@@ -53,6 +52,7 @@
                             android:id="@+id/showDriversItem_driverName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="right"
                             android:text="اسم السائق"
                             android:textColor="#090202"
                             android:textSize="20sp"
@@ -62,6 +62,7 @@
                             android:id="@+id/showDriversItem_driverWork"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="right"
                             android:text="الخط الذي يعمل به  "
                             android:textColor="#050101"
                             android:textSize="20sp"
@@ -80,5 +81,12 @@
 
         </LinearLayout>
     </RelativeLayout>
+
+    <View
+        android:id="@+id/divider12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FF6F00"
+        android:backgroundTint="#FF6F00" />
 
 </LinearLayout>

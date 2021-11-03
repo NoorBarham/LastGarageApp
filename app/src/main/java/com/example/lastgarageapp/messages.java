@@ -1,12 +1,19 @@
 package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.lastgarageapp.adapter.messengerAdapter;
+import com.example.lastgarageapp.adapter.notificationAdapter;
+
+import java.util.ArrayList;
 
 public class messages extends AppCompatActivity {
 
@@ -61,5 +68,34 @@ public class messages extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //recyclerView
+        ArrayList<String> animalNames = new ArrayList<>();
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("Goat");
+
+        ArrayList<String> animalNames2 = new ArrayList<>();
+        animalNames2.add("Horse");
+        animalNames2.add("Cow");
+        animalNames2.add("Camel");
+        animalNames2.add("Sheep");
+        animalNames2.add("Goat");
+
+        ArrayList<String> animalNames3 = new ArrayList<>();
+        animalNames3.add("Horse");
+        animalNames3.add("Cow");
+        animalNames3.add("Camel");
+        animalNames3.add("Sheep");
+        animalNames3.add("Goat");
+
+        messengerAdapter adapter;
+
+
+        RecyclerView messengerRecyclerView = findViewById(R.id.notoRecyView);
+        messengerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new messengerAdapter(this, animalNames, animalNames2, animalNames3);
+        messengerRecyclerView.setAdapter(adapter);
     }
 }
