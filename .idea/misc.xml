@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_car_status_list_item.xml" value="0.22" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_edit_car_data.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_edit_line.xml" value="0.25" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_garage_status.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_garage_status_list_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_home_page.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_line_status.xml" value="0.25" />
