@@ -16,7 +16,7 @@
         android:textColor="#100E0E"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="إضافة خط نقل جديد                 " />
+        tools:text="إضافة خط نقل جديد " />
 
     <View
         android:id="@+id/divider2"

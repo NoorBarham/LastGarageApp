@@ -1,5 +1,6 @@
 package com.example.lastgarageapp.adapter;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -99,3 +100,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         }
     }
 
+=======
+public class carAdapter {
+}
+>>>>>>> origin/master
