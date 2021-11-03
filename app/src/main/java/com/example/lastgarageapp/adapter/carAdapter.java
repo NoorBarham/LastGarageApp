@@ -1,6 +1,6 @@
 package com.example.lastgarageapp.adapter;
 
-<<<<<<< HEAD
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -20,7 +20,7 @@ import com.example.lastgarageapp.view_notification;
 import java.util.ArrayList;
 
 public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
-    ArrayList<String> textName,textAvailability,textnoOfPassenger,textTime;
+    ArrayList<String> textName, textAvailability, textnoOfPassenger, textTime;
     Context con;
 
     public carAdapter(Context context, ArrayList<String> textName, ArrayList<String> textAvailability, ArrayList<String> textnoOfPassenger, ArrayList<String> textTime) {
@@ -28,7 +28,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         this.textAvailability = textAvailability;
         this.textnoOfPassenger = textnoOfPassenger;
         this.textTime = textTime;
-        this.con=context;
+        this.con = context;
 
     }
 
@@ -58,7 +58,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             @Override
             public void onClick(View view) {
 //                holder.iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xffff6f00));
-                Intent intent=new Intent(con, edit_car_data.class);
+                Intent intent = new Intent(con, edit_car_data.class);
                 con.startActivity(intent);
 
             }
@@ -78,29 +78,22 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     }
 
     public class carViewHolder extends RecyclerView.ViewHolder {
-        TextView  nameDriver, carAvailability,numberofpassengers, carexpectedTime;
+        TextView nameDriver, carAvailability, numberofpassengers, carexpectedTime;
         TextView iconEdit, iconDelet;
-
 
 
         public carViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameDriver=itemView.findViewById(R.id.carItem_driverName);
-            carAvailability=itemView.findViewById(R.id.carItem_availabilty);
-            numberofpassengers=itemView.findViewById(R.id.carItem_noOfPassenger);
-            carexpectedTime=itemView.findViewById(R.id.carItem_arrivalTime);
+            nameDriver = itemView.findViewById(R.id.carItem_driverName);
+            carAvailability = itemView.findViewById(R.id.carItem_availabilty);
+            numberofpassengers = itemView.findViewById(R.id.carItem_noOfPassenger);
+            carexpectedTime = itemView.findViewById(R.id.carItem_arrivalTime);
 
-            iconEdit=itemView.findViewById(R.id.garageItem_editIcon);
-            iconDelet=itemView.findViewById(R.id.garageItem_deleteIcon);
+            iconEdit = itemView.findViewById(R.id.garageItem_editIcon);
+            iconDelet = itemView.findViewById(R.id.garageItem_deleteIcon);
 
-
-
-        }
 
         }
+
     }
-
-=======
-public class carAdapter {
 }
->>>>>>> origin/master
