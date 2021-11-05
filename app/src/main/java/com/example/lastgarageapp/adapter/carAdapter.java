@@ -89,8 +89,8 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             numberofpassengers = itemView.findViewById(R.id.carItem_noOfPassenger);
             carexpectedTime = itemView.findViewById(R.id.carItem_arrivalTime);
 
-            iconEdit = itemView.findViewById(R.id.garageItem_editIcon);
-            iconDelet = itemView.findViewById(R.id.garageItem_deleteIcon);
+            iconEdit = itemView.findViewById(R.id.carItem_editIcon);
+            iconDelet = itemView.findViewById(R.id.carItem_deleteIcon);
 
 
         }

@@ -18,23 +18,21 @@ import com.example.lastgarageapp.edit_line;
 import java.util.ArrayList;
 
 public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder> {
-    private ArrayList<String> alineFare, aNoOfCars,alineName;
-    private LayoutInflater mInflater;
+    private ArrayList<String> alineFare, aNoOfCars;
     Context con;
 
 
-    public lineAdapter(Context context, ArrayList<String> lineFare, ArrayList<String> noOfCars, ArrayList<String> lineName) {
+    public lineAdapter(Context context, ArrayList<String> lineFare, ArrayList<String> noOfCars) {
         this.alineFare = lineFare;
         this.aNoOfCars = noOfCars;
-        this.alineName= lineName;
         this.con = context;
-        this.mInflater = LayoutInflater.from(context);
+
     }
 
     @NonNull
     @Override
     public lineAdapter.lineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.activity_line_status_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_line_status_list_item, parent, false);
         lineAdapter.lineViewHolder holder = new lineAdapter.lineViewHolder(view);
         return holder;
     }
@@ -46,9 +44,6 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
 
         String noOfCars = aNoOfCars.get(position);
         holder.noOfCars.setText(noOfCars);
-
-        String lineName = alineName.get(position);
-        holder.lineName.setText(lineName);
 
         holder.iconEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,13 +64,12 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
 
     @Override
     public int getItemCount() {
-        int count = getItemCount();
-        return count;
+     return alineFare.size();
     }
 
 
     public class lineViewHolder extends RecyclerView.ViewHolder {
-        TextView lineFare, noOfCars, lineName;
+        TextView lineFare, noOfCars;
         TextView iconEdit, iconDelete;
 
 
@@ -83,8 +77,6 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
             super(itemView);
             lineFare = itemView.findViewById(R.id.lineItem_lineFare);
             noOfCars = itemView.findViewById(R.id.lineItem_noOfCar);
-            lineName = itemView.findViewById(R.id.lineItem_lineName);
-
 
 
             iconEdit = itemView.findViewById(R.id.lineItem_editIcon);

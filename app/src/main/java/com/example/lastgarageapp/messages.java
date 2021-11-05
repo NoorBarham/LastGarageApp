@@ -93,7 +93,7 @@ public class messages extends AppCompatActivity {
         messengerAdapter adapter;
 
 
-        RecyclerView messengerRecyclerView = findViewById(R.id.notoRecyView);
+        RecyclerView messengerRecyclerView = findViewById(R.id.message_recyview);
         messengerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new messengerAdapter(this, animalNames, animalNames2, animalNames3);
         messengerRecyclerView.setAdapter(adapter);
