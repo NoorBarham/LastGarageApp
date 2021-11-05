@@ -18,14 +18,15 @@ import com.example.lastgarageapp.edit_line;
 import java.util.ArrayList;
 
 public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder> {
-    private ArrayList<String> alineFare, aNoOfCars;
+    private ArrayList<String> alineFare, aNoOfCars,alineName;
     private LayoutInflater mInflater;
     Context con;
 
 
-    public lineAdapter(Context context, ArrayList<String> lineFare, ArrayList<String> noOfCars) {
+    public lineAdapter(Context context, ArrayList<String> lineFare, ArrayList<String> noOfCars, ArrayList<String> lineName) {
         this.alineFare = lineFare;
         this.aNoOfCars = noOfCars;
+        this.alineName= lineName;
         this.con = context;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -45,6 +46,9 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
 
         String noOfCars = aNoOfCars.get(position);
         holder.noOfCars.setText(noOfCars);
+
+        String lineName = alineName.get(position);
+        holder.lineName.setText(lineName);
 
         holder.iconEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +75,7 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
 
 
     public class lineViewHolder extends RecyclerView.ViewHolder {
-        TextView lineFare, noOfCars;
+        TextView lineFare, noOfCars, lineName;
         TextView iconEdit, iconDelete;
 
 
@@ -79,6 +83,8 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
             super(itemView);
             lineFare = itemView.findViewById(R.id.lineItem_lineFare);
             noOfCars = itemView.findViewById(R.id.lineItem_noOfCar);
+            lineName = itemView.findViewById(R.id.lineItem_lineName);
+
 
 
             iconEdit = itemView.findViewById(R.id.lineItem_editIcon);

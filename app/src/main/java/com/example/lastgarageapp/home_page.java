@@ -34,6 +34,7 @@ public class home_page extends AppCompatActivity {
     TextView iconAddgarage;
     TextView iconAddcar;
     TextView iconFilter;
+
     //my actionbar
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
 
@@ -91,6 +92,11 @@ public class home_page extends AppCompatActivity {
         ArrayList<String> nameDriver= new ArrayList<>();
         ArrayList<String> noOfpassedngers= new ArrayList<>();
         ArrayList<String> carAvailability= new ArrayList<>();
+
+
+        ArrayList<String> LineName= new ArrayList<>();
+        ArrayList<String> LineFare= new ArrayList<>();
+
 
         newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
         garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
@@ -163,6 +169,9 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+                        LineName.add("طولكرم- قلقيلية");
+                        LineFare.add("5");
+
                     }
 
                 }else{
