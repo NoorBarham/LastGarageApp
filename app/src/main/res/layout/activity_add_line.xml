@@ -144,7 +144,6 @@
                     android:text="إلغاء"
                     android:textColor="#EDE9E9"
                     android:textSize="30dp"
-                    android:textStyle="bold"
                     tools:text="إلغاء" />
 
                 <Button
@@ -157,7 +156,6 @@
                     android:text="إضافة"
                     android:textColor="#F6F0F0"
                     android:textSize="30dp"
-                    android:textStyle="bold"
                     app:strokeColor="#EDE6E6"
                     tools:text="إضافة" />
             </LinearLayout>

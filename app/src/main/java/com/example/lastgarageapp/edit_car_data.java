@@ -25,7 +25,7 @@ public class edit_car_data extends AppCompatActivity {
         });
     }
     public void openhome_page(){
-        Intent intent = new Intent(this,home_page.class);
+        Intent intent = new Intent(this,car_status.class);
         startActivity(intent);
 
 
