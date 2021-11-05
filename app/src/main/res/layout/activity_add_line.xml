@@ -15,7 +15,7 @@
         android:text="إضافة خط نقل جديد"
         android:textColor="#100E0E"
         android:textSize="30sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         tools:text="إضافة خط نقل جديد " />
 
     <View
@@ -55,7 +55,7 @@
                     android:text="المدينة"
                     android:textColor="#0C0A0A"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="المدينة" />
 
             </LinearLayout>
@@ -83,7 +83,7 @@
                     android:text="الوجهة"
                     android:textColor="#0B0A0A"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="الوجهة" />
             </LinearLayout>
 
@@ -102,7 +102,7 @@
                     android:text="شيكل"
                     android:textColor="#0B0A0A"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="شيكل" />
 
                 <EditText
@@ -124,7 +124,7 @@
                     android:text="أجرة نقل الخط"
                     android:textColor="#100E0E"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="أجرة نقل الخط" />
             </LinearLayout>
 

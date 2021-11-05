@@ -77,7 +77,7 @@
                         android:layout_weight="1"
                         android:text="شيقل"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textStyle="normal" />
 
                     <TextView
                         android:id="@+id/lineItem_lineFare"
@@ -111,7 +111,7 @@
                     android:text="سيارة"
                     android:textColor="#969290"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/lineItem_noOfCar"
@@ -136,7 +136,7 @@
                     android:text="عدد السيارات : "
                     android:textColor="#969290"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
             </LinearLayout>
         </LinearLayout>

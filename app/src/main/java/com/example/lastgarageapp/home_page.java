@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
+import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
 
 import java.text.SimpleDateFormat;
@@ -91,10 +92,15 @@ public class home_page extends AppCompatActivity {
         ArrayList<String> nameDriver= new ArrayList<>();
         ArrayList<String> noOfpassedngers= new ArrayList<>();
         ArrayList<String> carAvailability= new ArrayList<>();
+        //line
+        ArrayList<String> line_fare= new ArrayList<>();
+        ArrayList<String> line_noOfcar= new ArrayList<>();
+
 
         newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
         garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
         carAdapter adapter3= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
+        lineAdapter adapter4=new lineAdapter(home_page.this,line_fare,line_noOfcar);
         RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
 
@@ -163,6 +169,13 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+
+                        line_fare.add("10.7");
+                        line_noOfcar.add("6");
+
+                        recyclerView.setAdapter(adapter4);
+
+
                     }
 
                 }else{
