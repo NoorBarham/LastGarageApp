@@ -56,8 +56,8 @@
                 android:paddingRight="15dp"
                 android:text="--"
                 android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +88,8 @@
                     android:id="@+id/lineItem_lineFare"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7" />
+                    android:layout_weight="1.7"
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/lineItemFareText"
@@ -129,7 +130,7 @@
                     android:text="--"
                     android:textColor="#969290"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/lineItem_carText"
