@@ -95,12 +95,14 @@ public class home_page extends AppCompatActivity {
         //line
         ArrayList<String> line_fare= new ArrayList<>();
         ArrayList<String> line_noOfcar= new ArrayList<>();
+        ArrayList<String> line_name= new ArrayList<>();
+
 
 
         newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
         garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
         carAdapter adapter3= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
-        lineAdapter adapter4=new lineAdapter(home_page.this,line_fare,line_noOfcar);
+        lineAdapter adapter4=new lineAdapter(home_page.this,line_fare,line_noOfcar,line_name);
         RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
 
@@ -172,6 +174,7 @@ public class home_page extends AppCompatActivity {
 
                         line_fare.add("10.7");
                         line_noOfcar.add("6");
+                        line_name.add("طولكرم- قلقيلية");
 
                         recyclerView.setAdapter(adapter4);
 
