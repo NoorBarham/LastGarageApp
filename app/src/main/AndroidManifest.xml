@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LastGarageApp">
         <activity
+            android:name=".settings"
+            android:exported="true" />
+        <activity
             android:name=".show_drivers_list_item"
             android:exported="true" />
         <activity
@@ -19,8 +22,8 @@
             android:name=".conversation"
             android:exported="true" />
         <activity
-        android:name=".write_complaints"
-        android:exported="true" />
+            android:name=".write_complaints"
+            android:exported="true" />
         <activity
             android:name=".edit_garage"
             android:exported="true" />
