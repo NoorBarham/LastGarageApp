@@ -18,6 +18,7 @@ import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
+import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.lineItem;
 
@@ -86,10 +87,7 @@ public class home_page extends AppCompatActivity {
         //garage
         ArrayList<garageItem> garageArray= new ArrayList<>();
         //car
-        ArrayList<String> timeExpected= new ArrayList<>();
-        ArrayList<String> nameDriver= new ArrayList<>();
-        ArrayList<String> noOfpassedngers= new ArrayList<>();
-        ArrayList<String> carAvailability= new ArrayList<>();
+        ArrayList<carItem> carArray= new ArrayList<>();
         //line
         ArrayList<lineItem> lineArray= new ArrayList<>();
 
@@ -98,7 +96,7 @@ public class home_page extends AppCompatActivity {
 
         newsAdapter N_adapter = new newsAdapter(home_page.this,textNames,textNews,textHours);
         garageAdapter G_adapter= new garageAdapter(home_page.this, garageArray);
-        carAdapter C_adapter= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
+        carAdapter C_adapter= new carAdapter(home_page.this, carArray);
         lineAdapter L_adapter=new lineAdapter(home_page.this,lineArray);
 
         RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
@@ -142,6 +140,7 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,19 +152,17 @@ public class home_page extends AppCompatActivity {
 
                 if(!sour.getSelectedItem().equals("المكان الحالي")){
                     if(!dest.getSelectedItem().equals("الوجهة")){
-//                        intent= new Intent(home_page.this ,car_status.class);
+                        //car
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
 
-                        nameDriver.add("أحمد محمد");
-                        timeExpected.add("6:00 AM");
-                        noOfpassedngers.add("7");
-                        carAvailability.add("متوفرة");
+                        carItem c= new carItem("أحمد محمد","متوفرة","4","6:00 AM");
+                        carArray.add(c);
 
                         recyclerView.setAdapter(C_adapter);
                     }else{
-//                        intent= new Intent(home_page.this ,line_status.class);
+                        //line
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
@@ -174,11 +171,10 @@ public class home_page extends AppCompatActivity {
                         lineArray.add(l);
 
                         recyclerView.setAdapter(L_adapter);
-
                     }
 
                 }else{
-//                    intent= new Intent(home_page.this ,garage_status.class);
+                    //garage
                     garageLineStatusLayout.setVisibility(View.VISIBLE);
                     newsLayout.setVisibility(View.GONE);
                     carStatusLayout.setVisibility(View.GONE);
@@ -256,20 +252,7 @@ public class home_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        ArrayList<String> animalNames = new ArrayList<>();
-//        animalNames.add("Horse");
-//        animalNames.add("Cow");
-//        animalNames.add("Camel");
-//        animalNames.add("Sheep");
-//        animalNames.add("Goat");
-//
-//
-//        driverAdapter adapter;
-//
-//        RecyclerView recyclerView = findViewById(R.id.recycle_1);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new driverAdapter(this, animalNames);
-//        recyclerView.setAdapter(adapter);
+
     }
 
 }
