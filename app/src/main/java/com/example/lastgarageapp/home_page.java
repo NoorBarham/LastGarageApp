@@ -19,6 +19,7 @@ import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
 import com.example.lastgarageapp.itemClasses.garageItem;
+import com.example.lastgarageapp.itemClasses.lineItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -90,21 +91,21 @@ public class home_page extends AppCompatActivity {
         ArrayList<String> noOfpassedngers= new ArrayList<>();
         ArrayList<String> carAvailability= new ArrayList<>();
         //line
-        ArrayList<String> line_fare= new ArrayList<>();
-        ArrayList<String> line_noOfcar= new ArrayList<>();
-        ArrayList<String> line_name= new ArrayList<>();
+        ArrayList<lineItem> lineArray= new ArrayList<>();
 
 
 
-        newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
-        garageAdapter adapter2= new garageAdapter(home_page.this, garageArray);
-        carAdapter adapter3= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
-        lineAdapter adapter4=new lineAdapter(home_page.this,line_fare,line_noOfcar,line_name);
+
+        newsAdapter N_adapter = new newsAdapter(home_page.this,textNames,textNews,textHours);
+        garageAdapter G_adapter= new garageAdapter(home_page.this, garageArray);
+        carAdapter C_adapter= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
+        lineAdapter L_adapter=new lineAdapter(home_page.this,lineArray);
+
         RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
 
         //default Adapter
-        recyclerView.setAdapter(adapter1);
+        recyclerView.setAdapter(N_adapter);
 
         newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +119,7 @@ public class home_page extends AppCompatActivity {
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
 
-                recyclerView.setAdapter(adapter1);
+                recyclerView.setAdapter(N_adapter);
 
             }
         });
@@ -162,19 +163,17 @@ public class home_page extends AppCompatActivity {
                         noOfpassedngers.add("7");
                         carAvailability.add("متوفرة");
 
-                        recyclerView.setAdapter(adapter3);
+                        recyclerView.setAdapter(C_adapter);
                     }else{
 //                        intent= new Intent(home_page.this ,line_status.class);
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
 
-                        line_fare.add("10.7");
-                        line_noOfcar.add("6");
-                        line_name.add("طولكرم- قلقيلية");
+                        lineItem l=new lineItem("قلقيلية","طولكرم","11.5","30");
+                        lineArray.add(l);
 
-                        recyclerView.setAdapter(adapter4);
-
+                        recyclerView.setAdapter(L_adapter);
 
                     }
 
@@ -186,7 +185,7 @@ public class home_page extends AppCompatActivity {
 
                     garageItem g=new garageItem("قلقيلية","أحمد","5:00","6:00","i don't know");
                     garageArray.add(g);
-                    recyclerView.setAdapter(adapter2);
+                    recyclerView.setAdapter(G_adapter);
 
                 }
             }

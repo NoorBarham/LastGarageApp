@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageViewHolder> {
 
-    private ArrayList<garageItem> myItem;
+    private ArrayList<garageItem> myGarageItem;
     private LayoutInflater mInflater;
     Context con;
 
-    public garageAdapter(Context context, ArrayList<garageItem> myItem) {
-        this.myItem = myItem;
+    public garageAdapter(Context context, ArrayList<garageItem> myGarageItem) {
+        this.myGarageItem = myGarageItem;
         this.con=context;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -40,7 +40,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
 
     @Override
     public void onBindViewHolder(garageAdapter.garageViewHolder holder, int position) {
-        garageItem g = myItem.get(position);
+        garageItem g = myGarageItem.get(position);
         holder.cityName.setText(g.getCityName());
         holder.adminName.setText(g.getAdminName());
         holder.location.setText(g.getLocation());
@@ -70,7 +70,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
     @Override
     public int getItemCount() {
         //how many items in my list
-        return myItem.size();
+        return myGarageItem.size();
     }
 
     public class garageViewHolder extends RecyclerView.ViewHolder{
