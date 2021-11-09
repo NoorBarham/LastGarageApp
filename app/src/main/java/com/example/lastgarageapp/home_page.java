@@ -18,6 +18,7 @@ import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
+import com.example.lastgarageapp.itemClasses.garageItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,11 +83,7 @@ public class home_page extends AppCompatActivity {
         ArrayList<String> textNews=new ArrayList<>();
         ArrayList<String> textHours=new ArrayList<>();
         //garage
-        ArrayList<String> toHoure= new ArrayList<>();
-        ArrayList<String> fromHoure= new ArrayList<>();
-        ArrayList<String> noOfCars= new ArrayList<>();
-        ArrayList<String> adminName= new ArrayList<>();
-        ArrayList<String> cityName = new ArrayList<>();
+        ArrayList<garageItem> garageArray= new ArrayList<>();
         //car
         ArrayList<String> timeExpected= new ArrayList<>();
         ArrayList<String> nameDriver= new ArrayList<>();
@@ -100,7 +97,7 @@ public class home_page extends AppCompatActivity {
 
 
         newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
-        garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
+        garageAdapter adapter2= new garageAdapter(home_page.this, garageArray);
         carAdapter adapter3= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
         lineAdapter adapter4=new lineAdapter(home_page.this,line_fare,line_noOfcar,line_name);
         RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
@@ -187,12 +184,8 @@ public class home_page extends AppCompatActivity {
                     newsLayout.setVisibility(View.GONE);
                     carStatusLayout.setVisibility(View.GONE);
 
-                    toHoure.add("6:00 PM");
-                    fromHoure.add("6:00 AM");
-                    noOfCars.add("15");
-                    adminName.add("أحمد محمد");
-                    cityName.add("قلقيلية");
-
+                    garageItem g=new garageItem("قلقيلية","أحمد","5:00","6:00","i don't know");
+                    garageArray.add(g);
                     recyclerView.setAdapter(adapter2);
 
                 }
