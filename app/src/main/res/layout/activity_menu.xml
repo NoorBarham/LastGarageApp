@@ -17,8 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,8 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:padding="15dp"
-                    >
+                    android:padding="15dp">
 
                     <TextView
                         android:id="@+id/personal_page"
@@ -60,44 +59,8 @@
                         android:layout_weight="1"
                         android:text="الصفحة الشخصية"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
-                        />
-
-                    <View
-                        android:id="@+id/divider1"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:background="#ff6f00"/>
-
-                    <TextView
-                        android:id="@+id/edit_personal_data"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:text="تعديل البيانات الشخصية"
-                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <View
-                        android:id="@+id/divider2"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="5dp"
-                        android:background="#ff6f00" />
-
-                    <TextView
-                        android:id="@+id/change_pass"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:text="تغيير كلمة السر"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -139,30 +102,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="إضافة مدير جديد"
+                        android:text="إضافة مدير جديد / سائق جديد"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <View
                         android:id="@+id/divider3"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="5dp"
-                        android:background="#ff6f00" />
-
-                    <TextView
-                        android:id="@+id/add_new_driver"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:text="إضافة سائق جديد"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <View
-                        android:id="@+id/divider4"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_marginTop="5dp"
@@ -209,10 +154,10 @@
                         android:id="@+id/add_new_line"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:text="إضافة خط جديد"
                         android:textColor="@color/black"
-                        android:layout_marginTop="5dp"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -224,15 +169,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
 
                     <TextView
@@ -302,12 +245,13 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -333,6 +277,24 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="الإعدادات"
+                        android:textColor="#0C0808"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00"/>
 
                     <TextView
                         android:id="@+id/show_driver_list"

@@ -33,12 +33,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/read_complaints_myList"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/activity_read_complaints_list_item" />
+            android:id="@+id/complains_recyview"
+            />
     </LinearLayout>
 
 </LinearLayout>

@@ -28,7 +28,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.myViewHolder>{
         this.textNews = textNews;
         this.textHours = textHours;
         this.nInflater = LayoutInflater.from(context);
-       // this.imageDeletes = imageDeletes;
+
     }
 
 
@@ -62,15 +62,14 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.myViewHolder>{
     }
     public class myViewHolder extends RecyclerView.ViewHolder {
            TextView textName,textNews,textHour;
-           ImageView imageDelete;
-           RelativeLayout newsListlayout;
+           TextView  iconDelete;
+
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             textName=itemView.findViewById(R.id.newsItem_name);
             textHour=itemView.findViewById(R.id.newsItem_clock);
             textNews=itemView.findViewById(R.id.newsItem_description);
-            newsListlayout=itemView.findViewById(R.id.newsList_layout);
-          //  imageDelete=itemView.findViewById(R.id.newsItem_delet);
+
         }
 
     }

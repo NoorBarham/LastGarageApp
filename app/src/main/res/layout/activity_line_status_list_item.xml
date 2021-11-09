@@ -51,13 +51,60 @@
                 android:id="@+id/lineItem_lineName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:gravity="right"
                 android:paddingRight="15dp"
                 android:text="--"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lineItemText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="شيقل"
+                    android:textColor="#969290"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/lineItem_lineFare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.7"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/lineItemFareText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+
+                    android:gravity="right"
+                    android:paddingRight="15dp"
+                    android:text="أجرة نقل الخط:"
+                    android:textColor="#969290"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,7 +119,7 @@
                     android:text="سيارة"
                     android:textColor="#969290"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/lineItem_noOfCar"
@@ -84,7 +131,7 @@
                     android:text="--"
                     android:textColor="#969290"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/lineItem_carText"
@@ -97,7 +144,7 @@
                     android:text="عدد السيارات : "
                     android:textColor="#969290"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
             </LinearLayout>
         </LinearLayout>

@@ -14,8 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
+import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
 
 import java.text.SimpleDateFormat;
@@ -31,7 +32,9 @@ public class home_page extends AppCompatActivity {
     TextView addNewstext;
     Button addNewsButt;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
-    TextView iconAdd;
+    TextView iconAddgarage;
+    TextView iconAddcar;
+    TextView iconFilter;
     //my actionbar
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
 
@@ -58,7 +61,9 @@ public class home_page extends AppCompatActivity {
         addNewsButt=findViewById(R.id.homePage_addNewsButt);
 
         //garageLine layout
-        iconAdd=findViewById(R.id.homePage_addGarageLineIcon);
+        iconAddgarage=findViewById(R.id.homePage_addGarageLineIcon);
+        iconAddcar=findViewById(R.id.homePage_addCarIcon);
+        iconFilter=findViewById(R.id.homePage_filterCar);
 
         //default
         statusButt.setBackgroundColor(0xFFFF6F00);
@@ -82,9 +87,22 @@ public class home_page extends AppCompatActivity {
         ArrayList<String> noOfCars= new ArrayList<>();
         ArrayList<String> adminName= new ArrayList<>();
         ArrayList<String> cityName = new ArrayList<>();
+        //car
+        ArrayList<String> timeExpected= new ArrayList<>();
+        ArrayList<String> nameDriver= new ArrayList<>();
+        ArrayList<String> noOfpassedngers= new ArrayList<>();
+        ArrayList<String> carAvailability= new ArrayList<>();
+        //line
+        ArrayList<String> line_fare= new ArrayList<>();
+        ArrayList<String> line_noOfcar= new ArrayList<>();
+        ArrayList<String> line_name= new ArrayList<>();
+
+
 
         newsAdapter adapter1 = new newsAdapter(home_page.this,textNames,textNews,textHours);
         garageAdapter adapter2= new garageAdapter(home_page.this, cityName,adminName ,noOfCars,fromHoure, toHoure );
+        carAdapter adapter3= new carAdapter(home_page.this, nameDriver,carAvailability ,noOfpassedngers,timeExpected);
+        lineAdapter adapter4=new lineAdapter(home_page.this,line_fare,line_noOfcar,line_name);
         RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
 
@@ -141,11 +159,26 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
+
+                        nameDriver.add("أحمد محمد");
+                        timeExpected.add("6:00 AM");
+                        noOfpassedngers.add("7");
+                        carAvailability.add("متوفرة");
+
+                        recyclerView.setAdapter(adapter3);
                     }else{
 //                        intent= new Intent(home_page.this ,line_status.class);
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+
+                        line_fare.add("10.7");
+                        line_noOfcar.add("6");
+                        line_name.add("طولكرم- قلقيلية");
+
+                        recyclerView.setAdapter(adapter4);
+
+
                     }
 
                 }else{
@@ -165,10 +198,20 @@ public class home_page extends AppCompatActivity {
                 }
             }
         });
-        iconAdd.setOnClickListener(new View.OnClickListener() {
+        //-
+        iconAddgarage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(home_page.this ,add_garage.class);
+                startActivity(intent);
+
+            }
+        });
+
+        iconAddcar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(home_page.this ,add_car.class);
                 startActivity(intent);
 
             }

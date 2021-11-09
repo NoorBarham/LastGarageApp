@@ -39,14 +39,11 @@
         </LinearLayout>
 
 
-
-        <ListView
-            android:id="@+id/message_myList"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/activity_message_list_item" />
-
-
+            android:id="@+id/message_recyview"
+            />
     </LinearLayout>
 
 </LinearLayout>

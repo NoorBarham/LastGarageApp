@@ -25,7 +25,7 @@ public class add_garage extends AppCompatActivity {
         });
     }
     public void openhome_page(){
-        Intent intent = new Intent(this,home_page.class);
+        Intent intent = new Intent(this,garage_status.class);
         startActivity(intent);
 
 

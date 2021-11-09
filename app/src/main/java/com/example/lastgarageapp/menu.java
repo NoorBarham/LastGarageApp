@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class menu extends AppCompatActivity {
-    TextView personalpage,editpersonaldata,changepass,addnewmanager,addnwedriver,addnewcar,
+    TextView personalpage,editpersonaldata,changepass,addnewmanagerdriver,addnewcar,
             addnewline,addnewgarage,editlinedata,editgaragedata,editcardata,showdrivers,readcomplains,writecomplains,
-            aboutapp;
+            aboutapp, settings;
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
 
@@ -22,10 +22,9 @@ public class menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         personalpage=findViewById(R.id.personal_page);
-        editpersonaldata= findViewById(R.id.edit_personal_data);
-        changepass=findViewById(R.id.change_pass);
-        addnewmanager=findViewById(R.id.add_new_manager);
-        addnwedriver=findViewById(R.id.add_new_driver);
+       // editpersonaldata= findViewById(R.id.edit_personal_data);
+       // changepass=findViewById(R.id.change_pass);
+        addnewmanagerdriver=findViewById(R.id.add_new_manager);
         addnewcar=findViewById(R.id.add_new_car);
         addnewline=findViewById(R.id.add_new_line);
         addnewgarage=findViewById(R.id.add_new_garage);
@@ -36,13 +35,14 @@ public class menu extends AppCompatActivity {
         readcomplains=findViewById(R.id.read_complain);
         writecomplains=findViewById(R.id.add_complain);
         aboutapp=findViewById(R.id.about);
+        settings = findViewById(R.id.settings);
 
         writecomplains.setBackgroundColor(Color.WHITE);
         personalpage.setBackgroundColor(Color.WHITE);
-        editpersonaldata.setBackgroundColor(Color.WHITE);
-        changepass.setBackgroundColor(Color.WHITE);
-        addnewmanager.setBackgroundColor(Color.WHITE);
-        addnwedriver.setBackgroundColor(Color.WHITE);
+        //editpersonaldata.setBackgroundColor(Color.WHITE);
+        //changepass.setBackgroundColor(Color.WHITE);
+        addnewmanagerdriver.setBackgroundColor(Color.WHITE);
+
         addnewcar.setBackgroundColor(Color.WHITE);
         addnewline.setBackgroundColor(Color.WHITE);
         addnewgarage.setBackgroundColor(Color.WHITE);
@@ -52,15 +52,15 @@ public class menu extends AppCompatActivity {
         showdrivers.setBackgroundColor(Color.WHITE);
         readcomplains.setBackgroundColor(Color.WHITE);
         aboutapp.setBackgroundColor(Color.WHITE);
+        settings.setBackgroundColor(Color.WHITE);
 
         personalpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 personalpage.setBackgroundColor(0xFFFF6F00);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -71,65 +71,22 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
                 Intent intent= new Intent(menu.this ,personal_page.class);
                 startActivity(intent);
             }
         });
 
-        editpersonaldata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editpersonaldata.setBackgroundColor(0xFFFF6F00);
-                personalpage.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
-                addnewcar.setBackgroundColor(Color.WHITE);
-                addnewline.setBackgroundColor(Color.WHITE);
-                addnewgarage.setBackgroundColor(Color.WHITE);
-                editlinedata.setBackgroundColor(Color.WHITE);
-                editgaragedata.setBackgroundColor(Color.WHITE);
-                editcardata.setBackgroundColor(Color.WHITE);
-                showdrivers.setBackgroundColor(Color.WHITE);
-                readcomplains.setBackgroundColor(Color.WHITE);
-                writecomplains.setBackgroundColor(Color.WHITE);
-                aboutapp.setBackgroundColor(Color.WHITE);
-                Intent intent= new Intent(menu.this ,edit_personal_data.class);
-                startActivity(intent);
-            }
-        });
 
-        changepass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changepass.setBackgroundColor(0xFFFF6F00);
-                personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
-                addnewcar.setBackgroundColor(Color.WHITE);
-                addnewline.setBackgroundColor(Color.WHITE);
-                addnewgarage.setBackgroundColor(Color.WHITE);
-                editlinedata.setBackgroundColor(Color.WHITE);
-                editgaragedata.setBackgroundColor(Color.WHITE);
-                editcardata.setBackgroundColor(Color.WHITE);
-                showdrivers.setBackgroundColor(Color.WHITE);
-                readcomplains.setBackgroundColor(Color.WHITE);
-                writecomplains.setBackgroundColor(Color.WHITE);
-                aboutapp.setBackgroundColor(Color.WHITE);
-                Intent intent= new Intent(menu.this ,change_password.class);
-                startActivity(intent);
-            }
-        });
 
-        addnwedriver.setOnClickListener(new View.OnClickListener() {
+
+        addnewmanagerdriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addnwedriver.setBackgroundColor(0xFFFF6F00);
+                addnewmanagerdriver.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
+              //  editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -140,28 +97,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
-                Intent intent= new Intent(menu.this ,add_driver.class);
-                startActivity(intent);
-            }
-        });
-        addnewmanager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addnewmanager.setBackgroundColor(0xFFFF6F00);
-                personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
-                addnewcar.setBackgroundColor(Color.WHITE);
-                addnewline.setBackgroundColor(Color.WHITE);
-                addnewgarage.setBackgroundColor(Color.WHITE);
-                editlinedata.setBackgroundColor(Color.WHITE);
-                editgaragedata.setBackgroundColor(Color.WHITE);
-                editcardata.setBackgroundColor(Color.WHITE);
-                showdrivers.setBackgroundColor(Color.WHITE);
-                readcomplains.setBackgroundColor(Color.WHITE);
-                writecomplains.setBackgroundColor(Color.WHITE);
-                aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,add_driver.class);
                 startActivity(intent);
@@ -172,10 +109,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 addnewline.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
                 editlinedata.setBackgroundColor(Color.WHITE);
@@ -185,6 +121,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,add_line.class);
                 startActivity(intent);
             }
@@ -194,10 +132,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 addnewgarage.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 editlinedata.setBackgroundColor(Color.WHITE);
@@ -207,6 +144,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,add_garage.class);
                 startActivity(intent);
             }
@@ -216,10 +155,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 addnewcar.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+           //     editpersonaldata.setBackgroundColor(Color.WHITE);
+             //   changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
                 editlinedata.setBackgroundColor(Color.WHITE);
@@ -229,8 +167,11 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,add_car.class);
                 startActivity(intent);
+
             }
         });
         editgaragedata.setOnClickListener(new View.OnClickListener() {
@@ -238,10 +179,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 editgaragedata.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+               // editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -251,6 +191,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,edit_garage.class);
                 startActivity(intent);
             }
@@ -259,11 +201,10 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editlinedata.setBackgroundColor(0xFFFF6F00);
-                personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
+                //personalpage.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
                 changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -273,8 +214,11 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,edit_line.class);
                 startActivity(intent);
+
             }
         });
         editcardata.setOnClickListener(new View.OnClickListener() {
@@ -282,10 +226,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 editcardata.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -295,6 +238,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,edit_car_data.class);
                 startActivity(intent);
             }
@@ -304,10 +249,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 showdrivers.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+               // editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -317,7 +261,9 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
-                Intent intent= new Intent(menu.this ,change_password.class);
+                settings.setBackgroundColor(Color.WHITE);
+
+                Intent intent= new Intent(menu.this ,show_drivers.class);
                 startActivity(intent);
             }
         });
@@ -326,10 +272,9 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 readcomplains.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+               // changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -339,6 +284,8 @@ public class menu extends AppCompatActivity {
                 showdrivers.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,read_complaints.class);
                 startActivity(intent);
             }
@@ -349,10 +296,9 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(0xFFFF6F00);
 
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -362,6 +308,8 @@ public class menu extends AppCompatActivity {
                 showdrivers.setBackgroundColor(Color.WHITE);
                 readcomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,write_complaints.class);
                 startActivity(intent);
@@ -373,10 +321,9 @@ public class menu extends AppCompatActivity {
                 aboutapp.setBackgroundColor(0xFFFF6F00);
 
                 personalpage.setBackgroundColor(Color.WHITE);
-                editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
-                addnewmanager.setBackgroundColor(Color.WHITE);
-                addnwedriver.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
                 addnewgarage.setBackgroundColor(Color.WHITE);
@@ -386,7 +333,31 @@ public class menu extends AppCompatActivity {
                 showdrivers.setBackgroundColor(Color.WHITE);
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
 
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                settings.setBackgroundColor(0xFFFF6F00);
+
+                personalpage.setBackgroundColor(Color.WHITE);
+                //editpersonaldata.setBackgroundColor(Color.WHITE);
+                //changepass.setBackgroundColor(Color.WHITE);
+                addnewmanagerdriver.setBackgroundColor(Color.WHITE);
+                addnewcar.setBackgroundColor(Color.WHITE);
+                addnewline.setBackgroundColor(Color.WHITE);
+                addnewgarage.setBackgroundColor(Color.WHITE);
+                editlinedata.setBackgroundColor(Color.WHITE);
+                editgaragedata.setBackgroundColor(Color.WHITE);
+                editcardata.setBackgroundColor(Color.WHITE);
+                showdrivers.setBackgroundColor(Color.WHITE);
+                readcomplains.setBackgroundColor(Color.WHITE);
+                writecomplains.setBackgroundColor(Color.WHITE);
+                aboutapp.setBackgroundColor(Color.WHITE);
+                Intent intent= new Intent(menu.this ,settings.class);
+                startActivity(intent);
             }
         });
 

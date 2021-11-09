@@ -15,8 +15,8 @@
         android:text="إضافة خط نقل جديد"
         android:textColor="#100E0E"
         android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="إضافة خط نقل جديد                 " />
+        android:textStyle="normal"
+        tools:text="إضافة خط نقل جديد " />
 
     <View
         android:id="@+id/divider2"
@@ -55,7 +55,7 @@
                     android:text="المدينة"
                     android:textColor="#0C0A0A"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="المدينة" />
 
             </LinearLayout>
@@ -83,7 +83,7 @@
                     android:text="الوجهة"
                     android:textColor="#0B0A0A"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="الوجهة" />
             </LinearLayout>
 
@@ -102,7 +102,7 @@
                     android:text="شيكل"
                     android:textColor="#0B0A0A"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="شيكل" />
 
                 <EditText
@@ -124,7 +124,7 @@
                     android:text="أجرة نقل الخط"
                     android:textColor="#100E0E"
                     android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     tools:text="أجرة نقل الخط" />
             </LinearLayout>
 
@@ -144,7 +144,6 @@
                     android:text="إلغاء"
                     android:textColor="#EDE9E9"
                     android:textSize="30dp"
-                    android:textStyle="bold"
                     tools:text="إلغاء" />
 
                 <Button
@@ -157,7 +156,6 @@
                     android:text="إضافة"
                     android:textColor="#F6F0F0"
                     android:textSize="30dp"
-                    android:textStyle="bold"
                     app:strokeColor="#EDE6E6"
                     tools:text="إضافة" />
             </LinearLayout>

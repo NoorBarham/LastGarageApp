@@ -25,7 +25,7 @@ public class  edit_personal_data extends AppCompatActivity {
         });
     }
     public void openhome_page(){
-        Intent intent = new Intent(this,home_page.class);
+        Intent intent = new Intent(this,personal_page.class);
         startActivity(intent);
 
 
