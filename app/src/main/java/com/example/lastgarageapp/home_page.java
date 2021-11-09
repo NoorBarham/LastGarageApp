@@ -252,20 +252,7 @@ public class home_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        ArrayList<String> animalNames = new ArrayList<>();
-//        animalNames.add("Horse");
-//        animalNames.add("Cow");
-//        animalNames.add("Camel");
-//        animalNames.add("Sheep");
-//        animalNames.add("Goat");
-//
-//
-//        driverAdapter adapter;
-//
-//        RecyclerView recyclerView = findViewById(R.id.recycle_1);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new driverAdapter(this, animalNames);
-//        recyclerView.setAdapter(adapter);
+
     }
 
 }
