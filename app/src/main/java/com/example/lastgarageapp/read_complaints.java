@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.lastgarageapp.adapter.complainsAdapter;
+import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.messengerAdapter;
+import com.example.lastgarageapp.itemClasses.complainsItem;
+import com.example.lastgarageapp.itemClasses.garageItem;
+import com.example.lastgarageapp.itemClasses.lineItem;
 
 import java.util.ArrayList;
 
@@ -19,20 +23,25 @@ public class read_complaints extends AppCompatActivity {
         setContentView(R.layout.activity_read_complaints);
 
         //recyclerView
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
+        ArrayList<complainsItem> complainsArray= new ArrayList<>();
+
+        complainsAdapter comp_adapter=new complainsAdapter(read_complaints.this,complainsArray);
+        complainsItem l=new complainsItem("Horse");
+        complainsArray.add(l);
+
+        //animalNames.add("Horse");
+        //animalNames.add("Cow");
+        //animalNames.add("Camel");
+        //animalNames.add("Sheep");
+        //animalNames.add("Goat");
 
 
         complainsAdapter adapter;
 
 
         RecyclerView complainRecyclerView = findViewById(R.id.complains_recyview);
-        complainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new complainsAdapter(this, animalNames);
-        complainRecyclerView.setAdapter(adapter);
+        complainRecyclerView.setLayoutManager(new LinearLayoutManager(read_complaints.this));
+        adapter = new complainsAdapter(this, complainsArray);
+       complainRecyclerView.setAdapter(adapter);
     }
 }
