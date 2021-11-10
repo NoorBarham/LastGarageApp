@@ -203,7 +203,7 @@ public class menu extends AppCompatActivity {
                 editlinedata.setBackgroundColor(0xFFFF6F00);
                 //personalpage.setBackgroundColor(Color.WHITE);
                 //editpersonaldata.setBackgroundColor(Color.WHITE);
-                changepass.setBackgroundColor(Color.WHITE);
+               // changepass.setBackgroundColor(Color.WHITE);
                 addnewmanagerdriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
