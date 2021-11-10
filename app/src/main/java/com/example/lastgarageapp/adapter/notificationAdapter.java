@@ -12,41 +12,38 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.itemClasses.notificationItem;
 import com.example.lastgarageapp.view_notification;
 
 import java.util.ArrayList;
 
-public class notificationAdapter extends RecyclerView.Adapter<notificationAdapter.myViewHolder> {
-    private ArrayList<String> mTextname = new ArrayList<>();
-    private ArrayList<String> mHourtext = new ArrayList<>();
-    // private ArrayList<String> mImage=new ArrayList<>();
+public class notificationAdapter extends RecyclerView.Adapter<notificationAdapter.notificationViewHolder> {
+    private ArrayList<notificationItem> myNotificationItem;
+
     private Context con;
 
 
-    public notificationAdapter(Context context, ArrayList<String> mTextnoto, ArrayList<String> mTextname, ArrayList<String> mHourtext) {
+    public notificationAdapter(Context context,ArrayList<notificationItem> myNotificationItem) {
 
-        this.mTextname = mTextname;
-        this.mHourtext = mHourtext;
-        //   this.mImage = mImage;
         this.con = context;
+        this.myNotificationItem=myNotificationItem;
     }
 
     @NonNull
     @Override
-    public notificationAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public notificationAdapter.notificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_notification_list_item, parent, false);
-        myViewHolder holder = new myViewHolder(view);
+        notificationViewHolder holder = new notificationViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull notificationAdapter.myViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull notificationAdapter.notificationViewHolder holder, int position) {
 
-        String name = mTextname.get(position);
-        holder.mmTextname.setText(name);
+        notificationItem n= myNotificationItem.get(position);
+        holder.mmTextname.setText(n.getTextName());
+        holder.mmHour.setText(n.getTextHour());
 
-        String hour = mHourtext.get(position);
-        holder.mmHour.setText(hour);
         holder.mmTextname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,16 +56,16 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
 
     @Override
     public int getItemCount() {
-        return mTextname.size();
+        return myNotificationItem.size();
     }
 
-    public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class notificationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView mmTextname, mmHour;
         //  ImageView mmImage;
         RelativeLayout notificationslayout;
 
-        public myViewHolder(@NonNull View itemView) {
+        public notificationViewHolder(@NonNull View itemView) {
             super(itemView);
             mmTextname = itemView.findViewById(R.id.notificationItem_name);
             mmHour = itemView.findViewById(R.id.notificationItem_clock);
@@ -89,8 +86,8 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
 
         @Override
         public void onClick(View v) {
-           // Intent intent=new Intent(con, view_notification.class);
-         //   con.startActivity(intent);
+            // Intent intent=new Intent(con, view_notification.class);
+            //   con.startActivity(intent);
         }
     }
 }

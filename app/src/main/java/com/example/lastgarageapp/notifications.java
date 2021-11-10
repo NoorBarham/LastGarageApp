@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.lastgarageapp.adapter.notificationAdapter;
+import com.example.lastgarageapp.itemClasses.notificationItem;
 
 import java.util.ArrayList;
 
@@ -70,33 +71,17 @@ public class notifications extends AppCompatActivity {
             }
         });
 /// recycleview
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
+        notificationItem n=new notificationItem("waed","10:30");
+        ArrayList<notificationItem>myNotificationItem=new ArrayList<>();
+        myNotificationItem.add(n);
 
-        ArrayList<String> animalNames2 = new ArrayList<>();
-        animalNames2.add("Horse");
-        animalNames2.add("Cow");
-        animalNames2.add("Camel");
-        animalNames2.add("Sheep");
-        animalNames2.add("Goat");
-
-        ArrayList<String> animalNames3 = new ArrayList<>();
-        animalNames3.add("Horse");
-        animalNames3.add("Cow");
-        animalNames3.add("Camel");
-        animalNames3.add("Sheep");
-        animalNames3.add("Goat");
 
         notificationAdapter adapter;
 
 
         RecyclerView myRecyclerView = findViewById(R.id.notoRecyView);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new notificationAdapter(this, animalNames, animalNames2, animalNames3);
+        adapter = new notificationAdapter(this, myNotificationItem);
         myRecyclerView.setAdapter(adapter);
     }
 }

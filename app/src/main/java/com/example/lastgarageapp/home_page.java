@@ -21,6 +21,7 @@ import com.example.lastgarageapp.adapter.newsAdapter;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.lineItem;
+import com.example.lastgarageapp.itemClasses.newsItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -81,9 +82,7 @@ public class home_page extends AppCompatActivity {
 
         //for recycleView
         //news
-        ArrayList<String> textNames =new ArrayList<>();
-        ArrayList<String> textNews=new ArrayList<>();
-        ArrayList<String> textHours=new ArrayList<>();
+        ArrayList<newsItem> newsArray =new ArrayList<>();
         //garage
         ArrayList<garageItem> garageArray= new ArrayList<>();
         //car
@@ -94,7 +93,7 @@ public class home_page extends AppCompatActivity {
 
 
 
-        newsAdapter N_adapter = new newsAdapter(home_page.this,textNames,textNews,textHours);
+        newsAdapter N_adapter = new newsAdapter(home_page.this,newsArray);
         garageAdapter G_adapter= new garageAdapter(home_page.this, garageArray);
         carAdapter C_adapter= new carAdapter(home_page.this, carArray);
         lineAdapter L_adapter=new lineAdapter(home_page.this,lineArray);
@@ -127,15 +126,17 @@ public class home_page extends AppCompatActivity {
                 final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
                 sb.append(addNewstext.getText());
                 String s= sb.toString();
-                textNews.add(addNewstext.getText().toString());
+                //textNews.add(addNewstext.getText().toString());
 
                 TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
                 Date currentTime = Calendar.getInstance().getTime();
                 String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
-                textHours.add(timeStamp);
+               // textHours.add(timeStamp);
 
-                textNames.add("Alice");
+                newsItem n=new newsItem("وعد",s,timeStamp);
+                newsArray.add(n);
                 addNewstext.setText("");
+                recyclerView.setAdapter(N_adapter);
 
             }
         });
@@ -217,8 +218,6 @@ public class home_page extends AppCompatActivity {
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,news.class);
-                startActivity(intent);
 
 
             }

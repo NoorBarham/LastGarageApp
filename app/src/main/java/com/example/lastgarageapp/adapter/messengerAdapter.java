@@ -14,81 +14,76 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.conversation;
+import com.example.lastgarageapp.itemClasses.messengerItem;
+import com.example.lastgarageapp.personal_page;
 import com.example.lastgarageapp.view_notification;
 
 import java.util.ArrayList;
 
 public class messengerAdapter extends RecyclerView.Adapter<messengerAdapter.messengerViewHolder> {
-
-    private ArrayList<String> textNames ;
-    private ArrayList<String> textmesages;
-    private ArrayList<String> textHours;
+    ArrayList<messengerItem> myMessengerItem;
     Context con;
 
-    public messengerAdapter(Context context, ArrayList<String> textNames, ArrayList<String> textmesages, ArrayList<String> textHours) {
-        this.textNames = textNames;
-        this.textmesages = textmesages;
-        this.textHours = textHours;
+    public messengerAdapter(Context context, ArrayList<messengerItem> myMessengerItem) {
         this.con=context;
+        this.myMessengerItem=myMessengerItem;
 
     }
 
     @NonNull
     @Override
     public messengerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_message_list_item, parent, false);
-        messengerViewHolder holder =new messengerViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_message_list_item, parent, false);
+        messengerViewHolder holder = new  messengerViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull messengerViewHolder holder, int position) {
-        String Name= textNames.get(position);
-        holder.textName.setText(Name);
+        messengerItem m= myMessengerItem.get(position);
+        holder.textName.setText(m.getTextName());
+        holder.textMessage.setText(m.getTextMessage());
+        holder.textHour.setText(m.getTextHour());
 
-        String Messages=textmesages.get(position);
-        holder.textMessage.setText(Messages);
-
-
-        String Hour=textHours.get(position);
-        holder.textHour.setText(Hour);
-
-        holder.iconDelet.setOnClickListener(new View.OnClickListener() {
+        holder.personImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(con, personal_page.class);
+                con.startActivity(intent);
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return textNames.size();
+        return myMessengerItem.size();
     }
 
 
     public class messengerViewHolder extends RecyclerView.ViewHolder {
         TextView textName,textMessage,textHour;
-        TextView  iconDelet;
-
+        ImageView imageDelete;
+        ImageView personImage;
+        RelativeLayout newsListlayout;
         public messengerViewHolder(@NonNull View itemView) {
             super(itemView);
             textName=itemView.findViewById(R.id.messageItem_name);
             textHour=itemView.findViewById(R.id.messageItem_clock);
+            personImage=itemView.findViewById(R.id.messageItem_image);
             textMessage=itemView.findViewById(R.id.messageItem_message);
-            iconDelet=itemView.findViewById(R.id.messageItem_deletIcon);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(con, conversation.class);
-                    intent.putExtra("waed", "test value");
                     con.startActivity(intent);
                 }
             });
 
         }
 
-        }
+    }
 
     }
 

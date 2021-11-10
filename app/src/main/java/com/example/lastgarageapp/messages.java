@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.example.lastgarageapp.adapter.messengerAdapter;
 import com.example.lastgarageapp.adapter.notificationAdapter;
+import com.example.lastgarageapp.itemClasses.messengerItem;
 
 import java.util.ArrayList;
 
@@ -90,12 +91,16 @@ public class messages extends AppCompatActivity {
         animalNames3.add("Sheep");
         animalNames3.add("Goat");
 
-        messengerAdapter adapter;
+        messengerItem m=new messengerItem("waed","hi","10:30");
+        ArrayList<messengerItem> messangerArray= new ArrayList<>();
+        messangerArray.add(m);
+
+        messengerAdapter m_adapter;
 
 
         RecyclerView messengerRecyclerView = findViewById(R.id.message_recyview);
         messengerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new messengerAdapter(this, animalNames, animalNames2, animalNames3);
-        messengerRecyclerView.setAdapter(adapter);
+        m_adapter = new messengerAdapter(this, messangerArray);
+        messengerRecyclerView.setAdapter(m_adapter);
     }
 }
