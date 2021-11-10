@@ -25,13 +25,13 @@ import java.util.ArrayList;
 
 public class complainsAdapter extends RecyclerView.Adapter<complainsAdapter.complainsViewHolder> {
 
-    private ArrayList<complainsItem> complainText;
+    private ArrayList<complainsItem> mycomplainText;
    // private LayoutInflater mInflater;
     Context con;
 
     public complainsAdapter(Context context, ArrayList<complainsItem> complainText) {
         this.con=context;
-        this.complainText=complainText;
+        this.mycomplainText=complainText;
 
        // this.mInflater = LayoutInflater.from(context);
     }
@@ -51,7 +51,7 @@ public class complainsAdapter extends RecyclerView.Adapter<complainsAdapter.comp
 
     @Override
     public void onBindViewHolder(@NonNull complainsViewHolder holder, int position) {
-        complainsItem l = complainText.get(position);
+        complainsItem l = mycomplainText.get(position);
 
        // String complain= complainText.get(position);
         holder.complainText.setText(l.getcomplainText());
@@ -61,7 +61,7 @@ public class complainsAdapter extends RecyclerView.Adapter<complainsAdapter.comp
     @Override
     public int getItemCount() {
         //how many items in my list
-        return complainText.size();
+        return mycomplainText.size();
     }
 
     public class complainsViewHolder extends RecyclerView.ViewHolder{

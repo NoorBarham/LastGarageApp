@@ -14,39 +14,39 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.edit_garage;
+import com.example.lastgarageapp.itemClasses.garageItem;
+import com.example.lastgarageapp.itemClasses.lineItem;
+import com.example.lastgarageapp.itemClasses.showDriversItem;
 import com.example.lastgarageapp.personal_page;
 import com.example.lastgarageapp.view_notification;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.myViewHolder>{
+public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.showDriversViewHolder>{
+    private ArrayList<showDriversItem> myshowDriversItems;
 
-    private ArrayList<String> nameText ;
-    private ArrayList<String> lineworkText ;
     private Context con;
 
-    public showdriverAdapter(Context context, ArrayList<String> nameText, ArrayList<String> lineworkText) {
-        this.nameText = nameText;
-        this.lineworkText = lineworkText;
+    public showdriverAdapter(Context context, ArrayList<showDriversItem> showDriversItems) {
+        this.myshowDriversItems= showDriversItems;
         this.con = context;
     }
 
     @NonNull
     @Override
-    public showdriverAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public showdriverAdapter.showDriversViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_show_drivers_list_item, parent, false);
-        myViewHolder holder =new myViewHolder(view);
+        showdriverAdapter.showDriversViewHolder holder = new showdriverAdapter.showDriversViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(showdriverAdapter.myViewHolder holder, int position) {
-        String name = nameText.get(position);
-        holder.NameText.setText(name);
+    public void onBindViewHolder(showdriverAdapter.showDriversViewHolder holder, int position) {
+        showDriversItem l = myshowDriversItems.get(position);
+        holder.NameText.setText(l.getnameText());
+        holder.LineWorkeText.setText(l.getlineworkText());
 
-        String line = lineworkText.get(position);
-        holder.LineWorkeText.setText(line);
 
         holder.iconMesage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,20 +64,23 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.my
     @Override
     public int getItemCount() {
         //how many items in my list
-        return nameText.size();
+        return myshowDriversItems.size();
     }
 
-    public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class showDriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView NameText, LineWorkeText;
         RelativeLayout show;
         TextView iconMesage;
 
-        public myViewHolder(@NonNull View itemView) {
+        public showDriversViewHolder(@NonNull View itemView) {
             super(itemView);
-            NameText=itemView.findViewById(R.id.showDriversItem_driverName);
-            LineWorkeText=itemView.findViewById(R.id.showDriversItem_driverWork);
+
+            NameText = itemView.findViewById(R.id.showDriversItem_driverName);
+            LineWorkeText = itemView.findViewById(R.id.showDriversItem_driverWork);
+
             show=itemView.findViewById(R.id.showdriver_listitems);
+
             iconMesage=itemView.findViewById(R.id.showDriversItem_messageIcon);
 
             itemView.setOnClickListener(new View.OnClickListener() {

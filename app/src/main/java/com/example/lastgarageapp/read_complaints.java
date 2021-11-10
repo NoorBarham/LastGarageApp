@@ -29,12 +29,6 @@ public class read_complaints extends AppCompatActivity {
         complainsItem l=new complainsItem("Horse");
         complainsArray.add(l);
 
-        //animalNames.add("Horse");
-        //animalNames.add("Cow");
-        //animalNames.add("Camel");
-        //animalNames.add("Sheep");
-        //animalNames.add("Goat");
-
 
         complainsAdapter adapter;
 
