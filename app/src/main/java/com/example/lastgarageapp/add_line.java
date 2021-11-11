@@ -20,15 +20,10 @@ public class add_line extends AppCompatActivity {
         addLine_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openhome_page();
-            }
+
+                finish();            }
         });
     }
-    public void openhome_page(){
-        Intent intent = new Intent(this,line_status.class);
-        startActivity(intent);
 
-
-    }
 
 }

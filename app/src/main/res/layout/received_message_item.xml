@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:background="@drawable/background_received_message"
         android:orientation="vertical">
 
@@ -17,14 +18,14 @@
             android:id="@+id/receivedMessageItem_messageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="310dp"
-            android:textColor="@color/black"
-            android:textSize="18dp"
             android:layout_marginBottom="3dp"
-            android:text="الحمد لله ..."/>
+            android:maxWidth="310dp"
+            android:text="الحمد لله ..."
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="right"
             android:orientation="horizontal">
@@ -33,12 +34,7 @@
                 android:id="@+id/receivedMessageItem_houre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12:00"/>
-<!--            <TextView-->
-<!--                android:id="@+id/receivedMessageItem_AMPM"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="AM"/>-->
+                android:text="12:00" />
 
         </LinearLayout>
     </LinearLayout>

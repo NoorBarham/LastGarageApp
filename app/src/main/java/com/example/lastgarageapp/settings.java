@@ -24,7 +24,7 @@ public class settings extends AppCompatActivity {
         settings_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openmenu_page();
+                finish();
             }
         });
         editPersonalSettings.setOnClickListener(new View.OnClickListener() {
@@ -42,10 +42,7 @@ public class settings extends AppCompatActivity {
         });
 
     }
-    public void openmenu_page(){
-        Intent intent = new Intent(this,menu.class);
-        startActivity(intent);
-    }
+
     public void openEditPersonal_page(){
         Intent intent = new Intent(this,edit_personal_data.class);
         startActivity(intent);

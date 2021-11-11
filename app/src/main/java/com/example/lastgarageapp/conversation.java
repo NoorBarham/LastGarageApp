@@ -23,7 +23,7 @@ public class conversation extends AppCompatActivity {
 
     private ArrayList<chatItem> chatArray = new ArrayList<>();
 
-    ImageView conversation_send_icon;
+    ImageView conversation_send_icon, conver_backIcon;
     TextView conversation_addText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,18 @@ public class conversation extends AppCompatActivity {
 
         conversation_addText=findViewById(R.id.conversation_addText);
         conversation_send_icon = findViewById(R.id.conversation_send_icon);
-
+        conver_backIcon =findViewById(R.id.conversation_backIcon);
 
         RecyclerView myRecyclerView = findViewById(R.id.converRecyView);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(conversation.this));
         chatAdapter adapter = new chatAdapter(conversation.this, chatArray,1);
 
+        conver_backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         conversation_send_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +61,8 @@ public class conversation extends AppCompatActivity {
                 chatItem c=new chatItem(""+s,timeStamp+"");
 
                 chatArray.add(c);
+                adapter.setFlag(1);
+
                 myRecyclerView.setAdapter(adapter);
 
                 conversation_addText.setText("");
@@ -64,6 +72,8 @@ public class conversation extends AppCompatActivity {
         chatItem c=new chatItem("hi","12:12");
         chatArray.add(c);
         adapter.setFlag(2);
+        myRecyclerView.setAdapter(adapter);
+
 
     }
 

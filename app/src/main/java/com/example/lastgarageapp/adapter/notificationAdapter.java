@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -63,7 +64,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
 
         TextView mmTextname, mmHour;
         //  ImageView mmImage;
-        RelativeLayout notificationslayout;
+        LinearLayout notificationslayout;
 
         public notificationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,7 +82,6 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
                     con.startActivity(intent);
                 }
             });
-
         }
 
         @Override

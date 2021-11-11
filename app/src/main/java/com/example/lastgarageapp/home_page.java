@@ -164,6 +164,14 @@ public class home_page extends AppCompatActivity {
                         recyclerView.setAdapter(C_adapter);
                     }else{
                         //line
+                        iconAddgarage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent= new Intent(home_page.this ,add_line.class);
+                                startActivity(intent);
+
+                            }
+                        });
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
@@ -176,6 +184,14 @@ public class home_page extends AppCompatActivity {
 
                 }else{
                     //garage
+                    iconAddgarage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent= new Intent(home_page.this ,add_garage.class);
+                            startActivity(intent);
+
+                        }
+                    });
                     garageLineStatusLayout.setVisibility(View.VISIBLE);
                     newsLayout.setVisibility(View.GONE);
                     carStatusLayout.setVisibility(View.GONE);
@@ -187,15 +203,7 @@ public class home_page extends AppCompatActivity {
                 }
             }
         });
-        //-
-        iconAddgarage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,add_garage.class);
-                startActivity(intent);
 
-            }
-        });
 
         iconAddcar.setOnClickListener(new View.OnClickListener() {
             @Override

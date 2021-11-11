@@ -20,15 +20,11 @@ public class  edit_personal_data extends AppCompatActivity {
         editPersonalData_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openhome_page();
+
+                finish();
             }
         });
     }
-    public void openhome_page(){
-        Intent intent = new Intent(this,personal_page.class);
-        startActivity(intent);
 
-
-    }
 
 }

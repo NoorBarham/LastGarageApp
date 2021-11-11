@@ -70,31 +70,10 @@ public class messages extends AppCompatActivity {
             }
         });
         //recyclerView
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
-
-        ArrayList<String> animalNames2 = new ArrayList<>();
-        animalNames2.add("Horse");
-        animalNames2.add("Cow");
-        animalNames2.add("Camel");
-        animalNames2.add("Sheep");
-        animalNames2.add("Goat");
-
-        ArrayList<String> animalNames3 = new ArrayList<>();
-        animalNames3.add("Horse");
-        animalNames3.add("Cow");
-        animalNames3.add("Camel");
-        animalNames3.add("Sheep");
-        animalNames3.add("Goat");
-
         messengerItem m=new messengerItem("waed","hi","10:30");
         ArrayList<messengerItem> messangerArray= new ArrayList<>();
         messangerArray.add(m);
-
+        messangerArray.add(m);
         messengerAdapter m_adapter;
 
 

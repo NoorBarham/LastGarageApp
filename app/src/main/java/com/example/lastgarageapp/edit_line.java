@@ -21,15 +21,15 @@ public class edit_line extends AppCompatActivity {
         editLine_cancelButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openhome_page();
+
+              finish();
+
             }
         });
     }
-    public void openhome_page(){
-        Intent intent = new Intent(this,line_status.class);
-        startActivity(intent);
+
 
 
     }
 
-}
+

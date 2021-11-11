@@ -19,13 +19,9 @@ public class change_password extends AppCompatActivity {
         changePass_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPersonal_page();
-            }
+                finish();            }
         });
 
     }
-    public void openPersonal_page(){
-        Intent intent = new Intent(this,personal_page.class);
-        startActivity(intent);
-    }
+
     }

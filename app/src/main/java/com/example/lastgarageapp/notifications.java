@@ -74,6 +74,7 @@ public class notifications extends AppCompatActivity {
         notificationItem n=new notificationItem("waed","10:30");
         ArrayList<notificationItem>myNotificationItem=new ArrayList<>();
         myNotificationItem.add(n);
+        myNotificationItem.add(n);
 
 
         notificationAdapter adapter;
