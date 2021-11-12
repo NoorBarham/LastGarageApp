@@ -97,12 +97,29 @@
                     android:padding="15dp">
 
                     <TextView
+                        android:id="@+id/add_new_driver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="إضافة سائق جديد"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider18"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
                         android:id="@+id/add_new_manager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="إضافة مدير جديد / سائق جديد"
+                        android:text="إضافة مدير جديد"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 

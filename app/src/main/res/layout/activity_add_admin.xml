@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".add_admin">
 
-        <TextView
-            android:id="@+id/addnewdrive"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="إضافة سائق جديد"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+    <TextView
+        android:id="@+id/addNewAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="إضافة مدير جديد"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="#FF6F00"
-            android:orientation="horizontal">
+    <View
+        android:id="@+id/divider17"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="#FF6F00" />
 
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_weight="1"
-                android:backgroundTint="#FF6F00" />
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/addDriver_driverNameVal"
+                        android:id="@+id/addAdmin_nameValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:gravity="right"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/addDriver_name"
+                        android:id="@+id/addAdmin_nameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="الاسم"
+                        android:gravity="right"
+                        android:text="الاسم "
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -73,18 +68,22 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/addDriver_cityVal"
+                        android:id="@+id/addAdmin__cityValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:gravity="right"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/addDriver_city"
+                        android:id="@+id/addAdmin_cityText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="right"
                         android:text="مكان السكن"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -97,18 +96,22 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/addDriver_identityNumVal"
+                        android:id="@+id/addAdmin_idValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="number|textPersonName" />
+                        android:gravity="right"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/addDriver_identityNum"
+                        android:id="@+id/addAdmin_idText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="right"
                         android:text="رقم الهوية"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -121,18 +124,22 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/addDriver_phoneNumVal"
+                        android:id="@+id/addAdmin_phoneValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="number|textPersonName" />
+                        android:gravity="right"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/addDriver_phoneNum"
+                        android:id="@+id/addAdmin_phoneText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="right"
                         android:text="رقم الهاتف"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -145,18 +152,22 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/addDriver_passVal"
+                        android:id="@+id/addAdmin_passwordValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPassword" />
+                        android:gravity="right"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/addDriver_pass"
+                        android:id="@+id/addAdmin_passText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="right"
                         android:text="كلمة السر"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -165,30 +176,59 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/addDriver_cancel"
+                    <Spinner
+                        android:id="@+id/addAdmin_garageNameValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FF6F00"
+                        android:entries="@array/garage_admin" />
+
+                    <TextView
+                        android:id="@+id/addAdmin_garageNameText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="الكراج المسؤول عنه"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/addAdmin_cancelButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FF6F00"
                         android:text="إلغاء"
-                        android:textSize="20sp" />
+                        android:textSize="20dp" />
 
                     <Button
-                        android:id="@+id/addDriver_add"
+                        android:id="@+id/addAdmin_addButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FF6F00"
                         android:text="إضافة"
-                        android:textSize="20sp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
+    </ScrollView>
+
+
+
+
 </LinearLayout>

@@ -36,7 +36,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/addGarage_cityName"
+                    android:id="@+id/addGarage_cityValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -64,32 +64,6 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/addGarage_adminName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FF6F00"
-                    android:entries="@array/garage_admin"/>
-
-                <TextView
-                    android:id="@+id/addGarage_adminText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="الشخص المسؤول :"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
-
-                <Spinner
                     android:id="@+id/addGarage_AMPMOpen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,13 +74,14 @@
 
 
                 <EditText
-                    android:id="@+id/addGarage_openHoure"
+                    android:id="@+id/addGarage_openHoureValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.4"
                     android:ems="10"
                     android:gravity="right"
-                    android:inputType="textPersonName"
+                    android:inputType="time"
+                    android:hint="05:00"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -136,13 +111,14 @@
                     android:entries="@array/am_pm"/>
 
                 <EditText
-                    android:id="@+id/addGarage_closeHoure"
+                    android:id="@+id/addGarage_closeHoureValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.4"
                     android:ems="10"
                     android:gravity="right"
-                    android:inputType="textPersonName"
+                    android:inputType="time"
+                    android:hint="16:00"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -164,7 +140,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/addGarage_location"
+                    android:id="@+id/addGarage_locationValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".9"
@@ -188,7 +164,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 android:padding="15dp">
 

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LastGarageApp">
         <activity
+            android:name=".add_admin"
+            android:exported="true" />
+        <activity
             android:name=".settings"
             android:exported="true" />
         <activity
