@@ -3,21 +3,32 @@ package com.example.lastgarageapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class add_garage extends AppCompatActivity {
 
     private EditText cityName,openHoure,closeHoure,location;
+    private TextView counter;
     private Button cancelButt,addButt;
+    private static int count=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +40,56 @@ public class add_garage extends AppCompatActivity {
         closeHoure= findViewById(R.id.addGarage_closeHoureValue);
         location= findViewById(R.id.addGarage_locationValue);
 
+        counter=findViewById(R.id.counter);
+        counter.setText(count+"");
+
         cancelButt = findViewById(R.id.addGarage_cancelButt);
         addButt= findViewById(R.id.addGarage_addButt);
-
         addButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = url_serverName.serverName+"login.php";
-//                StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        try {
-//                            JSONObject reader = new JSONObject(response);
-////                            reader
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                });
 
+                if(cityName.getText().length()==0||openHoure.getText().length()==0||closeHoure.getText().length()==0||location.getText().length()==0){
+                    Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
+                }else{
+                    String url = url_serverName.serverName+"addGarage.php";
+                    StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+
+                            count++;
+                            counter.setText(count+""+response.charAt(2)+"");
+
+                            if(response.charAt(0)==1){
+                                count++;
+                                counter.setText(count+""+response.charAt(2)+"");
+
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                            error.printStackTrace();
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> myMap = new HashMap<>();
+
+                            myMap.put("garage_id", count+"");
+                            myMap.put("garage_name", getData(cityName));
+                            myMap.put("open_hour", getData(openHoure));
+                            myMap.put("close_hour", getData(closeHoure));
+                            myMap.put("location", getData(location));
+                            return myMap;
+                        }
+                    };
+                    my_singleton.getInstance(add_garage.this).addToRequestQueue(myStringRequest);
+                }
             }
         });
 
@@ -60,6 +100,12 @@ public class add_garage extends AppCompatActivity {
             }
         });
     }
+    public String getData(EditText t){
+        String myString =t.getText().toString();
+//        location.setText(myString);
+        return myString;
+    }
+
 
 
 }

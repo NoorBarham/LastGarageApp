@@ -7,13 +7,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
@@ -23,25 +31,33 @@ import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.itemClasses.newsItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
 
-    Button newsButt, statusButt;
-    Spinner dest,sour;
-    TextView addNewstext;
-    Button addNewsButt;
+    Button newsButt, statusButt, addNewsButt;
+    Spinner dest, sour;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
-    TextView iconAddgarage;
-    TextView iconAddcar;
-    TextView iconFilter;
-    //my actionbar
-    ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
+    TextView iconAddgarage, iconAddcar, iconFilter;
+    EditText addNewstext;
+    RecyclerView recyclerView;
 
+    //my actionbar
+    ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
+
+    //selection from news
+    ArrayList<newsItem> myNews = new ArrayList<>();
+    newsAdapter myNewsAdapter;
 
 
     @Override
@@ -50,24 +66,25 @@ public class home_page extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         //views in homePage
-        newsButt=findViewById(R.id.homePage_newsButt);
-        statusButt=findViewById(R.id.homePage_statusButt);
-        dest =findViewById(R.id.homePage_destination);
-        sour =findViewById(R.id.homePage_source);
+        newsButt = findViewById(R.id.homePage_newsButt);
+        statusButt = findViewById(R.id.homePage_statusButt);
+        dest = findViewById(R.id.homePage_destination);
+        sour = findViewById(R.id.homePage_source);
 
-        newsLayout=findViewById(R.id.homePage_newsLayout);
-        carStatusLayout=findViewById(R.id.homePage_carStatusLayout);
-        garageLineStatusLayout=findViewById(R.id.homePage_garageLineStatusLayout);
-        myRecycleLayout=findViewById(R.id.homePage_RecycleLayout);
+        newsLayout = findViewById(R.id.homePage_newsLayout);
+        carStatusLayout = findViewById(R.id.homePage_carStatusLayout);
+        garageLineStatusLayout = findViewById(R.id.homePage_garageLineStatusLayout);
+        myRecycleLayout = findViewById(R.id.homePage_RecycleLayout);
+        recyclerView = findViewById(R.id.homePage_recycler);
 
         //news layout
-        addNewstext=findViewById(R.id.homePage_addnewstext);
-        addNewsButt=findViewById(R.id.homePage_addNewsButt);
+        addNewstext = findViewById(R.id.homePage_addnewstext);
+        addNewsButt = findViewById(R.id.homePage_addNewsButt);
 
         //garageLine layout
-        iconAddgarage=findViewById(R.id.homePage_addGarageLineIcon);
-        iconAddcar=findViewById(R.id.homePage_addCarIcon);
-        iconFilter=findViewById(R.id.homePage_filterCar);
+        iconAddgarage = findViewById(R.id.homePage_addGarageLineIcon);
+        iconAddcar = findViewById(R.id.homePage_addCarIcon);
+        iconFilter = findViewById(R.id.homePage_filterCar);
 
         //default
         statusButt.setBackgroundColor(0xFFFF6F00);
@@ -82,27 +99,27 @@ public class home_page extends AppCompatActivity {
 
         //for recycleView
         //news
-        ArrayList<newsItem> newsArray =new ArrayList<>();
+        ArrayList<newsItem> newsArray = new ArrayList<>();
         //garage
-        ArrayList<garageItem> garageArray= new ArrayList<>();
+        ArrayList<garageItem> garageArray = new ArrayList<>();
         //car
-        ArrayList<carItem> carArray= new ArrayList<>();
+        ArrayList<carItem> carArray = new ArrayList<>();
         //line
-        ArrayList<lineItem> lineArray= new ArrayList<>();
+        ArrayList<lineItem> lineArray = new ArrayList<>();
 
+        newsAdapter N_adapter = new newsAdapter(home_page.this, newsArray);
+        garageAdapter G_adapter = new garageAdapter(home_page.this, garageArray);
+        carAdapter C_adapter = new carAdapter(home_page.this, carArray);
+        lineAdapter L_adapter = new lineAdapter(home_page.this, lineArray);
 
-
-
-        newsAdapter N_adapter = new newsAdapter(home_page.this,newsArray);
-        garageAdapter G_adapter= new garageAdapter(home_page.this, garageArray);
-        carAdapter C_adapter= new carAdapter(home_page.this, carArray);
-        lineAdapter L_adapter=new lineAdapter(home_page.this,lineArray);
-
-        RecyclerView recyclerView = findViewById(R.id.homePage_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
 
         //default Adapter
         recyclerView.setAdapter(N_adapter);
+
+
+        //default view for our recycle View
+        selectNews();
 
         newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,30 +132,66 @@ public class home_page extends AppCompatActivity {
                 newsLayout.setVisibility(View.VISIBLE);
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
+                addNewstext.setText("");
+                myNews.clear();
+                selectNews();
 
-                recyclerView.setAdapter(N_adapter);
+//                recyclerView.setAdapter(N_adapter);
 
             }
         });
         addNewsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
-                sb.append(addNewstext.getText());
-                String s= sb.toString();
-                //textNews.add(addNewstext.getText().toString());
+                if (addNewstext.getText().length() == 0) {
+                    Toast.makeText(getBaseContext(), "لا يمكنك نشر خبر فارغ", Toast.LENGTH_SHORT).show();
+                } else {
+                    String url = url_serverName.serverName + "addNew.php";
+                    StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
-                TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
-                Date currentTime = Calendar.getInstance().getTime();
-                String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
-               // textHours.add(timeStamp);
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                            error.printStackTrace();
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "04:00"));
+                            Date currentTime = Calendar.getInstance().getTime();
+                            String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
 
-                newsItem n=new newsItem("وعد",s,timeStamp);
-                newsArray.add(n);
-                addNewstext.setText("");
-                recyclerView.setAdapter(N_adapter);
+
+                            Map<String, String> myMap = new HashMap<>();
+                            myMap.put("text", getData(addNewstext));
+                            myMap.put("date_time", timeStamp);
+                            return myMap;
+                        }
+                    };
+                    my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+                }
+//                final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
+//                sb.append(addNewstext.getText());
+//                String s= sb.toString();
+//                //textNews.add(addNewstext.getText().toString());
+//
+//                TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
+//                Date currentTime = Calendar.getInstance().getTime();
+//                String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
+//               // textHours.add(timeStamp);
+//
+//                newsItem n=new newsItem("وعد",s,timeStamp);
+//                newsArray.add(n);
+                selectNews();
+
 
             }
+
         });
 
 
@@ -151,23 +204,23 @@ public class home_page extends AppCompatActivity {
                 statusButt.setBackgroundColor(Color.WHITE);
                 statusButt.setTextColor(0xFFFF6F00);
 
-                if(!sour.getSelectedItem().equals("المكان الحالي")){
-                    if(!dest.getSelectedItem().equals("الوجهة")){
+                if (!sour.getSelectedItem().equals("المكان الحالي")) {
+                    if (!dest.getSelectedItem().equals("الوجهة")) {
                         //car
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
 
-                        carItem c= new carItem("أحمد محمد","متوفرة","4","6:00 AM");
+                        carItem c = new carItem("أحمد محمد", "متوفرة", "4", "6:00 AM");
                         carArray.add(c);
 
                         recyclerView.setAdapter(C_adapter);
-                    }else{
+                    } else {
                         //line
                         iconAddgarage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent= new Intent(home_page.this ,add_line.class);
+                                Intent intent = new Intent(home_page.this, add_line.class);
                                 startActivity(intent);
 
                             }
@@ -176,18 +229,18 @@ public class home_page extends AppCompatActivity {
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
 
-                        lineItem l=new lineItem("قلقيلية","طولكرم","11.5","30");
+                        lineItem l = new lineItem("قلقيلية", "طولكرم", "11.5", "30");
                         lineArray.add(l);
 
                         recyclerView.setAdapter(L_adapter);
                     }
 
-                }else{
+                } else {
                     //garage
                     iconAddgarage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent= new Intent(home_page.this ,add_garage.class);
+                            Intent intent = new Intent(home_page.this, add_garage.class);
                             startActivity(intent);
 
                         }
@@ -196,7 +249,7 @@ public class home_page extends AppCompatActivity {
                     newsLayout.setVisibility(View.GONE);
                     carStatusLayout.setVisibility(View.GONE);
 
-                    garageItem g=new garageItem("قلقيلية","أحمد","5:00","6:00","i don't know");
+                    garageItem g = new garageItem("قلقيلية", "أحمد", "5:00", "6:00", "i don't know");
                     garageArray.add(g);
                     recyclerView.setAdapter(G_adapter);
 
@@ -208,18 +261,18 @@ public class home_page extends AppCompatActivity {
         iconAddcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,add_car.class);
+                Intent intent = new Intent(home_page.this, add_car.class);
                 startActivity(intent);
 
             }
         });
 
         //my actionbarPage
-        homeIcon=findViewById(R.id.myActionBar_homeIcon);
-        notificationIcon=findViewById(R.id.myActionBar_notificationsIcon);
-        personalIcon=findViewById(R.id.myActionBar_personIcon);
-        messagesIcon=findViewById(R.id.myActionBar_messagesIcon);
-        menuIcon=findViewById(R.id.myActionBar_menuIcon);
+        homeIcon = findViewById(R.id.myActionBar_homeIcon);
+        notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
+        personalIcon = findViewById(R.id.myActionBar_personIcon);
+        messagesIcon = findViewById(R.id.myActionBar_messagesIcon);
+        menuIcon = findViewById(R.id.myActionBar_menuIcon);
 
         homeIcon.setBackgroundColor(Color.WHITE);
 
@@ -233,21 +286,21 @@ public class home_page extends AppCompatActivity {
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,notifications.class);
+                Intent intent = new Intent(home_page.this, notifications.class);
                 startActivity(intent);
             }
         });
         personalIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,personal_page.class);
+                Intent intent = new Intent(home_page.this, personal_page.class);
                 startActivity(intent);
             }
         });
         messagesIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,messages.class);
+                Intent intent = new Intent(home_page.this, messages.class);
                 startActivity(intent);
             }
         });
@@ -255,11 +308,62 @@ public class home_page extends AppCompatActivity {
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(home_page.this ,menu.class);
+                Intent intent = new Intent(home_page.this, menu.class);
                 startActivity(intent);
             }
         });
 
     }
 
+    public String getData(EditText t) {
+        String myString = t.getText().toString();
+//        location.setText(myString);
+        return myString;
+    }
+
+    public void selectNews() {
+        myNews.clear();
+        String url = url_serverName.serverName + "showNews.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("news");
+                    newsItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String textName, String textNews, String textHour
+                        String name = reader.getString("name");
+                        String text = reader.getString("text");
+                        String time = reader.getString("time");
+                        myItem = new newsItem(name, text, time);
+
+                        myNews.add(myItem);
+                    }
+                    myNewsAdapter = new newsAdapter(home_page.this, myNews);
+                    recyclerView.setAdapter(myNewsAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        })
+//        {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("studentId", studentId);
+//                return params;
+//            }
+//        }
+                ;
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
 }
