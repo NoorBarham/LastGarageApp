@@ -332,6 +332,7 @@ public class home_page extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("news");
                     newsItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
+
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String textName, String textNews, String textHour
