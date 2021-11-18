@@ -55,10 +55,21 @@ public class home_page extends AppCompatActivity {
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
 
-    //selection from news
+    //news
     ArrayList<newsItem> myNews = new ArrayList<>();
     newsAdapter myNewsAdapter;
 
+    //garages
+    ArrayList<garageItem> myGarages = new ArrayList<>();
+    garageAdapter myGarageAdapter;
+
+    //lines
+    ArrayList<lineItem> myLines = new ArrayList<>();
+    lineAdapter myLineAdapter;
+
+    //cars
+    ArrayList<carItem> myCars = new ArrayList<>();
+    carAdapter myCarAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,28 +106,12 @@ public class home_page extends AppCompatActivity {
         newsLayout.setVisibility(View.VISIBLE);
         garageLineStatusLayout.setVisibility(View.GONE);
         carStatusLayout.setVisibility(View.GONE);
-        //
 
-        //for recycleView
-        //news
-        ArrayList<newsItem> newsArray = new ArrayList<>();
-        //garage
-        ArrayList<garageItem> garageArray = new ArrayList<>();
         //car
         ArrayList<carItem> carArray = new ArrayList<>();
-        //line
-        ArrayList<lineItem> lineArray = new ArrayList<>();
-
-        newsAdapter N_adapter = new newsAdapter(home_page.this, newsArray);
-        garageAdapter G_adapter = new garageAdapter(home_page.this, garageArray);
         carAdapter C_adapter = new carAdapter(home_page.this, carArray);
-        lineAdapter L_adapter = new lineAdapter(home_page.this, lineArray);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
-
-        //default Adapter
-        recyclerView.setAdapter(N_adapter);
-
 
         //default view for our recycle View
         selectNews();
@@ -132,66 +127,17 @@ public class home_page extends AppCompatActivity {
                 newsLayout.setVisibility(View.VISIBLE);
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
+
                 addNewstext.setText("");
-                myNews.clear();
                 selectNews();
-
-//                recyclerView.setAdapter(N_adapter);
-
             }
         });
         addNewsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (addNewstext.getText().length() == 0) {
-                    Toast.makeText(getBaseContext(), "لا يمكنك نشر خبر فارغ", Toast.LENGTH_SHORT).show();
-                } else {
-                    String url = url_serverName.serverName + "addNew.php";
-                    StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
-                        @Override
-                        public void onResponse(String response) {
-                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                            error.printStackTrace();
-                        }
-                    }) {
-                        @Override
-                        protected Map<String, String> getParams() {
-                            TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "04:00"));
-                            Date currentTime = Calendar.getInstance().getTime();
-                            String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
-
-
-                            Map<String, String> myMap = new HashMap<>();
-                            myMap.put("text", getData(addNewstext));
-                            myMap.put("date_time", timeStamp);
-                            return myMap;
-                        }
-                    };
-                    my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
-                }
-//                final StringBuilder sb = new StringBuilder(addNewstext.getText().length());
-//                sb.append(addNewstext.getText());
-//                String s= sb.toString();
-//                //textNews.add(addNewstext.getText().toString());
-//
-//                TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
-//                Date currentTime = Calendar.getInstance().getTime();
-//                String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
-//               // textHours.add(timeStamp);
-//
-//                newsItem n=new newsItem("وعد",s,timeStamp);
-//                newsArray.add(n);
+                addNew();
                 selectNews();
-
-
             }
-
         });
 
 
@@ -229,10 +175,11 @@ public class home_page extends AppCompatActivity {
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
 
-                        lineItem l = new lineItem("قلقيلية", "طولكرم", "11.5", "30");
-                        lineArray.add(l);
-
-                        recyclerView.setAdapter(L_adapter);
+                        selectLine();
+//                        lineItem l = new lineItem("قلقيلية", "طولكرم", "11.5", "30");
+//                        lineArray.add(l);
+//
+//                        recyclerView.setAdapter(L_adapter);
                     }
 
                 } else {
@@ -249,10 +196,7 @@ public class home_page extends AppCompatActivity {
                     newsLayout.setVisibility(View.GONE);
                     carStatusLayout.setVisibility(View.GONE);
 
-                    garageItem g = new garageItem("قلقيلية", "أحمد", "5:00", "6:00", "i don't know");
-                    garageArray.add(g);
-                    recyclerView.setAdapter(G_adapter);
-
+                    selectGarage();
                 }
             }
         });
@@ -317,12 +261,14 @@ public class home_page extends AppCompatActivity {
 
     public String getData(EditText t) {
         String myString = t.getText().toString();
-//        location.setText(myString);
         return myString;
     }
 
+
     public void selectNews() {
         myNews.clear();
+        myGarages.clear();
+        myLines.clear();
         String url = url_serverName.serverName + "showNews.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -354,16 +300,121 @@ public class home_page extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
-        })
-//        {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("studentId", studentId);
-//                return params;
-//            }
-//        }
-                ;
+        });
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
+
+    public void addNew(){
+        if (addNewstext.getText().length() == 0) {
+            Toast.makeText(getBaseContext(), "لا يمكنك نشر خبر فارغ", Toast.LENGTH_SHORT).show();
+        } else {
+            String url = url_serverName.serverName + "addNew.php";
+            StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "04:00"));
+                    Date currentTime = Calendar.getInstance().getTime();
+                    String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
+
+                    Map<String, String> myMap = new HashMap<>();
+                    myMap.put("text", getData(addNewstext));
+                    myMap.put("date_time", timeStamp);
+                    return myMap;
+                }
+            };
+            my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+        }
+    }
+
+    public void selectGarage() {
+        myNews.clear();
+        myGarages.clear();
+        myLines.clear();
+        String url = url_serverName.serverName + "showGarages.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("garages");
+                    garageItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String cityName, String fromHoure, String toHoure, String location
+                        String cityName = reader.getString("garage_name");
+                        String adminName = reader.getString("admin_name");
+                        String fromHoure = reader.getString("open_h");
+                        String toHoure = reader.getString("close_h");
+                        String location = reader.getString("location");
+                        myItem = new garageItem(cityName,adminName, fromHoure, toHoure,location);
+
+                        myGarages.add(myItem);
+                    }
+                    myGarageAdapter = new garageAdapter(home_page.this, myGarages);
+                    recyclerView.setAdapter(myGarageAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
+    public void selectLine() {
+        myNews.clear();
+        myGarages.clear();
+        myLines.clear();
+        String url = url_serverName.serverName + "showLines.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("Lines");
+                    lineItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String garage1, String garage2, String lineFare, String noOfCar
+                        String garage1 = reader.getString("garage_name1");
+                        String garage2 = reader.getString("garage_name2");
+                        String lineFare = reader.getString("fare");
+                        String noOfCar = reader.getString("no_of_cars");
+                        myItem = new lineItem(garage1,garage2, lineFare, noOfCar);
+
+                        myLines.add(myItem);
+                    }
+                    myLineAdapter = new lineAdapter(home_page.this, myLines);
+                    recyclerView.setAdapter(myLineAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
 }
