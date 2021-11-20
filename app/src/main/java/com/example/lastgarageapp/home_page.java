@@ -52,6 +52,7 @@ public class home_page extends AppCompatActivity {
     EditText addNewstext;
     RecyclerView recyclerView;
 
+
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
 

@@ -21,7 +21,7 @@ public class add_driver extends AppCompatActivity {
     private Button addDriver_cancel, addDriver_add;
 
     private EditText name,password,city,identity_number,PhoneNumb;
-    private String TempName,TempPassword,Tempcity,TempIdentity;
+
 
 
     @Override
@@ -41,34 +41,39 @@ public class add_driver extends AppCompatActivity {
         addDriver_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = url_serverName.serverName+"user.php";
-                StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                        error.printStackTrace();
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<>();
-                         params.put("user_id", identity_number.getText().toString());
-                        params.put("user_name", name.getText().toString());
-                        params.put("password", password.getText().toString());
-                        params.put("city", city.getText().toString());
-                        //params.put("phone_number", PhoneNumb.getText().toString());
+                if(name.getText().length()==0||identity_number.getText().length()==0||city.getText().length()==0|PhoneNumb.getText().length()==0|password.getText().length()==0) {
+                    Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
+                }else{
+                    String url = url_serverName.serverName + "user.php";
+                    StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                            error.printStackTrace();
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("user_id", identity_number.getText().toString());
+                            params.put("user_name", name.getText().toString());
+                            params.put("password", password.getText().toString());
+                            params.put("city", city.getText().toString());
+                            params.put("phone_no", PhoneNumb.getText().toString());
 
-                        return params;
-                    }
-                };
-                my_singleton.getInstance(add_driver.this).addToRequestQueue(stringRequest2);
+                            return params;
+                        }
+                    };
+                    my_singleton.getInstance(add_driver.this).addToRequestQueue(stringRequest2);
 
+                }
             }
+
         });
         addDriver_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
