@@ -3,6 +3,11 @@
 
     <string-array name="garage_admin">
         <item>لم يحدد</item>
+        <item>طولكرم</item>
+        <item>نابلس</item>
+        <item>رام الله</item>
+        <item>قلقيلية</item>
+        <item>جنين</item>
     </string-array>
 
     <string-array name="am_pm">
@@ -40,6 +45,8 @@
 
     <string-array name="driver">
         <item>لم يحدد</item>
+        <item>محمد</item>
+        <item>احمد</item>
     </string-array>
 
 

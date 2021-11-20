@@ -3,7 +3,6 @@ package com.example.lastgarageapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +14,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +22,6 @@ public class add_garage extends AppCompatActivity {
     private EditText cityName,openHoure,closeHoure,location;
     private TextView counter;
     private Button cancelButt,addButt;
-    private static int count=1;
 
 
     @Override
@@ -39,9 +33,6 @@ public class add_garage extends AppCompatActivity {
         openHoure= findViewById(R.id.addGarage_openHoureValue);
         closeHoure= findViewById(R.id.addGarage_closeHoureValue);
         location= findViewById(R.id.addGarage_locationValue);
-
-        counter=findViewById(R.id.counter);
-        counter.setText(count+"");
 
         cancelButt = findViewById(R.id.addGarage_cancelButt);
         addButt= findViewById(R.id.addGarage_addButt);
@@ -58,16 +49,6 @@ public class add_garage extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-
-                            count++;
-                            counter.setText(count+""+response.charAt(2)+"");
-
-                            if(response.charAt(0)==1){
-                                count++;
-                                counter.setText(count+""+response.charAt(2)+"");
-
-                            }
-
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -80,7 +61,6 @@ public class add_garage extends AppCompatActivity {
                         protected Map<String, String> getParams() {
                             Map<String, String> myMap = new HashMap<>();
 
-                            myMap.put("garage_id", count+"");
                             myMap.put("garage_name", getData(cityName));
                             myMap.put("open_hour", getData(openHoure));
                             myMap.put("close_hour", getData(closeHoure));
@@ -102,7 +82,6 @@ public class add_garage extends AppCompatActivity {
     }
     public String getData(EditText t){
         String myString =t.getText().toString();
-//        location.setText(myString);
         return myString;
     }
 
