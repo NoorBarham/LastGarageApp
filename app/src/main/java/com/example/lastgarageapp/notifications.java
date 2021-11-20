@@ -97,7 +97,7 @@ public class notifications extends AppCompatActivity {
                 public void onResponse(String response) {
                     try {
                         JSONObject object = new JSONObject(response);
-                        JSONArray jsonArray = object.getJSONArray("notifications");
+                        JSONArray jsonArray = object.getJSONArray("notification");
                         notificationItem myItem;
                         for (int i = 0; i < jsonArray.length(); i++) {
  //..

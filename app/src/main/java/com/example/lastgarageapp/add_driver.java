@@ -44,7 +44,7 @@ public class add_driver extends AppCompatActivity {
                 if(name.getText().length()==0||identity_number.getText().length()==0||city.getText().length()==0|PhoneNumb.getText().length()==0|password.getText().length()==0) {
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
-                    String url = url_serverName.serverName + "user.php";
+                    String url = url_serverName.serverName + "addDriver.php";
                     StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
