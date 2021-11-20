@@ -44,7 +44,7 @@ public class add_admin extends AppCompatActivity {
                 if(name.getText().length()==0||identity_no.getText().length()==0||city.getText().length()==0||phone_no.getText().length()==0||pass.getText().length()==0){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
-                    String url = url_serverName.serverName + "Admin.php";
+                    String url = url_serverName.serverName + "addAdmin.php";
                     StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {

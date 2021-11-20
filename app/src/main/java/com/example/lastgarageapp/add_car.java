@@ -43,7 +43,7 @@ public class add_car extends AppCompatActivity {
                 if(car_no.getText().length()==0){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
-                    String url = url_serverName.serverName + "Car.php";
+                    String url = url_serverName.serverName + "addCar.php";
                     StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
