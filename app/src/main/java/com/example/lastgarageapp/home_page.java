@@ -134,6 +134,27 @@ public class home_page extends AppCompatActivity {
         ArrayList<carItem> carArray = new ArrayList<>();
         carAdapter C_adapter = new carAdapter(home_page.this, carArray);
 
+        dest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+                if (!selectedItem.equals("الوجهة")) {
+                    if(flage==1){
+                        garageLineStatusLayout.setVisibility(View.GONE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.VISIBLE);
+                        selectCar();
+                    }
+                    else if(flage==0)
+                        selectNews();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -141,14 +162,20 @@ public class home_page extends AppCompatActivity {
                 //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
-                    if(flage==1)
+                    iconAddgarage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(home_page.this, add_line.class);
+                            startActivity(intent);
+                        }
+                    });
+                    if(flage==1){
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.GONE);
+
                         selectLine();
-                    else if(flage==0)
-                        selectNews();
-                }else{
-                    dest.setEnabled(false);
-                    if(flage==1)
-                        selectGarage();
+                    }
                     else if(flage==0)
                         selectNews();
                 }
@@ -196,24 +223,11 @@ public class home_page extends AppCompatActivity {
 
                 if (!sour.getSelectedItem().equals("المكان الحالي")) {
                     if (!dest.getSelectedItem().equals("الوجهة")) {
-                        //car
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
-
-                       // carItem c = new carItem("أحمد محمد", "متوفرة", "4", "6:00 AM");
-                       // carArray.add(c);
-
-                        recyclerView.setAdapter(C_adapter);
+                        selectCar();
                     } else {
-                        //line
-                        iconAddgarage.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(home_page.this, add_line.class);
-                                startActivity(intent);
-                            }
-                        });
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
@@ -222,6 +236,9 @@ public class home_page extends AppCompatActivity {
                     }
                 } else {
                     //garage
+                    garageLineStatusLayout.setVisibility(View.VISIBLE);
+                    newsLayout.setVisibility(View.GONE);
+                    carStatusLayout.setVisibility(View.GONE);
                     iconAddgarage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -229,9 +246,6 @@ public class home_page extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-                    garageLineStatusLayout.setVisibility(View.VISIBLE);
-                    newsLayout.setVisibility(View.GONE);
-                    carStatusLayout.setVisibility(View.GONE);
 
                     selectGarage();
                 }
@@ -289,6 +303,7 @@ public class home_page extends AppCompatActivity {
         myNews.clear();
         myGarages.clear();
         myLines.clear();
+        myCars.clear();
         String url = url_serverName.serverName + "showNews.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -364,6 +379,8 @@ public class home_page extends AppCompatActivity {
         myNews.clear();
         myGarages.clear();
         myLines.clear();
+        myCars.clear();
+
         String url = url_serverName.serverName + "showGarages.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -404,6 +421,7 @@ public class home_page extends AppCompatActivity {
         myNews.clear();
         myGarages.clear();
         myLines.clear();
+        myCars.clear();
         String url = url_serverName.serverName + "showLines.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -426,6 +444,48 @@ public class home_page extends AppCompatActivity {
                     }
                     myLineAdapter = new lineAdapter(home_page.this, myLines);
                     recyclerView.setAdapter(myLineAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
+    public void selectCar() {
+        myNews.clear();
+        myGarages.clear();
+        myLines.clear();
+        myCars.clear();
+        String url = url_serverName.serverName + "showCars.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("cars");
+                    carItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //                        String carNumber,String driverName, String availability, String noOfPassenger, String arrivalTime
+                        String carNumber = reader.getString("car_id");
+                        String driverName = reader.getString("driver_name");
+                        String availability = reader.getString("is_available");
+                        String noOfPassenger = reader.getString("capacity");
+//                        String arrivalTime = reader.getString("arrivalTime");
+                        String arrivalTime = "no";
+                        myItem = new carItem(carNumber,driverName, availability, noOfPassenger, arrivalTime);
+
+                        myCars.add(myItem);
+                    }
+                    myCarAdapter = new carAdapter(home_page.this, myCars);
+                    recyclerView.setAdapter(myCarAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

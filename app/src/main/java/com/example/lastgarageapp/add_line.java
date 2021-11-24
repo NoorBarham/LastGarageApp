@@ -62,7 +62,8 @@ public class add_line extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fare.getText().length()==0||!sour.isSelected()||!des.isSelected()){
+//                if(fare.getText().length()==0||!sour.isSelected()||!des.isSelected()){
+                if(false){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
                     String url = url_serverName.serverName+"addLine.php";

@@ -3,7 +3,6 @@ package com.example.lastgarageapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.edit_car_data;
-import com.example.lastgarageapp.edit_garage;
 import com.example.lastgarageapp.itemClasses.carItem;
-import com.example.lastgarageapp.view_notification;
 
 import java.util.ArrayList;
 
@@ -40,9 +37,9 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull carViewHolder holder, int position) {
         carItem c = myCarItem.get(position);
+        holder.carNumber.setText(c.getCarNumber());
         holder.nameDriver.setText(c.getDriverName());
-        holder.nameDriver.setText(c.getDriverName());
-        holder.availability.setText(c.getAvailabilty());
+        holder.availability.setText(c.getAvailability());
         holder.noOfPassenger.setText(c.getNoOfPassenger());
         holder.arrivalTime.setText(c.getArrivalTime());
 
@@ -70,13 +67,13 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     }
 
     public class carViewHolder extends RecyclerView.ViewHolder {
-        TextView carNomber,nameDriver, availability, noOfPassenger, arrivalTime;
+        TextView carNumber,nameDriver, availability, noOfPassenger, arrivalTime;
         TextView iconEdit, iconDelet;
 
 
         public carViewHolder(@NonNull View itemView) {
             super(itemView);
-            carNomber=itemView.findViewById(R.id.carItem_carNomber);
+            carNumber=itemView.findViewById(R.id.carItem_carNumber);
             nameDriver = itemView.findViewById(R.id.carItem_driverName);
             availability = itemView.findViewById(R.id.carItem_availabilty);
             noOfPassenger = itemView.findViewById(R.id.carItem_noOfPassenger);

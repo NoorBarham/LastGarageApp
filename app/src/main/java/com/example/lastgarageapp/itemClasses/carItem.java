@@ -1,22 +1,22 @@
 package com.example.lastgarageapp.itemClasses;
 
 public class carItem {
-    private String driverName, availabilty,noOfPassenger,arrivalTime;
-    private String carNomber;
-    public carItem(String carNomber,String driverName, String availabilty, String noOfPassenger, String arrivalTime) {
-        this.carNomber=carNomber;
+    private String driverName, availability,noOfPassenger,arrivalTime;
+    private String carNumber;
+    public carItem(String carNumber, String driverName, String availability, String noOfPassenger, String arrivalTime) {
+        this.carNumber=carNumber;
         this.driverName = driverName;
-        this.availabilty = availabilty;
+        this.availability = availability;
         this.noOfPassenger = noOfPassenger;
         this.arrivalTime = arrivalTime;
     }
 
-    public String getcarNomber() {
-        return carNomber;
+    public String getCarNumber() {
+        return carNumber;
     }
 
-    public void setcarNomber(String carNomber) {
-        this.carNomber= carNomber;
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 
     public String getDriverName() {
@@ -27,12 +27,12 @@ public class carItem {
         this.driverName = driverName;
     }
 
-    public String getAvailabilty() {
-        return availabilty;
+    public String getAvailability() {
+        return availability;
     }
 
-    public void setAvailabilty(String availabilty) {
-        this.availabilty = availabilty;
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     public String getNoOfPassenger() {
