@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,10 +27,12 @@ import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
+import com.example.lastgarageapp.adapter.notificationAdapter;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.itemClasses.newsItem;
+import com.example.lastgarageapp.itemClasses.notificationItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,13 +48,13 @@ import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
 
+    //homeIcon
     Button newsButt, statusButt, addNewsButt;
     Spinner dest, sour;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
     TextView iconAddgarage, iconAddcar, iconFilter;
     EditText addNewstext;
     RecyclerView recyclerView;
-
 
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
@@ -72,50 +75,88 @@ public class home_page extends AppCompatActivity {
     ArrayList<carItem> myCars = new ArrayList<>();
     carAdapter myCarAdapter;
 
+    //noti
+    ArrayList<notificationItem> myNotification = new ArrayList<>();
+    notificationAdapter myNotificationAdapter;
+
+    //news=0, garge=1, noti=2, pers=3, mess=4
+    static int flage=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        //views in homePage
-        newsButt = findViewById(R.id.homePage_newsButt);
+        //my actionbarPage
+        homeIcon = findViewById(R.id.myActionBar_homeIcon);
+        notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
+        personalIcon = findViewById(R.id.myActionBar_personIcon);
+        messagesIcon = findViewById(R.id.myActionBar_messagesIcon);
+        menuIcon = findViewById(R.id.myActionBar_menuIcon);
+
+        //recycle
+        recyclerView = findViewById(R.id.homePage_recycler);
+        myRecycleLayout = findViewById(R.id.homePage_RecycleLayout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
+
+        //garage/line Status
         statusButt = findViewById(R.id.homePage_statusButt);
         dest = findViewById(R.id.homePage_destination);
         sour = findViewById(R.id.homePage_source);
-
-        newsLayout = findViewById(R.id.homePage_newsLayout);
-        carStatusLayout = findViewById(R.id.homePage_carStatusLayout);
+        iconAddgarage = findViewById(R.id.homePage_addGarageLineIcon);
         garageLineStatusLayout = findViewById(R.id.homePage_garageLineStatusLayout);
-        myRecycleLayout = findViewById(R.id.homePage_RecycleLayout);
-        recyclerView = findViewById(R.id.homePage_recycler);
+
+        //car Statuse
+        carStatusLayout = findViewById(R.id.homePage_carStatusLayout);
+        iconFilter = findViewById(R.id.homePage_filterCar);
+        iconAddcar = findViewById(R.id.homePage_addCarIcon);
 
         //news layout
         addNewstext = findViewById(R.id.homePage_addnewstext);
         addNewsButt = findViewById(R.id.homePage_addNewsButt);
+        newsButt = findViewById(R.id.homePage_newsButt);
+        newsLayout = findViewById(R.id.homePage_newsLayout);
 
-        //garageLine layout
-        iconAddgarage = findViewById(R.id.homePage_addGarageLineIcon);
-        iconAddcar = findViewById(R.id.homePage_addCarIcon);
-        iconFilter = findViewById(R.id.homePage_filterCar);
-
-        //default
+        //default  View
+        homeIcon.setBackgroundColor(Color.WHITE);
         statusButt.setBackgroundColor(0xFFFF6F00);
         statusButt.setTextColor(Color.WHITE);
         newsButt.setBackgroundColor(Color.WHITE);
         newsButt.setTextColor(0xFFFF6F00);
 
-        newsLayout.setVisibility(View.VISIBLE);
         garageLineStatusLayout.setVisibility(View.GONE);
         carStatusLayout.setVisibility(View.GONE);
 
-        //car
+        dest.setEnabled(false);
+        selectNews();
+
+        //car هدول القديمات ما بنستخدمهم
         ArrayList<carItem> carArray = new ArrayList<>();
         carAdapter C_adapter = new carAdapter(home_page.this, carArray);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(home_page.this));
-
-        //default view for our recycle View
-        selectNews();
+        sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+                if (!selectedItem.equals("المكان الحالي")) {
+                    dest.setEnabled(true);
+                    if(flage==1)
+                        selectLine();
+                    else if(flage==0)
+                        selectNews();
+                }else{
+                    dest.setEnabled(false);
+                    if(flage==1)
+                        selectGarage();
+                    else if(flage==0)
+                        selectNews();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,11 +169,13 @@ public class home_page extends AppCompatActivity {
                 newsLayout.setVisibility(View.VISIBLE);
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
-
                 addNewstext.setText("");
+
+                flage=0;
                 selectNews();
             }
         });
+
         addNewsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,10 +184,10 @@ public class home_page extends AppCompatActivity {
             }
         });
 
-
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flage=1;
 
                 newsButt.setBackgroundColor(0xFFFF6F00);
                 newsButt.setTextColor(Color.WHITE);
@@ -169,7 +212,6 @@ public class home_page extends AppCompatActivity {
                             public void onClick(View view) {
                                 Intent intent = new Intent(home_page.this, add_line.class);
                                 startActivity(intent);
-
                             }
                         });
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
@@ -177,12 +219,7 @@ public class home_page extends AppCompatActivity {
                         carStatusLayout.setVisibility(View.GONE);
 
                         selectLine();
-//                        lineItem l = new lineItem("قلقيلية", "طولكرم", "11.5", "30");
-//                        lineArray.add(l);
-//
-//                        recyclerView.setAdapter(L_adapter);
                     }
-
                 } else {
                     //garage
                     iconAddgarage.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +227,6 @@ public class home_page extends AppCompatActivity {
                         public void onClick(View view) {
                             Intent intent = new Intent(home_page.this, add_garage.class);
                             startActivity(intent);
-
                         }
                     });
                     garageLineStatusLayout.setVisibility(View.VISIBLE);
@@ -202,7 +238,6 @@ public class home_page extends AppCompatActivity {
             }
         });
 
-
         iconAddcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,22 +247,7 @@ public class home_page extends AppCompatActivity {
             }
         });
 
-        //my actionbarPage
-        homeIcon = findViewById(R.id.myActionBar_homeIcon);
-        notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
-        personalIcon = findViewById(R.id.myActionBar_personIcon);
-        messagesIcon = findViewById(R.id.myActionBar_messagesIcon);
-        menuIcon = findViewById(R.id.myActionBar_menuIcon);
-
-        homeIcon.setBackgroundColor(Color.WHITE);
-
-        homeIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
+    //actionBar_onClickListener
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -264,7 +284,6 @@ public class home_page extends AppCompatActivity {
         String myString = t.getText().toString();
         return myString;
     }
-
 
     public void selectNews() {
         myNews.clear();
@@ -391,7 +410,7 @@ public class home_page extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("Lines");
+                    JSONArray jsonArray = object.getJSONArray("lines");
                     lineItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
@@ -420,4 +439,5 @@ public class home_page extends AppCompatActivity {
         });
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
+
 }
