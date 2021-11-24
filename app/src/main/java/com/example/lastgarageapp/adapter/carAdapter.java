@@ -41,6 +41,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     public void onBindViewHolder(@NonNull carViewHolder holder, int position) {
         carItem c = myCarItem.get(position);
         holder.nameDriver.setText(c.getDriverName());
+        holder.nameDriver.setText(c.getDriverName());
         holder.availability.setText(c.getAvailabilty());
         holder.noOfPassenger.setText(c.getNoOfPassenger());
         holder.arrivalTime.setText(c.getArrivalTime());
@@ -69,12 +70,13 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     }
 
     public class carViewHolder extends RecyclerView.ViewHolder {
-        TextView nameDriver, availability, noOfPassenger, arrivalTime;
+        TextView carNomber,nameDriver, availability, noOfPassenger, arrivalTime;
         TextView iconEdit, iconDelet;
 
 
         public carViewHolder(@NonNull View itemView) {
             super(itemView);
+            carNomber=itemView.findViewById(R.id.carItem_carNomber);
             nameDriver = itemView.findViewById(R.id.carItem_driverName);
             availability = itemView.findViewById(R.id.carItem_availabilty);
             noOfPassenger = itemView.findViewById(R.id.carItem_noOfPassenger);

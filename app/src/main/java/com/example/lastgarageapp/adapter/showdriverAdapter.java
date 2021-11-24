@@ -45,7 +45,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
     public void onBindViewHolder(showdriverAdapter.showDriversViewHolder holder, int position) {
         showDriversItem l = myshowDriversItems.get(position);
         holder.NameText.setText(l.getnameText());
-        holder.LineWorkeText.setText(l.getlineworkText());
+        //holder.LineWorkeText.setText(l.getlineworkText());
 
 
         holder.iconMesage.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +77,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
             super(itemView);
 
             NameText = itemView.findViewById(R.id.showDriversItem_driverName);
-            LineWorkeText = itemView.findViewById(R.id.showDriversItem_driverWork);
+       //     LineWorkeText = itemView.findViewById(R.id.showDriversItem_driverWork);
 
             show=itemView.findViewById(R.id.showdriver_listitems);
 

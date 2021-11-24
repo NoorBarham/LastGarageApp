@@ -158,8 +158,8 @@ public class home_page extends AppCompatActivity {
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
 
-                        carItem c = new carItem("أحمد محمد", "متوفرة", "4", "6:00 AM");
-                        carArray.add(c);
+                       // carItem c = new carItem("أحمد محمد", "متوفرة", "4", "6:00 AM");
+                       // carArray.add(c);
 
                         recyclerView.setAdapter(C_adapter);
                     } else {
@@ -275,6 +275,7 @@ public class home_page extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("news");
                     newsItem myItem;

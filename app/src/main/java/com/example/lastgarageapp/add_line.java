@@ -30,6 +30,7 @@ public class add_line extends AppCompatActivity {
     EditText fare;
     ArrayList city_arr;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
