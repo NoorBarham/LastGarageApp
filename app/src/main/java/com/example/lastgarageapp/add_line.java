@@ -51,13 +51,9 @@ public class add_line extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getApplicationContext(),adapterView.getItemAtPosition(i).toString() , Toast.LENGTH_LONG).show();
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -65,18 +61,18 @@ public class add_line extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getApplicationContext(),adapterView.getItemAtPosition(i).toString() , Toast.LENGTH_LONG).show();
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(sour.getSelectedItem().toString()==des.getSelectedItem().toString()) {
+                    Toast.makeText(getBaseContext(), "خط النقل يكون بين مدينتين مختلفتين", Toast.LENGTH_SHORT).show();
+                }
                 if(fare.getText().length()==0){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
