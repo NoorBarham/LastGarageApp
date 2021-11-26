@@ -342,6 +342,7 @@ public class home_page extends AppCompatActivity {
     }
 
     public void addNew(){
+        String news_text=getData(addNewstext);
         if (addNewstext.getText().length() == 0) {
             Toast.makeText(getBaseContext(), "لا يمكنك نشر خبر فارغ", Toast.LENGTH_SHORT).show();
         } else {
@@ -361,18 +362,19 @@ public class home_page extends AppCompatActivity {
             }) {
                 @Override
                 protected Map<String, String> getParams() {
-                    TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "04:00"));
+//                    TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "03:00"));
                     Date currentTime = Calendar.getInstance().getTime();
                     String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
 
                     Map<String, String> myMap = new HashMap<>();
-                    myMap.put("text", getData(addNewstext));
+                    myMap.put("text", news_text);
                     myMap.put("date_time", timeStamp);
                     return myMap;
                 }
             };
             my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
         }
+        addNewstext.setText("");
     }
 
     public void selectGarage() {

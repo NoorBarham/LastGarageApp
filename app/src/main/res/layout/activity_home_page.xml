@@ -130,6 +130,13 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/add_icon" />
 
+<!--            <Spinner-->
+<!--                android:id="@+id/spinner"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:entries="@array/source"-->
+<!--                android:background="@drawable/filter_icon" />-->
+
             <TextView
                 android:id="@+id/homePage_filterCar"
                 android:layout_width="match_parent"
@@ -174,6 +181,7 @@
             android:id="@+id/homePage_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="bottom"
             android:foregroundGravity="bottom" />
     </LinearLayout>
 
