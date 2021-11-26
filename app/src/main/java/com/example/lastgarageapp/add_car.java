@@ -23,8 +23,6 @@ public class add_car extends AppCompatActivity {
     private Spinner driverName,capacity,sour,dest;
     private Button addCar_add,addCar_cancel;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
