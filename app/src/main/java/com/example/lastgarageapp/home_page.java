@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,6 +59,10 @@ public class home_page extends AppCompatActivity {
 
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
+
+    //spinner
+    ArrayList source_array =new ArrayList();
+    ArrayList destination_array =new ArrayList();
 
     //news
     ArrayList<newsItem> myNews = new ArrayList<>();
@@ -126,27 +131,6 @@ public class home_page extends AppCompatActivity {
         dest.setEnabled(false);
         selectNews();
 
-        dest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
-                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
-                if (!selectedItem.equals("الوجهة")) {
-                    if(flage==1){
-                        garageLineStatusLayout.setVisibility(View.GONE);
-                        newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.VISIBLE);
-                        selectCar();
-                    }
-                    else if(flage==0)
-                        selectNews();
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -176,7 +160,26 @@ public class home_page extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
+        dest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+                if (!selectedItem.equals("الوجهة")) {
+                    if(flage==1){
+                        garageLineStatusLayout.setVisibility(View.GONE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.VISIBLE);
+                        selectCar();
+                    }
+                    else if(flage==0)
+                        selectNews();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
         newsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -493,5 +496,78 @@ public class home_page extends AppCompatActivity {
         });
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
+    public void sourceSpinner() {
+        source_array.clear();
+        String url = url_serverName.serverName + "sourceSpinner.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("garages");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
 
+                        //String cityName
+                        String cityName = reader.getString("garage_name");
+                        source_array.add(cityName);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(home_page.this,android.R.layout.simple_spinner_item, source_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sour.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
+    public void destinationSpinner() {
+        destination_array.clear();
+        String url = url_serverName.serverName + "destinationSpinner.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("garages");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String cityName
+                        String cityName = reader.getString("garage_name");
+                        if(!cityName.equals(sour.getSelectedItem()))
+                            destination_array.add(cityName);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(home_page.this,android.R.layout.simple_spinner_item, destination_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    dest.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("garage_name", sour.getSelectedItem().toString());
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
 }

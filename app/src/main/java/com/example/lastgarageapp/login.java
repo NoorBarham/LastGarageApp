@@ -42,7 +42,7 @@ public class login extends AppCompatActivity {
             public void onClick(View view) {
                 openhome_page();
 
-                String url = "http://192.168.1.142/garageAppPhp/login.php";
+                String url = url_serverName.serverName+"login.php";
                 StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
