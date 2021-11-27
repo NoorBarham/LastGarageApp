@@ -75,10 +75,6 @@ public class home_page extends AppCompatActivity {
     ArrayList<carItem> myCars = new ArrayList<>();
     carAdapter myCarAdapter;
 
-    //noti
-    ArrayList<notificationItem> myNotification = new ArrayList<>();
-    notificationAdapter myNotificationAdapter;
-
     //news=0, garge=1, noti=2, pers=3, mess=4
     static int flage=0;
 
@@ -129,10 +125,6 @@ public class home_page extends AppCompatActivity {
 
         dest.setEnabled(false);
         selectNews();
-
-        //car هدول القديمات ما بنستخدمهم
-        ArrayList<carItem> carArray = new ArrayList<>();
-        carAdapter C_adapter = new carAdapter(home_page.this, carArray);
 
         dest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

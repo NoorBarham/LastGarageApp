@@ -53,10 +53,6 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
 //                holder.iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xffff6f00));
                 Intent intent=new Intent(con, edit_garage.class);
                 con.startActivity(intent);
-
-//                CharSequence s="gg";
-//                EditText t =view.findViewById(R.id.garageItem_FromHoure);
-//                t.setText(s);
             }
         });
 

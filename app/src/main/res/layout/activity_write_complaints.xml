@@ -79,7 +79,7 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:textSize="24sp" />
+                android:textSize="17sp" />
 
             <Button
                 android:id="@+id/writeComplaints_sendButt"

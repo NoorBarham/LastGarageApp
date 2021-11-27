@@ -7,14 +7,11 @@ public class complainsItem {
         this.complainText = complainText;
     }
 
-    public void setcomplainText(String complainText) {
-
-        this.complainText = complainText;
-    }
-
-    public String getcomplainText() {
+    public String getComplainText() {
         return complainText;
     }
 
-
+    public void setComplainText(String complainText) {
+        this.complainText = complainText;
+    }
 }
