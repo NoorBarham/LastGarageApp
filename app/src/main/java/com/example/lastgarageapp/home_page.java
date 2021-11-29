@@ -64,6 +64,8 @@ public class home_page extends AppCompatActivity {
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
 
+
+
     //news
     ArrayList<newsItem> myNews = new ArrayList<>();
     newsAdapter myNewsAdapter;
@@ -81,7 +83,7 @@ public class home_page extends AppCompatActivity {
     carAdapter myCarAdapter;
 
     //news=0, garge=1, noti=2, pers=3, mess=4
-    static int flage=0;
+    static int flage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,15 +134,18 @@ public class home_page extends AppCompatActivity {
 
         dest.setEnabled(false);
         selectNews();
+        flage=0;
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
                     destinationSpinner();
+                    dest.setSelection(0);
+
                     iconAddgarage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -152,10 +157,9 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
-
                         selectLine(selectedItem);
-                    }
-                    else if(flage==0)
+
+                    } else if(flage==0)
                         selectNews();
                 }else{
                     dest.setEnabled(false);
@@ -164,7 +168,6 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
-
                         selectGarage();
                     }
                     else if(flage==0)
@@ -179,7 +182,7 @@ public class home_page extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+
                 if (!selectedItem.equals("الوجهة")) {
                     if(flage==1){
                         garageLineStatusLayout.setVisibility(View.GONE);
@@ -187,8 +190,19 @@ public class home_page extends AppCompatActivity {
                         carStatusLayout.setVisibility(View.VISIBLE);
                         selectCar(sour.getSelectedItem().toString(),selectedItem);
                     }
-                    else if(flage==0)
+                    else if(flage==0){
                         selectNews();
+                    }
+                }else{
+                    if(flage==1){
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.GONE);
+                        selectLine(sour.getSelectedItem().toString());
+                    }
+                    else if(flage==0){
+                        selectNews();
+                    }
                 }
             }
             @Override

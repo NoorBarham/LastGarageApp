@@ -152,6 +152,7 @@
                         android:layout_weight="1"
                         android:entries="@array/destination"
                         android:text="الوجهة"
+                        android:backgroundTint="#ff6f00"
                         android:textAlignment="viewEnd" />
 
                     <Spinner
@@ -159,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="#ff6f00"
                         android:entries="@array/source"
                         android:text="المكان الحالي"
                         android:textAlignment="viewEnd" />

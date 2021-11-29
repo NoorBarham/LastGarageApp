@@ -6,13 +6,17 @@ import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.edit_garage;
+import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.garageItem;
 
 import java.util.ArrayList;
@@ -72,6 +76,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
     public class garageViewHolder extends RecyclerView.ViewHolder{
         TextView cityName, adminName, location, toHoure, fromHoure;
         TextView iconEdit, iconDelet;
+        Spinner sour;
 
 
         public garageViewHolder(@NonNull View itemView) {
@@ -81,12 +86,22 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
             location=itemView.findViewById(R.id.garageItem_locationValue);
             toHoure=itemView.findViewById(R.id.garageItem_toHoure);
             fromHoure=itemView.findViewById(R.id.garageItem_FromHoure);
+
             iconEdit=itemView.findViewById(R.id.garageItem_editIcon);
             iconDelet=itemView.findViewById(R.id.garageItem_deleteIcon);
 
+            sour = itemView.findViewById(R.id.homePage_source);
+
             iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xff000000));
 
-        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    String garage_name = cityName.getText().toString();
+
+                }
+            });
+        }
     }
 }

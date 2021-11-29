@@ -164,7 +164,7 @@ public class add_line extends AppCompatActivity {
         destination_array.clear();
         destination_array.add(0,"الوجهة");
 
-        String url = url_serverName.serverName + "destinationSpinner.php";
+        String url = url_serverName.serverName + "addLineDest.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
