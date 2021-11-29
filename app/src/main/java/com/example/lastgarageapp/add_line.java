@@ -176,8 +176,7 @@ public class add_line extends AppCompatActivity {
 
                         //String cityName
                         String cityName = reader.getString("garage_name");
-                        if(!cityName.equals(sour.getSelectedItem()))
-                            destination_array.add(cityName);
+                        destination_array.add(cityName);
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_line.this,android.R.layout.simple_spinner_item, destination_array);

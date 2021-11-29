@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,12 +26,10 @@ import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
-import com.example.lastgarageapp.adapter.notificationAdapter;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.itemClasses.newsItem;
-import com.example.lastgarageapp.itemClasses.notificationItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +47,7 @@ public class home_page extends AppCompatActivity {
 
     //homeIcon
     Button newsButt, statusButt, addNewsButt;
-    Spinner dest, sour;
+    Spinner dest, sour, spinnerFilterCar;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
     TextView iconAddgarage, iconAddcar, iconFilter;
     EditText addNewstext;
@@ -63,8 +59,7 @@ public class home_page extends AppCompatActivity {
     //spinner
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
-
-
+    ArrayList is_available =new ArrayList();
 
     //news
     ArrayList<newsItem> myNews = new ArrayList<>();
@@ -90,6 +85,8 @@ public class home_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
+
         //my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
         notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
@@ -111,7 +108,7 @@ public class home_page extends AppCompatActivity {
 
         //car Statuse
         carStatusLayout = findViewById(R.id.homePage_carStatusLayout);
-        iconFilter = findViewById(R.id.homePage_filterCar);
+//        iconFilter = findViewById(R.id.homePage_filterCar);
         iconAddcar = findViewById(R.id.homePage_addCarIcon);
 
         //news layout
@@ -126,15 +123,30 @@ public class home_page extends AppCompatActivity {
         statusButt.setTextColor(Color.WHITE);
         newsButt.setBackgroundColor(Color.WHITE);
         newsButt.setTextColor(0xFFFF6F00);
-
         garageLineStatusLayout.setVisibility(View.GONE);
         carStatusLayout.setVisibility(View.GONE);
-
         sourceSpinner();
-
         dest.setEnabled(false);
         selectNews();
         flage=0;
+
+        is_available.add("الكل");
+        is_available.add("المتوفرة فقط");
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(home_page.this,android.R.layout.simple_spinner_item, is_available);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilterCar.setAdapter(adapter);
+
+
+        spinnerFilterCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
