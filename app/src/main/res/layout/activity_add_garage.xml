@@ -75,7 +75,6 @@
                     android:gravity="right"
                     android:hint="مثال: 05:00"
                     android:inputType="time"
-                    android:text="6"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -105,7 +104,6 @@
                     android:gravity="right"
                     android:hint="مثال: 16:00 "
                     android:inputType="time"
-                    android:text="6"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
