@@ -141,7 +141,6 @@ public class home_page extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -157,6 +156,7 @@ public class home_page extends AppCompatActivity {
                     dest.setEnabled(true);
                     destinationSpinner();
                     dest.setSelection(0);
+                    clearLine();
 
                     iconAddgarage.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -169,6 +169,7 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+                        clearLine();
                         selectLine(selectedItem);
 
                     } else if(flage==0)
@@ -180,6 +181,7 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+                        clearGarage();
                         selectGarage();
                     }
                     else if(flage==0)
@@ -196,10 +198,13 @@ public class home_page extends AppCompatActivity {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
 
                 if (!selectedItem.equals("الوجهة")) {
+
                     if(flage==1){
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
+
+                        clearCar();
                         selectCar(sour.getSelectedItem().toString(),selectedItem);
                     }
                     else if(flage==0){
@@ -210,6 +215,7 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+                        clearLine();
                         selectLine(sour.getSelectedItem().toString());
                     }
                     else if(flage==0){
@@ -262,12 +268,13 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
+                        clearCar();
                         selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
                     } else {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
-
+                        clearLine();
                         selectLine(sour.getSelectedItem().toString());
                     }
                 } else {
@@ -282,7 +289,7 @@ public class home_page extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-
+                    clearGarage();
                     selectGarage();
                 }
             }
@@ -293,7 +300,6 @@ public class home_page extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(home_page.this, add_car.class);
                 startActivity(intent);
-
             }
         });
 
@@ -629,5 +635,20 @@ public class home_page extends AppCompatActivity {
             }
         };
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+    }
+    public void clearCar() {
+        myCars.clear();
+        myCarAdapter = new carAdapter(home_page.this, myCars);
+        recyclerView.setAdapter(myCarAdapter);
+    }
+    public void clearGarage() {
+        myGarages.clear();
+        myGarageAdapter = new garageAdapter(home_page.this, myGarages);
+        recyclerView.setAdapter(myGarageAdapter);
+    }
+    public void clearLine() {
+        myLines.clear();
+        myLineAdapter = new lineAdapter(home_page.this, myLines);
+        recyclerView.setAdapter(myLineAdapter);
     }
 }
