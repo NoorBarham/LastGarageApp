@@ -2,11 +2,13 @@ package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +24,9 @@ public class add_garage extends AppCompatActivity {
     private EditText cityName,openHoure,closeHoure,location;
     private TextView counter;
     private Button cancelButt,addButt;
+    TimePickerDialog timePickerDialog;
+    String amPm;
+
 
 
     @Override
@@ -73,12 +78,51 @@ public class add_garage extends AppCompatActivity {
             }
         });
 
+
         cancelButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+        openHoure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog = new TimePickerDialog(add_garage.this,R.style.Theme1_LastGarageApp, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if (hourOfDay>=12){
+                            amPm= "PM";
+                        }
+                        else {
+                            amPm="AM";
+                        }
+                        openHoure.setText(String.format("%02d : %02d " , hourOfDay, minute) + amPm);
+                    }
+                },00, 00, false );
+                timePickerDialog.show();
+
+            }
+        });
+
+        closeHoure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog = new TimePickerDialog(add_garage.this,R.style.Theme1_LastGarageApp, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if (hourOfDay>=12){
+                            amPm= "PM";
+                        }
+                        else {
+                            amPm="AM";
+                        }
+                        closeHoure.setText(String.format("%02d : %02d " , hourOfDay, minute) + amPm);
+
+                    }
+                }, 00 ,00,false);
+                timePickerDialog.show();
+            } });
     }
     public String getData(EditText t){
         String myString =t.getText().toString();
@@ -86,5 +130,6 @@ public class add_garage extends AppCompatActivity {
     }
 
 
-
 }
+
+
