@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,12 +26,10 @@ import com.example.lastgarageapp.adapter.carAdapter;
 import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.lineAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
-import com.example.lastgarageapp.adapter.notificationAdapter;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.itemClasses.newsItem;
-import com.example.lastgarageapp.itemClasses.notificationItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +47,7 @@ public class home_page extends AppCompatActivity {
 
     //homeIcon
     Button newsButt, statusButt, addNewsButt;
-    Spinner dest, sour;
+    Spinner dest, sour, spinnerFilterCar;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
     TextView iconAddgarage, iconAddcar, iconFilter;
     EditText addNewstext;
@@ -63,6 +59,7 @@ public class home_page extends AppCompatActivity {
     //spinner
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
+    ArrayList is_available =new ArrayList();
 
     //news
     ArrayList<newsItem> myNews = new ArrayList<>();
@@ -81,12 +78,14 @@ public class home_page extends AppCompatActivity {
     carAdapter myCarAdapter;
 
     //news=0, garge=1, noti=2, pers=3, mess=4
-    static int flage=0;
+    static int flage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
 
         //my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
@@ -109,7 +108,7 @@ public class home_page extends AppCompatActivity {
 
         //car Statuse
         carStatusLayout = findViewById(R.id.homePage_carStatusLayout);
-        iconFilter = findViewById(R.id.homePage_filterCar);
+//        iconFilter = findViewById(R.id.homePage_filterCar);
         iconAddcar = findViewById(R.id.homePage_addCarIcon);
 
         //news layout
@@ -124,20 +123,41 @@ public class home_page extends AppCompatActivity {
         statusButt.setTextColor(Color.WHITE);
         newsButt.setBackgroundColor(Color.WHITE);
         newsButt.setTextColor(0xFFFF6F00);
-
         garageLineStatusLayout.setVisibility(View.GONE);
         carStatusLayout.setVisibility(View.GONE);
-
+        sourceSpinner();
         dest.setEnabled(false);
         selectNews();
+        flage=0;
+
+        is_available.add("الكل");
+        is_available.add("المتوفرة فقط");
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(home_page.this,android.R.layout.simple_spinner_item, is_available);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilterCar.setAdapter(adapter);
+
+
+        spinnerFilterCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
+                    destinationSpinner();
+                    dest.setSelection(0);
+
                     iconAddgarage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -149,8 +169,18 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
+                        selectLine(selectedItem);
 
-                        selectLine();
+                    } else if(flage==0)
+                        selectNews();
+                }else{
+                    dest.setEnabled(false);
+                    dest.setSelection(0);
+                    if(flage==1){
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.GONE);
+                        selectGarage();
                     }
                     else if(flage==0)
                         selectNews();
@@ -164,16 +194,27 @@ public class home_page extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                //هاد شغل مؤقت لحد م نعرف كيف نعمل السبينر
+
                 if (!selectedItem.equals("الوجهة")) {
                     if(flage==1){
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
-                        selectCar();
+                        selectCar(sour.getSelectedItem().toString(),selectedItem);
                     }
-                    else if(flage==0)
+                    else if(flage==0){
                         selectNews();
+                    }
+                }else{
+                    if(flage==1){
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        newsLayout.setVisibility(View.GONE);
+                        carStatusLayout.setVisibility(View.GONE);
+                        selectLine(sour.getSelectedItem().toString());
+                    }
+                    else if(flage==0){
+                        selectNews();
+                    }
                 }
             }
             @Override
@@ -221,13 +262,13 @@ public class home_page extends AppCompatActivity {
                         garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.VISIBLE);
-                        selectCar();
+                        selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
                     } else {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
 
-                        selectLine();
+                        selectLine(sour.getSelectedItem().toString());
                     }
                 } else {
                     //garage
@@ -357,7 +398,7 @@ public class home_page extends AppCompatActivity {
             }) {
                 @Override
                 protected Map<String, String> getParams() {
-//                    TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "03:00"));
+                    TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
                     Date currentTime = Calendar.getInstance().getTime();
                     String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
 
@@ -414,7 +455,7 @@ public class home_page extends AppCompatActivity {
         });
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
-    public void selectLine() {
+    public void selectLine(String sourceName) {
         myNews.clear();
         myGarages.clear();
         myLines.clear();
@@ -451,10 +492,17 @@ public class home_page extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("garage_name", sourceName);
+                return myMap;
+            }
+        };
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
-    public void selectCar() {
+    public void selectCar(String sourceName,String destName) {
         myNews.clear();
         myGarages.clear();
         myLines.clear();
@@ -493,11 +541,21 @@ public class home_page extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("garage1_name", sourceName);
+                myMap.put("garage2_name", destName);
+                return myMap;
+            }
+        };
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
     public void sourceSpinner() {
         source_array.clear();
+        source_array.add(0,"المكان الحالي");
+
         String url = url_serverName.serverName + "sourceSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -531,6 +589,8 @@ public class home_page extends AppCompatActivity {
     }
     public void destinationSpinner() {
         destination_array.clear();
+        destination_array.add(0,"الوجهة");
+
         String url = url_serverName.serverName + "destinationSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

@@ -119,7 +119,6 @@
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:paddingRight="10dp"
             android:visibility="visible">
 
             <TextView
@@ -130,20 +129,22 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/add_icon" />
 
-<!--            <Spinner-->
-<!--                android:id="@+id/spinner"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:entries="@array/source"-->
-<!--                android:background="@drawable/filter_icon" />-->
-
-            <TextView
-                android:id="@+id/homePage_filterCar"
+            <Spinner
+                android:id="@+id/homePage_spinnerFilterCar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:drawableRight="@drawable/filter_icon" />
+                android:backgroundTint="#FF6F00" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/homePage_filterCar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:drawableRight="@drawable/filter_icon" />-->
         </LinearLayout>
 
         <LinearLayout

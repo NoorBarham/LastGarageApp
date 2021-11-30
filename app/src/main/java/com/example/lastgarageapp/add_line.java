@@ -2,6 +2,7 @@ package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +28,7 @@ import java.util.Map;
 public class add_line extends AppCompatActivity {
 
     private Button cancleButton,addButton;
-    Spinner sour, des;
+    Spinner sour, dest;
     EditText fare;
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
@@ -39,26 +40,34 @@ public class add_line extends AppCompatActivity {
         setContentView(R.layout.activity_add_line);
 
         sour = findViewById(R.id.addLine_sour);
-        des = findViewById(R.id.addLine_dest);
+        dest = findViewById(R.id.addLine_dest);
         fare = findViewById(R.id.addLine_fare);
         addButton= findViewById(R.id.addline_addButt);
         cancleButton = findViewById(R.id.addLine_cancle);
 
         //default
         sourceSpinner();
+        dest.setEnabled(false);
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
-                destinationSpinner();
+                if (!selectedItem.equals("المكان الحالي")) {
+                    dest.setEnabled(true);
+                    destinationSpinner();
+                }else{
+                    dest.setEnabled(false);
+                    destinationSpinner();
+                    dest.setSelection(0);
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
 
-        des.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
@@ -72,7 +81,7 @@ public class add_line extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String myFare=getData(fare);
-                if(fare.getText().length()==0){
+                if(fare.getText().length()==0||sour.getSelectedItem().equals("المكان الحالي")){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
                     String url = url_serverName.serverName+"addLine.php";
@@ -94,7 +103,7 @@ public class add_line extends AppCompatActivity {
                             Map<String, String> myMap = new HashMap<>();
 
                             myMap.put("garage1_name", sour.getSelectedItem().toString());
-                            myMap.put("garage2_name", des.getSelectedItem().toString());
+                            myMap.put("garage2_name", dest.getSelectedItem().toString());
                             myMap.put("fare", myFare);
                             return myMap;
                         }
@@ -118,6 +127,8 @@ public class add_line extends AppCompatActivity {
     }
     public void sourceSpinner() {
         source_array.clear();
+        source_array.add(0,"المكان الحالي");
+
         String url = url_serverName.serverName + "sourceSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -151,7 +162,9 @@ public class add_line extends AppCompatActivity {
     }
     public void destinationSpinner() {
         destination_array.clear();
-        String url = url_serverName.serverName + "destinationSpinner.php";
+        destination_array.add(0,"الوجهة");
+
+        String url = url_serverName.serverName + "addLineDest.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -163,13 +176,12 @@ public class add_line extends AppCompatActivity {
 
                         //String cityName
                         String cityName = reader.getString("garage_name");
-                        if(!cityName.equals(sour.getSelectedItem()))
-                            destination_array.add(cityName);
+                        destination_array.add(cityName);
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_line.this,android.R.layout.simple_spinner_item, destination_array);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    des.setAdapter(adapter);
+                    dest.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
