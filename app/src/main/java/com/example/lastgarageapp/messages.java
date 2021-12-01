@@ -60,8 +60,7 @@ public class messages extends AppCompatActivity {
                 Intent intent= new Intent(messages.this ,messages.class);
                 startActivity(intent);
             }
-        });
-
+        });///// its okkkkkkkkk hhhhhhhhhhhhhhhh
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

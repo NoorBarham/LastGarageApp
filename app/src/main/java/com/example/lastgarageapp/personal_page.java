@@ -5,15 +5,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.lastgarageapp.adapter.notificationAdapter;
+import com.example.lastgarageapp.itemClasses.notificationItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class personal_page extends AppCompatActivity {
 
-    ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
-    TextView editData,changePass;
+    ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
+    TextView editData, changePass, u_name, u_city, u_phone, u_car_id, u_sour, u_dest;
+
     ImageView textMessage;
 
     @Override
@@ -25,11 +42,20 @@ public class personal_page extends AppCompatActivity {
         editData = findViewById(R.id.personalPage_editData);
         changePass = findViewById(R.id.personalPage_changePass);
         textMessage = findViewById(R.id.personalPage_messageIcon);
+        u_name = (TextView) findViewById(R.id.personalPage_name);
+        u_city = findViewById(R.id.personalPage_placeVal);
+        u_phone = findViewById(R.id.personalPage_phoneNumVal);
+        u_car_id = findViewById(R.id.personalPage_carNumVal);
+        u_sour = findViewById(R.id.personalPage_sour);
+        u_dest = findViewById(R.id.personalPage_dest);
+
+
+        selectPersonaldata("011");
 
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(personal_page.this ,edit_personal_data.class);
+                Intent intent = new Intent(personal_page.this, edit_personal_data.class);
                 startActivity(intent);
             }
         });
@@ -37,7 +63,7 @@ public class personal_page extends AppCompatActivity {
         changePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(personal_page.this ,change_password.class);
+                Intent intent = new Intent(personal_page.this, change_password.class);
                 startActivity(intent);
             }
         });
@@ -45,25 +71,25 @@ public class personal_page extends AppCompatActivity {
         textMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(personal_page.this ,conversation.class);
+                Intent intent = new Intent(personal_page.this, conversation.class);
                 startActivity(intent);
             }
         });
 
 
         //views in my actionbarPage
-        homeIcon=findViewById(R.id.myActionBar_homeIcon);
-        notificationIcon=findViewById(R.id.myActionBar_notificationsIcon);
-        personalIcon=findViewById(R.id.myActionBar_personIcon);
-        messagesIcon=findViewById(R.id.myActionBar_messagesIcon);
-        menuIcon=findViewById(R.id.myActionBar_menuIcon);
+        homeIcon = findViewById(R.id.myActionBar_homeIcon);
+        notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
+        personalIcon = findViewById(R.id.myActionBar_personIcon);
+        messagesIcon = findViewById(R.id.myActionBar_messagesIcon);
+        menuIcon = findViewById(R.id.myActionBar_menuIcon);
 
         personalIcon.setBackgroundColor(Color.WHITE);
 
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(personal_page.this ,home_page.class);
+                Intent intent = new Intent(personal_page.this, home_page.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +103,7 @@ public class personal_page extends AppCompatActivity {
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent= new Intent(personal_page.this ,notifications.class);
+                Intent intent = new Intent(personal_page.this, notifications.class);
                 startActivity(intent);
             }
         });
@@ -90,7 +116,7 @@ public class personal_page extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
-                Intent intent= new Intent(personal_page.this ,personal_page.class);
+                Intent intent = new Intent(personal_page.this, personal_page.class);
                 startActivity(intent);
             }
         });
@@ -105,7 +131,7 @@ public class personal_page extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent= new Intent(personal_page.this ,messages.class);
+                Intent intent = new Intent(personal_page.this, messages.class);
                 startActivity(intent);
             }
         });
@@ -120,9 +146,67 @@ public class personal_page extends AppCompatActivity {
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent= new Intent(personal_page.this ,menu.class);
+                Intent intent = new Intent(personal_page.this, menu.class);
                 startActivity(intent);
             }
         });
+
+
     }
+
+    public void selectPersonaldata(String id) {
+        String url = url_serverName.serverName + "personal_page.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.d("sss",response);
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("personal");
+                    notificationItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String textName, String textNews, String textHour
+                        String name = reader.getString("user_name");
+                        String phone = reader.getString("phone");
+                        String city = reader.getString("city");
+                        String car_id = reader.getString("car_id");
+                        String sour = reader.getString("source");
+                        String dest = reader.getString("destination");
+
+                        u_name.setText(name);
+                        u_phone.setText(phone);
+                        u_city.setText(city);
+                        u_car_id.setText(car_id);
+                        u_sour.setText(sour);
+                        u_dest.setText(dest);
+
+
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("user_id", id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(personal_page.this).addToRequestQueue(myStringRequest);
+
+    }
+
 }

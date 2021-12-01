@@ -95,13 +95,7 @@
             android:name=".line_status_list_item"
             android:exported="true" />
         <activity
-            android:name=".line_status"
-            android:exported="true" />
-        <activity
             android:name=".garage_status_list_item"
-            android:exported="true" />
-        <activity
-            android:name=".garage_status"
             android:exported="true" />
         <activity
             android:name=".edit_line"
@@ -116,13 +110,7 @@
             android:name=".car_status_list_item"
             android:exported="true" />
         <activity
-            android:name=".car_status"
-            android:exported="true" />
-        <activity
             android:name=".add_garage"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".view_notification"

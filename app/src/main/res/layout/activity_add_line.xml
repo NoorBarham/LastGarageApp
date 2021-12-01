@@ -46,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#FF6F00"
+                    android:entries="@array/source"
                     />
 
                 <TextView
@@ -74,7 +75,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#FF6F00"
-                     />
+
+                    android:entries="@array/destination"/>
 
                 <TextView
                     android:id="@+id/destination"

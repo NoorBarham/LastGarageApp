@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -351,7 +352,7 @@ public class home_page extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-
+                    Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("news");
                     newsItem myItem;
@@ -430,6 +431,7 @@ public class home_page extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("garages");
                     garageItem myItem;

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.adapter.carAdapter;
+import com.example.lastgarageapp.adapter.garageAdapter;
 import com.example.lastgarageapp.adapter.newsAdapter;
 import com.example.lastgarageapp.itemClasses.carItem;
+import com.example.lastgarageapp.itemClasses.garageItem;
 import com.example.lastgarageapp.itemClasses.newsItem;
 
 import org.json.JSONArray;
@@ -43,7 +46,6 @@ public class edit_car_data extends AppCompatActivity {
         editCarData_cancel = (Button) findViewById(R.id.editCarData_cancel);
         editCarData_save=(Button) findViewById(R.id.editCar_saveChange);
         car_no=findViewById(R.id.editCarData_carNumVal);
-        fare=findViewById(R.id.editCarData_fareVal);
         driver_name=(Spinner) findViewById(R.id.editCarData_nameDriverVal);
         source=(Spinner) findViewById(R.id.editCarData_source);
         destination=(Spinner) findViewById(R.id.editCarData_destination);
@@ -95,5 +97,56 @@ public class edit_car_data extends AppCompatActivity {
                 finish();            }
         });
     }
+    public void selectData(String car_nomber) {
 
+        String url = url_serverName.serverName + "selectCardata.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("lines");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        String name = reader.getString("driver_name");
+                        String source = reader.getString("name");
+                        String destination = reader.getString("destination");
+
+                        
+
+                        //selectSpinnerItemByValue(driver_name, name);
+                        //noOfCar.setText(no_of_car);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("car_id", car_nomber);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
+    }
+
+    public static void selectSpinnerItemByValue(Spinner spnr, long value) {
+        SimpleCursorAdapter adapter = (SimpleCursorAdapter) spnr.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            if(adapter.getItemId(position) == value) {
+                spnr.setSelection(position);
+                return;
+            }
+        }
+    }
 }
