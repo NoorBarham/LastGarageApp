@@ -165,7 +165,7 @@ public class personal_page extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("personal");
                     notificationItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
-
+/////////8
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String textName, String textNews, String textHour
