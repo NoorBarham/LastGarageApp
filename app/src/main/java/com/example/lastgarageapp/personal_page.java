@@ -160,7 +160,7 @@ public class personal_page extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.d("sss",response);
+                  //  Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("personal");
                     notificationItem myItem;
