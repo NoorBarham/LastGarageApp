@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,26 +17,96 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class add_car extends AppCompatActivity {
     private TextView car_no;
-    private Spinner driverName,capacity,sour,dest;
+    private Spinner driver_name,capacity,sour,dest;
     private Button addCar_add,addCar_cancel;
+
+    //Arrays
+    ArrayList source_array =new ArrayList();
+    ArrayList destination_array =new ArrayList();
+    ArrayList name_array =new ArrayList();
+    ArrayList capacity_array =new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
         car_no = findViewById(R.id.addCar_carNumVal);
-        driverName=(Spinner) findViewById(R.id.addCar_namedriverval);
+        driver_name=(Spinner) findViewById(R.id.addCar_namedriverval);
         capacity=(Spinner) findViewById(R.id.addCar_sizeVal);
         sour=(Spinner) findViewById(R.id.addCar_source);
         dest=(Spinner) findViewById(R.id.addCar_destination);
         addCar_cancel = (Button) findViewById(R.id.addCar_cancel);
         addCar_add= (Button) findViewById(R.id.addCar_add);
+        capacity_array.add(4);
+        capacity_array.add(7);
 
+
+        nameSpinner();
+        sourceSpinner();
+        dest.setEnabled(false);
+
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, capacity_array);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        capacity.setAdapter(adapter);
+
+        driver_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        capacity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+
+
+        sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("المكان الحالي")) {
+                    dest.setEnabled(true);
+                    destinationSpinner();
+                }else{
+                    dest.setEnabled(false);
+                    destinationSpinner();
+                    dest.setSelection(0);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        dest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
         addCar_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +130,7 @@ public class add_car extends AppCompatActivity {
                         protected Map<String, String> getParams() {
                             Map<String, String> params = new HashMap<>();
                             params.put("car_id", car_no.getText().toString());
-                            params.put("driver_name", driverName.getSelectedItem().toString());
+                            params.put("driver_name", driver_name.getSelectedItem().toString());
                             params.put("car_size", capacity.getSelectedItem().toString());
                             params.put("source", sour.getSelectedItem().toString());
                             params.put("destination", dest.getSelectedItem().toString());
@@ -73,6 +145,8 @@ public class add_car extends AppCompatActivity {
 
         });
 
+
+
         addCar_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,9 +154,123 @@ public class add_car extends AppCompatActivity {
                 finish();            }
         });
     }
+    public void nameSpinner() {
+
+        name_array.add(0,"لم يحدد");
+
+        String url = url_serverName.serverName + "nameSpinner.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("names");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String cityName
+                        String driverName = reader.getString("driver_name");
+                        name_array.add(driverName);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, name_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    driver_name.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        my_singleton.getInstance(add_car.this).addToRequestQueue(myStringRequest);
+    }
+    public void sourceSpinner() {
+        source_array.clear();
+        source_array.add(0,"المكان الحالي");
+
+        String url = url_serverName.serverName + "sourceSpinner.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("garages");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String cityName
+                        String cityName = reader.getString("garage_name");
+                        source_array.add(cityName);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, source_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sour.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        my_singleton.getInstance(add_car.this).addToRequestQueue(myStringRequest);
+    }
+
+    public void destinationSpinner() {
+        destination_array.clear();
+        destination_array.add(0,"الوجهة");
+
+        String url = url_serverName.serverName + "destinationSpinner.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("garages");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String cityName
+                        String cityName = reader.getString("garage_name");
+                        destination_array.add(cityName);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, destination_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    dest.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("garage_name", sour.getSelectedItem().toString());
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(add_car.this).addToRequestQueue(myStringRequest);
+    }
+    }
 
 
 
 
 
-}
+
