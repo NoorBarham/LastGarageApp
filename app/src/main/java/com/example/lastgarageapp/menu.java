@@ -14,7 +14,7 @@ public class menu extends AppCompatActivity {
             addDriver,addManager, addnewcar, addnewline, addnewgarage,
             editlinedata,editgaragedata,editcardata,
             showdrivers,readcomplains,writecomplains,
-            aboutapp, settings;
+            aboutapp, settings,logout;
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
 
@@ -41,6 +41,7 @@ public class menu extends AppCompatActivity {
         writecomplains=findViewById(R.id.add_complain);
         aboutapp=findViewById(R.id.about);
         settings = findViewById(R.id.settings);
+        logout = findViewById(R.id.logout);
 
         personalpage.setBackgroundColor(Color.WHITE);
         addDriver.setBackgroundColor(Color.WHITE);
@@ -56,6 +57,7 @@ public class menu extends AppCompatActivity {
         writecomplains.setBackgroundColor(Color.WHITE);
         aboutapp.setBackgroundColor(Color.WHITE);
         settings.setBackgroundColor(Color.WHITE);
+        logout.setBackgroundColor(Color.WHITE);
 
         personalpage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +78,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,personal_page.class);
                 startActivity(intent);
             }
@@ -100,6 +104,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,add_driver.class);
                 startActivity(intent);
             }
@@ -125,6 +131,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
 
                 Intent intent= new Intent(menu.this ,add_admin.class);
@@ -149,6 +157,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,add_line.class);
                 startActivity(intent);
@@ -171,6 +181,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,add_garage.class);
                 startActivity(intent);
@@ -195,6 +207,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,add_car.class);
                 startActivity(intent);
@@ -220,6 +234,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,edit_garage.class);
                 startActivity(intent);
@@ -244,6 +260,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,edit_line.class);
                 startActivity(intent);
@@ -269,6 +287,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,edit_car_data.class);
                 startActivity(intent);
@@ -291,6 +311,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,show_drivers.class);
                 startActivity(intent);
@@ -313,6 +335,8 @@ public class menu extends AppCompatActivity {
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
                 Intent intent= new Intent(menu.this ,read_complaints.class);
                 startActivity(intent);
@@ -336,6 +360,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
 
                 Intent intent= new Intent(menu.this ,write_complaints.class);
@@ -360,6 +386,8 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
 
             }
         });
@@ -381,10 +409,39 @@ public class menu extends AppCompatActivity {
                 readcomplains.setBackgroundColor(Color.WHITE);
                 writecomplains.setBackgroundColor(Color.WHITE);
                 aboutapp.setBackgroundColor(Color.WHITE);
+                logout.setBackgroundColor(Color.WHITE);
+
                 Intent intent= new Intent(menu.this ,settings.class);
                 startActivity(intent);
             }
         });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                logout.setBackgroundColor(0xFFFF6F00);
+                personalpage.setBackgroundColor(Color.WHITE);
+                addDriver.setBackgroundColor(Color.WHITE);
+                addManager.setBackgroundColor(Color.WHITE);
+                addnewcar.setBackgroundColor(Color.WHITE);
+                addnewline.setBackgroundColor(Color.WHITE);
+                addnewgarage.setBackgroundColor(Color.WHITE);
+                editlinedata.setBackgroundColor(Color.WHITE);
+                editgaragedata.setBackgroundColor(Color.WHITE);
+                editcardata.setBackgroundColor(Color.WHITE);
+                showdrivers.setBackgroundColor(Color.WHITE);
+                readcomplains.setBackgroundColor(Color.WHITE);
+                writecomplains.setBackgroundColor(Color.WHITE);
+                aboutapp.setBackgroundColor(Color.WHITE);
+                settings.setBackgroundColor(Color.WHITE);
+
+                Intent intent= new Intent(menu.this ,settings.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
 
 
 //views in my actionbarPage
