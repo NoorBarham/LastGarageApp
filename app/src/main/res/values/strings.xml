@@ -50,10 +50,10 @@
     </string-array>
 
     <string-array name="is_available">
-    <item>الموجودة في الكراج حاليا فقط</item>
-    <item>عرض الكل</item>
-    <item>احمد</item>
-</string-array>
+        <item>الموجودة في الكراج حاليا فقط</item>
+        <item>عرض الكل</item>
+        <item>احمد</item>
+    </string-array>
 
 
 </resources>
