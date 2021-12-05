@@ -13,6 +13,9 @@
         android:theme="@style/Theme.LastGarageApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".edit_admin_personal_data"
+            android:exported="true" />
+        <activity
             android:name=".admin_personal_page"
             android:exported="true" />
         <activity
@@ -38,7 +41,7 @@
             android:exported="true" />
         <activity
             android:name=".home_page"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".login"
             android:exported="true">
