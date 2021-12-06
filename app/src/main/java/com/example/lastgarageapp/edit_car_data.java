@@ -216,11 +216,12 @@ public class edit_car_data extends AppCompatActivity {
         my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
     }
 
+
     public void destinationSpinner() {
         destination_array.clear();
         destination_array.add(0,"الوجهة");
 
-        String url = url_serverName.serverName + "DestSpinner.php";
+        String url = url_serverName.serverName + "destinationSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -248,9 +249,17 @@ public class edit_car_data extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("garage_name", sour.getSelectedItem().toString());
+                return myMap;
+            }
+        };
         my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
     }
+
     // to get data from data base to android
     public void selectCardata(String car_nomber) {
 
