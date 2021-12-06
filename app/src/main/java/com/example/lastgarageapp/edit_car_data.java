@@ -2,14 +2,12 @@ package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +16,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.lastgarageapp.adapter.carAdapter;
-import com.example.lastgarageapp.adapter.garageAdapter;
-import com.example.lastgarageapp.adapter.newsAdapter;
-import com.example.lastgarageapp.itemClasses.carItem;
-import com.example.lastgarageapp.itemClasses.garageItem;
-import com.example.lastgarageapp.itemClasses.newsItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +27,7 @@ import java.util.Map;
 
 public class edit_car_data extends AppCompatActivity {
 
-    private Button editCarData_cancel,editCarData_save;
+    private Button cancel, saveChange;
     private TextView car_no;
     private EditText fare;
     private Spinner driver_name,sour,dest;
@@ -50,8 +42,8 @@ public class edit_car_data extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_car_data);
-        editCarData_cancel = (Button) findViewById(R.id.editCarData_cancel);
-        editCarData_save = (Button) findViewById(R.id.editCar_saveChange);
+        cancel = (Button) findViewById(R.id.editGarage_cancel);
+        saveChange = (Button) findViewById(R.id.editCar_saveChange);
         car_no = findViewById(R.id.editCarData_carNumVal);
         driver_name = (Spinner) findViewById(R.id.editCarData_nameDriverVal);
         sour = (Spinner) findViewById(R.id.editCarData_source);
@@ -99,7 +91,7 @@ public class edit_car_data extends AppCompatActivity {
             }
         });
 
-        editCarData_save.setOnClickListener(new View.OnClickListener() {
+        saveChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -139,7 +131,7 @@ public class edit_car_data extends AppCompatActivity {
             }
 
         });
-        editCarData_cancel.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();            }
