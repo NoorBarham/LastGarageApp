@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class  edit_personal_data extends AppCompatActivity {
 
-    private Button editPersonalData_cancel;
+    private Button editPersonalData_cancel,editPersonalData_save;
     private TextView name,city,phone;
 
     @Override
@@ -31,11 +31,48 @@ public class  edit_personal_data extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_personal_data);
         editPersonalData_cancel = (Button) findViewById(R.id.editPersonalData_cancel);
+        editPersonalData_save = (Button) findViewById(R.id.editPersonalData_savechange);
         name=findViewById(R.id.editPersonalData_nameVal);
         city=findViewById(R.id.editPersonalData_cityVal);
         phone=findViewById(R.id.editPersonalData_phoneNumVal);
 
         selectPersonaldata("1");
+
+        editPersonalData_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    String url = url_serverName.serverName+"editPersonaldata.php";
+                    StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                            error.printStackTrace();
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> myMap = new HashMap<>();
+
+                            myMap.put("name",name.getText().toString());
+                            myMap.put("city",city.getText().toString());
+                            myMap.put("phone",phone.getText().toString());
+                        //    myMap.put("destination",dest.getSelectedItem().toString());
+                            return myMap;
+                        }
+                    };
+                    my_singleton.getInstance(edit_personal_data.this).addToRequestQueue(myStringRequest);
+                }
+
+
+        });
+
 
         editPersonalData_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +85,7 @@ public class  edit_personal_data extends AppCompatActivity {
 
     public void selectPersonaldata(String Id) {
 
-        String url = url_serverName.serverName + "selectPersonaldata.php";
+        String url = url_serverName.serverName + "selecteditPersonaldata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -50,7 +50,7 @@ public class personal_page extends AppCompatActivity {
         u_dest = findViewById(R.id.personalPage_dest);
 
 
-        selectPersonaldata("011");
+        selectPersonaldata("2");
 
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
