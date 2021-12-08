@@ -36,7 +36,7 @@ public class  edit_personal_data extends AppCompatActivity {
         city=findViewById(R.id.editPersonalData_cityVal);
         phone=findViewById(R.id.editPersonalData_phoneNumVal);
 
-        selectPersonaldata("1");
+        selectPersonaldata("2145");
 
         editPersonalData_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +85,7 @@ public class  edit_personal_data extends AppCompatActivity {
 
     public void selectPersonaldata(String Id) {
 
-        String url = url_serverName.serverName + "selecteditPersonaldata.php";
+        String url = url_serverName.serverName + "selectdrivereditPersonaldata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

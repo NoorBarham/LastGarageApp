@@ -43,7 +43,7 @@ public class admin_personal_page extends AppCompatActivity {
         u_phone = findViewById(R.id.adminPersonalPage_phoneNumVal);
         u_garage = findViewById(R.id.adminPersonalPage_workplaceVal);
 
-        selectPersonaldata("586");
+        selectadminPersonaldata("586");
 
 
         editData.setOnClickListener(new View.OnClickListener() {
@@ -146,8 +146,8 @@ public class admin_personal_page extends AppCompatActivity {
 
 
     }
-
-    public void selectPersonaldata(String id) {
+//2
+    public void selectadminPersonaldata(String id) {
         String url = url_serverName.serverName + "adminPersonalpage.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

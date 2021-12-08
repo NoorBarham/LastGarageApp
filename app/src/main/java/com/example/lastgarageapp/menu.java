@@ -452,6 +452,7 @@ public class menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //4
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

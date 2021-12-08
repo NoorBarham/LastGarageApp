@@ -58,7 +58,7 @@ public class add_admin extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
+//1
         addAdmin_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

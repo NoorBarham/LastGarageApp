@@ -267,6 +267,7 @@ public class add_car extends AppCompatActivity {
         };
         my_singleton.getInstance(add_car.this).addToRequestQueue(myStringRequest);
     }
+
     }
 
 
