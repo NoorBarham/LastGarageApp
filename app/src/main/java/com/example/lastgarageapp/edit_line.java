@@ -51,7 +51,6 @@ public class edit_line extends AppCompatActivity {
         //default
         sourceSpinner();
         dest.setEnabled(false);
-        selectData("Qalqilia","Nab");
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

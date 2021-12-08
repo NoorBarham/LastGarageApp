@@ -68,8 +68,8 @@ public class add_garage extends AppCompatActivity {
                             Map<String, String> myMap = new HashMap<>();
 
                             myMap.put("garage_name", getData(cityName));
-                            myMap.put("open_hour", getData(openHoure));
-                            myMap.put("close_hour", getData(closeHoure));
+                            myMap.put("open_hour", removeSpaces(getData(openHoure)));
+                            myMap.put("close_hour", removeSpaces(getData(closeHoure)));
                             myMap.put("location", getData(location));
                             return myMap;
                         }
@@ -92,15 +92,9 @@ public class add_garage extends AppCompatActivity {
                 timePickerDialog = new TimePickerDialog(add_garage.this,R.style.Theme1_LastGarageApp, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if (hourOfDay>=12){
-                            amPm= "PM";
-                        }
-                        else {
-                            amPm="AM";
-                        }
-                        openHoure.setText(String.format("%02d : %02d " , hourOfDay, minute) + amPm);
+                        openHoure.setText(String.format("%02d : %02d " , hourOfDay, minute) );
                     }
-                },00, 00, false );
+                },00, 00, true );
                 timePickerDialog.show();
 
             }
@@ -112,16 +106,11 @@ public class add_garage extends AppCompatActivity {
                 timePickerDialog = new TimePickerDialog(add_garage.this,R.style.Theme1_LastGarageApp, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if (hourOfDay>=12){
-                            amPm= "PM";
-                        }
-                        else {
-                            amPm="AM";
-                        }
-                        closeHoure.setText(String.format("%02d : %02d " , hourOfDay, minute) + amPm);
+
+                        closeHoure.setText(String.format("%02d : %02d " , hourOfDay, minute) );
 
                     }
-                }, 00 ,00,false);
+                }, 00 ,00,true);
                 timePickerDialog.show();
             } });
     }
@@ -130,7 +119,14 @@ public class add_garage extends AppCompatActivity {
         return myString;
     }
 
-
+    static String removeSpaces(String myString) {
+        char []str=myString.toCharArray();
+        int count = 0;
+        for (int i = 0; i<str.length; i++)
+            if (str[i] != ' ')
+                str[count++] = str[i];
+       return (String) String.valueOf(str).subSequence(0, count);
+    }
 }
 
 
