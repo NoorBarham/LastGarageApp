@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -16,6 +17,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +29,10 @@ public class add_garage extends AppCompatActivity {
 
     private EditText cityName,openHoure,closeHoure,location;
     private Button cancelButt,addButt;
+    private Spinner adminSpinner;
     TimePickerDialog timePickerDialog;
+
+    ArrayList adminName_arr =new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +43,12 @@ public class add_garage extends AppCompatActivity {
         openHoure= findViewById(R.id.addGarage_openHoureValue);
         closeHoure= findViewById(R.id.addGarage_closeHoureValue);
         location= findViewById(R.id.addGarage_locationValue);
-
+        adminSpinner =findViewById(R.id.addGarage_adminSpinner);
         cancelButt = findViewById(R.id.addGarage_cancelButt);
         addButt= findViewById(R.id.addGarage_addButt);
+
+        adminNameSpinner();
+
         addButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +75,7 @@ public class add_garage extends AppCompatActivity {
                             Map<String, String> myMap = new HashMap<>();
 
                             myMap.put("garage_name", getData(cityName));
+                            myMap.put("admin_name", adminSpinner.getSelectedItem().toString());
                             myMap.put("open_hour", removeSpaces(getData(openHoure)));
                             myMap.put("close_hour", removeSpaces(getData(closeHoure)));
                             myMap.put("location", getData(location));
@@ -121,6 +134,41 @@ public class add_garage extends AppCompatActivity {
             if (str[i] != ' ')
                 str[count++] = str[i];
        return (String) String.valueOf(str).subSequence(0, count);
+    }
+    private void adminNameSpinner() {
+        adminName_arr.clear();
+        adminName_arr.add(0,"لم يحدد");
+
+        String url = url_serverName.serverName + "adminSpinner.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("admins");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String cityName
+                        String cityName = reader.getString("admin_name");
+                        adminName_arr.add(cityName);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_garage.this,android.R.layout.simple_spinner_item, adminName_arr);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adminSpinner.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        my_singleton.getInstance(add_garage.this).addToRequestQueue(myStringRequest);
     }
 }
 

@@ -18,7 +18,7 @@ public class car_status_list_item extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_status_list_item);
-        carItem_editIcon = (TextView) findViewById(R.id.carItem_editIcon);
+//        carItem_editIcon = (TextView) findViewById(R.id.carItem_editIcon);
         car_no=(TextView) findViewById(R.id.carItem_carNumber);
         carNomber=car_no.getText().toString();
         carItem_editIcon.setOnClickListener(new View.OnClickListener() {

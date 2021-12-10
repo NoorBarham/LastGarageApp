@@ -43,16 +43,6 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         holder.noOfPassenger.setText(c.getNoOfPassenger());
         holder.arrivalTime.setText(c.getArrivalTime());
 
-        holder.iconEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                holder.iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xffff6f00));
-                Intent intent = new Intent(con, edit_car_data.class);
-                con.startActivity(intent);
-
-            }
-        });
-
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +58,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
 
     public class carViewHolder extends RecyclerView.ViewHolder {
         TextView carNumber,nameDriver, availability, noOfPassenger, arrivalTime;
-        TextView iconEdit, iconDelet;
+        TextView iconDelet;
 
 
         public carViewHolder(@NonNull View itemView) {
@@ -78,8 +68,6 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             availability = itemView.findViewById(R.id.carItem_availabilty);
             noOfPassenger = itemView.findViewById(R.id.carItem_noOfPassenger);
             arrivalTime = itemView.findViewById(R.id.carItem_arrivalTime);
-
-            iconEdit = itemView.findViewById(R.id.carItem_editIcon);
             iconDelet = itemView.findViewById(R.id.carItem_deleteIcon);
 
 

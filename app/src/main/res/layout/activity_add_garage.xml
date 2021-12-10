@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="horizontal">
+
             <Spinner
                 android:id="@+id/addGarage_adminSpinner"
                 android:layout_width="match_parent"

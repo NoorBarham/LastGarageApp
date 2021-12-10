@@ -60,7 +60,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
         return myNotificationItem.size();
     }
 
-    public class notificationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class notificationViewHolder extends RecyclerView.ViewHolder{
 
         TextView mmTextname, mmHour;
         //  ImageView mmImage;
@@ -78,16 +78,10 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(con, view_notification.class);
-                    intent.putExtra("waed", "test value");
+//                    intent.putExtra("waed", "test value");
                     con.startActivity(intent);
                 }
             });
-        }
-
-        @Override
-        public void onClick(View v) {
-            // Intent intent=new Intent(con, view_notification.class);
-            //   con.startActivity(intent);
         }
     }
 }

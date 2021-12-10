@@ -51,15 +51,6 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
         holder.fromHoure.setText(g.getFromHoure());
         holder.toHoure.setText(g.getToHoure());
 
-        holder.iconEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                holder.iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xffff6f00));
-                Intent intent=new Intent(con, edit_garage.class);
-                con.startActivity(intent);
-            }
-        });
-
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +66,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
 
     public class garageViewHolder extends RecyclerView.ViewHolder{
         TextView cityName, adminName, location, toHoure, fromHoure;
-        TextView iconEdit, iconDelet;
+        TextView iconDelet;
         Spinner sour;
 
 
@@ -86,22 +77,9 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
             location=itemView.findViewById(R.id.garageItem_locationValue);
             toHoure=itemView.findViewById(R.id.garageItem_toHoure);
             fromHoure=itemView.findViewById(R.id.garageItem_FromHoure);
-
-            iconEdit=itemView.findViewById(R.id.garageItem_editIcon);
             iconDelet=itemView.findViewById(R.id.garageItem_deleteIcon);
-
             sour = itemView.findViewById(R.id.homePage_source);
 
-            iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xff000000));
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    String garage_name = cityName.getText().toString();
-
-                }
-            });
         }
     }
 }

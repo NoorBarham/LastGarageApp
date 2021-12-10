@@ -16,7 +16,7 @@ public class line_status_list_item extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_status_list_item);
-        lineItem_editIcon = (TextView) findViewById(R.id.lineItem_editIcon);
+//        lineItem_editIcon = (TextView) findViewById(R.id.lineItem_editIcon);
 
         lineItem_editIcon.setOnClickListener(new View.OnClickListener() {
             @Override

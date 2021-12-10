@@ -44,14 +44,6 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
         holder.garage1.setText(l.getGarage1());
         holder.garage2.setText(l.getGarage2());
 
-        holder.iconEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(con, edit_line.class);
-                con.startActivity(intent);
-            }
-        });
-
         holder.iconDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +59,7 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
 
     public class lineViewHolder extends RecyclerView.ViewHolder {
         TextView lineFare, noOfCars, garage1,garage2;
-        TextView iconEdit, iconDelete;
+        TextView iconDelete;
 
 
         public lineViewHolder(@NonNull View itemView) {
@@ -76,11 +68,8 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
             noOfCars = itemView.findViewById(R.id.lineItem_noOfCar);
             garage1= itemView.findViewById(R.id.lineItem_garage1);
             garage2= itemView.findViewById(R.id.lineItem_garage2);
-
-            iconEdit = itemView.findViewById(R.id.lineItem_editIcon);
             iconDelete = itemView.findViewById(R.id.lineItem_deleteIcon);
 
-            iconEdit.setBackgroundTintList(ColorStateList.valueOf(0xff000000));
 
         }
 
