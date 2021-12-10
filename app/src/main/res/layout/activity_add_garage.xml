@@ -58,8 +58,31 @@
                     android:textSize="20sp" />
 
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/addGarage_adminSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#ff6f00"
+                android:layout_weight="1"
+                android:entries="@array/garage_admin"/>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/adminText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="مسؤول الكراج : "
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

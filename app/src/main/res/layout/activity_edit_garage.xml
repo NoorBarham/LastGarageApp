@@ -133,7 +133,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editGarage_newStartHour"
+                        android:id="@+id/editGarage_newOpenHour"
                         android:layout_width="121dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -160,7 +160,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editGarage_newEndHour"
+                        android:id="@+id/editGarage_newCloseHour"
                         android:layout_width="138dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

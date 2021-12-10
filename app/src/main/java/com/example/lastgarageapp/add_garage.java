@@ -22,13 +22,8 @@ import java.util.Map;
 public class add_garage extends AppCompatActivity {
 
     private EditText cityName,openHoure,closeHoure,location;
-    private TextView counter;
     private Button cancelButt,addButt;
     TimePickerDialog timePickerDialog;
-    String amPm;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

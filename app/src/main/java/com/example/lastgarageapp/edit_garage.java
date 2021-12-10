@@ -28,8 +28,8 @@ import java.util.Map;
 
 public class edit_garage extends AppCompatActivity {
 
-    private EditText newStartHour, newEndHour, newLocation;
-    private Spinner garageName, newAdminName;
+    private EditText openHour, closeHour, Location;
+    private Spinner garageName, adminName;
     private Button cancel, saveChange;
 
     private TimePickerDialog timePickerDialog;
@@ -43,10 +43,10 @@ public class edit_garage extends AppCompatActivity {
         setContentView(R.layout.activity_edit_garage);
 
         garageName =findViewById(R.id.editGarage_garageName);
-        newAdminName =findViewById(R.id.editGarage_newAdminName);
-        newStartHour = findViewById(R.id.editGarage_newStartHour);
-        newEndHour = findViewById(R.id.editGarage_newEndHour);
-        newLocation =findViewById(R.id.editGarage_newLocation);
+        adminName =findViewById(R.id.editGarage_newAdminName);
+        openHour = findViewById(R.id.editGarage_newOpenHour);
+        closeHour = findViewById(R.id.editGarage_newCloseHour);
+        Location =findViewById(R.id.editGarage_newLocation);
         saveChange = (Button) findViewById(R.id.editGarage_saveChange);
         cancel = (Button) findViewById(R.id.editGarage_cancel);
 
@@ -66,13 +66,13 @@ public class edit_garage extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        newStartHour.setOnClickListener(new View.OnClickListener() {
+        openHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePickerDialog = new TimePickerDialog(edit_garage.this,R.style.Theme1_LastGarageApp, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        newStartHour.setText(String.format("%02d : %02d " , hourOfDay, minute));
+                        openHour.setText(String.format("%02d : %02d " , hourOfDay, minute));
                     }
                 },00, 00, true );
                 timePickerDialog.show();
@@ -80,13 +80,13 @@ public class edit_garage extends AppCompatActivity {
             }
         });
 
-        newEndHour.setOnClickListener(new View.OnClickListener() {
+        closeHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePickerDialog = new TimePickerDialog(edit_garage.this,R.style.Theme1_LastGarageApp, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        newEndHour.setText(String.format("%02d : %02d " , hourOfDay, minute));
+                        closeHour.setText(String.format("%02d : %02d " , hourOfDay, minute));
                     }
                 }, 00 ,00,true);
                 timePickerDialog.show();
@@ -106,7 +106,33 @@ public class edit_garage extends AppCompatActivity {
     }
 
     private void updateData() {
+        String url = url_serverName.serverName+"editGarage.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+
+                myMap.put("garage_name", garageName.getSelectedItem().toString());
+                myMap.put("open_hour", removeSpaces(getData(openHour)));
+                myMap.put("close_hour", removeSpaces(getData(closeHour)));
+                myMap.put("location", getData(Location));
+                myMap.put("admin_name", adminName.getSelectedItem().toString());
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(edit_garage.this).addToRequestQueue(myStringRequest);
     }
 
     private void selectGarageData(String garageName) {
@@ -128,12 +154,12 @@ public class edit_garage extends AppCompatActivity {
 
                         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_garage.this,android.R.layout.simple_spinner_item, adminName_arr);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        newAdminName.setAdapter(adapter);
-                        newAdminName.setSelection(adapter.getPosition(adminName));
+                        edit_garage.this.adminName.setAdapter(adapter);
+                        edit_garage.this.adminName.setSelection(adapter.getPosition(adminName));
 
-                        newStartHour.setText(fromHoure);
-                        newEndHour.setText(toHoure);
-                        newLocation.setText(location);
+                        openHour.setText(fromHoure);
+                        closeHour.setText(toHoure);
+                        Location.setText(location);
                     }
 
 
@@ -214,7 +240,7 @@ public class edit_garage extends AppCompatActivity {
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_garage.this,android.R.layout.simple_spinner_item, adminName_arr);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    newAdminName.setAdapter(adapter);
+                    adminName.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
