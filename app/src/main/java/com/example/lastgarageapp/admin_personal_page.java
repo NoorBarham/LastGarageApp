@@ -8,6 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.lastgarageapp.itemClasses.notificationItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class admin_personal_page extends AppCompatActivity {
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
@@ -28,6 +42,8 @@ public class admin_personal_page extends AppCompatActivity {
         u_city = findViewById(R.id.adminPersonalPage_placeVal);
         u_phone = findViewById(R.id.adminPersonalPage_phoneNumVal);
         u_garage = findViewById(R.id.adminPersonalPage_workplaceVal);
+
+        selectadminPersonaldata("586");
 
 
         editData.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +144,54 @@ public class admin_personal_page extends AppCompatActivity {
             }
         });
 
+
+    }
+//2
+    public void selectadminPersonaldata(String id) {
+        String url = url_serverName.serverName + "adminPersonalpage.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    //  Log.d("sss",response);
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("personal_admin");
+                    notificationItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+/////////8
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        //String textName, String textNews, String textHour
+                        String name = reader.getString("admin_name");
+                        String phone = reader.getString("phone");
+                        String city = reader.getString("city");
+                        String garage_name = reader.getString("garage_name");
+
+                        u_name.setText(name);
+                        u_phone.setText(phone);
+                        u_city.setText(city);
+                        u_garage.setText(garage_name);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("admin_id", id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(admin_personal_page.this).addToRequestQueue(myStringRequest);
 
     }
 

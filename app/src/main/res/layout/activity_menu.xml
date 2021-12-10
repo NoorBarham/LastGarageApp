@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    >
     <include layout="@layout/activity_my_actionbar"/>
 
 
@@ -52,7 +52,24 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/personal_page"
+                        android:id="@+id/admin_personal_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="الصفحة الشخصية"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+
+                    <View
+                        android:id="@+id/divider20"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:background="#ff6f00" />
+
+                    <TextView
+                        android:id="@+id/driver_personal_page"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

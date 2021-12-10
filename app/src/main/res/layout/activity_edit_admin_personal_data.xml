@@ -56,7 +56,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="-"
                         android:gravity="center"
                         android:inputType="text"
                         android:textSize="20sp" />
@@ -82,7 +81,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="-"
                         android:gravity="center"
                         android:inputType="text"
                         android:textSize="20sp" />
@@ -108,7 +106,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="0"
                         android:gravity="center"
                         android:inputType="number"
                         android:textIsSelectable="false"
@@ -120,6 +117,31 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="رقم الجوال"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+                   <Spinner
+                        android:id="@+id/editAdminPersonalData_garageVal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textIsSelectable="false"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/editAdminData_garage_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="الكراج المسؤول عنه"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </LinearLayout>

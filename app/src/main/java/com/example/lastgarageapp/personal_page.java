@@ -50,7 +50,7 @@ public class personal_page extends AppCompatActivity {
         u_dest = findViewById(R.id.personalPage_dest);
 
 
-        selectPersonaldata("2");
+        selectPersonaldata("2145");
 
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,21 +155,21 @@ public class personal_page extends AppCompatActivity {
     }
 
     public void selectPersonaldata(String id) {
-        String url = url_serverName.serverName + "personal_page.php";
+        String url = url_serverName.serverName + "driverPersonalpage.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                   //  Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("personal");
+                    JSONArray jsonArray = object.getJSONArray("personal_driver");
                     notificationItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
 /////////8
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String textName, String textNews, String textHour
-                        String name = reader.getString("user_name");
+                        String name = reader.getString("driver_name");
                         String phone = reader.getString("phone");
                         String city = reader.getString("city");
                         String car_id = reader.getString("car_id");

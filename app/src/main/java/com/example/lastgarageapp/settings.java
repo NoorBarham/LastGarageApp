@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class settings extends AppCompatActivity {
     private Button settings_cancel;
-    private TextView editPersonalSettings;
+    private TextView editPersonalSettings,editadminPersonalSettings;
     private TextView changePassSettings;
 
     @Override
@@ -18,6 +18,7 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         settings_cancel = (Button) findViewById(R.id.settings_cancel);
+        editadminPersonalSettings = (TextView) findViewById(R.id.editadminPersonalSettings);
         editPersonalSettings = (TextView) findViewById(R.id.editPersonalSettings);
         changePassSettings = (TextView) findViewById(R.id.changePassSettings);
 
@@ -25,6 +26,12 @@ public class settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        editadminPersonalSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAdminEditPersonal_page();
             }
         });
         editPersonalSettings.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +49,12 @@ public class settings extends AppCompatActivity {
         });
 
     }
+    public void openAdminEditPersonal_page(){
+        Intent intent = new Intent(this,edit_admin_personal_data.class);
+        startActivity(intent);
+
+    }
+    //5
 
     public void openEditPersonal_page(){
         Intent intent = new Intent(this,edit_personal_data.class);
