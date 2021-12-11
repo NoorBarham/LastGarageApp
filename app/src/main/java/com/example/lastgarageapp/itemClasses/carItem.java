@@ -1,14 +1,23 @@
 package com.example.lastgarageapp.itemClasses;
 
 public class carItem {
-    private String driverName, availability,noOfPassenger,arrivalTime;
-    private String carNumber;
-    public carItem(String carNumber, String driverName, String availability, String noOfPassenger, String arrivalTime) {
+    private String carNumber, driverName, availability,noOfPassenger,capacity, arrivalTime;
+
+    public carItem(String carNumber, String driverName, String availability, String noOfPassenger, String arrivalTime, String capacity) {
         this.carNumber=carNumber;
         this.driverName = driverName;
         this.availability = availability;
         this.noOfPassenger = noOfPassenger;
         this.arrivalTime = arrivalTime;
+        this.capacity = capacity;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
     }
 
     public String getCarNumber() {

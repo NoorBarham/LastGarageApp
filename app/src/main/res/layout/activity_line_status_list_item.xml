@@ -114,14 +114,14 @@
                     android:id="@+id/lineItem_lineFare"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="1.6"
                     android:gravity="center" />
 
                 <TextView
                     android:id="@+id/lineItemFareText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.4"
+                    android:layout_weight="1"
 
                     android:gravity="right"
                     android:paddingRight="15dp"
@@ -162,7 +162,7 @@
                     android:id="@+id/lineItem_carText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.4"
+                    android:layout_weight="1"
 
                     android:gravity="right"
                     android:paddingRight="15dp"

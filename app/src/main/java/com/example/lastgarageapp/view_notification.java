@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class view_notification extends AppCompatActivity {
 
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
-    RelativeLayout notoitems_newsitem;
+    RelativeLayout notiItems_newsItem;
 
 
 
@@ -22,16 +21,16 @@ public class view_notification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_notification);
 
-        String value=getIntent().getExtras().getString("value");
-        //views in my actionbarPage
-        TextView  name=findViewById(R.id.newsItem_name);
-        name.setText(value);
+//        String value=getIntent().getExtras().getString("value");
+//        //views in my actionbarPage
+//        TextView  name=findViewById(R.id.newsItem_name);
+//        name.setText(value);
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
         notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
         personalIcon = findViewById(R.id.myActionBar_personIcon);
         messagesIcon = findViewById(R.id.myActionBar_messagesIcon);
         menuIcon = findViewById(R.id.myActionBar_menuIcon);
-        notoitems_newsitem=findViewById(R.id.notoitems_newsitems);
+        notiItems_newsItem =findViewById(R.id.notiItems_newsItem);
         notificationIcon.setBackgroundColor(Color.WHITE);
 
         homeIcon.setOnClickListener(new View.OnClickListener() {

@@ -9,7 +9,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/notoitems_newsitems"
+        android:id="@+id/notiItems_newsItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/radius_border"

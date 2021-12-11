@@ -2,17 +2,16 @@ package com.example.lastgarageapp.adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
-import com.example.lastgarageapp.edit_car_data;
 import com.example.lastgarageapp.itemClasses.carItem;
 
 import java.util.ArrayList;
@@ -39,8 +38,17 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         carItem c = myCarItem.get(position);
         holder.carNumber.setText(c.getCarNumber());
         holder.nameDriver.setText(c.getDriverName());
-        holder.availability.setText(c.getAvailability());
+
+        if(c.getAvailability().equals("0")){
+            holder.availability.setText("غير متاحة");
+            holder.arrivalLayout.setVisibility(View.VISIBLE);
+        }else if(c.getAvailability().equals("1")){
+            holder.availability.setText("متاحة");
+            holder.arrivalLayout.setVisibility(View.GONE);
+        }
+
         holder.noOfPassenger.setText(c.getNoOfPassenger());
+        holder.capacity.setText(c.getCapacity());
         holder.arrivalTime.setText(c.getArrivalTime());
 
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +65,9 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     }
 
     public class carViewHolder extends RecyclerView.ViewHolder {
-        TextView carNumber,nameDriver, availability, noOfPassenger, arrivalTime;
+        TextView carNumber,nameDriver, availability, noOfPassenger, capacity, arrivalTime;
         TextView iconDelet;
-
+        LinearLayout arrivalLayout;
 
         public carViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,8 +75,10 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             nameDriver = itemView.findViewById(R.id.carItem_driverName);
             availability = itemView.findViewById(R.id.carItem_availabilty);
             noOfPassenger = itemView.findViewById(R.id.carItem_noOfPassenger);
+            capacity = itemView.findViewById(R.id.carItem_capacity);
             arrivalTime = itemView.findViewById(R.id.carItem_arrivalTime);
             iconDelet = itemView.findViewById(R.id.carItem_deleteIcon);
+            arrivalLayout = itemView.findViewById(R.id.carItem_arrivalLayout);
 
 
         }

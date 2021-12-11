@@ -115,7 +115,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:paddingRight="5dp"
-                android:text="متاحة/غير متاحة"
+                android:text="-"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -199,6 +199,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/carItem_arrivalLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
