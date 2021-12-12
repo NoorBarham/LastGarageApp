@@ -46,7 +46,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
-
+SessionManager sessionManager;
     //homeIcon
     Button newsButt, statusButt, addNewsButt;
     Spinner dest, sour, spinnerFilterCar;
@@ -86,6 +86,8 @@ public class home_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        sessionManager = new SessionManager(this);
+        sessionManager.checkLogin();
 
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
 
@@ -118,6 +120,10 @@ public class home_page extends AppCompatActivity {
         addNewsButt = findViewById(R.id.homePage_addNewsButt);
         newsButt = findViewById(R.id.homePage_newsButt);
         newsLayout = findViewById(R.id.homePage_newsLayout);
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        String mName = user.get(sessionManager.NAME);
+
 
         //default  View
         homeIcon.setBackgroundColor(Color.WHITE);
