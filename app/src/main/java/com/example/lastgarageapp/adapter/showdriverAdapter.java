@@ -45,8 +45,8 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
     public void onBindViewHolder(showdriverAdapter.showDriversViewHolder holder, int position) {
         showDriversItem l = myshowDriversItems.get(position);
         holder.NameText.setText(l.getnameText());
-        //holder.LineWorkeText.setText(l.getlineworkText());
-
+        holder.sour.setText(l.getsourText());
+        holder.dest.setText(l.getdestText());
 
         holder.iconMesage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
     public class showDriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView NameText, LineWorkeText;
+        TextView NameText, sour,dest;
         RelativeLayout show;
         TextView iconMesage;
 
@@ -77,7 +77,8 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
             super(itemView);
 
             NameText = itemView.findViewById(R.id.showDriversItem_driverName);
-       //     LineWorkeText = itemView.findViewById(R.id.showDriversItem_driverWork);
+            sour = itemView.findViewById(R.id.ShowDriversItem_garage1);
+            dest = itemView.findViewById(R.id.showDriversItem_garage2);
 
             show=itemView.findViewById(R.id.showdriver_listitems);
 

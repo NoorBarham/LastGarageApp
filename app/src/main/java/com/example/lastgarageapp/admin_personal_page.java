@@ -43,7 +43,7 @@ public class admin_personal_page extends AppCompatActivity {
         u_phone = findViewById(R.id.adminPersonalPage_phoneNumVal);
         u_garage = findViewById(R.id.adminPersonalPage_workplaceVal);
 
-        selectadminPersonaldata("586");
+        selectadminPersonaldata("1245");
 
 
         editData.setOnClickListener(new View.OnClickListener() {

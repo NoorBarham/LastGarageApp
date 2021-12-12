@@ -290,7 +290,7 @@ public class edit_car_data extends AppCompatActivity {
 
     public void carSpinner() {
         car_array.clear();
-        car_array.add(0,"--");
+        car_array.add(0,"لم يحدد");
 
         String url = url_serverName.serverName + "carSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -412,7 +412,7 @@ public class edit_car_data extends AppCompatActivity {
     }
     public void selectCardata() {
 
-        String url = url_serverName.serverName + "selectCardata.php";
+        String url = url_serverName.serverName + "selecteditCardata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
