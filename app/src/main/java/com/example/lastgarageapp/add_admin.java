@@ -45,7 +45,7 @@ public class add_admin extends AppCompatActivity {
         identity_no= findViewById(R.id.addAdmin_idValue);
         phone_no=findViewById(R.id.addAdmin_phoneValue);
 
-        //garageName=(Spinner) findViewById(R.id.addAdmin_garageNameValue);
+        garageName=(Spinner) findViewById(R.id.addAdmin_garageNameValue);
 
         garagenameSpinner();
 
