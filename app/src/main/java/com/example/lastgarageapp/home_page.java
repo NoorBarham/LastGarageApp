@@ -1,5 +1,6 @@
 package com.example.lastgarageapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -137,11 +138,24 @@ public class home_page extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFilterCar.setAdapter(adapter);
 
-
         spinnerFilterCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if(selectedItem.equals("المتوفرة فقط")){
+                    ArrayList<carItem> g=myCars;
+                    for(carItem myItem : g) {
+                        if(myItem.getAvailability().equals("0")){
+                            g.remove(myItem);
+                        }
+                    }
+                    myCarAdapter = new carAdapter(home_page.this, g);
+                    recyclerView.setAdapter(myCarAdapter);
+                }else if(selectedItem.equals("الكل")){
+                    myCarAdapter = new carAdapter(home_page.this, myCars);
+                    recyclerView.setAdapter(myCarAdapter);
+//                    selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -271,6 +285,19 @@ public class home_page extends AppCompatActivity {
                         carStatusLayout.setVisibility(View.VISIBLE);
                         clearCar();
                         selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
+//                        if(spinnerFilterCar.getSelectedItem().toString().equals("المتوفرة فقط")){
+//                            ArrayList<carItem> g=myCars;
+//                            for(carItem myItem : g) {
+//                                if(myItem.getAvailability().equals("0")){
+//                                    g.remove(myItem);
+//                                }
+//                            }
+//                            myCarAdapter = new carAdapter(home_page.this, g);
+//                            recyclerView.setAdapter(myCarAdapter);
+//                        }else if(spinnerFilterCar.getSelectedItem().toString().equals("الكل")){
+//                            myCarAdapter = new carAdapter(home_page.this, myCars);
+//                            recyclerView.setAdapter(myCarAdapter);
+//                        }
                     } else {
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
@@ -304,7 +331,7 @@ public class home_page extends AppCompatActivity {
             }
         });
 
-    //actionBar_onClickListener
+        //actionBar_onClickListener
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -526,15 +553,14 @@ public class home_page extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
-                        //                        String carNumber,String driverName, String availability, String noOfPassenger, String arrivalTime
-                        String carNumber = reader.getString("car_id");
+                        String car_id = reader.getString("car_id");
+                        String capacity = reader.getString("capacity");
+                        String noOfPassenger = reader.getString("no_of_pass");
+                        String is_available = reader.getString("is_available");
+                        String arrival_time = reader.getString("arrival_time");
                         String driverName = reader.getString("driver_name");
-                        String availability = reader.getString("is_available");
-                        String noOfPassenger = reader.getString("capacity");
-//                        String arrivalTime = reader.getString("arrivalTime");
-                        String arrivalTime = "no";
-                        myItem = new carItem(carNumber,driverName, availability, noOfPassenger, arrivalTime);
 
+                        myItem = new carItem(car_id,driverName, is_available, noOfPassenger, arrival_time, capacity);
                         myCars.add(myItem);
                     }
                     myCarAdapter = new carAdapter(home_page.this, myCars);
@@ -553,8 +579,8 @@ public class home_page extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("garage1_name", sourceName);
-                myMap.put("garage2_name", destName);
+                myMap.put("sourceName", sourceName);
+                myMap.put("destName", destName);
                 return myMap;
             }
         };

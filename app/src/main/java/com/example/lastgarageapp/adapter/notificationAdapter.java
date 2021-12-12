@@ -45,14 +45,14 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
         holder.mmTextname.setText(n.getTextName());
         holder.mmHour.setText(n.getTextHour());
 
-        holder.mmTextname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(con, view_notification.class);
-                intent.putExtra("waed", "test value");
-                con.startActivity(intent);
-            }
-        });
+//        holder.mmTextname.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(con, view_notification.class);
+//                intent.putExtra("waed", "test value");
+//                con.startActivity(intent);
+//            }
+//        });
     }
 
     @Override
