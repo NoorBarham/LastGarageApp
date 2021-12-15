@@ -1,7 +1,9 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -102,35 +104,53 @@ public class edit_car_data extends AppCompatActivity {
         saveChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(edit_car_data.this);
+                alert.setTitle("حفظ التغيرات");
+                alert.setMessage("هل تريد حفظ البيانات الجديدة؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String url = url_serverName.serverName+"editCardata.php";
+                        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                                error.printStackTrace();
+                            }
+                        }){
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> myMap = new HashMap<>();
+
+                                myMap.put("car_no",car_no.getSelectedItem().toString());
+                                myMap.put("driver_name",driver_name.getSelectedItem().toString());
+                                myMap.put("source",sour.getSelectedItem().toString());
+                                myMap.put("destination",dest.getSelectedItem().toString());
+                                return myMap;
+                            }
+                        };
+                        my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
+                        Toast.makeText(edit_car_data.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //alert.create().show();
 
                //     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
 
-                    String url = url_serverName.serverName+"editCardata.php";
-                    StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                alert.setPositiveButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                        @Override
-                        public void onResponse(String response) {
-                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                            error.printStackTrace();
-                        }
-                    }){
-                        @Override
-                        protected Map<String, String> getParams() {
-                            Map<String, String> myMap = new HashMap<>();
-
-                            myMap.put("car_no",car_no.getSelectedItem().toString());
-                            myMap.put("driver_name",driver_name.getSelectedItem().toString());
-                            myMap.put("source",sour.getSelectedItem().toString());
-                            myMap.put("destination",dest.getSelectedItem().toString());
-                            return myMap;
-                        }
-                    };
-                    my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
+                        Toast.makeText(edit_car_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.create().show();
                 }
 
 

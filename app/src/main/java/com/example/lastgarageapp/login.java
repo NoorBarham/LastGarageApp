@@ -45,6 +45,14 @@ public class login extends AppCompatActivity {
         login_idNumber = (EditText) findViewById(R.id.login_idNumber);
         login_password = (EditText) findViewById(R.id.login_password);
 
+        login_loginClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openhome_page();
+            }
+        });
+
+
 
         login_loginAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +73,6 @@ public class login extends AppCompatActivity {
                 }
             }
         });
-        login_loginClient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openhome_page();
-            }
-        });
-
     }
     public void openhome_page() {
         Intent intent = new Intent(this, home_page.class);
@@ -135,7 +136,10 @@ public class login extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-    }}
+    }
+
+
+}
 
 
 
