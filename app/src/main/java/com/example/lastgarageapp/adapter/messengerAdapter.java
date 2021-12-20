@@ -45,14 +45,6 @@ public class messengerAdapter extends RecyclerView.Adapter<messengerAdapter.mess
         holder.textMessage.setText(m.getTextMessage());
         holder.textHour.setText(m.getTextHour());
 
-        holder.personImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(con, personal_page.class);
-                con.startActivity(intent);
-
-            }
-        });
     }
 
     @Override
@@ -64,13 +56,10 @@ public class messengerAdapter extends RecyclerView.Adapter<messengerAdapter.mess
     public class messengerViewHolder extends RecyclerView.ViewHolder {
         TextView textName,textMessage,textHour;
         ImageView imageDelete;
-        ImageView personImage;
-        RelativeLayout newsListlayout;
         public messengerViewHolder(@NonNull View itemView) {
             super(itemView);
             textName=itemView.findViewById(R.id.messageItem_name);
             textHour=itemView.findViewById(R.id.messageItem_clock);
-            personImage=itemView.findViewById(R.id.messageItem_image);
             textMessage=itemView.findViewById(R.id.messageItem_message);
 
             itemView.setOnClickListener(new View.OnClickListener() {

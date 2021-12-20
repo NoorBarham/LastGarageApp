@@ -13,15 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.conversation;
-import com.example.lastgarageapp.edit_garage;
-import com.example.lastgarageapp.itemClasses.garageItem;
-import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.itemClasses.showDriversItem;
 import com.example.lastgarageapp.personal_page;
-import com.example.lastgarageapp.view_notification;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.showDriversViewHolder>{
     private ArrayList<showDriversItem> myshowDriversItems;
@@ -48,7 +43,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
         holder.sour.setText(l.getsourText());
         holder.dest.setText(l.getdestText());
 
-        holder.iconMesage.setOnClickListener(new View.OnClickListener() {
+        holder.iconMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -71,7 +66,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
         TextView NameText, sour,dest;
         RelativeLayout show;
-        TextView iconMesage;
+        TextView iconMessage;
 
         public showDriversViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,7 +77,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
             show=itemView.findViewById(R.id.showdriver_listitems);
 
-            iconMesage=itemView.findViewById(R.id.showDriversItem_messageIcon);
+            iconMessage =itemView.findViewById(R.id.showDriversItem_messageIcon);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

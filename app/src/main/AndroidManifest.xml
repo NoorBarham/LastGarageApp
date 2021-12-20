@@ -74,9 +74,7 @@
         <activity
             android:name=".news_list_item"
             android:exported="true" />
-        <activity
-            android:name=".news"
-            android:exported="true" />
+
         <activity
             android:name=".edit_car_data"
             android:exported="true" />
