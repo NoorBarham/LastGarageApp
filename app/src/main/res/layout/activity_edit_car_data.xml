@@ -97,6 +97,7 @@ android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:backgroundTint="#ff6f00"
                         android:text="لم يحدد"
                         android:textAlignment="viewEnd" />
 
@@ -122,6 +123,7 @@ android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:backgroundTint="#ff6f00"
                         android:entries="@array/driver"
                         android:text="لم يحدد"
                         android:textAlignment="viewEnd" />
