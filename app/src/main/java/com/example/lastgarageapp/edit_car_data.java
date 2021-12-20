@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,9 +36,6 @@ public class edit_car_data extends AppCompatActivity {
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
     ArrayList name_array =new ArrayList();
-    ArrayList destination_new_array =new ArrayList();
-    ArrayList source_new_array =new ArrayList();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +50,14 @@ public class edit_car_data extends AppCompatActivity {
         new_sour = (Spinner) findViewById(R.id.editCarData_source);
         new_dest = (Spinner) findViewById(R.id.editCarData_destination);
 
+        dest.setEnabled(false);
+        car_no.setEnabled(false);
+        new_sour.setEnabled(false);
+        new_dest.setEnabled(false);
+        driver_name.setEnabled(false);
+
         sourceSpinner();
-        nameSpinner();
-        carSpinner();
-        sourcenewSpinner();
-        destinationnewSpinner();
-        selectCardata();
+        driverNameSpinner();
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -67,16 +65,14 @@ public class edit_car_data extends AppCompatActivity {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
-                 //  car_no.setEnabled(true);
                     destinationSpinner();
-                   // carSpinner();
                 }else{
                     dest.setEnabled(false);
-                    destinationSpinner();
-                  // car_no.setEnabled(false);
-                  //  carSpinner();
-                    dest.setSelection(0);
-                //   car_no.setSelection(0);
+                    car_no.setEnabled(false);
+                    new_sour.setEnabled(false);
+                    new_dest.setEnabled(false);
+                    driver_name.setEnabled(false);
+
                 }
             }
             @Override
@@ -87,6 +83,15 @@ public class edit_car_data extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("الوجهة")) {
+                    car_no.setEnabled(true);
+                    carSpinner();
+                }else{
+                    car_no.setEnabled(false);
+                    new_sour.setEnabled(false);
+                    new_dest.setEnabled(false);
+
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -96,6 +101,15 @@ public class edit_car_data extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("لم يحدد")) {
+                    new_sour.setEnabled(true);
+                    new_dest.setEnabled(true);
+                    driver_name.setEnabled(true);
+                    selectCarData();
+                }else{
+                    new_sour.setEnabled(false);
+                    new_dest.setEnabled(false);
+                }
             }
 
             @Override
@@ -152,11 +166,9 @@ public class edit_car_data extends AppCompatActivity {
                     }
                 });
                 alert.create().show();
-                }
-
-
+            }
         });
-        selectCardata();
+//        selectCarData();
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +207,7 @@ public class edit_car_data extends AppCompatActivity {
 
 
     }
-    public void nameSpinner() {
+    public void driverNameSpinner() {
 
         name_array.add(0,"لم يحدد");
 
@@ -252,6 +264,7 @@ public class edit_car_data extends AppCompatActivity {
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_car_data.this,android.R.layout.simple_spinner_item, source_array);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sour.setAdapter(adapter);
+                    new_sour.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -288,6 +301,7 @@ public class edit_car_data extends AppCompatActivity {
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_car_data.this,android.R.layout.simple_spinner_item, destination_array);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     dest.setAdapter(adapter);
+                    new_dest.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -310,7 +324,7 @@ public class edit_car_data extends AppCompatActivity {
     }
 
     public void carSpinner() {
-        //car_array.clear();
+        car_array.clear();
         car_array.add(0,"لم يحدد");
 
         String url = url_serverName.serverName + "carSpinner.php";
@@ -353,85 +367,7 @@ public class edit_car_data extends AppCompatActivity {
         my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
     }
 
-    public void sourcenewSpinner() {
-        source_new_array.clear();
-        source_new_array.add(0,"المكان الحالي");
-
-        String url = url_serverName.serverName + "sourceSpinner.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("garages");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-
-                        //String cityName
-                        String cityName = reader.getString("garage_name");
-                        source_new_array.add(cityName);
-
-                    }
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_car_data.this,android.R.layout.simple_spinner_item, source_new_array);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    new_sour.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        });
-        my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
-    }
-
-    public void destinationnewSpinner() {
-        destination_new_array.clear();
-        destination_new_array.add(0,"الوجهة");
-
-        String url = url_serverName.serverName + "destinationSpinner.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("garages");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-
-                        //String cityName
-                        String cityName = reader.getString("garage_name");
-                        destination_new_array.add(cityName);
-
-                    }
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_car_data.this,android.R.layout.simple_spinner_item, destination_new_array);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    new_dest.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> myMap = new HashMap<>();
-                myMap.put("garage_name", new_sour.getSelectedItem().toString());
-                return myMap;
-            }
-        };
-        my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
-    }
-    public void selectCardata() {
+    public void selectCarData() {
 
         String url = url_serverName.serverName + "selecteditCardata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -447,7 +383,6 @@ public class edit_car_data extends AppCompatActivity {
                         String name = reader.getString("name");
                         String source = reader.getString("sour");
                         String destination = reader.getString("dest");
-
 
                         driver_name.setSelection(getIndexByString(driver_name,name));
                         new_sour.setSelection(getIndexByString(new_sour,source));
@@ -469,7 +404,7 @@ public class edit_car_data extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("car_id", "1229");
+                myMap.put("car_id", car_no.getSelectedItem().toString());
                 return myMap;
             }
         };
