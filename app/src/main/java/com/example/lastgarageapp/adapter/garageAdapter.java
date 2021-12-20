@@ -1,6 +1,7 @@
 package com.example.lastgarageapp.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
@@ -9,17 +10,27 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.edit_garage;
 import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.garageItem;
+import com.example.lastgarageapp.my_singleton;
+import com.example.lastgarageapp.url_serverName;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageViewHolder> {
 
@@ -51,9 +62,58 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
         holder.fromHoure.setText(g.getFromHoure());
         holder.toHoure.setText(g.getToHoure());
 
+
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(con);
+                alert.setTitle("تأكيد الحذف");
+                alert.setMessage("هل تريد تأكيد الحذف؟");
+
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Toast.makeText(line_status_list_item.this, "تم الحذف",Toast.LENGTH_SHORT).show();
+
+
+                        String url = url_serverName.serverName + "deleteIcongarage.php";
+                        StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(con, response, Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                                error.printStackTrace();
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> params = new HashMap<>();
+
+                                params.put("garage_name", holder.cityName.getText().toString());
+
+
+                                return params;
+                            }
+                        };
+                        my_singleton.getInstance(con).addToRequestQueue(stringRequest2);
+
+                    }
+
+
+                });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Toast.makeText(line_status_list_item.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.create().show();
             }
         });
     }
