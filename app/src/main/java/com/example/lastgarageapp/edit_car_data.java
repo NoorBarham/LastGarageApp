@@ -56,6 +56,7 @@ public class edit_car_data extends AppCompatActivity {
 
         sourceSpinner();
         nameSpinner();
+        carSpinner();
         sourcenewSpinner();
         destinationnewSpinner();
         selectCardata();
@@ -66,16 +67,16 @@ public class edit_car_data extends AppCompatActivity {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
-                   car_no.setEnabled(true);
+                 //  car_no.setEnabled(true);
                     destinationSpinner();
-                    carSpinner();
+                   // carSpinner();
                 }else{
                     dest.setEnabled(false);
                     destinationSpinner();
-                   car_no.setEnabled(false);
-                    carSpinner();
+                  // car_no.setEnabled(false);
+                  //  carSpinner();
                     dest.setSelection(0);
-                   car_no.setSelection(0);
+                //   car_no.setSelection(0);
                 }
             }
             @Override
@@ -309,7 +310,7 @@ public class edit_car_data extends AppCompatActivity {
     }
 
     public void carSpinner() {
-        car_array.clear();
+        //car_array.clear();
         car_array.add(0,"لم يحدد");
 
         String url = url_serverName.serverName + "carSpinner.php";
@@ -438,14 +439,14 @@ public class edit_car_data extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("car");
+                    JSONArray jsonArray = object.getJSONArray("drivers");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
-                        String name = reader.getString("driver_name");
-                        String source = reader.getString("source");
-                        String destination = reader.getString("destination");
+                        String name = reader.getString("name");
+                        String source = reader.getString("sour");
+                        String destination = reader.getString("dest");
 
 
                         driver_name.setSelection(getIndexByString(driver_name,name));
@@ -468,7 +469,7 @@ public class edit_car_data extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("car_id", car_no.getSelectedItem().toString());
+                myMap.put("car_id", "1229");
                 return myMap;
             }
         };
