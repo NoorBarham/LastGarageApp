@@ -63,7 +63,8 @@ public class notifications extends AppCompatActivity {
                         //String textName, String textNews, String textHour
                         String name = reader.getString("name");
                         String time = reader.getString("time");
-                        myItem = new notificationItem(name, time);
+                        String newsId = reader.getString("news_id");
+                        myItem = new notificationItem(name, time,newsId);
 
                         myNotification.add(myItem);
                     }
@@ -121,45 +122,7 @@ public class notifications extends AppCompatActivity {
             }
         });
     }
+}
 /// recycleview
-
-        public void shoowNotification () {
-
-            String url = url_serverName.serverName + "showNotifications.php";
-            StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject object = new JSONObject(response);
-                        JSONArray jsonArray = object.getJSONArray("notification");
-                        notificationItem myItem;
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject reader = jsonArray.getJSONObject(i);
-
-                            //String textName, String textNews, String textHour
-                            String name = reader.getString("name");
-                            String time = reader.getString("time");
-                            myItem = new notificationItem(name, time);
-
-                            myNotification.add(myItem);
-                        }
-                        myNotificationAdapter = new notificationAdapter(notifications.this, myNotification);
-                        myRecyclerView.setAdapter(myNotificationAdapter);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                    error.printStackTrace();
-                }
-            });
-            my_singleton.getInstance(notifications.this).addToRequestQueue(myStringRequest);
-        }
-    }
-
 
 // عند اضافة خبر يتم عمل اشعار

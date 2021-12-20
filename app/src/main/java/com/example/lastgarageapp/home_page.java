@@ -86,8 +86,8 @@ SessionManager sessionManager;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        sessionManager = new SessionManager(this);
-        sessionManager.checkLogin();
+//        sessionManager = new SessionManager(this);
+//        sessionManager.checkLogin();
 
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
 
@@ -121,8 +121,8 @@ SessionManager sessionManager;
         newsButt = findViewById(R.id.homePage_newsButt);
         newsLayout = findViewById(R.id.homePage_newsLayout);
 
-        HashMap<String, String> user = sessionManager.getUserDetail();
-        String mName = user.get(sessionManager.NAME);
+//        HashMap<String, String> user = sessionManager.getUserDetail();
+//        String mName = user.get(sessionManager.NAME);
 
 
         //default  View
@@ -438,13 +438,8 @@ SessionManager sessionManager;
             }) {
                 @Override
                 protected Map<String, String> getParams() {
-                    TimeZone.setDefault(TimeZone.getTimeZone("GMT" + "02:00"));
-                    Date currentTime = Calendar.getInstance().getTime();
-                    String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
-
                     Map<String, String> myMap = new HashMap<>();
                     myMap.put("text", news_text);
-                    myMap.put("date_time", timeStamp);
                     return myMap;
                 }
             };
