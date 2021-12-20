@@ -1,7 +1,9 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -80,6 +82,12 @@ public class add_line extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(add_line.this);
+                alert.setTitle("إضافة خط نقل جديد");
+                alert.setMessage("هل تريد إضافة خط نقل جديد؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                 String myFare=getData(fare);
                 if(fare.getText().length()==0||sour.getSelectedItem().equals("المكان الحالي")){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
@@ -109,10 +117,23 @@ public class add_line extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_line.this).addToRequestQueue(myStringRequest);
+                    Toast.makeText(add_line.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+
                 }
                 fare.setText("");
             }
         });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        //  Toast.makeText(edit_personal_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });alert.create().show();
+
+            }
+        });
+
 
         cancleButton.setOnClickListener(new View.OnClickListener() {
             @Override

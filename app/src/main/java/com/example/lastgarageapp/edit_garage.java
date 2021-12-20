@@ -1,8 +1,10 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,9 +94,26 @@ public class edit_garage extends AppCompatActivity {
                 timePickerDialog.show();
             } });
         saveChange.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(edit_garage.this);
+                alert.setTitle("حفظ التغيرات");
+                alert.setMessage("هل تريد حفظ البيانات الجديدة؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
                 updateData();
+            }
+        });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+finish();
+                       // Toast.makeText(edit_garage.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });alert.create().show();
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {

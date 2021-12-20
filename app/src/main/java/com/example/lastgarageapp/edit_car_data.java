@@ -158,14 +158,14 @@ public class edit_car_data extends AppCompatActivity {
 
                //     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
 
-                alert.setPositiveButton("لا", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        Toast.makeText(edit_car_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+finish();
+                        //Toast.makeText(edit_car_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
                     }
-                });
-                alert.create().show();
+                });alert.create().show();
+
             }
         });
 //        selectCarData();

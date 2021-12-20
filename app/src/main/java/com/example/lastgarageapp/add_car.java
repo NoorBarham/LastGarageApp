@@ -1,7 +1,9 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -110,6 +112,12 @@ public class add_car extends AppCompatActivity {
         addCar_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(add_car.this);
+                alert.setTitle("إضافة سيارة جديدة");
+                alert.setMessage("هل تريد إضافة سيارة جديدة؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                 if(car_no.getText().length()==0){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
@@ -139,10 +147,21 @@ public class add_car extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_car.this).addToRequestQueue(stringRequest2);
+                    Toast.makeText(add_car.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
 
                 }
             }
 
+        });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        //  Toast.makeText(edit_personal_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });alert.create().show();
+
+            }
         });
 
 

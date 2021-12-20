@@ -1,7 +1,9 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +43,12 @@ public class  edit_personal_data extends AppCompatActivity {
         editPersonalData_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(edit_personal_data.this);
+                alert.setTitle("حفظ التغيرات");
+                alert.setMessage("هل تريد حفظ البيانات الجديدة؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
                     String url = url_serverName.serverName+"editPersonaldata.php";
                     StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -68,11 +76,20 @@ public class  edit_personal_data extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(edit_personal_data.this).addToRequestQueue(myStringRequest);
-                }
+                        Toast.makeText(edit_personal_data.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
 
+                    }
+                });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                         finish();
+                      //  Toast.makeText(edit_personal_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });alert.create().show();
 
+            }
         });
-
 
         editPersonalData_cancel.setOnClickListener(new View.OnClickListener() {
             @Override

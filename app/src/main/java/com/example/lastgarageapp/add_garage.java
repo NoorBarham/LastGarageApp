@@ -1,8 +1,10 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -52,6 +54,12 @@ public class add_garage extends AppCompatActivity {
         addButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(add_garage.this);
+                alert.setTitle("إضافة كراج جديد");
+                alert.setMessage("هل تريد إضافة كراج جديد؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
                 if(cityName.getText().length()==0||openHoure.getText().length()==0||closeHoure.getText().length()==0||location.getText().length()==0){
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
@@ -83,10 +91,21 @@ public class add_garage extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_garage.this).addToRequestQueue(myStringRequest);
+                    Toast.makeText(add_garage.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        //  Toast.makeText(edit_personal_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });alert.create().show();
 
+            }
+        });
 
         cancelButt.setOnClickListener(new View.OnClickListener() {
             @Override

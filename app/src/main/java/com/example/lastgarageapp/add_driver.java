@@ -1,7 +1,9 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +43,12 @@ public class add_driver extends AppCompatActivity {
         addDriver_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(add_driver.this);
+                alert.setTitle("إضافة سائق جديد");
+                alert.setMessage("هل تريد إضافة سائق جديد؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                 if(name.getText().length()==0||identity_number.getText().length()==0||city.getText().length()==0|PhoneNumb.getText().length()==0|password.getText().length()==0) {
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }else{
@@ -70,10 +78,21 @@ public class add_driver extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_driver.this).addToRequestQueue(stringRequest2);
+                    Toast.makeText(add_driver.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
 
                 }
             }
 
+        });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        //  Toast.makeText(edit_personal_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });alert.create().show();
+
+            }
         });
         addDriver_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
