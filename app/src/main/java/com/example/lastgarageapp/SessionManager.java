@@ -9,7 +9,7 @@ import  com.example.lastgarageapp.login;
 import java.util.HashMap;
 public class SessionManager {
 
-    SharedPreferences sharedPreferences;
+    /*SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
     public Context context;
     int PRIVATE_MODE = 0;
@@ -64,6 +64,6 @@ public class SessionManager {
         context.startActivity(i);
         ((home_page) context).finish();
 
-    }
+    }*/
 
 }
