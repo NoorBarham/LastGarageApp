@@ -38,7 +38,7 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        sessionManager = new SessionManager(this);
+       // sessionManager = new SessionManager(this);
 
         login_loginClient = (Button) findViewById(R.id.login_loginClient);
         login_loginAdmin = (Button) findViewById(R.id.login_loginAdmin);
@@ -94,7 +94,7 @@ public class login extends AppCompatActivity {
                             JSONObject object = jsonArray.getJSONObject(i);
                               String user_name = object.getString("الاسم").trim();
                             String user_id = object.getString("رقم الهوية").trim();
-                            sessionManager.createSession(user_name);
+                          //  sessionManager.createSession(user_name);
 
                             Intent intent = new Intent(login.this, home_page.class);
                             intent.putExtra("الاسم" , user_name );

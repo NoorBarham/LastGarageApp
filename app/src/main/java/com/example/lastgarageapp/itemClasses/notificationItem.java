@@ -1,12 +1,21 @@
 package com.example.lastgarageapp.itemClasses;
 
 public class notificationItem {
-    private String textName,textHour;
+    private String textName,textHour,newsId;
 
-    public notificationItem(String textName,String textHour) {
+    public notificationItem(String textName,String textHour, String newsId) {
         this.textName = textName;
         this.textHour=textHour;
+        this.newsId=newsId;
 
+    }
+
+    public String getNewsId() {
+        return newsId;
+    }
+
+    public void setNewsId(String newsId) {
+        this.newsId = newsId;
     }
 
     public String getTextName() {

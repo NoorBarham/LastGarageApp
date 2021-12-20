@@ -39,7 +39,7 @@ public class change_password extends AppCompatActivity {
                 if (current_pass.getText().length() == 0 || new_pass.getText().length() == 0 || conform_pass.getText().length() == 0) {
                     Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 } else {
-                   if(!new_pass.getText().toString().equalsIgnoreCase(conform_pass.getText().toString())) {
+                   if(!new_pass.getText().toString().equals(conform_pass.getText().toString())) {
                        Toast.makeText(getBaseContext(), "كلمة السر غير متطابقة", Toast.LENGTH_SHORT).show();
                    }
                    else {

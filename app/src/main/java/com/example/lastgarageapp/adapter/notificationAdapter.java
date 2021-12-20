@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +21,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
     private ArrayList<notificationItem> myNotificationItem;
 
     private Context con;
-
+    public static String myNewsId ="";
 
     public notificationAdapter(Context context,ArrayList<notificationItem> myNotificationItem) {
 
@@ -44,6 +43,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
         notificationItem n= myNotificationItem.get(position);
         holder.mmTextname.setText(n.getTextName());
         holder.mmHour.setText(n.getTextHour());
+        holder.mmNewsId.setText(n.getNewsId());
 
 //        holder.mmTextname.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -62,14 +62,14 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
 
     public class notificationViewHolder extends RecyclerView.ViewHolder{
 
-        TextView mmTextname, mmHour;
+        TextView mmTextname, mmHour, mmNewsId;
         //  ImageView mmImage;
         LinearLayout notificationslayout;
-
         public notificationViewHolder(@NonNull View itemView) {
             super(itemView);
             mmTextname = itemView.findViewById(R.id.notificationItem_name);
             mmHour = itemView.findViewById(R.id.notificationItem_clock);
+            mmNewsId = itemView.findViewById(R.id.notificationItem_newsId);
             //    mmImage=itemView.findViewById(R.id.notificationsItem_image);
             notificationslayout = itemView.findViewById(R.id.notificationsListItem_layout);
 
@@ -78,6 +78,7 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(con, view_notification.class);
+                    myNewsId = mmNewsId.getText().toString();
 //                    intent.putExtra("waed", "test value");
                     con.startActivity(intent);
                 }
