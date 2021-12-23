@@ -91,7 +91,7 @@ public class add_garage extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_garage.this).addToRequestQueue(myStringRequest);
-                    Toast.makeText(add_garage.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(add_garage.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
 
                 }
             }

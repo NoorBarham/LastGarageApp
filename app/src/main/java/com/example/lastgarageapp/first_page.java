@@ -18,7 +18,7 @@ public class first_page extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-load.dismissDialoge();
+           load.dismissDialoge();
 
             }
 

@@ -147,7 +147,7 @@ public class add_car extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_car.this).addToRequestQueue(stringRequest2);
-                    Toast.makeText(add_car.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(add_car.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
 
                 }
             }

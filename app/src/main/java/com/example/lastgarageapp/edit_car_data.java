@@ -151,7 +151,7 @@ public class edit_car_data extends AppCompatActivity {
                             }
                         };
                         my_singleton.getInstance(edit_car_data.this).addToRequestQueue(myStringRequest);
-                        Toast.makeText(edit_car_data.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(edit_car_data.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
                     }
                 });
                 //alert.create().show();
@@ -161,7 +161,7 @@ public class edit_car_data extends AppCompatActivity {
                 alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-finish();
+                            finish();
                         //Toast.makeText(edit_car_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
                     }
                 });alert.create().show();

@@ -122,7 +122,7 @@ public class edit_line extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(edit_line.this).addToRequestQueue(myStringRequest);
-                    Toast.makeText(edit_line.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(edit_line.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
 
                 }fare.setText("");
                     }

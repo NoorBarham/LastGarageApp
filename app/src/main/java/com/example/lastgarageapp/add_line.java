@@ -117,7 +117,7 @@ public class add_line extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_line.this).addToRequestQueue(myStringRequest);
-                    Toast.makeText(add_line.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(add_line.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
 
                 }
                 fare.setText("");

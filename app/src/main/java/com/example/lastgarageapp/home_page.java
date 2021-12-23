@@ -397,7 +397,8 @@ SessionManager sessionManager;
                         String name = reader.getString("name");
                         String text = reader.getString("text");
                         String time = reader.getString("time");
-                        myItem = new newsItem(name, text, time);
+                        String Id=reader.getString("Id");
+                        myItem = new newsItem(name, text, time,Id);
 
                         myNews.add(myItem);
                     }

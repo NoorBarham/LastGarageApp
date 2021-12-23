@@ -76,7 +76,7 @@ public class change_password extends AppCompatActivity {
                                 };
 
                                 my_singleton.getInstance(change_password.this).addToRequestQueue(stringRequest2);
-                                Toast.makeText(change_password.this, "تم الحفظ", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(change_password.this, "تم الحفظ", Toast.LENGTH_SHORT).show();
 
                             }
                         }

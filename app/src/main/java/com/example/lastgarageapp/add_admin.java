@@ -88,7 +88,7 @@ public class add_admin extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(add_admin.this).addToRequestQueue(stringRequest2);
-                    Toast.makeText(add_admin.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(add_admin.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -95,7 +95,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
                         }
                     };
                     my_singleton.getInstance(edit_admin_personal_data.this).addToRequestQueue(myStringRequest);
-                        Toast.makeText(edit_admin_personal_data.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
+           //             Toast.makeText(edit_admin_personal_data.this, "تم الحفظ",Toast.LENGTH_SHORT).show();
                 }
 
 

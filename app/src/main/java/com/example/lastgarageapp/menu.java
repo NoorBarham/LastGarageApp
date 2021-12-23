@@ -475,7 +475,7 @@ public class menu extends AppCompatActivity {
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
 
-                Intent intent= new Intent(menu.this ,settings.class);
+                Intent intent= new Intent(menu.this ,login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

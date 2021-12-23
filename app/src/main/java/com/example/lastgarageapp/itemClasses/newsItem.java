@@ -1,12 +1,13 @@
 package com.example.lastgarageapp.itemClasses;
 
 public class newsItem {
-    private String textName, textNews, textHour;
+    private String textName, textNews, textHour,newsId;
 
-    public newsItem(String textName, String textNews, String textHour) {
+    public newsItem(String textName, String textNews, String textHour,String newsId) {
         this.textName = textName;
         this.textNews = textNews;
         this.textHour = textHour;
+        this.newsId=newsId;
 
     }
     public String getTextName() {
@@ -31,5 +32,14 @@ public class newsItem {
 
     public void setTextHour(String textHour) {
         this.textHour = textHour;
+    }
+    public String getNewsId() {
+
+        return newsId;
+    }
+
+    public void setNewsId(String newsId) {
+
+        this.newsId = newsId;
     }
 }

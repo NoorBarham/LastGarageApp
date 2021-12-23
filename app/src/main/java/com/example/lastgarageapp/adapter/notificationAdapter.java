@@ -63,7 +63,6 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
     public class notificationViewHolder extends RecyclerView.ViewHolder{
 
         TextView mmTextname, mmHour, mmNewsId;
-        //  ImageView mmImage;
         LinearLayout notificationslayout;
         public notificationViewHolder(@NonNull View itemView) {
             super(itemView);
