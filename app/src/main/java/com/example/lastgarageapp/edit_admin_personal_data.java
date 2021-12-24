@@ -47,7 +47,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
         garageName=(Spinner)findViewById(R.id.editAdminPersonalData_garageVal);
 
         garagenameSpinner();
-        selectadmineditPersonaldata("74");
+        selectadmineditPersonaldata("5555");
         garageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

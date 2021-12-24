@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 //import android.util.Log;
@@ -54,6 +55,8 @@ SessionManager sessionManager;
     TextView iconAddgarage, iconAddcar, iconFilter;
     EditText addNewstext;
     RecyclerView recyclerView;
+    SharedPreferences prf;
+    Intent intent;
 
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
@@ -86,10 +89,14 @@ SessionManager sessionManager;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        prf = getSharedPreferences("user_details",MODE_PRIVATE);
+        intent = new Intent(home_page.this,login.class);
 //        sessionManager = new SessionManager(this);
 //        sessionManager.checkLogin();
 
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
+
 
         //my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
