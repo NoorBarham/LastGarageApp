@@ -37,12 +37,10 @@ public class login extends AppCompatActivity {
     private EditText login_idNumber, login_password;
     private Button login_loginClient;
     private Button login_loginAdmin;
-    // private static String url_Login =  url_serverName.serverName + "login.php";
+
     SharedPreferences sharedPreferences;
-    Intent intent;
     String flag;
-  //  String id=login_idNumber.getText().toString();
-   // String pass=login_password.getText().toString();
+
     // SessionManager sessionManager;
 
 
@@ -55,12 +53,8 @@ public class login extends AppCompatActivity {
         login_password = (EditText) findViewById(R.id.login_password);
         login_loginAdmin = (Button) findViewById(R.id.login_loginAdmin);
         login_loginClient= (Button) findViewById(R.id.login_loginClient);
-        //sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE);
-       // String loginStatus = sharedPreferences.getString(getResources().getString(R.string.app_name),"");
-      // if (loginStatus.equals("login Success Welcome")) {
-         //  startActivity(new Intent(login.this, home_page.class));
-         //  finish();
-     //  }
+         sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE);
+
 
         login_loginAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +63,7 @@ public class login extends AppCompatActivity {
                 String tex_email = login_idNumber.getText().toString();
                 String tex_password = login_password.getText().toString();
                 if (TextUtils.isEmpty(tex_email) || TextUtils.isEmpty(tex_password)){
-                    Toast.makeText(login.this, "All Fields Required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(login.this, "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     login(tex_email,tex_password);
@@ -104,15 +98,13 @@ public class login extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject reader = jsonArray.getJSONObject(i);
-
-                        //String textName, String textNews, String textHour
                         flag = reader.getString("flag");
-
-
-
                     }
                     if(flag.equals("1")){
-                      //  Toast.makeText(getApplicationContext(),flag,Toast.LENGTH_SHORT).show();
+                      //  SharedPreferences.Editor editor = sharedPreferences.edit();
+                     //   editor.putString("user_name",login_idNumber.getText().toString());
+                       // editor.putString("password",login_password.getText().toString());
+                     //   editor.commit();
                         startActivity(new Intent(login.this, home_page.class));
                     } else{
                        Toast.makeText(getApplicationContext(),"خطأ في التسجيل",Toast.LENGTH_SHORT).show();
@@ -123,25 +115,13 @@ public class login extends AppCompatActivity {
                 }
 
 
-
-                    //    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //    editor.apply();
-                    //   startActivity(new Intent(login.this, home_page.class));
-                    //    progressDialog.dismiss();
-
-                    //   finish();
-              //  }else {
-                 //Toast.makeText(login.this, response, Toast.LENGTH_SHORT).show();
-                //    startActivity(new Intent(login.this, home_page.class));
-                 //  progressDialog.dismiss();
                 }
-           // }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(login.this, error.toString(), Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
-                //progressDialog.dismiss();
             }
         }) {
             @Override
@@ -153,7 +133,7 @@ public class login extends AppCompatActivity {
 
             }
         };
-      //  myStringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         my_singleton.getInstance(login.this).addToRequestQueue(myStringRequest);
     }
 }
