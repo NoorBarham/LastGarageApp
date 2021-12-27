@@ -41,19 +41,19 @@
             android:exported="true" />
         <activity
             android:name=".home_page"
-            android:exported="true" >
+            android:exported="true" />
 
-    </activity>
         <activity
             android:name=".login"
-            android:exported="true">
+            android:exported="true"/>
 
-            <intent-filter>
+            <activity android:name=".first_page"
+                android:exported="true"  >
+                <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".add_line"
@@ -122,6 +122,7 @@
         <activity
             android:name=".view_notification"
             android:exported="true" />
+
     </application>
 
 </manifest>

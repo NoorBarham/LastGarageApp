@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF6F00"
+    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -13,12 +13,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            app:srcCompat="@android:drawable/sym_def_app_icon" />
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="247dp"
+            android:layout_height="242dp"
+            android:background="@drawable/logo"
+            android:textSize="34sp" />
 
         <ProgressBar
             android:id="@+id/progressBar4"
@@ -34,7 +34,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Loading...."
-            android:textSize="20sp" />
+            android:textColor="#292424"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>

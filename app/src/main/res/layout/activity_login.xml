@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF6F00"
+    android:background="#DFDAD6"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,47 +15,58 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="110dp"
+            android:layout_height="112dp"
+            android:background="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:text="تسجيل الدخول"
+            android:textAlignment="center"
+            android:textColor="#FF6F00"
+            android:textSize="34sp" />
+
         <EditText
             android:id="@+id/login_idNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_margin="5dp"
             android:layout_marginBottom="20dp"
-            android:background="#E6D5D5"
             android:ems="10"
-            android:gravity="center"
-            android:inputType="number"
-            android:padding="20dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:hint="رقم الهوية"
-            android:textColor="#504040"
+            android:inputType="textPersonName"
+            android:textColorHint="#050303"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="40dp"
-            android:background="#E6D5D5"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="50dp"
             android:ems="10"
-            android:gravity="center"
-            android:inputType="numberPassword"
-            android:padding="20dp"
-            android:hint="الرقم السري"
+            android:hint="كلمة السر"
+            android:inputType="textPassword"
+            android:singleLine="false"
+            android:textAlignment="textEnd"
+            android:textColor="#090404"
+            android:textColorHint="#120B0B"
             android:textSize="20sp" />
 
         <Button
             android:id="@+id/login_loginAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#E4D6D6"
+            android:backgroundTint="#FF6F00"
             android:text="تسجيل الدخول"
             android:textColor="#040303"
             android:textSize="20sp"
@@ -66,10 +77,10 @@
             android:id="@+id/login_loginClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#EDE1E1"
+            android:backgroundTint="#FF6F00"
             android:text="الدخول كزائر"
             android:textColor="#0B0808"
             android:textSize="20sp"
