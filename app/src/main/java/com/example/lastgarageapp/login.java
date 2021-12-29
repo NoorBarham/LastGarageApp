@@ -38,11 +38,7 @@ public class login extends AppCompatActivity {
     private Button login_loginClient;
     private Button login_loginAdmin;
 
-    SharedPreferences sharedPreferences;
     String flag;
-
-    // SessionManager sessionManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +49,7 @@ public class login extends AppCompatActivity {
         login_password = (EditText) findViewById(R.id.login_password);
         login_loginAdmin = (Button) findViewById(R.id.login_loginAdmin);
         login_loginClient= (Button) findViewById(R.id.login_loginClient);
-         sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE);
+//         sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE);
 
 
         login_loginAdmin.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +101,7 @@ public class login extends AppCompatActivity {
                      //   editor.putString("user_name",login_idNumber.getText().toString());
                        // editor.putString("password",login_password.getText().toString());
                      //   editor.commit();
+
                         startActivity(new Intent(login.this, home_page.class));
                     } else{
                        Toast.makeText(getApplicationContext(),"خطأ في التسجيل",Toast.LENGTH_SHORT).show();

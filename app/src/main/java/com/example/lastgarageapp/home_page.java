@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 //import android.util.Log;
@@ -47,7 +46,6 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
-SessionManager sessionManager;
     //homeIcon
     Button newsButt, statusButt, addNewsButt;
     Spinner dest, sour, spinnerFilterCar;
@@ -55,8 +53,6 @@ SessionManager sessionManager;
     TextView iconAddgarage, iconAddcar, iconFilter;
     EditText addNewstext;
     RecyclerView recyclerView;
-    SharedPreferences prf;
-    Intent intent;
 
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
@@ -90,13 +86,7 @@ SessionManager sessionManager;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        prf = getSharedPreferences("user_details",MODE_PRIVATE);
-        intent = new Intent(home_page.this,login.class);
-//        sessionManager = new SessionManager(this);
-//        sessionManager.checkLogin();
-
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
-
 
         //my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
@@ -119,7 +109,6 @@ SessionManager sessionManager;
 
         //car Statuse
         carStatusLayout = findViewById(R.id.homePage_carStatusLayout);
-//        iconFilter = findViewById(R.id.homePage_filterCar);
         iconAddcar = findViewById(R.id.homePage_addCarIcon);
 
         //news layout

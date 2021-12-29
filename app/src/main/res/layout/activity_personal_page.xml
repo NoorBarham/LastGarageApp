@@ -87,6 +87,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginRight="5dp"
+                                android:gravity="right"
                                 android:text="الاسم"
                                 android:textColor="@color/black"
                                 android:textSize="22sp"
@@ -159,7 +161,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
 
                     <TextView
@@ -185,7 +187,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
 
                     <TextView
@@ -211,7 +213,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
 
                     <TextView
@@ -237,9 +239,17 @@
                         android:layout_weight="2"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
-// 123
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.3"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="#ff6f00"
+                        android:textSize="20sp" />
                     <TextView
                         android:id="@+id/personalPage_sour"
                         android:layout_width="match_parent"
@@ -247,14 +257,14 @@
                         android:layout_weight="2"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/personalimage_workplace"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.4"
                         android:text="الخط الذي يعمل عليه"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -273,7 +283,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/black"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
 
                     <TextView
