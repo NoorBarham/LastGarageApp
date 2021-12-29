@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 
 public class first_page_loading {
    private Activity activity;
-   private AlertDialog dialoge;
+  // private AlertDialog dialoge;
 
     first_page_loading(Activity myActivity){
         activity= myActivity;
@@ -14,18 +14,18 @@ public class first_page_loading {
 
     }
   void startLoading(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+       // AlertDialog.Builder builder = new AlertDialog.Builder(activity);
     LayoutInflater inflater = activity.getLayoutInflater();
-    builder.setView(inflater.inflate(R.layout.activity_first_page, null));
+  //  builder.setView(inflater.inflate(R.layout.activity_first_page, null));
 
-    dialoge= builder.create();
-    dialoge.show();
+    //dialoge= builder.create();
+    //dialoge.show();
 
 
 
 }
 void dismissDialoge(){
-        dialoge.dismiss();
+      //  dialoge.dismiss();
 
 }
 }
