@@ -117,10 +117,6 @@ public class home_page extends AppCompatActivity {
         newsButt = findViewById(R.id.homePage_newsButt);
         newsLayout = findViewById(R.id.homePage_newsLayout);
 
-//        HashMap<String, String> user = sessionManager.getUserDetail();
-//        String mName = user.get(sessionManager.NAME);
-
-
         //default  View
         homeIcon.setBackgroundColor(Color.WHITE);
         statusButt.setBackgroundColor(0xFFFF6F00);
@@ -132,6 +128,7 @@ public class home_page extends AppCompatActivity {
         sourceSpinner();
         dest.setEnabled(false);
         selectNews();
+//        getLogin();
         flage=0;
 
         is_available.add("الكل");
@@ -344,8 +341,7 @@ public class home_page extends AppCompatActivity {
         personalIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(home_page.this, personal_page.class);
-                startActivity(intent);
+                isAdminOrDriver();
             }
         });
         messagesIcon.setOnClickListener(new View.OnClickListener() {
@@ -364,6 +360,48 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void isAdminOrDriver() {
+        String url = url_serverName.serverName + "isAdminOrDriver.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("A_D");
+                    lineItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String check = reader.getString("check");
+                        if(check.equals("d")){
+                            Intent intent = new Intent(home_page.this, personal_page.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(home_page.this, admin_personal_page.class);
+                            startActivity(intent);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
     }
 
     public String getData(EditText t) {
@@ -393,7 +431,7 @@ public class home_page extends AppCompatActivity {
                         String name = reader.getString("name");
                         String text = reader.getString("text");
                         String time = reader.getString("time");
-                        String Id=reader.getString("Id");
+                        String Id=reader.getString("id");
                         myItem = new newsItem(name, text, time,Id);
 
                         myNews.add(myItem);
@@ -677,4 +715,13 @@ public class home_page extends AppCompatActivity {
         myLineAdapter = new lineAdapter(home_page.this, myLines);
         recyclerView.setAdapter(myLineAdapter);
     }
+//    private void getLogin(){
+//        if (login.myUser!=null){
+//
+//        }else{
+//            notificationIcon.setVisibility(View.GONE);
+//            personalIcon.setVisibility(View.GONE);
+//            messagesIcon.setVisibility(View.GONE);
+//        }
+//    }
 }

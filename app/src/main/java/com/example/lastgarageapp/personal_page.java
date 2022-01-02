@@ -29,7 +29,7 @@ import java.util.Map;
 public class personal_page extends AppCompatActivity {
 
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
-    TextView editData, changePass, u_name, u_city, u_phone, u_car_id, u_sour, u_dest;
+    TextView editData, changePass,u_id, u_name, u_city, u_phone, u_car_id, u_sour, u_dest;
 
     ImageView textMessage;
 
@@ -42,6 +42,7 @@ public class personal_page extends AppCompatActivity {
         editData = findViewById(R.id.personalPage_editData);
         changePass = findViewById(R.id.personalPage_changePass);
         textMessage = findViewById(R.id.personalPage_messageIcon);
+        u_id = (TextView) findViewById(R.id.personalimage_idintitynum);
         u_name = (TextView) findViewById(R.id.personalPage_name);
         u_city = findViewById(R.id.personalPage_placeVal);
         u_phone = findViewById(R.id.personalPage_phoneNumVal);
@@ -165,10 +166,10 @@ public class personal_page extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("personal_driver");
                     notificationItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
-/////////8
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String textName, String textNews, String textHour
+                        String id = reader.getString("id");
                         String name = reader.getString("driver_name");
                         String phone = reader.getString("phone");
                         String city = reader.getString("city");
@@ -182,9 +183,7 @@ public class personal_page extends AppCompatActivity {
                         u_car_id.setText(car_id);
                         u_sour.setText(sour);
                         u_dest.setText(dest);
-
-
-
+                        u_id.setText(id);
                     }
 
                 } catch (JSONException e) {
@@ -201,7 +200,7 @@ public class personal_page extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("user_id", id);
+                myMap.put("s_id", login.s_id);
                 return myMap;
             }
         };

@@ -2,29 +2,19 @@ package com.example.lastgarageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Authenticator;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.lastgarageapp.adapter.newsAdapter;
-import com.example.lastgarageapp.itemClasses.newsItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,30 +24,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class login extends AppCompatActivity {
-    private EditText login_idNumber, login_password;
-    private Button login_loginClient;
-    private Button login_loginAdmin;
+    private EditText idNumber, password;
+    private Button loginClient;
+    private Button loginAdmin;
 
     String flag;
-
+    public static String myUser;
+    public static String s_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        login_idNumber = (EditText) findViewById(R.id.login_idNumber);
-        login_password = (EditText) findViewById(R.id.login_password);
-        login_loginAdmin = (Button) findViewById(R.id.login_loginAdmin);
-        login_loginClient= (Button) findViewById(R.id.login_loginClient);
-//         sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE);
+        idNumber = findViewById(R.id.login_idNumber);
+        password = findViewById(R.id.login_password);
+        loginAdmin = findViewById(R.id.login_loginAdmin);
+        loginClient = findViewById(R.id.login_loginClient);
 
-
-        login_loginAdmin.setOnClickListener(new View.OnClickListener() {
+        loginAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String tex_email = login_idNumber.getText().toString();
-                String tex_password = login_password.getText().toString();
+                String tex_email = idNumber.getText().toString();
+                String tex_password = password.getText().toString();
                 if (TextUtils.isEmpty(tex_email) || TextUtils.isEmpty(tex_password)){
                     Toast.makeText(login.this, "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }
@@ -69,10 +58,11 @@ public class login extends AppCompatActivity {
 
         });
 
-       login_loginClient.setOnClickListener(new View.OnClickListener() {
+       loginClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(login.this,home_page.class));
+                myUser=null;
                 finish();
             }
         });
@@ -80,40 +70,27 @@ public class login extends AppCompatActivity {
 
 
 
-    public void login(final String email, final String password) {
-        String uRl = url_serverName.serverName +"login.php";
+    public void login(final String id, final String password) {
+        String uRl = url_serverName.serverName +"login1.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, uRl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
-//                    Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("login");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject reader = jsonArray.getJSONObject(i);
-                        flag = reader.getString("flag");
-                    }
-                    if(flag.equals("1")){
-                      //  SharedPreferences.Editor editor = sharedPreferences.edit();
-                     //   editor.putString("user_name",login_idNumber.getText().toString());
-                       // editor.putString("password",login_password.getText().toString());
-                     //   editor.commit();
-
+                        s_id = reader.getString("s_id");
                         startActivity(new Intent(login.this, home_page.class));
-                    } else{
-                       Toast.makeText(getApplicationContext(),"خطأ في التسجيل",Toast.LENGTH_SHORT).show();
-                   }
 
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-                }
-
+            }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -124,7 +101,7 @@ public class login extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> param = new HashMap<>();
-                param.put("email", email);
+                param.put("userId", id);
                 param.put("pass", password);
                 return param;
 

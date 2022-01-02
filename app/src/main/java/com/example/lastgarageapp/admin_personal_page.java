@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class admin_personal_page extends AppCompatActivity {
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
-    TextView editData, changePass, u_name, u_city, u_phone, u_garage;
+    TextView editData, changePass, u_id,u_name, u_city, u_phone, u_garage;
 
     ImageView textMessage;
 
@@ -38,6 +38,7 @@ public class admin_personal_page extends AppCompatActivity {
         editData = findViewById(R.id.adminPersonalPage_editData);
         changePass = findViewById(R.id.adminPersonalPage_changePass);
         textMessage = findViewById(R.id.adminPersonalPage_messageIcon);
+        u_id = (TextView) findViewById(R.id.adminPersonalPage_idintitynum);
         u_name = (TextView) findViewById(R.id.adminPersonalPage_name);
         u_city = findViewById(R.id.adminPersonalPage_placeVal);
         u_phone = findViewById(R.id.adminPersonalPage_phoneNumVal);
@@ -162,11 +163,13 @@ public class admin_personal_page extends AppCompatActivity {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String textName, String textNews, String textHour
+                        String id = reader.getString("id");
                         String name = reader.getString("admin_name");
                         String phone = reader.getString("phone");
                         String city = reader.getString("city");
                         String garage_name = reader.getString("garage_name");
 
+                        u_id.setText(id);
                         u_name.setText(name);
                         u_phone.setText(phone);
                         u_city.setText(city);
@@ -187,7 +190,7 @@ public class admin_personal_page extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("admin_id", id);
+                myMap.put("s_id", login.s_id);
                 return myMap;
             }
         };

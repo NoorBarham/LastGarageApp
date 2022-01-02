@@ -31,58 +31,37 @@
 
         <ImageView
             android:id="@+id/myActionBar_messagesIcon"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
             android:padding="8dp"
             android:src="@drawable/message_icon" />
 
         <ImageView
             android:id="@+id/myActionBar_personIcon"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
             android:padding="8dp"
             android:src="@drawable/person_icon" />
 
         <ImageView
             android:id="@+id/myActionBar_notificationsIcon"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
             android:padding="8dp"
             android:src="@drawable/notifications_icon" />
 
         <ImageView
             android:id="@+id/myActionBar_homeIcon"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="10dp"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
             android:padding="8dp"
             android:src="@drawable/home_icon" />
     </LinearLayout>
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="ابحث عن سائق أو كراج ..."-->
-<!--            android:textColor="@color/black"-->
-<!--            android:background="@drawable/radius_border"/>-->
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1" />-->
-<!--    </LinearLayout>-->
 
 </LinearLayout>
 
