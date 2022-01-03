@@ -12,14 +12,15 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F8F4F4"
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="110dp"
-            android:layout_height="112dp"
-            />
+            android:layout_width="127dp"
+            android:layout_height="128dp"
+            android:background="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView4"
