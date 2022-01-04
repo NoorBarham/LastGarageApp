@@ -12,13 +12,13 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F8F4F4"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="127dp"
+            android:layout_width="128dp"
             android:layout_height="128dp"
             android:background="@drawable/logo" />
 
@@ -26,7 +26,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
+            android:layout_margin="30dp"
             android:text="تسجيل الدخول"
             android:textAlignment="center"
             android:textColor="#FF6F00"
@@ -40,6 +40,7 @@
             android:layout_marginBottom="20dp"
             android:ems="10"
             android:hint="رقم الهوية"
+            android:gravity="center"
             android:inputType="textPersonName"
             android:textColorHint="#050303"
             android:textSize="20sp" />
@@ -51,10 +52,10 @@
             android:layout_margin="5dp"
             android:layout_marginBottom="50dp"
             android:ems="10"
+            android:gravity="center"
             android:hint="كلمة السر"
             android:inputType="textPassword"
             android:singleLine="false"
-            android:textAlignment="textEnd"
             android:textColor="#090404"
             android:textColorHint="#120B0B"
             android:textSize="20sp" />

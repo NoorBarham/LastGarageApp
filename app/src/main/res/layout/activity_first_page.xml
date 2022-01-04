@@ -15,10 +15,10 @@
 
         <TextView
             android:id="@+id/logo"
-            android:layout_width="243dp"
-            android:layout_height="239dp"
-            android:background="@drawable/logo"
-            android:textSize="34sp" />
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/logo" />
 
         <ProgressBar
             android:id="@+id/progressBar4"
@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:text="Loading...."
             android:textColor="#292424"
             android:textSize="20sp"
