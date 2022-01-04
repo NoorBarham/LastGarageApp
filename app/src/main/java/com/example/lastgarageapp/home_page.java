@@ -1,6 +1,5 @@
 package com.example.lastgarageapp;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,13 +36,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class home_page extends AppCompatActivity {
     //homeIcon
@@ -347,7 +342,7 @@ public class home_page extends AppCompatActivity {
         messagesIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(home_page.this, messages.class);
+                Intent intent = new Intent(home_page.this, chats.class);
                 startActivity(intent);
             }
         });

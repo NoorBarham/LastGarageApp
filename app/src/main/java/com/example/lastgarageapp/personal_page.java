@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +14,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.lastgarageapp.adapter.notificationAdapter;
 import com.example.lastgarageapp.itemClasses.notificationItem;
 
 import org.json.JSONArray;
@@ -132,7 +129,7 @@ public class personal_page extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent = new Intent(personal_page.this, messages.class);
+                Intent intent = new Intent(personal_page.this, chats.class);
                 startActivity(intent);
             }
         });

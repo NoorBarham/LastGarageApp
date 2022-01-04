@@ -15,9 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.lastgarageapp.adapter.newsAdapter;
 import com.example.lastgarageapp.adapter.notificationAdapter;
-import com.example.lastgarageapp.itemClasses.newsItem;
 import com.example.lastgarageapp.itemClasses.notificationItem;
 
 import org.json.JSONArray;
@@ -118,7 +116,7 @@ public class notifications extends AppCompatActivity {
         messagesIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(notifications.this, messages.class);
+                Intent intent = new Intent(notifications.this, chats.class);
                 startActivity(intent);
             }
         });

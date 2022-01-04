@@ -68,10 +68,10 @@
             android:name=".notifications"
             android:exported="true" />
         <activity
-            android:name=".message_list_item"
+            android:name=".chats_list_item"
             android:exported="true" />
         <activity
-            android:name=".messages"
+            android:name=".chats"
             android:exported="true" />
         <activity
             android:name=".news_list_item"

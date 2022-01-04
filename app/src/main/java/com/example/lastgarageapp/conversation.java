@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.lastgarageapp.adapter.chatAdapter;
-import com.example.lastgarageapp.itemClasses.chatItem;
+import com.example.lastgarageapp.adapter.messageAdapter;
+import com.example.lastgarageapp.itemClasses.messageItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.TimeZone;
 
 public class conversation extends AppCompatActivity {
 
-    private ArrayList<chatItem> chatArray = new ArrayList<>();
+    private ArrayList<messageItem> chatArray = new ArrayList<>();
 
     ImageView conversation_send_icon, conver_backIcon;
     TextView conversation_addText;
@@ -36,7 +36,7 @@ public class conversation extends AppCompatActivity {
 
         RecyclerView myRecyclerView = findViewById(R.id.converRecyView);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(conversation.this));
-        chatAdapter adapter = new chatAdapter(conversation.this, chatArray,1);
+        messageAdapter adapter = new messageAdapter(conversation.this, chatArray,1);
 
         conver_backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class conversation extends AppCompatActivity {
                 String timeStamp = new SimpleDateFormat("HH:mm").format(currentTime);
 //                HoureTexts.add(timeStamp);
 
-                chatItem c=new chatItem(""+s,timeStamp+"");
+                messageItem c=new messageItem(""+s,timeStamp+"");
 
                 chatArray.add(c);
                 adapter.setFlag(1);
@@ -69,7 +69,7 @@ public class conversation extends AppCompatActivity {
             }
         });
 
-        chatItem c=new chatItem("hi","12:12");
+        messageItem c=new messageItem("hi","12:12");
         chatArray.add(c);
         adapter.setFlag(2);
         myRecyclerView.setAdapter(adapter);

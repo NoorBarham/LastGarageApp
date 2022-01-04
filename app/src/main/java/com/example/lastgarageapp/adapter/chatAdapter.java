@@ -1,144 +1,75 @@
 package com.example.lastgarageapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.itemClasses.chatItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class chatAdapter extends RecyclerView.Adapter<chatAdapter.myViewHolder> {
-
-    private ArrayList<chatItem> myChatItem ;
-    private LayoutInflater mInflater;
-    private int flag;
+public class chatAdapter extends RecyclerView.Adapter<chatAdapter.messengerViewHolder> {
+    ArrayList<chatItem> myMessengerItem;
     Context con;
 
-    public chatAdapter(Context context, ArrayList<chatItem> myChatItem, int flag) {
-        this.myChatItem = myChatItem;
-        this.flag=flag;
-        this.mInflater = LayoutInflater.from(context);
+    public chatAdapter(Context context, ArrayList<chatItem> myMessengerItem) {
         this.con=context;
-    }
+        this.myMessengerItem=myMessengerItem;
 
-    public void setFlag(int flag) {
-        this.flag = flag;
     }
 
     @NonNull
     @Override
-    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view;
-        if(flag==1){
-            view= mInflater.inflate(R.layout.send_massage_item,parent,false);
-        }else{
-            view= mInflater.inflate(R.layout.received_message_item,parent,false);
-        }
-        myViewHolder holder =new myViewHolder(view);
-        return holder;    }
+    public messengerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_chats_list_item, parent, false);
+        messengerViewHolder holder = new  messengerViewHolder(view);
+        return holder;
+    }
 
     @Override
-    public void onBindViewHolder(myViewHolder holder, int position) {
-        chatItem c = myChatItem.get(position);
-        if(flag==1){
-            holder.sendMessageText.setText(c.getMessageText());
-            holder.sendHoureText.setText(c.getHoure());
-        } else{
-            holder.receivedMessageText.setText(c.getMessageText());
-            holder.receivedHoureText.setText(c.getHoure());
-        }
+    public void onBindViewHolder(@NonNull messengerViewHolder holder, int position) {
+        chatItem m= myMessengerItem.get(position);
+        holder.textName.setText(m.getTextName());
+        holder.textMessage.setText(m.getTextMessage());
+        holder.textHour.setText(m.getTextHour());
+
     }
 
     @Override
     public int getItemCount() {
-        //how many items in my list
-        return myChatItem.size();
+        return myMessengerItem.size();
     }
 
-    public class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView sendMessageText, sendHoureText, receivedMessageText, receivedHoureText;
-        public myViewHolder(@NonNull View itemView) {
+    public class messengerViewHolder extends RecyclerView.ViewHolder {
+        TextView textName,textMessage,textHour;
+        ImageView imageDelete;
+        public messengerViewHolder(@NonNull View itemView) {
             super(itemView);
-            sendMessageText=itemView.findViewById(R.id.sendMessageItem_messageText);
-            sendHoureText=itemView.findViewById(R.id.sendMessageItem_houre);
-            receivedMessageText=itemView.findViewById(R.id.receivedMessageItem_messageText);
-            receivedHoureText=itemView.findViewById(R.id.receivedMessageItem_houre);
+            textName=itemView.findViewById(R.id.messageItem_name);
+            textHour=itemView.findViewById(R.id.messageItem_clock);
+            textMessage=itemView.findViewById(R.id.messageItem_message);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(con, conversation.class);
+                    con.startActivity(intent);
+                }
+            });
+
         }
 
     }
-}
 
-//package com.example.lastgarageapp.adapter;
-//
-//import android.content.Context;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.RelativeLayout;
-//import android.widget.TextView;
-//
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.example.lastgarageapp.R;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class chatAdapter extends RecyclerView.Adapter<chatAdapter.myViewHolder> {
-//
-//    private List<String> mMessagesTexts ;
-//    private ArrayList<String> mHoureTexts ;
-//    private LayoutInflater mInflater;
-//
-//    public chatAdapter(Context context, ArrayList<String> mMessagesTexts, ArrayList<String> mHoureTexts) {
-//        this.mMessagesTexts = mMessagesTexts;
-//        this.mHoureTexts = mHoureTexts;
-//        this.mInflater = LayoutInflater.from(context);
-//    }
-//
-//    @NonNull
-//    @Override
-//    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view= mInflater.inflate(R.layout.send_massage_item,parent,false);
-//        myViewHolder holder =new myViewHolder(view);
-//        return holder;    }
-//
-//    @Override
-//    public void onBindViewHolder(myViewHolder holder, int position) {
-//        String message = mMessagesTexts.get(position);
-//        holder.sendMessageText.setText(message);
-//
-//        String houre = mHoureTexts.get(position);
-//        holder.sendHoureText.setText(houre);
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        //how many items in my list
-//        return mMessagesTexts.size();
-//    }
-//
-//    public class myViewHolder extends RecyclerView.ViewHolder{
-//
-//        TextView sendMessageText, sendHoureText;
-//        RelativeLayout sendMessageLayout;
-//        public myViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            sendMessageText=itemView.findViewById(R.id.sendMessageItem_messageText);
-//            sendHoureText=itemView.findViewById(R.id.sendMessageItem_houre);
-//            sendMessageLayout=itemView.findViewById(R.id.send_message_layout);
-//        }
-//
-//    }
-//}
+    }
+

@@ -1,26 +1,36 @@
 package com.example.lastgarageapp.itemClasses;
 
 public class chatItem {
-    private String messageText, houre;
+    private String textName, textMessage, textHour;
 
-    public chatItem(String messageText, String houre) {
-        this.messageText = messageText;
-        this.houre = houre;
+    public chatItem(String textName, String textMessage, String textHour) {
+        this.textName = textName;
+        this.textMessage = textMessage;
+        this.textHour = textHour;
     }
 
-    public String getMessageText() {
-        return messageText;
+
+    public String getTextName() {
+        return textName;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public void setTextName(String textName) {
+        this.textName = textName;
     }
 
-    public String getHoure() {
-        return houre;
+    public String getTextMessage() {
+        return textMessage;
     }
 
-    public void setHoure(String houre) {
-        this.houre = houre;
+    public void setTextMessage(String textMessage) {
+        this.textMessage = textMessage;
+    }
+
+    public String getTextHour() {
+        return textHour;
+    }
+
+    public void setTextHour(String textHour) {
+        this.textHour = textHour;
     }
 }

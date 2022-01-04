@@ -484,8 +484,8 @@ public class menu extends AppCompatActivity {
                 settings.setBackgroundColor(Color.WHITE);
 
                 Intent intent= new Intent(menu.this ,login.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                login.s_id=null;
             }
         });
 
@@ -524,7 +524,7 @@ public class menu extends AppCompatActivity {
         messagesIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(menu.this ,messages.class);
+                Intent intent= new Intent(menu.this , chats.class);
                 startActivity(intent);
             }
         });

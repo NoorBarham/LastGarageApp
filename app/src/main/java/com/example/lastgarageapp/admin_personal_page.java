@@ -125,7 +125,7 @@ public class admin_personal_page extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent = new Intent(admin_personal_page.this, messages.class);
+                Intent intent = new Intent(admin_personal_page.this, chats.class);
                 startActivity(intent);
             }
         });

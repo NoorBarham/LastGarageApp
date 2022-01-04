@@ -85,7 +85,7 @@ public class view_notification extends AppCompatActivity {
         messagesIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view_notification.this, messages.class);
+                Intent intent = new Intent(view_notification.this, chats.class);
                 startActivity(intent);
             }
         });

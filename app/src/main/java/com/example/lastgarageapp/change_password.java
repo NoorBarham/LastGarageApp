@@ -48,7 +48,7 @@ public class change_password extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                         } else {
                             if (!new_pass.getText().toString().equals(conform_pass.getText().toString())) {
-                                Toast.makeText(getBaseContext(), "كلمة السر غير متطابقة", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "كلمات السر الجديدة غير متطابقة", Toast.LENGTH_SHORT).show();
                             } else {
                                 String url = url_serverName.serverName + "changePassword.php";
                                 StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
