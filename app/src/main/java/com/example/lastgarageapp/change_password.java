@@ -50,7 +50,6 @@ public class change_password extends AppCompatActivity {
                             if (!new_pass.getText().toString().equals(conform_pass.getText().toString())) {
                                 Toast.makeText(getBaseContext(), "كلمة السر غير متطابقة", Toast.LENGTH_SHORT).show();
                             } else {
-
                                 String url = url_serverName.serverName + "changePassword.php";
                                 StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                                     @Override
@@ -70,14 +69,11 @@ public class change_password extends AppCompatActivity {
                                         Map<String, String> params = new HashMap<>();
                                         params.put("currentPass", current_pass.getText().toString());
                                         params.put("new_Pass", new_pass.getText().toString());
-                                        params.put("conform_Pass", conform_pass.getText().toString());
+                                        params.put("s_id", login.s_id);
                                         return params;
                                     }
                                 };
-
                                 my_singleton.getInstance(change_password.this).addToRequestQueue(stringRequest2);
-                                //Toast.makeText(change_password.this, "تم الحفظ", Toast.LENGTH_SHORT).show();
-
                             }
                         }
                     }
