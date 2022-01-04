@@ -475,6 +475,7 @@ public class home_page extends AppCompatActivity {
                 protected Map<String, String> getParams() {
                     Map<String, String> myMap = new HashMap<>();
                     myMap.put("text", news_text);
+                    myMap.put("s_id", login.s_id);
                     return myMap;
                 }
             };

@@ -25,6 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class notifications extends AppCompatActivity {
 
@@ -80,7 +82,14 @@ public class notifications extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
         my_singleton.getInstance(notifications.this).addToRequestQueue(myStringRequest);
 
         notificationIcon.setBackgroundColor(Color.WHITE);
