@@ -46,6 +46,7 @@ public class chats extends AppCompatActivity {
         myRecyclerView=findViewById(R.id.message_recyview);
 
         messagesIcon.setBackgroundColor(Color.WHITE);
+        selectChats();
 
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +111,9 @@ public class chats extends AppCompatActivity {
 
                         String user_name = reader.getString("user_name");
                         String message_text = reader.getString("message_text");
+                        if(message_text.length()>16){
+                            message_text=message_text.substring(0,15)+".....";
+                        }
                         String hour = reader.getString("hour");
                         myItem = new chatItem(user_name,message_text, hour);
 

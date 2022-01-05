@@ -62,7 +62,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="مرحبا"
+                        android:maxLength="20"
+                        android:text="الرسالة"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                 </LinearLayout>
