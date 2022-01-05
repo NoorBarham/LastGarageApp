@@ -32,6 +32,16 @@
                         android:drawableLeft="@drawable/delete_icon" />
 
                     <TextView
+                        android:id="@+id/messageItem_chatId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        android:visibility="gone" />
+
+                    <TextView
                         android:id="@+id/messageItem_name"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

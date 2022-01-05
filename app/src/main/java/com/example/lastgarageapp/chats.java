@@ -29,8 +29,8 @@ import java.util.Map;
 public class chats extends AppCompatActivity {
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
-    ArrayList<chatItem> myMessages = new ArrayList<>();
-    chatAdapter myMessageAdapter;
+    ArrayList<chatItem> myChats = new ArrayList<>();
+    chatAdapter myChatAdapter;
     RecyclerView myRecyclerView;
 
     @Override
@@ -84,17 +84,8 @@ public class chats extends AppCompatActivity {
             }
         });
         //recyclerView
-        chatItem m=new chatItem("waed","hi","10:30");
-        ArrayList<chatItem> messangerArray= new ArrayList<>();
-        messangerArray.add(m);
-        messangerArray.add(m);
-        chatAdapter m_adapter;
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-        RecyclerView messengerRecyclerView = findViewById(R.id.message_recyview);
-        messengerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        m_adapter = new chatAdapter(this, messangerArray);
-        messengerRecyclerView.setAdapter(m_adapter);
     }
 
     public void selectChats() {
@@ -109,18 +100,19 @@ public class chats extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
+                        String chat_id = reader.getString("chat_id");
                         String user_name = reader.getString("user_name");
                         String message_text = reader.getString("message_text");
                         if(message_text.length()>16){
                             message_text=message_text.substring(0,15)+".....";
                         }
                         String hour = reader.getString("hour");
-                        myItem = new chatItem(user_name,message_text, hour);
+                        myItem = new chatItem(user_name,message_text, hour,chat_id);
 
-                        myMessages.add(myItem);
+                        myChats.add(myItem);
                     }
-                    myMessageAdapter = new chatAdapter(chats.this, myMessages);
-                    myRecyclerView.setAdapter(myMessageAdapter);
+                    myChatAdapter = new chatAdapter(chats.this, myChats);
+                    myRecyclerView.setAdapter(myChatAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,9 +37,10 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.messengerViewH
     @Override
     public void onBindViewHolder(@NonNull messengerViewHolder holder, int position) {
         chatItem m= myMessengerItem.get(position);
-        holder.textName.setText(m.getTextName());
+        holder.chat_id.setText(m.getChatId());
+        holder.name.setText(m.getTextName());
         holder.textMessage.setText(m.getTextMessage());
-        holder.textHour.setText(m.getTextHour());
+        holder.hour.setText(m.getTextHour());
 
     }
 
@@ -51,17 +51,19 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.messengerViewH
 
 
     public class messengerViewHolder extends RecyclerView.ViewHolder {
-        TextView textName,textMessage,textHour;
-        ImageView imageDelete;
+        TextView name,textMessage, hour,chat_id;
         public messengerViewHolder(@NonNull View itemView) {
             super(itemView);
-            textName=itemView.findViewById(R.id.messageItem_name);
-            textHour=itemView.findViewById(R.id.messageItem_clock);
+            chat_id =itemView.findViewById(R.id.messageItem_chatId);
+            name =itemView.findViewById(R.id.messageItem_name);
+            hour =itemView.findViewById(R.id.messageItem_clock);
             textMessage=itemView.findViewById(R.id.messageItem_message);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    conversation.chat_id= chat_id.getText().toString();
+                    conversation.static_receiver_name= name.getText().toString();
                     Intent intent = new Intent(con, conversation.class);
                     con.startActivity(intent);
                 }
