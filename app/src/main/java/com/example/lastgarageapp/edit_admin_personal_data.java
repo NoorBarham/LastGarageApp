@@ -47,7 +47,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
         garageName=(Spinner)findViewById(R.id.editAdminPersonalData_garageVal);
 
         garagenameSpinner();
-        selectadmineditPersonaldata("5555");
+        selectadmineditPersonaldata();
         garageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -91,6 +91,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
                             myMap.put("city",u_city.getText().toString());
                             myMap.put("phone",u_phone.getText().toString());
                             myMap.put("garage_name",garageName.getSelectedItem().toString());
+                            myMap.put("s_id", login.s_id);
                             return myMap;
                         }
                     };
@@ -122,7 +123,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
         });
     }
 
-    public void selectadmineditPersonaldata(String id) {
+    public void selectadmineditPersonaldata() {
         String url = url_serverName.serverName + "selectadmineditPersonaldata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -162,7 +163,8 @@ public class edit_admin_personal_data extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("admin_id", id);
+               // myMap.put("admin_id", id);
+                myMap.put("s_id", login.s_id);
                 return myMap;
             }
         };

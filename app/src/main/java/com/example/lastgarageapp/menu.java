@@ -9,6 +9,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.lastgarageapp.itemClasses.lineItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class menu extends AppCompatActivity {
     TextView personalpage,adminPersonalpage,
@@ -68,32 +82,6 @@ public class menu extends AppCompatActivity {
         logout.setBackgroundColor(Color.WHITE);
 
 
-        adminPersonalpage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adminPersonalpage.setBackgroundColor(0xFFFF6F00);
-                //editpersonaldata.setBackgroundColor(Color.WHITE);
-                //changepass.setBackgroundColor(Color.WHITE);
-                personalpage.setBackgroundColor(Color.WHITE);
-                addDriver.setBackgroundColor(Color.WHITE);
-                addManager.setBackgroundColor(Color.WHITE);
-                addnewcar.setBackgroundColor(Color.WHITE);
-                addnewline.setBackgroundColor(Color.WHITE);
-                addnewgarage.setBackgroundColor(Color.WHITE);
-                editlinedata.setBackgroundColor(Color.WHITE);
-                editgaragedata.setBackgroundColor(Color.WHITE);
-                editcardata.setBackgroundColor(Color.WHITE);
-                showDrivers.setBackgroundColor(Color.WHITE);
-                readComplains.setBackgroundColor(Color.WHITE);
-                writecomplains.setBackgroundColor(Color.WHITE);
-                aboutapp.setBackgroundColor(Color.WHITE);
-                settings.setBackgroundColor(Color.WHITE);
-                logout.setBackgroundColor(Color.WHITE);
-
-                Intent intent= new Intent(menu.this ,admin_personal_page.class);
-                startActivity(intent);
-            }
-        });
         personalpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,8 +104,7 @@ public class menu extends AppCompatActivity {
                 settings.setBackgroundColor(Color.WHITE);
                 logout.setBackgroundColor(Color.WHITE);
 
-                Intent intent= new Intent(menu.this ,personal_page.class);
-                startActivity(intent);
+                isAdminOrDriver();
             }
         });
 
@@ -537,6 +524,49 @@ public class menu extends AppCompatActivity {
             }
         });
     }
+
+    private void isAdminOrDriver() {
+        String url = url_serverName.serverName + "isAdminOrDriver.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("A_D");
+                    lineItem myItem;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String check = reader.getString("check");
+                        if(check.equals("d")){
+                            Intent intent = new Intent(menu.this, personal_page.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(menu.this, admin_personal_page.class);
+                            startActivity(intent);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(menu.this).addToRequestQueue(myStringRequest);
+    }
+
 //    private void getLogin(){
 //        if (login.myUser!=null){
 //

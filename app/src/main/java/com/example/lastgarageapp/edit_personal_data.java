@@ -38,7 +38,7 @@ public class  edit_personal_data extends AppCompatActivity {
         city=findViewById(R.id.editPersonalData_cityVal);
         phone=findViewById(R.id.editPersonalData_phoneNumVal);
 
-        selectPersonaldata("2145");
+        selectPersonaldata();
 
         editPersonalData_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +71,7 @@ public class  edit_personal_data extends AppCompatActivity {
                             myMap.put("name",name.getText().toString());
                             myMap.put("city",city.getText().toString());
                             myMap.put("phone",phone.getText().toString());
+                            myMap.put("s_id", login.s_id);
                         //    myMap.put("destination",dest.getSelectedItem().toString());
                             return myMap;
                         }
@@ -100,7 +101,7 @@ public class  edit_personal_data extends AppCompatActivity {
         });
     }
 
-    public void selectPersonaldata(String Id) {
+    public void selectPersonaldata() {
 
         String url = url_serverName.serverName + "selectdrivereditPersonaldata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -137,7 +138,8 @@ public class  edit_personal_data extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("driver_id", Id);
+               // myMap.put("driver_id", Id);
+                myMap.put("s_id", login.s_id);
                 return myMap;
             }
         };
