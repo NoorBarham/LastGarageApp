@@ -25,12 +25,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class menu extends AppCompatActivity {
-    TextView personalpage,adminPersonalpage,
+    TextView personalpage,personalInfo,
             addDriver,addManager, addnewcar, addnewline, addnewgarage,
             editlinedata,editgaragedata,editcardata,
             showDrivers, readComplains,writecomplains,
             aboutapp, settings,logout;
-    TextView other;
+    TextView other,add,edit;
+    View divider,div4,div10;
     LinearLayout personalLayout, addLayout, editLayout;
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
@@ -41,14 +42,19 @@ public class menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         personalpage=findViewById(R.id.driver_personal_page);
-        adminPersonalpage=findViewById(R.id.admin_personal_page);
+        personalInfo=findViewById(R.id.personal_info);
+        div4=findViewById(R.id.divider4);
+        div10=findViewById(R.id.divider10);
 
+
+        add=findViewById(R.id.add);
         addDriver=findViewById(R.id.add_new_driver);
         addManager=findViewById(R.id.add_new_manager);
         addnewcar=findViewById(R.id.add_new_car);
         addnewline=findViewById(R.id.add_new_line);
         addnewgarage=findViewById(R.id.add_new_garage);
 
+        edit=findViewById(R.id.edit);
         editlinedata=findViewById(R.id.edit_data_line);
         editgaragedata=findViewById(R.id.edit_data_garage);
         editcardata=findViewById(R.id.edit_data_car);
@@ -56,7 +62,6 @@ public class menu extends AppCompatActivity {
         personalLayout=findViewById(R.id.personalLayout);
         addLayout =findViewById(R.id.addLayout);
         editLayout =findViewById(R.id.editLayout);
-        personalLayout=findViewById(R.id.personalLayout);
         other=findViewById(R.id.other);
         showDrivers =findViewById(R.id.show_driver_list);
         readComplains =findViewById(R.id.read_complain);
@@ -64,6 +69,7 @@ public class menu extends AppCompatActivity {
         aboutapp=findViewById(R.id.about);
         settings = findViewById(R.id.settings);
         logout = findViewById(R.id.logout);
+        divider=findViewById(R.id.divider9);
 
         personalpage.setBackgroundColor(Color.WHITE);
         addDriver.setBackgroundColor(Color.WHITE);
@@ -81,6 +87,8 @@ public class menu extends AppCompatActivity {
         settings.setBackgroundColor(Color.WHITE);
         logout.setBackgroundColor(Color.WHITE);
 
+        isAdminOrDriverMenue();
+
 
         personalpage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +96,7 @@ public class menu extends AppCompatActivity {
                 personalpage.setBackgroundColor(0xFFFF6F00);
                 //editpersonaldata.setBackgroundColor(Color.WHITE);
                 //changepass.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+              //  adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -103,8 +111,8 @@ public class menu extends AppCompatActivity {
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
                 logout.setBackgroundColor(Color.WHITE);
-
                 isAdminOrDriver();
+
             }
         });
 
@@ -114,7 +122,7 @@ public class menu extends AppCompatActivity {
                 addDriver.setBackgroundColor(0xFFFF6F00);
                 //editpersonaldata.setBackgroundColor(Color.WHITE);
                 //changepass.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+             //   adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -142,7 +150,7 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addManager.setBackgroundColor(0xFFFF6F00);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+                //adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -169,7 +177,7 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 addnewline.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+                //adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -194,7 +202,7 @@ public class menu extends AppCompatActivity {
             public void onClick(View view) {
                 addnewgarage.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+              //  adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -221,7 +229,7 @@ public class menu extends AppCompatActivity {
                 personalpage.setBackgroundColor(Color.WHITE);
            //     editpersonaldata.setBackgroundColor(Color.WHITE);
              //   changepass.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+               /// adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewline.setBackgroundColor(Color.WHITE);
@@ -249,7 +257,7 @@ public class menu extends AppCompatActivity {
                 personalpage.setBackgroundColor(Color.WHITE);
                // editpersonaldata.setBackgroundColor(Color.WHITE);
                 //changepass.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+               // adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -276,7 +284,7 @@ public class menu extends AppCompatActivity {
                 //personalpage.setBackgroundColor(Color.WHITE);
                 //editpersonaldata.setBackgroundColor(Color.WHITE);
                // changepass.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+              //  adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -304,7 +312,7 @@ public class menu extends AppCompatActivity {
                 personalpage.setBackgroundColor(Color.WHITE);
                 //editpersonaldata.setBackgroundColor(Color.WHITE);
                 //changepass.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+                //adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -328,7 +336,7 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDrivers.setBackgroundColor(0xFFFF6F00);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+                //adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
@@ -353,7 +361,7 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 readComplains.setBackgroundColor(0xFFFF6F00);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+               /// adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
@@ -378,7 +386,7 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 writecomplains.setBackgroundColor(0xFFFF6F00);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+              ///  adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
@@ -404,7 +412,7 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 aboutapp.setBackgroundColor(0xFFFF6F00);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+              //  adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
@@ -427,7 +435,7 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 settings.setBackgroundColor(0xFFFF6F00);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+//                adminPersonalpage.setBackgroundColor(Color.WHITE);
                 personalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
@@ -455,7 +463,7 @@ public class menu extends AppCompatActivity {
 
                 logout.setBackgroundColor(0xFFFF6F00);
                 personalpage.setBackgroundColor(Color.WHITE);
-                adminPersonalpage.setBackgroundColor(Color.WHITE);
+               // adminPersonalpage.setBackgroundColor(Color.WHITE);
                 addDriver.setBackgroundColor(Color.WHITE);
                 addManager.setBackgroundColor(Color.WHITE);
                 addnewcar.setBackgroundColor(Color.WHITE);
@@ -501,20 +509,25 @@ public class menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        personalIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(menu.this ,personal_page.class);
-                startActivity(intent);
-            }
-        });
-        messagesIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(menu.this , chats.class);
-                startActivity(intent);
-            }
-        });
+        if(login.s_id!=null) {
+            personalIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    isAdminOrDriver();
+                }
+            });
+            messagesIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(menu.this, chats.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            personalIcon.setVisibility(View.GONE);
+            messagesIcon.setVisibility(View.GONE);
+        }
 
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -525,6 +538,75 @@ public class menu extends AppCompatActivity {
         });
     }
 
+
+    private void isAdminOrDriverMenue() {
+
+        if(login.s_id!=null) {
+
+            String url = url_serverName.serverName + "isAdminOrDriver.php";
+            StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        JSONArray jsonArray = object.getJSONArray("A_D");
+                        lineItem myItem;
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject reader = jsonArray.getJSONObject(i);
+                            String check = reader.getString("check");
+                            if (check.equals("d")) {
+                                readComplains.setVisibility(View.GONE);
+                                divider.setVisibility(View.GONE);
+                                add.setVisibility(View.GONE);
+                                edit.setVisibility(View.GONE);
+                                addLayout.setVisibility(View.GONE);
+                                editLayout.setVisibility(View.GONE);
+
+
+                            } else {
+
+                            }
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> myMap = new HashMap<>();
+                    myMap.put("s_id", login.s_id);
+                    return myMap;
+                }
+            };
+            my_singleton.getInstance(menu.this).addToRequestQueue(myStringRequest);
+        }
+        else{
+            personalInfo.setVisibility(View.GONE);
+            personalLayout.setVisibility(View.GONE);
+            add.setVisibility(View.GONE);
+            addLayout.setVisibility(View.GONE);
+            edit.setVisibility(View.GONE);
+            editLayout.setVisibility(View.GONE);
+            readComplains.setVisibility(View.GONE);
+            divider.setVisibility(View.GONE);
+            settings.setVisibility(View.GONE);
+            div4.setVisibility(View.GONE);
+            logout.setVisibility(View.GONE);
+            showDrivers.setVisibility(View.GONE);
+            div10.setVisibility(View.GONE);
+
+
+
+        }
+    }
     private void isAdminOrDriver() {
         String url = url_serverName.serverName + "isAdminOrDriver.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -566,7 +648,6 @@ public class menu extends AppCompatActivity {
         };
         my_singleton.getInstance(menu.this).addToRequestQueue(myStringRequest);
     }
-
 //    private void getLogin(){
 //        if (login.myUser!=null){
 //

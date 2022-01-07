@@ -120,6 +120,7 @@ public class home_page extends AppCompatActivity {
         newsButt.setTextColor(0xFFFF6F00);
         garageLineStatusLayout.setVisibility(View.GONE);
         carStatusLayout.setVisibility(View.GONE);
+
         sourceSpinner();
         dest.setEnabled(false);
         selectNews();
@@ -333,25 +334,37 @@ public class home_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        personalIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isAdminOrDriver();
-            }
-        });
-        messagesIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(home_page.this, chats.class);
-                startActivity(intent);
-            }
-        });
+        if(login.s_id!=null) {
+            personalIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    isAdminOrDriver();
+                }
+            });
+
+            messagesIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(home_page.this, chats.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            personalIcon.setVisibility(View.GONE);
+            messagesIcon.setVisibility(View.GONE);
+        }
+
+
 
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(home_page.this, menu.class);
-                startActivity(intent);
+
+                    Intent intent = new Intent(home_page.this, menu.class);
+                    startActivity(intent);
+
+
             }
         });
 

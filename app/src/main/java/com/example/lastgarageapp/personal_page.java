@@ -48,7 +48,7 @@ public class personal_page extends AppCompatActivity {
         u_dest = findViewById(R.id.personalPage_dest);
 
 
-        selectPersonaldata("86");
+        selectPersonaldata();
 
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +152,7 @@ public class personal_page extends AppCompatActivity {
 
     }
 
-    public void selectPersonaldata(String id) {
+    public void selectPersonaldata() {
         String url = url_serverName.serverName + "driverPersonalpage.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

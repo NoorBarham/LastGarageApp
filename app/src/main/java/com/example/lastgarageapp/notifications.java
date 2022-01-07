@@ -106,20 +106,26 @@ public class notifications extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        personalIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(notifications.this, personal_page.class);
-                startActivity(intent);
-            }
-        });
-        messagesIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(notifications.this, chats.class);
-                startActivity(intent);
-            }
-        });
+        if(login.s_id!=null) {
+            personalIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(notifications.this, personal_page.class);
+                    startActivity(intent);
+                }
+            });
+            messagesIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(notifications.this, chats.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            personalIcon.setVisibility(View.GONE);
+            messagesIcon.setVisibility(View.GONE);
+        }
 
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
