@@ -10,27 +10,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="#ff6f00"
         android:orientation="horizontal"
         android:padding="10dp">
 
         <ImageView
+            android:id="@+id/conversation_backIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/go_icon"
-            app:tint="@color/white"
-            android:id="@+id/conversation_backIcon"/>
+            app:tint="@color/white" />
 
         <TextView
+            android:id="@+id/conversation_receiverName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="20dp"
             android:text="-"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            android:id="@+id/conversation_receiverName"/>
+            android:textSize="20dp" />
 
     </LinearLayout>
 
@@ -40,49 +40,53 @@
         android:gravity="bottom"
         android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/converRecyView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-<!--            android:visibility="gone"-->
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical">
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/carStakhklhtus_addIcon"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:maxWidth="350dp"-->
-            <!--                android:padding="12dp"-->
-            <!--                android:layout_marginBottom="3dp"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="18dp"-->
-            <!--                android:background="@drawable/radius_border"-->
-            <!--                android:text="مرحبا كيفك ؟ ..."/>-->
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/carStaنتkhklhtusdhsdf_addIcon"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:maxWidth="350dp"-->
-            <!--                android:padding="12dp"-->
-            <!--                android:layout_marginBottom="5dp"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="18dp"-->
-            <!--                android:background="@drawable/input_background"-->
-            <!--                android:text="شو أخبارك إن شاء الله منيحة ؟"/>-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/converRecyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <!--            android:visibility="gone"-->
 
-        </LinearLayout>
+                <!--            <TextView-->
+                <!--                android:id="@+id/carStakhklhtus_addIcon"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:maxWidth="350dp"-->
+                <!--                android:padding="12dp"-->
+                <!--                android:layout_marginBottom="3dp"-->
+                <!--                android:textColor="@color/black"-->
+                <!--                android:textSize="18dp"-->
+                <!--                android:background="@drawable/radius_border"-->
+                <!--                android:text="مرحبا كيفك ؟ ..."/>-->
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/carStaنتkhklhtusdhsdf_addIcon"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:maxWidth="350dp"-->
+                <!--                android:padding="12dp"-->
+                <!--                android:layout_marginBottom="5dp"-->
+                <!--                android:textColor="@color/black"-->
+                <!--                android:textSize="18dp"-->
+                <!--                android:background="@drawable/input_background"-->
+                <!--                android:text="شو أخبارك إن شاء الله منيحة ؟"/>-->
+
+            </LinearLayout>
+        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="57dp"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -91,15 +95,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/white_background"
+                android:ems="10"
+                android:gravity="right|left"
+                android:hint="اكتب رسالة هنا......"
+                android:inputType="textMultiLine"
                 android:maxHeight="140dp"
                 android:padding="12dp"
-                android:gravity="right|left"
-                android:background="@drawable/white_background"
-                android:textSize="18dp"
                 android:textColor="@color/black"
-                android:ems="10"
-                android:hint="اكتب رسالة هنا......"
-                android:inputType="textMultiLine" />
+                android:textSize="18dp" />
 
             <ImageView
                 android:id="@+id/conversation_send_icon"

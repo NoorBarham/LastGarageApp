@@ -28,8 +28,7 @@ public class login extends AppCompatActivity {
     private Button loginClient;
     private Button loginAdmin;
 
-    String flag;
-    public static String myUser;
+    public static String myUser_id;
     public static String s_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +40,19 @@ public class login extends AppCompatActivity {
         loginAdmin = findViewById(R.id.login_loginAdmin);
         loginClient = findViewById(R.id.login_loginClient);
 
+        login.myUser_id=idNumber.getText().toString();
+
         loginAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String tex_email = idNumber.getText().toString();
+                String idUser = idNumber.getText().toString();
                 String tex_password = password.getText().toString();
-                if (TextUtils.isEmpty(tex_email) || TextUtils.isEmpty(tex_password)){
+                if (TextUtils.isEmpty(idUser) || TextUtils.isEmpty(tex_password)){
                     Toast.makeText(login.this, "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    login(tex_email,tex_password);
+                    login(idUser,tex_password);
                 }
             }
 
@@ -62,7 +63,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(login.this,home_page.class));
-                myUser=null;
+                s_id=null;
                 finish();
             }
         });

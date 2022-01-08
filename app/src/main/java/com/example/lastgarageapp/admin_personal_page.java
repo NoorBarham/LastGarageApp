@@ -50,7 +50,7 @@ public class admin_personal_page extends AppCompatActivity {
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(admin_personal_page.this, edit_personal_data.class);
+                Intent intent = new Intent(admin_personal_page.this, edit_admin_personal_data.class);
                 startActivity(intent);
             }
         });
