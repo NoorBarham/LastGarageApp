@@ -84,7 +84,11 @@ public class notifications extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("s_id", login.s_id);
+                if(login.s_id!=null){
+                    myMap.put("s_id", login.s_id);
+                }else{
+                    myMap.put("s_id", "null");
+                }
                 return myMap;
             }
         };
