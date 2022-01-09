@@ -87,7 +87,7 @@ public class menu extends AppCompatActivity {
         settings.setBackgroundColor(Color.WHITE);
         logout.setBackgroundColor(Color.WHITE);
 
-        isAdminOrDriverMenue();
+        isAdminOrDriverMenu();
 
 
         personalpage.setOnClickListener(new View.OnClickListener() {
@@ -539,7 +539,7 @@ public class menu extends AppCompatActivity {
     }
 
 
-    private void isAdminOrDriverMenue() {
+    private void isAdminOrDriverMenu() {
 
         if(login.s_id!=null) {
 

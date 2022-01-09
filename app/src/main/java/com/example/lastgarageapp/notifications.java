@@ -114,8 +114,7 @@ public class notifications extends AppCompatActivity {
             personalIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(notifications.this, personal_page.class);
-                    startActivity(intent);
+                    isAdminOrDriver();
                 }
             });
             messagesIcon.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +138,46 @@ public class notifications extends AppCompatActivity {
             }
         });
     }
+    private void isAdminOrDriver() {
+        String url = url_serverName.serverName + "isAdminOrDriver.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("A_D");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String check = reader.getString("check");
+                        Intent intent;
+                        if(check.equals("d")){
+                            intent = new Intent(notifications.this, personal_page.class);
+                        }else{
+                            intent = new Intent(notifications.this, admin_personal_page.class);
+                        }
+                        startActivity(intent);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(notifications.this).addToRequestQueue(myStringRequest);
+    }
 }
-/// recycleview
 
 // عند اضافة خبر يتم عمل اشعار

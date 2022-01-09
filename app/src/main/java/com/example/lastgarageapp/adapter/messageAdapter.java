@@ -16,10 +16,12 @@ import com.example.lastgarageapp.login;
 import java.util.ArrayList;
 
 
-public class messageAdapter extends RecyclerView.Adapter<messageAdapter.myViewHolder> {
+public class messageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<messageItem> myChatItem ;
     private LayoutInflater mInflater;
+    private static int TYPE_SENDER=1;
+    private static int TYPE_RECEIVER=2;
     private int flag=0;
     Context con;
 
@@ -31,43 +33,61 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.myViewHo
 
     @NonNull
     @Override
-    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if(flag==1){
-            view= mInflater.inflate(R.layout.send_massage_item,parent,false);
+        RecyclerView.ViewHolder holder;
+
+        if(viewType==TYPE_SENDER){
+            view= LayoutInflater.from(con).inflate(R.layout.send_massage_item,parent,false);
+            holder =new myViewHolder(view);
         }else{
             view= mInflater.inflate(R.layout.received_message_item,parent,false);
+            holder =new receiverViewHolder(view);
         }
-        myViewHolder holder =new myViewHolder(view);
         return holder;    }
 
     @Override
-    public void onBindViewHolder(myViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         messageItem c = myChatItem.get(position);
-        if(myChatItem.get(position).getSender_id().equals(login.myUser_id)){
-            holder.sendMessageText.setText(c.getMessageText());
-            holder.sendHourText.setText(c.getHour());
-            flag=1;
+        if(getItemViewType(position)==TYPE_SENDER){
+            ((myViewHolder)holder).sendMessageText.setText(c.getMessageText());
+            ((myViewHolder)holder).sendHourText.setText(c.getHour());
         } else{
-            holder.receivedMessageText.setText(c.getMessageText());
-            holder.receivedHourText.setText(c.getHour());
-            flag=0;
+            ((receiverViewHolder)holder).receivedMessageText.setText(c.getMessageText());
+            ((receiverViewHolder)holder).receivedHourText.setText(c.getHour());
         }
     }
 
     @Override
     public int getItemCount() {
-        //how many items in my list
         return myChatItem.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(myChatItem.get(position).getSender_id().equals(login.myUser_id)){
+            return TYPE_SENDER;
+        } else{
+            return TYPE_RECEIVER;
+        }
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView sendMessageText, sendHourText, receivedMessageText, receivedHourText;
+        TextView sendMessageText, sendHourText;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             sendMessageText=itemView.findViewById(R.id.sendMessageItem_messageText);
             sendHourText =itemView.findViewById(R.id.sendMessageItem_houre);
+        }
+
+    }
+    public class receiverViewHolder extends RecyclerView.ViewHolder{
+
+        TextView receivedMessageText, receivedHourText;
+        public receiverViewHolder(@NonNull View itemView) {
+            super(itemView);
+
             receivedMessageText=itemView.findViewById(R.id.receivedMessageItem_messageText);
             receivedHourText =itemView.findViewById(R.id.receivedMessageItem_houre);
         }

@@ -378,7 +378,6 @@ public class home_page extends AppCompatActivity {
                 try {
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("A_D");
-                    lineItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
                         String check = reader.getString("check");

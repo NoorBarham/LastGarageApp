@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,8 +41,7 @@ public class login extends AppCompatActivity {
         loginAdmin = findViewById(R.id.login_loginAdmin);
         loginClient = findViewById(R.id.login_loginClient);
 
-        login.myUser_id=idNumber.getText().toString();
-
+//        Log.e("",login.myUser_id+"hooooo");
         loginAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +86,7 @@ public class login extends AppCompatActivity {
                         JSONObject reader = jsonArray.getJSONObject(i);
                         s_id = reader.getString("s_id");
                         startActivity(new Intent(login.this, home_page.class));
+                        login.myUser_id=idNumber.getText().toString();
 
                     }
                 } catch (JSONException e) {
