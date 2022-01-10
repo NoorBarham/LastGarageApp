@@ -110,7 +110,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
             }
         });
     }
-
+//1
     public void selectadmineditPersonaldata() {
         String url = url_serverName.serverName + "selectadmineditPersonaldata.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
