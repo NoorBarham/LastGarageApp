@@ -48,6 +48,7 @@ public class home_page extends AppCompatActivity {
     TextView iconAddgarage, iconAddcar, iconFilter;
     EditText addNewstext;
     RecyclerView recyclerView;
+    LinearLayout news;
 
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
@@ -82,6 +83,7 @@ public class home_page extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
+        news=findViewById(R.id.homePage_newsLayout);
 
         //my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
@@ -262,6 +264,12 @@ public class home_page extends AppCompatActivity {
                 selectNews();
             }
         });
+        if (login.s_id!=null){
+           news.setVisibility(View.VISIBLE);
+        }
+        else{
+          news.setVisibility(View.GONE);
+        }
 
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
