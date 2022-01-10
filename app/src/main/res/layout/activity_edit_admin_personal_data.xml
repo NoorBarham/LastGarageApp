@@ -126,14 +126,13 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
-                   <Spinner
+                   <TextView
                         android:id="@+id/editAdminPersonalData_garageVal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:inputType="number"
-                        android:textIsSelectable="false"
+                        android:textColor="#ff6f00"
                         android:textSize="20sp" />
 
                     <TextView

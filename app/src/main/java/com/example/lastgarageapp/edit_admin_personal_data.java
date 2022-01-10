@@ -29,8 +29,7 @@ import java.util.Map;
 
 public class edit_admin_personal_data extends AppCompatActivity {
     private Button editAdminPersonalData_cancel, editAdminPersonalData_save;
-    TextView u_name,u_city,u_phone;
-    Spinner garageName;
+    TextView u_name,u_city,u_phone,garageName;
 
     ArrayList garage_name_array =new ArrayList();
 
@@ -44,20 +43,10 @@ public class edit_admin_personal_data extends AppCompatActivity {
         u_name=findViewById(R.id.editAdminPersonalData_nameVal);
         u_city=findViewById(R.id.editAdminPersonalData_cityVal);
         u_phone=findViewById(R.id.editAdminPersonalData_phoneNumVal);
-        garageName=(Spinner)findViewById(R.id.editAdminPersonalData_garageVal);
+        garageName=findViewById(R.id.editAdminPersonalData_garageVal);
 
-        garagenameSpinner();
+
         selectadmineditPersonaldata();
-        garageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        //3
 
         editAdminPersonalData_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +79,6 @@ public class edit_admin_personal_data extends AppCompatActivity {
                             myMap.put("name",u_name.getText().toString());
                             myMap.put("city",u_city.getText().toString());
                             myMap.put("phone",u_phone.getText().toString());
-                            myMap.put("garage_name",garageName.getSelectedItem().toString());
                             myMap.put("s_id", login.s_id);
                             return myMap;
                         }
@@ -145,7 +133,7 @@ public class edit_admin_personal_data extends AppCompatActivity {
                         u_name.setText(name);
                         u_phone.setText(phone);
                         u_city.setText(city);
-                        garageName.setSelection(getIndexByString(garageName,garage_name));
+                        garageName.setText(garage_name);
 
                     }
 
@@ -163,7 +151,6 @@ public class edit_admin_personal_data extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-               // myMap.put("admin_id", id);
                 myMap.put("s_id", login.s_id);
                 return myMap;
             }
@@ -171,51 +158,5 @@ public class edit_admin_personal_data extends AppCompatActivity {
         my_singleton.getInstance(edit_admin_personal_data.this).addToRequestQueue(myStringRequest);
 
     }
-    public void garagenameSpinner() {
-        garage_name_array.clear();
-       // garage_name_array.add(0,"لم يحدد");
 
-        String url = url_serverName.serverName + "sourceSpinner.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("garages");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-
-                        //String cityName
-                        String cityName = reader.getString("garage_name");
-                        garage_name_array.add(cityName);
-
-                    }
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_admin_personal_data.this,android.R.layout.simple_spinner_item, garage_name_array);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    garageName.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        });
-        my_singleton.getInstance(edit_admin_personal_data.this).addToRequestQueue(myStringRequest);
-    }
-
-    public int getIndexByString(Spinner spinner, String string) {
-        int index = 0;
-
-        for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(string)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
 }
