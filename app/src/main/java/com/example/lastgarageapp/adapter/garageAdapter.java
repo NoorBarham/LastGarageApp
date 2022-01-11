@@ -25,7 +25,9 @@ import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.edit_garage;
 import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.garageItem;
+import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
+import com.example.lastgarageapp.personal_page;
 import com.example.lastgarageapp.url_serverName;
 
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
     private ArrayList<garageItem> myGarageItem;
     private LayoutInflater mInflater;
     Context con;
+    home_page h;
 
     public garageAdapter(Context context, ArrayList<garageItem> myGarageItem) {
         this.myGarageItem = myGarageItem;
@@ -62,6 +65,9 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
         holder.fromHoure.setText(g.getFromHoure());
         holder.toHoure.setText(g.getToHoure());
 
+        if(login.s_id==null){
+            holder.iconDelet.setVisibility(View.GONE);
+        }
 
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +145,16 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
             fromHoure=itemView.findViewById(R.id.garageItem_FromHoure);
             iconDelet=itemView.findViewById(R.id.garageItem_deleteIcon);
             sour = itemView.findViewById(R.id.homePage_source);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    home_page.getInstance().MoveFromGarageToLine(cityName.getText().toString());
+
+                }
+            });
+
+
 
         }
     }

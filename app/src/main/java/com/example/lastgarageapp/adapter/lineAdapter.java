@@ -23,6 +23,7 @@ import com.example.lastgarageapp.add_driver;
 import com.example.lastgarageapp.edit_line;
 import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.line_status_list_item;
+import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
 import com.example.lastgarageapp.url_serverName;
 
@@ -56,6 +57,10 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
         holder.noOfCars.setText(l.getNoOfCar());
         holder.garage1.setText(l.getGarage1());
         holder.garage2.setText(l.getGarage2());
+
+        if(login.s_id==null){
+            holder.iconDelete.setVisibility(View.GONE);
+        }
 
         holder.iconDelete.setOnClickListener(new View.OnClickListener() {
             @Override
