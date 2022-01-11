@@ -788,8 +788,10 @@ public class home_page extends AppCompatActivity {
     }
     public void MoveFromGarageToLine (String garageName){
         sour.setSelection(getIndexByString(sour,garageName));
-
-
+    }
+    public void MoveFromLineToCar (String SourceName,String DestName){
+        sour.setSelection(getIndexByString(sour,SourceName));
+        dest.setSelection(getIndexByString(dest,DestName));
     }
     public int getIndexByString(Spinner spinner, String string) {
         int index = 0;

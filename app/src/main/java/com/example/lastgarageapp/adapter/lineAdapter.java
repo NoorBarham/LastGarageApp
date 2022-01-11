@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.add_driver;
 import com.example.lastgarageapp.edit_line;
+import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.lineItem;
 import com.example.lastgarageapp.line_status_list_item;
 import com.example.lastgarageapp.login;
@@ -136,6 +137,14 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
             garage1= itemView.findViewById(R.id.lineItem_garage1);
             garage2= itemView.findViewById(R.id.lineItem_garage2);
             iconDelete = itemView.findViewById(R.id.lineItem_deleteIcon);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    home_page.getInstance().MoveFromLineToCar(garage1.getText().toString(),garage2.getText().toString());
+
+                }
+            });
 
 
         }
