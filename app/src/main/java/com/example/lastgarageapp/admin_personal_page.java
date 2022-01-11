@@ -44,6 +44,7 @@ public class admin_personal_page extends AppCompatActivity {
         u_phone = findViewById(R.id.adminPersonalPage_phoneNumVal);
         u_garage = findViewById(R.id.adminPersonalPage_workplaceVal);
 
+
         selectadminPersonaldata();
 
 
@@ -110,8 +111,6 @@ public class admin_personal_page extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
-                Intent intent = new Intent(admin_personal_page.this, admin_personal_page.class);
-                startActivity(intent);
             }
         });
         messagesIcon.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +128,7 @@ public class admin_personal_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,13 +167,15 @@ public class admin_personal_page extends AppCompatActivity {
                         String name = reader.getString("admin_name");
                         String phone = reader.getString("phone");
                         String city = reader.getString("city");
-                        String garage_name = reader.getString("garage_name");
+                        String garage = reader.getString("garage_name");
+
+
 
                         u_id.setText(id);
                         u_name.setText(name);
                         u_phone.setText(phone);
                         u_city.setText(city);
-                        u_garage.setText(garage_name);
+                        u_garage.setText(garage);
                     }
 
                 } catch (JSONException e) {
@@ -196,6 +198,46 @@ public class admin_personal_page extends AppCompatActivity {
         };
         my_singleton.getInstance(admin_personal_page.this).addToRequestQueue(myStringRequest);
 
+    }
+    private void isAdminOrDriver() {
+        String url = url_serverName.serverName + "isAdminOrDriver.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("A_D");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String check = reader.getString("check");
+                        if(check.equals("d")){
+                            Intent intent = new Intent(admin_personal_page.this, personal_page.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(admin_personal_page.this, admin_personal_page.class);
+                            startActivity(intent);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(admin_personal_page.this).addToRequestQueue(myStringRequest);
     }
 
     }

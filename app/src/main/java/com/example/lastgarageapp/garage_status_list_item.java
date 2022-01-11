@@ -20,6 +20,8 @@ public class garage_status_list_item extends AppCompatActivity {
         setContentView(R.layout.activity_garage_status_list_item);
         garageItem_deleteIcon = (TextView) findViewById(R.id.garageItem_deleteIcon);
 
+
+
         garageItem_deleteIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +48,9 @@ public class garage_status_list_item extends AppCompatActivity {
             }
         });
 
+
     }
+
 }
 
 

@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.itemClasses.newsItem;
+import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
 import com.example.lastgarageapp.url_serverName;
 import com.example.lastgarageapp.view_notification;
@@ -59,6 +60,10 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
         holder.textHour.setText(ne.getTextHour());
         holder.newsId.setText(ne.getNewsId());
 
+        if(login.s_id==null){
+            holder.iconDelete.setVisibility(View.GONE);
+        }
+
         holder.iconDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,9 +74,6 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                 alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        // Toast.makeText(line_status_list_item.this, "تم الحذف",Toast.LENGTH_SHORT).show();
-
 
                         String url = url_serverName.serverName + "deleteIconnews.php";
                         StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -106,7 +108,6 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        // Toast.makeText(line_status_list_item.this, "تم التراجع",Toast.LENGTH_SHORT).show();
                     }
                 });
                 alert.create().show();
