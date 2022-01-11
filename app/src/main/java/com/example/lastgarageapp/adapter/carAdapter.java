@@ -20,8 +20,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.itemClasses.carItem;
+import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
 import com.example.lastgarageapp.url_serverName;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,6 +66,49 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         holder.noOfPassenger.setText(c.getNoOfPassenger());
         holder.capacity.setText(c.getCapacity());
         holder.arrivalTime.setText(c.getArrivalTime());
+
+        if(login.s_id!=null){
+
+            String url = url_serverName.serverName + "isAdminOrDriver.php";
+            StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        JSONArray jsonArray = object.getJSONArray("A_D");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject reader = jsonArray.getJSONObject(i);
+                            String check = reader.getString("check");
+                            if(check.equals("d")){
+                                holder.iconDelet.setVisibility(View.GONE);
+                            }else{
+
+                            }
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> myMap = new HashMap<>();
+                    myMap.put("s_id", login.s_id);
+                    return myMap;
+                }
+            };
+            my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
+        }
+        else{
+            holder.iconDelet.setVisibility(View.GONE);
+        }
 
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override

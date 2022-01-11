@@ -1,7 +1,9 @@
 package com.example.lastgarageapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -477,10 +479,32 @@ public class menu extends AppCompatActivity {
                 aboutapp.setBackgroundColor(Color.WHITE);
                 settings.setBackgroundColor(Color.WHITE);
 
-                Intent intent= new Intent(menu.this ,login.class);
-                startActivity(intent);
+                AlertDialog.Builder alert = new AlertDialog.Builder(menu.this);
+                alert.setTitle("تأكيد تسجيل الخروج");
+                alert.setMessage("هل تريد تأكيد تسجيل الخروج؟");
 
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent= new Intent(menu.this ,login.class);
+                        startActivity(intent);
+
+                    }
+
+
+                });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert.create().show();
             }
+
+
+
         });
 
 

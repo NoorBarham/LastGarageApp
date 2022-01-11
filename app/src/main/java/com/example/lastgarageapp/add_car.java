@@ -118,48 +118,49 @@ public class add_car extends AppCompatActivity {
                 alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                if(car_no.getText().length()==0){
-                    Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
-                }else{
-                    String url = url_serverName.serverName + "addCar.php";
-                    StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                            error.printStackTrace();
-                        }
-                    }) {
-                        @Override
-                        protected Map<String, String> getParams() {
-                            Map<String, String> params = new HashMap<>();
-                            params.put("car_id", car_no.getText().toString());
-                            params.put("driver_name", driver_name.getSelectedItem().toString());
-                            params.put("car_size", capacity.getSelectedItem().toString());
-                            params.put("source", sour.getSelectedItem().toString());
-                            params.put("destination", dest.getSelectedItem().toString());
+                        if (car_no.getText().length() == 0) {
+                            Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
+                        } else {
+                            String url = url_serverName.serverName + "addCar.php";
+                            StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                                    error.printStackTrace();
+                                }
+                            }) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("car_id", car_no.getText().toString());
+                                    params.put("driver_name", driver_name.getSelectedItem().toString());
+                                    params.put("car_size", capacity.getSelectedItem().toString());
+                                    params.put("source", sour.getSelectedItem().toString());
+                                    params.put("destination", dest.getSelectedItem().toString());
 
-                            return params;
+                                    return params;
+                                }
+                            };
+                            my_singleton.getInstance(add_car.this).addToRequestQueue(stringRequest2);
+                            //  Toast.makeText(add_car.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+
                         }
-                    };
-                    my_singleton.getInstance(add_car.this).addToRequestQueue(stringRequest2);
-                  //  Toast.makeText(add_car.this, "تمت الإضافة",Toast.LENGTH_SHORT).show();
+                    }
 
-                }
-            }
-
-        });
+                });
                 alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                         //  Toast.makeText(edit_personal_data.this, "تم التراجع",Toast.LENGTH_SHORT).show();
                     }
-                });alert.create().show();
+                });
+                alert.create().show();
 
             }
         });
