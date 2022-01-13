@@ -50,7 +50,8 @@ public class home_page extends AppCompatActivity {
     EditText addNewstext;
     RecyclerView recyclerView;
     LinearLayout news;
-    String cityName;
+    String nameGarage="";
+
 
     //my actionbar
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
@@ -85,6 +86,7 @@ public class home_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         instance=this;
+        nameGarage= garageadmin();
 
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
         news=findViewById(R.id.homePage_newsLayout);
@@ -169,25 +171,32 @@ public class home_page extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
 
+
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
                     destinationSpinner();
                     dest.setSelection(0);
                     clearLine();
 
-                    iconAddgarage.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(home_page.this, add_line.class);
-                            startActivity(intent);
-                        }
-                    });
+                       iconAddgarage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(home_page.this, add_line.class);
+                                startActivity(intent);
+                            }
+                        });
+
+
                     if(flage==1){
-                        garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        garageLineStatusLayout.setVisibility
+                                (View.VISIBLE);
+                        isAdminOrDriverIconAdd();
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
                         clearLine();
                         selectLine(selectedItem);
+
+
 
                     } else if(flage==0)
                         selectNews();
@@ -200,6 +209,7 @@ public class home_page extends AppCompatActivity {
                         carStatusLayout.setVisibility(View.GONE);
                         clearGarage();
                         selectGarage();
+                       // isAdminOrDriverIconAdd();
                     }
                     else if(flage==0)
                         selectNews();
@@ -230,10 +240,12 @@ public class home_page extends AppCompatActivity {
                 }else{
                     if(flage==1){
                         garageLineStatusLayout.setVisibility(View.VISIBLE);
+                        isAdminOrDriverIconAdd();
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);
                         clearLine();
                         selectLine(sour.getSelectedItem().toString());
+
                     }
                     else if(flage==0){
                         selectNews();
@@ -262,6 +274,8 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+
+
         addNewsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -269,16 +283,12 @@ public class home_page extends AppCompatActivity {
                 selectNews();
             }
         });
-        if (login.s_id!=null){
-           news.setVisibility(View.VISIBLE);
-        }
-        else{
-          news.setVisibility(View.GONE);
-        }
+
 
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            //    isAdminOrDriverIconAdd();
                 flage=1;
 
                 newsButt.setBackgroundColor(0xFFFF6F00);
@@ -293,7 +303,8 @@ public class home_page extends AppCompatActivity {
                         carStatusLayout.setVisibility(View.VISIBLE);
                         clearCar();
                         selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
-                        isAdminOrDriverIconAdd();
+
+
 //                        if(spinnerFilterCar.getSelectedItem().toString().equals("المتوفرة فقط")){
 //                            ArrayList<carItem> g=myCars;
 //                            for(carItem myItem : g) {
@@ -313,7 +324,8 @@ public class home_page extends AppCompatActivity {
                         carStatusLayout.setVisibility(View.GONE);
                         clearLine();
                         selectLine(sour.getSelectedItem().toString());
-                        isAdminOrDriverIconAdd();
+
+
                     }
                 } else {
                     //garage
@@ -329,7 +341,8 @@ public class home_page extends AppCompatActivity {
                     });
                     clearGarage();
                     selectGarage();
-                    isAdminOrDriverIconAdd();
+
+
                 }
             }
         });
@@ -365,12 +378,14 @@ public class home_page extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
         }
         else{
             personalIcon.setVisibility(View.GONE);
             messagesIcon.setVisibility(View.GONE);
             iconAddgarage.setVisibility(View.GONE);
             iconAddcar.setVisibility(View.GONE);
+            news.setVisibility(View.GONE);
 
         }
 
@@ -382,6 +397,7 @@ public class home_page extends AppCompatActivity {
 
                     Intent intent = new Intent(home_page.this, menu.class);
                     startActivity(intent);
+
 
 
             }
@@ -445,6 +461,15 @@ public class home_page extends AppCompatActivity {
                            iconAddcar.setVisibility(View.GONE);
                         }else{
 
+                           if (sour.getSelectedItem().toString().equals(nameGarage)){
+                                iconAddgarage.setVisibility(View.VISIBLE);
+                                iconAddcar.setVisibility(View.VISIBLE);
+                           }
+                           else{
+                               iconAddgarage.setVisibility(View.GONE);
+                               iconAddcar.setVisibility(View.GONE);
+                            }
+
                         }
 
                     }
@@ -496,11 +521,13 @@ public class home_page extends AppCompatActivity {
                         String name = reader.getString("name");
                         String text = reader.getString("text");
                         String time = reader.getString("time");
-                        String Id=reader.getString("id");
-                        myItem = new newsItem(name, text, time,Id);
+                        String Id = reader.getString("id");
+                        myItem = new newsItem(name, text, time, Id);
 
                         myNews.add(myItem);
+
                     }
+                   // name=text;
                     myNewsAdapter = new newsAdapter(home_page.this, myNews);
                     recyclerView.setAdapter(myNewsAdapter);
                 } catch (JSONException e) {
@@ -568,7 +595,7 @@ public class home_page extends AppCompatActivity {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String cityName, String fromHoure, String toHoure, String location
-                        cityName = reader.getString("garage_name");
+                        String cityName = reader.getString("garage_name");
                         String adminName = reader.getString("admin_name");
                         String fromHoure = reader.getString("open_h");
                         String toHoure = reader.getString("close_h");
@@ -788,10 +815,17 @@ public class home_page extends AppCompatActivity {
     }
     public void MoveFromGarageToLine (String garageName){
         sour.setSelection(getIndexByString(sour,garageName));
+       // isAdminOrDriverIconAdd();
     }
     public void MoveFromLineToCar (String SourceName,String DestName){
-        sour.setSelection(getIndexByString(sour,SourceName));
-        dest.setSelection(getIndexByString(dest,DestName));
+        if(!sour.getSelectedItem().toString().equals(DestName)) {
+            sour.setSelection(getIndexByString(sour, SourceName));
+            dest.setSelection(getIndexByString(dest,DestName));
+        }
+        else{
+            sour.setSelection(getIndexByString(sour, DestName));
+            dest.setSelection(getIndexByString(dest,SourceName));
+        }
     }
     public int getIndexByString(Spinner spinner, String string) {
         int index = 0;
@@ -803,7 +837,41 @@ public class home_page extends AppCompatActivity {
         }
         return index;
     }
+    private String garageadmin() {
+        String url = url_serverName.serverName + "selectGarageNameByAdmin.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("deleteGarageLine");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        nameGarage = reader.getString("garage_name");
 
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
+        return nameGarage;
+    }
 
 
 

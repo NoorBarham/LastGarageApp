@@ -41,6 +41,7 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
     Context con;
 
 
+
     public lineAdapter(Context context, ArrayList<lineItem> myLineItem) {
         this.myLineItem = myLineItem;
         this.con = context;
@@ -181,13 +182,26 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
             garage2= itemView.findViewById(R.id.lineItem_garage2);
             iconDelete = itemView.findViewById(R.id.lineItem_deleteIcon);
 
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    home_page.getInstance().MoveFromLineToCar(garage1.getText().toString(),garage2.getText().toString());
+
+                 //   Toast.makeText(con, garageAdapter.sourcenotequalgarage1 + "", Toast.LENGTH_SHORT).show();
+
+                //    if(garage1.getText().toString().compareTo(garageAdapter.sourcenotequalgarage1)==0) {
+
+                        home_page.getInstance().MoveFromLineToCar(garage1.getText().toString(), garage2.getText().toString());
+                 //   }
+
+                  // else{
+                      home_page.getInstance().MoveFromLineToCar(garage2.getText().toString(), garage1.getText().toString());
+                 //  }
 
                 }
             });
+
 
 
         }
