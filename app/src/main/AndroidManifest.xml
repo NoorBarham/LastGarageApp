@@ -13,6 +13,9 @@
         android:theme="@style/Theme.LastGarageApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View_Admin"
+            android:exported="true" />
+        <activity
             android:name=".edit_admin_personal_data"
             android:exported="true" />
         <activity
@@ -42,14 +45,13 @@
         <activity
             android:name=".home_page"
             android:exported="true" />
-
         <activity
             android:name=".login"
-            android:exported="true"/>
-
-            <activity android:name=".first_page"
-                android:exported="true"  >
-                <intent-filter>
+            android:exported="true" />
+        <activity
+            android:name=".first_page"
+            android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -76,7 +78,6 @@
         <activity
             android:name=".news_list_item"
             android:exported="true" />
-
         <activity
             android:name=".edit_car_data"
             android:exported="true" />
@@ -122,7 +123,6 @@
         <activity
             android:name=".view_notification"
             android:exported="true" />
-
     </application>
 
 </manifest>

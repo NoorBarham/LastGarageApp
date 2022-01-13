@@ -39,6 +39,7 @@
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_settings.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_show_drivers.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_show_drivers_list_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_view_admin.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_view_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_write_complaints.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/admin_personal_page.xml" value="0.20416666666666666" />
@@ -73,23 +74,21 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_car_status.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_car_status_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_change_password.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_chats.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_chats_list_item.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_complains.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_complains_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_complaints.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_conversation.xml" value="0.2" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_conversation.xml" value="0.1" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_edit_car_data.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_edit_garage.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_edit_line.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_edit_personal_data.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_first_page.xml" value="0.15087719298245614" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_first_page.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_garage_status.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_garage_status_list_item.xml" value="0.4" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_line_status.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_line_status_list_item.xml" value="0.264" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_menu.xml" value="0.152" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_message_list_item.xml" value="0.25416666666666665" />
@@ -112,15 +111,9 @@
         <entry key="..\:/Users/waeds/Downloads/AndroidStudioProjects/app/src/main/res/layout/activity_news.xml" value="0.22" />
         <entry key="..\:/Users/waeds/Downloads/AndroidStudioProjects/app/src/main/res/layout/activity_news_list_item.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/waeds/Downloads/AndroidStudioProjects/app/src/main/res/layout/send_massage_item.xml" value="0.1" />
-        <entry key="..\:/Users/waeds/Downloads/LastGarageApp09/app/src/main/res/layout/activity_admin_personal_page.xml" value="0.1" />
-        <entry key="..\:/Users/waeds/Downloads/LastGarageApp09/app/src/main/res/layout/activity_edit_admin_personal_data.xml" value="0.1796875" />
-        <entry key="..\:/Users/waeds/Downloads/LastGarageApp09/app/src/main/res/layout/activity_home_page.xml" value="0.1796875" />
-        <entry key="..\:/Users/waeds/Downloads/LastGarageApp09/app/src/main/res/layout/activity_menu.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/waeds/Downloads/LastGarageApp09/app/src/main/res/layout/activity_news_list_item.xml" value="0.1796875" />
         <entry key="..\:/Users/waeds/Downloads/LastGarageApp4/app/src/main/res/layout/activity_menu.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/waeds/Downloads/LastGarageApp4/app/src/main/res/layout/activity_news.xml" value="0.1" />
         <entry key="..\:/Users/waeds/Downloads/LastGarageApp4/app/src/main/res/layout/activity_news_list_item.xml" value="0.1" />
-        <entry key="..\:/Users/waeds/Downloads/LastGarageAppupdate/app/src/main/res/layout/activity_admin_personal_page.xml" value="0.1796875" />
         <entry key="..\:/Users/waeds/Downloads/LastGarageAppzx/app/src/main/res/layout/activity_add_admin.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/waeds/Downloads/LastGarageAppzx/app/src/main/res/layout/activity_admin_personal_page.xml" value="0.10144927536231885" />
         <entry key="..\:/Users/waeds/Downloads/LastGarageAppzx/app/src/main/res/layout/activity_car_status_list_item.xml" value="0.22" />
