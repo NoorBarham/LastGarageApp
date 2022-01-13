@@ -13,6 +13,9 @@
         android:theme="@style/Theme.LastGarageApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View_Driver"
+            android:exported="true" />
+        <activity
             android:name=".View_Admin"
             android:exported="true" />
         <activity
