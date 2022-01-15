@@ -58,7 +58,7 @@ public class reset_password extends AppCompatActivity {
             public void onClick(View v) {
                 if(singleClick) {
                     singleClick = false;
-
+////123
                     String idUser = id.getText().toString();
                     String tex_phone = phoneNum.getText().toString();
                     if (TextUtils.isEmpty(idUser) || TextUtils.isEmpty(tex_phone)) {
