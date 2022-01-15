@@ -32,7 +32,7 @@ public class reset_password extends AppCompatActivity {
     EditText phoneNum,id;
     TextView passe;
     Button Send;
-
+///
     //recieve from php
     String pass;
 
