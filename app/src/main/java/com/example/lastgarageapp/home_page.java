@@ -188,8 +188,7 @@ public class home_page extends AppCompatActivity {
 
 
                     if(flage==1){
-                        garageLineStatusLayout.setVisibility
-                                (View.VISIBLE);
+                        garageLineStatusLayout.setVisibility(View.VISIBLE);
                         isAdminOrDriverIconAdd();
                         newsLayout.setVisibility(View.GONE);
                         carStatusLayout.setVisibility(View.GONE);

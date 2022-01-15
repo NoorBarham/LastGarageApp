@@ -30,7 +30,6 @@ import java.util.Map;
 
 public class reset_password extends AppCompatActivity {
     EditText phoneNum,id;
-    TextView passe;
     Button Send;
 ///
     //recieve from php
@@ -50,7 +49,6 @@ public class reset_password extends AppCompatActivity {
         id=(EditText) findViewById(R.id.resetPass_user_id);
         phoneNum=(EditText) findViewById(R.id.resetPass_phoneNumber);
         Send=(Button)findViewById(R.id.resetPass_resetPassword);
-        passe=findViewById(R.id.resetPass_pass);
         //reset(id.getText().toString());
 
         Send.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +105,6 @@ public class reset_password extends AppCompatActivity {
                             e.printStackTrace();
                             Toast.makeText(getBaseContext(), "فشل الارسال", Toast.LENGTH_SHORT).show();
                         }
-
-                     passe.setText(pass);
 
                     }
                 } catch (JSONException e) {
