@@ -3,6 +3,7 @@
     package="com.example.lastgarageapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -50,10 +51,11 @@
             <activity android:name=".first_page"
                 android:exported="true"  >
                 <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                    <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+
         </activity>
         <activity
             android:name=".add_line"
@@ -122,6 +124,10 @@
         <activity
             android:name=".view_notification"
             android:exported="true" />
+        <activity android:name=".reset_password"
+            android:exported="true"  >
+
+        </activity>
 
     </application>
 

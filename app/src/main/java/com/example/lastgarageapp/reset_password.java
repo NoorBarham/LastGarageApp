@@ -39,7 +39,7 @@ public class reset_password extends AppCompatActivity {
     //send to php
     String Phon_num;
 
-    String pas="";
+    String SMS="";
 
     boolean singleClick=true;
     @Override
@@ -56,7 +56,7 @@ public class reset_password extends AppCompatActivity {
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(singleClick) {
+               if(singleClick) {
                     singleClick = false;
 ////123
                     String idUser = id.getText().toString();
@@ -97,8 +97,18 @@ public class reset_password extends AppCompatActivity {
 
                         JSONObject reader = jsonArray.getJSONObject(i);
                         pass = reader.getString("pass");
+                       // Toast.makeText(getBaseContext(), pass, Toast.LENGTH_SHORT).show();
+                        SMS="الرقم السري الخاص بك " + "" + pass;
+                        try {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(Phon_num, null, SMS, null, null);
+                            Toast.makeText(getBaseContext(), "تم ارسال الرسالة", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(getBaseContext(), "فشل الارسال", Toast.LENGTH_SHORT).show();
+                        }
 
-                      //  passe.setText(pass);
+                     passe.setText(pass);
 
                     }
                 } catch (JSONException e) {
@@ -123,17 +133,10 @@ public class reset_password extends AppCompatActivity {
         };
         my_singleton.getInstance(reset_password.this).addToRequestQueue(myStringRequest);
 
-        String SMS="الرقم السري الخاص بك " + "" + pass;
+      //  String SMS="الرقم السري الخاص بك " + "" + pass;
       //  Toast.makeText(this, SMS, Toast.LENGTH_SHORT).show();
 
-        try {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(Phon_num, null, SMS, null, null);
-            Toast.makeText(this, "تم ارسال الرسالة", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "فشل الارسال", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
  //   public void reset(final String id) {
