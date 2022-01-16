@@ -92,11 +92,11 @@
             android:id="@+id/login_forgetPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:text="هل نسيت كلمة السر؟"
             android:textAlignment="center"
             android:textColor="#FF6F00"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 

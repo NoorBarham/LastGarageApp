@@ -34,6 +34,15 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="4dp"
                     android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/showDriversItem_userId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textColor="#9E9E9E"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="-"/>
 
                     <TextView
                         android:id="@+id/showDriversItem_messageIcon"
@@ -96,6 +105,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:text="-"/>
+
                         </LinearLayout>
 
                     </LinearLayout>

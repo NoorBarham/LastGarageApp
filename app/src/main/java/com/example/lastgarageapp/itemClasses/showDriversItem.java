@@ -1,16 +1,20 @@
 package com.example.lastgarageapp.itemClasses;
 
 public class showDriversItem {
-    private String nameText, sour,dest;
+    private String nameText, sour,dest,id;
 
-    public showDriversItem(String nameText, String sour,String dest) {
+    public showDriversItem(String nameText, String sour,String dest,String id) {
 
-
+        this.id=id;
         this.nameText = nameText;
         this.sour= sour;
         this.dest= dest;
 
     }
+    public void setIdText(String IdText) {
+        this.id= IdText;
+    }
+
 
 
     public void setnameText(String nameText) {
@@ -30,6 +34,10 @@ public class showDriversItem {
 
     public String getnameText() {
         return nameText;
+    }
+
+    public String getIdText() {
+        return id;
     }
 
     public String getsourText() {
