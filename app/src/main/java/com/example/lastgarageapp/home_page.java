@@ -133,6 +133,7 @@ public class home_page extends AppCompatActivity {
         sourceSpinner();
         dest.setEnabled(false);
         selectNews();
+
 //        getLogin();
         flage=0;
 
@@ -270,6 +271,8 @@ public class home_page extends AppCompatActivity {
 
                 flage=0;
                 selectNews();
+                myNewsAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -280,6 +283,8 @@ public class home_page extends AppCompatActivity {
             public void onClick(View view) {
                 addNew();
                 selectNews();
+                myNewsAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -362,46 +367,33 @@ public class home_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(login.s_id!=null) {
-            personalIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    isAdminOrDriver();
-                }
-            });
-
-            messagesIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(home_page.this, chats.class);
-                    startActivity(intent);
-                }
-            });
-
-        }
-        else{
+        if(login.s_id==null) {
             personalIcon.setVisibility(View.GONE);
             messagesIcon.setVisibility(View.GONE);
             iconAddgarage.setVisibility(View.GONE);
             iconAddcar.setVisibility(View.GONE);
             news.setVisibility(View.GONE);
-
         }
-
-
-
+        personalIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isAdminOrDriver();
+            }
+        });
+        messagesIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(home_page.this, chats.class);
+                startActivity(intent);
+            }
+        });
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    Intent intent = new Intent(home_page.this, menu.class);
-                    startActivity(intent);
-
-
-
+                Intent intent = new Intent(home_page.this, menu.class);
+                startActivity(intent);
             }
         });
-
     }
 
     private void isAdminOrDriver() {
@@ -529,7 +521,9 @@ public class home_page extends AppCompatActivity {
                     }
                    // name=text;
                     myNewsAdapter = new newsAdapter(home_page.this, myNews);
+                    myNewsAdapter.notifyDataSetChanged();
                     recyclerView.setAdapter(myNewsAdapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
