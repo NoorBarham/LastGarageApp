@@ -70,7 +70,6 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
         if(login.s_id!=null){
             if(!holder.personalId.getText().toString().equals(login.myUser_id)){
                 holder.iconDelete.setVisibility(View.GONE);
-                Log.d("sss",holder.personalId.getText().toString());
             }
         }
         else{
