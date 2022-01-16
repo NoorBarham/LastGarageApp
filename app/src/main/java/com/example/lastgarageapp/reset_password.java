@@ -1,6 +1,7 @@
 package com.example.lastgarageapp;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -39,6 +41,7 @@ public class reset_password extends AppCompatActivity {
     String Phon_num;
 
     String SMS="";
+    String s="";
 
     boolean singleClick=true;
     @Override
@@ -50,6 +53,9 @@ public class reset_password extends AppCompatActivity {
         phoneNum=(EditText) findViewById(R.id.resetPass_phoneNumber);
         Send=(Button)findViewById(R.id.resetPass_resetPassword);
         //reset(id.getText().toString());
+
+
+
 
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,18 +69,79 @@ public class reset_password extends AppCompatActivity {
                         Toast.makeText(reset_password.this, "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                     } else {
 
+                        AlertDialog.Builder alert = new AlertDialog.Builder(reset_password.this);
+                        String id1 = id.getText().toString();
+                        String uRl = url_serverName.serverName +"selectPhoneNum.php";
+                        StringRequest myStringRequest = new StringRequest(Request.Method.POST, uRl, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                try {
+                                    JSONObject object = new JSONObject(response);
+                                    JSONArray jsonArray = object.getJSONArray("phone");
+
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                                        JSONObject reader = jsonArray.getJSONObject(i);
+                                        s = reader.getString("phone_number");
+                                        // Toast.makeText(getBaseContext(), pass, Toast.LENGTH_SHORT).show();
+
+
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(reset_password.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                error.printStackTrace();
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                HashMap<String, String> param = new HashMap<>();
+                                param.put("user_id",id1);
+                                //   param.put("pass", password);
+                                return param;
+
+                            }
+                        };
+                        my_singleton.getInstance(reset_password.this).addToRequestQueue(myStringRequest);
+                        alert.setTitle("تأكيد تسجيل الخروج");
+                        alert.setMessage("هل تريد تأكيد تسجيل الخروج؟"+""+ s);
+                        alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                                        sendSMS(idUser);
+                                    }
+                                    else {
+                                        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                                    }
+                                }
+
+                            }
+
+
+                        });
+                        alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        alert.create().show();
+                    }
+
                       //  Toast.makeText(getBaseContext(), passe.getText().toString(), Toast.LENGTH_SHORT).show();
-                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                                sendSMS(idUser);
-                            }
-                            else {
-                                requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-                            }
-                        }
+
                     }
                 }
-            }
+
         });
 
     }

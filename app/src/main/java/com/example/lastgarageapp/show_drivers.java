@@ -61,7 +61,8 @@ public class show_drivers extends AppCompatActivity {
                         String name = reader.getString("name");
                         String source=reader.getString("sour");
                         String destination=reader.getString("dest");
-                        myItem = new showDriversItem(name,source,destination);
+                        String id=reader.getString("id");
+                        myItem = new showDriversItem(name,source,destination,id);
 
                         shoewDriverarray.add(myItem);
                     }

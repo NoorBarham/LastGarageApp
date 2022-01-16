@@ -132,6 +132,10 @@
             android:exported="true"  >
 
         </activity>
+        <activity android:name=".View_Driver"
+            android:exported="true"  >
+
+        </activity>
 
     </application>
 

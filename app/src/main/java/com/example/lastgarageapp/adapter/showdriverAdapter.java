@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.itemClasses.showDriversItem;
 import com.example.lastgarageapp.personal_page;
@@ -42,12 +43,23 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
         holder.NameText.setText(l.getnameText());
         holder.sour.setText(l.getsourText());
         holder.dest.setText(l.getdestText());
+        holder.id.setText(l.getIdText());
 
         holder.iconMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent=new Intent(con, conversation.class);
+                con.startActivity(intent);
+
+
+            }
+        });
+        holder.NameText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(con, View_Driver.class);
                 con.startActivity(intent);
 
 
@@ -64,13 +76,14 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
     public class showDriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView NameText, sour,dest;
+        TextView NameText, sour,dest,id;
         RelativeLayout show;
         TextView iconMessage;
 
         public showDriversViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            id=itemView.findViewById(R.id.showDriversItem_userId);
             NameText = itemView.findViewById(R.id.showDriversItem_driverName);
             sour = itemView.findViewById(R.id.ShowDriversItem_garage1);
             dest = itemView.findViewById(R.id.showDriversItem_garage2);
