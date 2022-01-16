@@ -520,8 +520,9 @@ public class home_page extends AppCompatActivity {
                         String name = reader.getString("name");
                         String text = reader.getString("text");
                         String time = reader.getString("time");
-                        String Id = reader.getString("id");
-                        myItem = new newsItem(name, text, time, Id);
+                        String news_id = reader.getString("news_id");
+                        String userId = reader.getString("userId");
+                        myItem = new newsItem(name, text, time, news_id, userId);
 
                         myNews.add(myItem);
 

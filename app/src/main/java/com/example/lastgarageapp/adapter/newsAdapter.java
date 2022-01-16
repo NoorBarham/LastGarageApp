@@ -3,6 +3,7 @@ package com.example.lastgarageapp.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,46 +64,14 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
         holder.textNews.setText(ne.getTextNews());
         holder.textHour.setText(ne.getTextHour());
         holder.newsId.setText(ne.getNewsId());
+        holder.personalId.setText(ne.getPersonalId());
 
 
         if(login.s_id!=null){
-
-            String url = url_serverName.serverName + "isAdminOrDriver.php";
-            StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject object = new JSONObject(response);
-                        JSONArray jsonArray = object.getJSONArray("A_D");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject reader = jsonArray.getJSONObject(i);
-                            String check = reader.getString("check");
-                            if(check.equals("d")){
-                                holder.iconDelete.setVisibility(View.GONE);
-                            }else{
-
-                            }
-
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                    error.printStackTrace();
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> myMap = new HashMap<>();
-                    myMap.put("s_id", login.s_id);
-                    return myMap;
-                }
-            };
-            my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
+            if(!holder.personalId.getText().toString().equals(login.myUser_id)){
+                holder.iconDelete.setVisibility(View.GONE);
+                Log.d("sss",holder.personalId.getText().toString());
+            }
         }
         else{
             holder.iconDelete.setVisibility(View.GONE);
@@ -170,7 +139,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
     }
 
     public class newViewHolder extends RecyclerView.ViewHolder {
-        TextView textName,textNews,textHour,newsId;
+        TextView textName,textNews,textHour,newsId, personalId;
         TextView  iconDelete;
 
         public newViewHolder(@NonNull View itemView) {
@@ -179,6 +148,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
             textHour=itemView.findViewById(R.id.newsItem_clock);
             textNews=itemView.findViewById(R.id.newsItem_description);
             newsId=itemView.findViewById(R.id.newsItem_newsId);
+            personalId=itemView.findViewById(R.id.newsItem_personalId);
             iconDelete=itemView.findViewById(R.id.newsItem_delet);
 
 
@@ -187,14 +157,11 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                 public void onClick(View v) {
                     Intent intent = new Intent(con, view_notification.class);
                     myNewsId = newsId.getText().toString();
-//                    intent.putExtra("waed", "test value");
                     con.startActivity(intent);
                 }
             });
 
         }
-
-
     }
-    }
+}
 

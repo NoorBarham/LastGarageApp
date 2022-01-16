@@ -489,7 +489,7 @@ public class menu extends AppCompatActivity {
 
                         Intent intent= new Intent(menu.this ,login.class);
                         startActivity(intent);
-
+                        login.s_id=null;
                     }
 
 
