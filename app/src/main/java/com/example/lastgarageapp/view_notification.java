@@ -1,13 +1,16 @@
 package com.example.lastgarageapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -25,10 +28,8 @@ import java.util.Map;
 
 public class view_notification extends AppCompatActivity {
 
-    ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
-
-    TextView name, delet_icon, text, hour, news_id;
-
+    ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon,delete_icon;
+    TextView name, text, hour, news_id, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +37,58 @@ public class view_notification extends AppCompatActivity {
         setContentView(R.layout.activity_view_notification);
 
         name =findViewById(R.id.notiItems_newsItem_name);
-        delet_icon =findViewById(R.id.notiItems_newsItem_delet);
+        delete_icon =findViewById(R.id.notiItems_newsItem_delet);
         text =findViewById(R.id.notiItems_newsItem_text);
         hour=findViewById(R.id.notiItems_newsItem_hour);
         news_id=findViewById(R.id.notificationItem_newsId);
-
-//        String value=getIntent().getExtras().getString("value");
-//        //views in my actionbarPage
-//        TextView  name=findViewById(R.id.newsItem_name);
-//        name.setText(value);
+        id =findViewById(R.id.notiItems_newsItem_id);
 
         showNoti_News(notificationAdapter.myNewsId);
-        delet_icon.setOnClickListener(new View.OnClickListener() {
+
+        delete_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //هون شغل حذف الخبر فقط بيظهر لكاتب الخبر
+                AlertDialog.Builder alert = new AlertDialog.Builder(view_notification.this);
+                alert.setTitle("تأكيد الحذف");
+                alert.setMessage("هل تريد تأكيد الحذف؟");
+
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String url = url_serverName.serverName + "deleteIconnews.php";
+                        StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(view_notification.this, response, Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(view_notification.this, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                                error.printStackTrace();
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> params = new HashMap<>();
+                                params.put("n_id", notificationAdapter.myNewsId);
+                                return params;
+                            }
+                        };
+                        my_singleton.getInstance(view_notification.this).addToRequestQueue(stringRequest2);
+                    }
+                });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert.create().show();
             }
         });
+
         //actionbar
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
         notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
@@ -110,9 +146,16 @@ public class view_notification extends AppCompatActivity {
 
                         JSONObject reader = jsonArray.getJSONObject(i);
 
+                        id.setText(reader.getString("id"));
                         name.setText(reader.getString("name"));
                         text.setText(reader.getString("text"));
                         hour.setText(reader.getString("time"));
+
+                        if(id.getText().toString().equals(login.myUser_id)){
+                            delete_icon.setVisibility(View.VISIBLE);
+                        }else{
+                            delete_icon.setVisibility(View.GONE);
+                        }
 
                     }
                 } catch (JSONException e) {

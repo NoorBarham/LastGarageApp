@@ -38,8 +38,6 @@ import java.util.Map;
 
 public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>{
     private ArrayList<newsItem> myNewsItem;
-    public static String myNewsId ="";
-
     private Context con;
 
     public newsAdapter(Context context,ArrayList<newsItem> myNewsItem) {
@@ -139,7 +137,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
 
     public class newViewHolder extends RecyclerView.ViewHolder {
         TextView textName,textNews,textHour,newsId, personalId;
-        TextView  iconDelete;
+        ImageView  iconDelete;
 
         public newViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -155,7 +153,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(con, view_notification.class);
-                    myNewsId = newsId.getText().toString();
+                    notificationAdapter.myNewsId=newsId.getText().toString();
                     con.startActivity(intent);
                 }
             });
