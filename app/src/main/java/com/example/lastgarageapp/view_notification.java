@@ -97,6 +97,10 @@ public class view_notification extends AppCompatActivity {
         menuIcon = findViewById(R.id.myActionBar_menuIcon);
         notificationIcon.setBackgroundColor(Color.WHITE);
 
+        if(login.s_id==null) {
+            personalIcon.setVisibility(View.GONE);
+            messagesIcon.setVisibility(View.GONE);
+        }
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
