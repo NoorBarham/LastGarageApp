@@ -3,6 +3,7 @@ package com.example.lastgarageapp.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
@@ -35,6 +37,7 @@ import java.util.Map;
 public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     ArrayList<carItem> myCarItem;
     Context con;
+    String iid="";
 
     public carAdapter(Context context, ArrayList<carItem> myCarItem) {
         this.myCarItem = myCarItem;
@@ -54,6 +57,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         carItem c = myCarItem.get(position);
         holder.carNumber.setText(c.getCarNumber());
         holder.nameDriver.setText(c.getDriverName());
+        holder.u_id.setText(c.getuser());
 
         if(c.getAvailability().equals("0")){
             holder.availability.setText("غير متاحة");
@@ -163,6 +167,19 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
                 alert.create().show();
             }
         });
+        holder.nameDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                iid=holder.u_id.getText().toString();
+
+                Intent intent=new Intent(con, View_Driver.class);
+                intent.putExtra("message_key",iid);
+                con.startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -171,7 +188,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     }
 
     public class carViewHolder extends RecyclerView.ViewHolder {
-        TextView carNumber,nameDriver, availability, noOfPassenger, capacity, arrivalTime;
+        TextView carNumber,u_id,nameDriver, availability, noOfPassenger, capacity, arrivalTime;
         TextView iconDelet;
         LinearLayout arrivalLayout;
 
@@ -185,6 +202,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             arrivalTime = itemView.findViewById(R.id.carItem_arrivalTime);
             iconDelet = itemView.findViewById(R.id.carItem_deleteIcon);
             arrivalLayout = itemView.findViewById(R.id.carItem_arrivalLayout);
+            u_id=itemView.findViewById(R.id.carItem_showcaruserid);
 
 
         }

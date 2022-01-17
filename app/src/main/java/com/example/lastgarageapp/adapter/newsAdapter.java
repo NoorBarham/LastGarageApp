@@ -21,6 +21,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.View_Admin;
+import com.example.lastgarageapp.View_Driver;
+import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.newsItem;
 import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
@@ -39,6 +42,8 @@ import java.util.Map;
 public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>{
     private ArrayList<newsItem> myNewsItem;
     private Context con;
+    private String iid;
+    String d_or_a="";
 
     public newsAdapter(Context context,ArrayList<newsItem> myNewsItem) {
         this.con=context;
@@ -123,7 +128,62 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                 alert.create().show();
             }
         });
+        holder.textName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iid=holder.personalId.getText().toString();
+                String url = url_serverName.serverName + "isAdminOrDriverToView.php";
+                StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            JSONArray jsonArray = object.getJSONArray("A_D");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject reader = jsonArray.getJSONObject(i);
+                                String check = reader.getString("check");
+                                if(check.equals("d")){
+                                    Intent intent = new Intent(con, View_Driver.class);
+                                    intent.putExtra("message_key",iid);
+                                    con.startActivity(intent);
+                                    View_Driver.flag="2";
+                                    //  Toast.makeText(con, iid, Toast.LENGTH_SHORT).show();
+                                }
+                                else if(check.equals("a")){
+                                    Intent intent = new Intent(con, View_Admin.class);
+                                    intent.putExtra("message_key",iid);
+                                    con.startActivity(intent);
+                                    View_Admin.flag="1";
+                                }
+                                else {
 
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> myMap = new HashMap<>();
+                        myMap.put("u_id",iid );
+                        return myMap;
+                    }
+                };
+                my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
+           /*
+
+               */
+
+            }
+        });
 
 
     }

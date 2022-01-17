@@ -136,6 +136,10 @@
             android:exported="true"  >
 
         </activity>
+        <activity android:name=".View_Admin"
+            android:exported="true"  >
+
+        </activity>
 
     </application>
 

@@ -21,6 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.View_Admin;
+import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.edit_garage;
 import com.example.lastgarageapp.home_page;
@@ -43,7 +45,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
     private ArrayList<garageItem> myGarageItem;
     private LayoutInflater mInflater;
     Context con;
-    home_page h;
+    String iid="";
 
     public garageAdapter(Context context, ArrayList<garageItem> myGarageItem) {
         this.myGarageItem = myGarageItem;
@@ -68,6 +70,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
         holder.location.setText(g.getLocation());
         holder.fromHoure.setText(g.getFromHoure());
         holder.toHoure.setText(g.getToHoure());
+        holder.id.setText(g.getadminid());
 
 
         if(login.s_id!=null){
@@ -166,6 +169,21 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
                 alert.create().show();
             }
         });
+        holder.adminName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                iid=holder.id.getText().toString();
+
+                Intent intent=new Intent(con, View_Admin.class);
+                intent.putExtra("message_key",iid);
+                con.startActivity(intent);
+
+
+            }
+        });
+
+
     }
 
     @Override
@@ -175,7 +193,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
     }
 
     public class garageViewHolder extends RecyclerView.ViewHolder{
-        TextView cityName, adminName, location, toHoure, fromHoure;
+        TextView cityName, adminName, location, toHoure, fromHoure,id;
         TextView iconDelet;
         Spinner sour;
 
@@ -189,6 +207,7 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
             fromHoure=itemView.findViewById(R.id.garageItem_FromHoure);
             iconDelet=itemView.findViewById(R.id.garageItem_deleteIcon);
             sour = itemView.findViewById(R.id.homePage_source);
+            id=itemView.findViewById(R.id.garageItem_adminid);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

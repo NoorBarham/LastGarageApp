@@ -560,7 +560,8 @@ public class home_page extends AppCompatActivity {
                         String fromHoure = reader.getString("open_h");
                         String toHoure = reader.getString("close_h");
                         String location = reader.getString("location");
-                        myItem = new garageItem(cityName,adminName, fromHoure, toHoure,location);
+                        String id= reader.getString("admin_id");
+                        myItem = new garageItem(cityName,adminName, fromHoure, toHoure,location,id);
 
                         myGarages.add(myItem);
                     }
@@ -645,13 +646,14 @@ public class home_page extends AppCompatActivity {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         String car_id = reader.getString("car_id");
+                        String driver_id = reader.getString("driver_id");
                         String capacity = reader.getString("capacity");
                         String noOfPassenger = reader.getString("no_of_pass");
                         String is_available = reader.getString("is_available");
                         String arrival_time = reader.getString("arrival_time");
                         String driverName = reader.getString("driver_name");
 
-                        myItem = new carItem(car_id,driverName, is_available, noOfPassenger, arrival_time, capacity);
+                        myItem = new carItem(car_id,driver_id,driverName,is_available, noOfPassenger, arrival_time, capacity);
                         myCars.add(myItem);
                     }
                     myCarAdapter = new carAdapter(home_page.this, myCars);

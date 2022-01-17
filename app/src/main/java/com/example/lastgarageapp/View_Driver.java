@@ -27,9 +27,7 @@ import java.util.Map;
 public class View_Driver extends AppCompatActivity {
     TextView u_id, u_name, u_city, u_phone, u_car_id, u_sour, u_dest,u_fun;
     String id="";
-    private static View_Driver instance;
-  //  showdriverAdapter.showDriversViewHolder x;
-    LinearLayout showdriver;
+
 
     public static String flag="0";
 
@@ -39,7 +37,7 @@ public class View_Driver extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_driver);
-        instance=this;
+
 
         textMessage = findViewById(R.id.ViewDriverPersonalPage_messageIcon);
         u_id = (TextView) findViewById(R.id.ViewDriverPersonalPage_Id);
@@ -59,7 +57,6 @@ public class View_Driver extends AppCompatActivity {
             selectdriverdata();
         }
         else if(flag.equals("2")){
-        //
 
             Intent intent = getIntent();
             String str = intent.getStringExtra("message_key");
@@ -68,7 +65,12 @@ public class View_Driver extends AppCompatActivity {
             selectdriverdata();
         }
         else{
-            Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+
+            Intent intent = getIntent();
+            String str = intent.getStringExtra("message_key");
+            u_id.setText(str);
+
+            selectdriverdata();
         }
 
 
