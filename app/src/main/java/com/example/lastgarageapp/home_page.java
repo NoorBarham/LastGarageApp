@@ -826,7 +826,6 @@ public class home_page extends AppCompatActivity {
                         String garage_name = reader.getString("garage_name");
                         Log.e("hhh",garage_name);
                         setGarageName(garage_name);
-//                        nameGarage=garage_name;
                     }
 
                 } catch (JSONException e) {
