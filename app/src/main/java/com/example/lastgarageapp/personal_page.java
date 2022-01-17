@@ -28,7 +28,7 @@ public class personal_page extends AppCompatActivity {
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
     TextView editData, changePass,u_id, u_name, u_city, u_phone, u_car_id, u_sour, u_dest;
 
-    ImageView textMessage;
+//    ImageView textMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class personal_page extends AppCompatActivity {
         //views in personalPage
         editData = findViewById(R.id.personalPage_editData);
         changePass = findViewById(R.id.personalPage_changePass);
-        textMessage = findViewById(R.id.personalPage_messageIcon);
+//        textMessage = findViewById(R.id.personalPage_messageIcon);
         u_id = (TextView) findViewById(R.id.personalimage_idintitynum);
         u_name = (TextView) findViewById(R.id.personalPage_name);
         u_city = findViewById(R.id.personalPage_placeVal);
@@ -66,13 +66,13 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-        textMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(personal_page.this, conversation.class);
-                startActivity(intent);
-            }
-        });
+//        textMessage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(personal_page.this, conversation.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         //views in my actionbarPage

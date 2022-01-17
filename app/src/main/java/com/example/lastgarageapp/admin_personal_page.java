@@ -27,7 +27,7 @@ public class admin_personal_page extends AppCompatActivity {
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
     TextView editData, changePass, u_id,u_name, u_city, u_phone, u_garage;
 
-    ImageView textMessage;
+//    ImageView textMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class admin_personal_page extends AppCompatActivity {
         //views in adminPersonalPage
         editData = findViewById(R.id.adminPersonalPage_editData);
         changePass = findViewById(R.id.adminPersonalPage_changePass);
-        textMessage = findViewById(R.id.adminPersonalPage_messageIcon);
+//        textMessage = findViewById(R.id.adminPersonalPage_messageIcon);
         u_id = (TextView) findViewById(R.id.adminPersonalPage_idintitynum);
         u_name = (TextView) findViewById(R.id.adminPersonalPage_name);
         u_city = findViewById(R.id.adminPersonalPage_placeVal);
@@ -60,14 +60,6 @@ public class admin_personal_page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(admin_personal_page.this, change_password.class);
-                startActivity(intent);
-            }
-        });
-
-        textMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(admin_personal_page.this, conversation.class);
                 startActivity(intent);
             }
         });
@@ -144,32 +136,24 @@ public class admin_personal_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
-//2
+
     public void selectadminPersonaldata() {
         String url = url_serverName.serverName + "adminPersonalpage.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    //  Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("personal_admin");
-                    notificationItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
-/////////8
                         JSONObject reader = jsonArray.getJSONObject(i);
 
-                        //String textName, String textNews, String textHour
                         String id = reader.getString("id");
                         String name = reader.getString("admin_name");
                         String phone = reader.getString("phone");
                         String city = reader.getString("city");
                         String garage = reader.getString("garage_name");
-
-
 
                         u_id.setText(id);
                         u_name.setText(name);
@@ -199,45 +183,4 @@ public class admin_personal_page extends AppCompatActivity {
         my_singleton.getInstance(admin_personal_page.this).addToRequestQueue(myStringRequest);
 
     }
-    private void isAdminOrDriver() {
-        String url = url_serverName.serverName + "isAdminOrDriver.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("A_D");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-                        String check = reader.getString("check");
-                        if(check.equals("d")){
-                            Intent intent = new Intent(admin_personal_page.this, personal_page.class);
-                            startActivity(intent);
-                        }else{
-                            Intent intent = new Intent(admin_personal_page.this, admin_personal_page.class);
-                            startActivity(intent);
-                        }
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> myMap = new HashMap<>();
-                myMap.put("s_id", login.s_id);
-                return myMap;
-            }
-        };
-        my_singleton.getInstance(admin_personal_page.this).addToRequestQueue(myStringRequest);
-    }
-
-    }
+}
