@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,9 +25,11 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
     private Context con;
 
+
     public showdriverAdapter(Context context, ArrayList<showDriversItem> showDriversItems) {
         this.myshowDriversItems= showDriversItems;
         this.con = context;
+
     }
 
     @NonNull
@@ -45,6 +48,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
         holder.dest.setText(l.getdestText());
         holder.id.setText(l.getIdText());
 
+
         holder.iconMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,8 +63,6 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(con, View_Driver.class);
-                con.startActivity(intent);
 
 
             }
@@ -74,38 +76,49 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
         return myshowDriversItems.size();
     }
 
-    public class showDriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class showDriversViewHolder extends RecyclerView.ViewHolder {
 
-        TextView NameText, sour,dest,id;
+        TextView NameText, sour, dest, id;
         RelativeLayout show;
         TextView iconMessage;
+        public String iid;
+
+
+
 
         public showDriversViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            id=itemView.findViewById(R.id.showDriversItem_userId);
+            id = itemView.findViewById(R.id.showDriversItem_userId);
             NameText = itemView.findViewById(R.id.showDriversItem_driverName);
             sour = itemView.findViewById(R.id.ShowDriversItem_garage1);
             dest = itemView.findViewById(R.id.showDriversItem_garage2);
 
-            show=itemView.findViewById(R.id.showdriver_listitems);
 
-            iconMessage =itemView.findViewById(R.id.showDriversItem_messageIcon);
+            show = itemView.findViewById(R.id.showdriver_listitems);
+
+            iconMessage = itemView.findViewById(R.id.showDriversItem_messageIcon);
+
+          //  View_Driver.getInstance().selectdriverdata(id.getText().toString());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(con, personal_page.class);
+                    iid=id.getText().toString();
+
+                    Intent intent=new Intent(con, View_Driver.class);
+                    intent.putExtra("message_key",iid);
                     con.startActivity(intent);
+                    View_Driver.flag="1";
+
+
                 }
             });
+            //
+
 
         }
 
-
-        @Override
-        public void onClick(View v) {
-
-        }
     }
+
 }

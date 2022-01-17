@@ -37,8 +37,9 @@
                     <TextView
                         android:id="@+id/showDriversItem_userId"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="right"
+                        android:visibility="gone"
                         android:textColor="#9E9E9E"
                         android:textSize="20sp"
                         android:textStyle="bold"
