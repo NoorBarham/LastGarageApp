@@ -37,7 +37,7 @@ public class login extends AppCompatActivity {
     private Button loginAdmin;
     private TextView forget;
     public static String myUser_id;
-    public static String s_id;
+    public static String s_id=null;
     String phon = "";
     String pass="";
     String SMS="";

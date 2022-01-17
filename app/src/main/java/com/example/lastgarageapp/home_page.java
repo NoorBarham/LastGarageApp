@@ -1,6 +1,5 @@
 package com.example.lastgarageapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,11 +45,12 @@ public class home_page extends AppCompatActivity {
     Button newsButt, statusButt, addNewsButt;
     Spinner dest, sour, spinnerFilterCar;
     LinearLayout newsLayout, carStatusLayout, garageLineStatusLayout, myRecycleLayout;
-    TextView iconAddgarage, iconAddcar, iconFilter;
+    TextView iconAddGarageLine, iconAddcar, iconFilter;
     EditText addNewstext;
     RecyclerView recyclerView;
     LinearLayout news;
     String nameGarage="";
+    String d_or_a="";
 
 
     //my actionbar
@@ -86,7 +86,6 @@ public class home_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         instance=this;
-        nameGarage= garageadmin();
 
         spinnerFilterCar =findViewById(R.id.homePage_spinnerFilterCar);
         news=findViewById(R.id.homePage_newsLayout);
@@ -107,7 +106,7 @@ public class home_page extends AppCompatActivity {
         statusButt = findViewById(R.id.homePage_statusButt);
         dest = findViewById(R.id.homePage_destination);
         sour = findViewById(R.id.homePage_source);
-        iconAddgarage = findViewById(R.id.homePage_addGarageLineIcon);
+        iconAddGarageLine = findViewById(R.id.homePage_addGarageLineIcon);
         garageLineStatusLayout = findViewById(R.id.homePage_garageLineStatusLayout);
 
         //car Statuse
@@ -130,6 +129,16 @@ public class home_page extends AppCompatActivity {
         carStatusLayout.setVisibility(View.GONE);
 
 
+        if(login.s_id!=null){
+            isAdminOrDriver();
+            if(d_or_a.equals("a")){
+                nameGarage= garageAdmin();
+            }
+        }else{
+            personalIcon.setVisibility(View.GONE);
+            messagesIcon.setVisibility(View.GONE);
+            news.setVisibility(View.GONE);
+        }
         sourceSpinner();
         dest.setEnabled(false);
         selectNews();
@@ -159,7 +168,7 @@ public class home_page extends AppCompatActivity {
                 }else if(selectedItem.equals("الكل")){
                     myCarAdapter = new carAdapter(home_page.this, myCars);
                     recyclerView.setAdapter(myCarAdapter);
-//                    selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
+                    myCarAdapter.notifyDataSetChanged();
                 }
             }
             @Override
@@ -172,44 +181,44 @@ public class home_page extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
 
-
                 if (!selectedItem.equals("المكان الحالي")) {
                     dest.setEnabled(true);
                     destinationSpinner();
                     dest.setSelection(0);
-                    clearLine();
 
-                       iconAddgarage.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(home_page.this, add_line.class);
-                                startActivity(intent);
-                            }
-                        });
-
+                   iconAddGarageLine.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(home_page.this, add_line.class);
+                            startActivity(intent);
+                        }
+                    });
 
                     if(flage==1){
-                        garageLineStatusLayout.setVisibility(View.VISIBLE);
-                        isAdminOrDriverIconAdd();
                         newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.GONE);
+                        if_line();
                         clearLine();
                         selectLine(selectedItem);
-
-
 
                     } else if(flage==0)
                         selectNews();
                 }else{
                     dest.setEnabled(false);
                     dest.setSelection(0);
+
+                    iconAddGarageLine.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(home_page.this, add_garage.class);
+                            startActivity(intent);
+                        }
+                    });
+
                     if(flage==1){
-                        garageLineStatusLayout.setVisibility(View.VISIBLE);
                         newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.GONE);
+                        if_garage();
                         clearGarage();
                         selectGarage();
-                       // isAdminOrDriverIconAdd();
                     }
                     else if(flage==0)
                         selectNews();
@@ -227,10 +236,8 @@ public class home_page extends AppCompatActivity {
                 if (!selectedItem.equals("الوجهة")) {
 
                     if(flage==1){
-                        garageLineStatusLayout.setVisibility(View.GONE);
                         newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.VISIBLE);
-
+                        if_car();
                         clearCar();
                         selectCar(sour.getSelectedItem().toString(),selectedItem);
                     }
@@ -239,13 +246,10 @@ public class home_page extends AppCompatActivity {
                     }
                 }else{
                     if(flage==1){
-                        garageLineStatusLayout.setVisibility(View.VISIBLE);
-                        isAdminOrDriverIconAdd();
                         newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.GONE);
+                        if_line();
                         clearLine();
                         selectLine(sour.getSelectedItem().toString());
-
                     }
                     else if(flage==0){
                         selectNews();
@@ -264,7 +268,11 @@ public class home_page extends AppCompatActivity {
                 newsButt.setBackgroundColor(Color.WHITE);
                 newsButt.setTextColor(0xFFFF6F00);
 
+                if(d_or_a.equals("")){
+                    newsLayout.setVisibility(View.GONE);
+                }else{
                 newsLayout.setVisibility(View.VISIBLE);
+                }
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);
                 addNewstext.setText("");
@@ -276,8 +284,6 @@ public class home_page extends AppCompatActivity {
             }
         });
 
-
-
         addNewsButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -287,7 +293,6 @@ public class home_page extends AppCompatActivity {
 
             }
         });
-
 
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,15 +305,13 @@ public class home_page extends AppCompatActivity {
                 statusButt.setBackgroundColor(Color.WHITE);
                 statusButt.setTextColor(0xFFFF6F00);
 
+                newsLayout.setVisibility(View.GONE);
+
                 if (!sour.getSelectedItem().equals("المكان الحالي")) {
                     if (!dest.getSelectedItem().equals("الوجهة")) {
-                        garageLineStatusLayout.setVisibility(View.GONE);
-                        newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.VISIBLE);
+                        if_car();
                         clearCar();
                         selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
-
-
 //                        if(spinnerFilterCar.getSelectedItem().toString().equals("المتوفرة فقط")){
 //                            ArrayList<carItem> g=myCars;
 //                            for(carItem myItem : g) {
@@ -323,30 +326,14 @@ public class home_page extends AppCompatActivity {
 //                            recyclerView.setAdapter(myCarAdapter);
 //                        }
                     } else {
-                        garageLineStatusLayout.setVisibility(View.VISIBLE);
-                        newsLayout.setVisibility(View.GONE);
-                        carStatusLayout.setVisibility(View.GONE);
+                        if_line();
                         clearLine();
                         selectLine(sour.getSelectedItem().toString());
-
-
                     }
                 } else {
-                    //garage
-                    garageLineStatusLayout.setVisibility(View.VISIBLE);
-                    newsLayout.setVisibility(View.GONE);
-                    carStatusLayout.setVisibility(View.GONE);
-                    iconAddgarage.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(home_page.this, add_garage.class);
-                            startActivity(intent);
-                        }
-                    });
+                    if_garage();
                     clearGarage();
                     selectGarage();
-
-
                 }
             }
         });
@@ -367,17 +354,17 @@ public class home_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(login.s_id==null) {
-            personalIcon.setVisibility(View.GONE);
-            messagesIcon.setVisibility(View.GONE);
-            iconAddgarage.setVisibility(View.GONE);
-            iconAddcar.setVisibility(View.GONE);
-            news.setVisibility(View.GONE);
-        }
+
         personalIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isAdminOrDriver();
+                Intent intent;
+                if(d_or_a.equals("d")){
+                    intent = new Intent(home_page.this, personal_page.class);
+                }else{
+                    intent = new Intent(home_page.this, admin_personal_page.class);
+                }
+                startActivity(intent);
             }
         });
         messagesIcon.setOnClickListener(new View.OnClickListener() {
@@ -395,6 +382,40 @@ public class home_page extends AppCompatActivity {
             }
         });
     }
+    private void if_garage(){
+        if(d_or_a.equals("d")||d_or_a.equals("")){
+            garageLineStatusLayout.setVisibility(View.GONE);
+        }else if (d_or_a.equals("a")){
+            //هاي للادمن الكبير المفروض لكن حاليا ما عنا
+            garageLineStatusLayout.setVisibility(View.VISIBLE);
+        }
+        carStatusLayout.setVisibility(View.GONE);
+    }
+    private void if_line(){
+        if(d_or_a.equals("d")||d_or_a.equals("")){
+            garageLineStatusLayout.setVisibility(View.GONE);
+        }else if (d_or_a.equals("a")){
+            if(sour.getSelectedItem().toString().equals(nameGarage)){
+                garageLineStatusLayout.setVisibility(View.VISIBLE);
+            }else{
+                garageLineStatusLayout.setVisibility(View.GONE);
+            }
+        }
+        carStatusLayout.setVisibility(View.GONE);
+    }
+    private void if_car(){
+        carStatusLayout.setVisibility(View.VISIBLE);
+        if(d_or_a.equals("d")||d_or_a.equals("")){
+            iconAddcar.setVisibility(View.GONE);
+        }else if (d_or_a.equals("a")){
+            if(sour.getSelectedItem().toString().equals(nameGarage)||dest.getSelectedItem().toString().equals(nameGarage)){
+                iconAddcar.setVisibility(View.VISIBLE);
+            }else{
+                iconAddcar.setVisibility(View.GONE);
+            }
+        }
+        garageLineStatusLayout.setVisibility(View.GONE);
+    }
 
     private void isAdminOrDriver() {
         String url = url_serverName.serverName + "isAdminOrDriver.php";
@@ -407,62 +428,7 @@ public class home_page extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
                         String check = reader.getString("check");
-                        if(check.equals("d")){
-                            Intent intent = new Intent(home_page.this, personal_page.class);
-                            startActivity(intent);
-                        }else{
-                            Intent intent = new Intent(home_page.this, admin_personal_page.class);
-                            startActivity(intent);
-                        }
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> myMap = new HashMap<>();
-                myMap.put("s_id", login.s_id);
-                return myMap;
-            }
-        };
-        my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
-    }
-    private void isAdminOrDriverIconAdd() {
-        String url = url_serverName.serverName + "isAdminOrDriver.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("A_D");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-                        String check = reader.getString("check");
-                        if(check.equals("d")){
-                           iconAddgarage.setVisibility(View.GONE);
-                           iconAddcar.setVisibility(View.GONE);
-                        }else{
-
-                           if (sour.getSelectedItem().toString().equals(nameGarage)){
-                                iconAddgarage.setVisibility(View.VISIBLE);
-                                iconAddcar.setVisibility(View.VISIBLE);
-                           }
-                           else{
-                               iconAddgarage.setVisibility(View.GONE);
-                               iconAddcar.setVisibility(View.GONE);
-                            }
-
-                        }
-
+                        d_or_a=check;
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -809,15 +775,12 @@ public class home_page extends AppCompatActivity {
     }
     public void MoveFromGarageToLine (String garageName){
         sour.setSelection(getIndexByString(sour,garageName));
-       // isAdminOrDriverIconAdd();
     }
     public void MoveFromLineToCar (String SourceName,String DestName){
-        if(!sour.getSelectedItem().toString().equals(DestName)) {
-            sour.setSelection(getIndexByString(sour, SourceName));
+        if(sour.getSelectedItem().toString().equals(SourceName)) {
             dest.setSelection(getIndexByString(dest,DestName));
         }
         else{
-            sour.setSelection(getIndexByString(sour, DestName));
             dest.setSelection(getIndexByString(dest,SourceName));
         }
     }
@@ -831,7 +794,7 @@ public class home_page extends AppCompatActivity {
         }
         return index;
     }
-    private String garageadmin() {
+    private String garageAdmin() {
         String url = url_serverName.serverName + "selectGarageNameByAdmin.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
