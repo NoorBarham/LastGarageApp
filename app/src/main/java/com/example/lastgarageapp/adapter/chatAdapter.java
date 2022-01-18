@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lastgarageapp.R;
+import com.example.lastgarageapp.View_Admin;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.itemClasses.chatItem;
 
@@ -62,9 +63,14 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.messengerViewH
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    conversation.chat_id= chat_id.getText().toString();
-                    conversation.static_receiver_name= name.getText().toString();
+//                    conversation.chat_id= chat_id.getText().toString();
+//                    conversation.static_receiver_name= name.getText().toString();
                     Intent intent = new Intent(con, conversation.class);
+
+                    intent.putExtra("chat_id", chat_id.getText().toString());
+                    intent.putExtra("receiver_name", name.getText().toString());
+                    intent.putExtra("receiver_id", "");
+
                     con.startActivity(intent);
                 }
             });

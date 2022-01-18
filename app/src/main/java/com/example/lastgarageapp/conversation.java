@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,26 +34,32 @@ public class conversation extends AppCompatActivity {
     messageAdapter myMessageAdapter;
     RecyclerView myRecyclerView;
     ImageView send_icon, backIcon;
-    TextView addMessage, receiverName;
+    TextView addMessage, receiverName_textView;
     ScrollView myScroll;
 
-    public static String chat_id=null;
-    public static String static_receiver_name ="";
+    public String chat_id="";
+    public String receiver_id="";
+    public String receiver_name ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation);
 
-        receiverName =findViewById(R.id.conversation_receiverName);
+        receiverName_textView =findViewById(R.id.conversation_receiverName);
         addMessage =findViewById(R.id.conversation_addText);
         send_icon = findViewById(R.id.conversation_send_icon);
         backIcon =findViewById(R.id.conversation_backIcon);
         myRecyclerView = findViewById(R.id.converRecyView);
         myScroll = findViewById(R.id.conversation_myScroll);
 
+        Intent intent = getIntent();
+        chat_id = intent.getStringExtra("chat_id");
+        receiver_name = intent.getStringExtra("receiver_name");
+        receiver_id = intent.getStringExtra("receiver_id");
+
         myRecyclerView.setLayoutManager(new LinearLayoutManager(conversation.this));
-        receiverName.setText(conversation.static_receiver_name);
+        receiverName_textView.setText(receiver_name);
         selectMessages();
 
         backIcon.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +114,7 @@ public class conversation extends AppCompatActivity {
                 Map<String, String> myMap = new HashMap<>();
                 myMap.put("s_id", login.s_id);
                 myMap.put("chat_id", chat_id);
-//                myMap.put("receiver_id", "5555");
+                myMap.put("receiver_id", receiver_id);
                 return myMap;
             }
         };
@@ -136,7 +143,7 @@ public class conversation extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> myMap = new HashMap<>();
-                    myMap.put("receiver_name", conversation.static_receiver_name);
+                    myMap.put("receiver_id", receiver_id);
                     myMap.put("chat_id", chat_id);
                     myMap.put("message_text", message_text);
                     myMap.put("s_id", login.s_id);
