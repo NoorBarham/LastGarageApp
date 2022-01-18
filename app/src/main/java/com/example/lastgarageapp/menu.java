@@ -640,8 +640,6 @@ public class menu extends AppCompatActivity {
             settings.setVisibility(View.GONE);
             div4.setVisibility(View.GONE);
             logout.setVisibility(View.GONE);
-            showDrivers.setVisibility(View.GONE);
-            div10.setVisibility(View.GONE);
             div19.setVisibility(View.GONE);
             other.setVisibility(View.GONE);
 
