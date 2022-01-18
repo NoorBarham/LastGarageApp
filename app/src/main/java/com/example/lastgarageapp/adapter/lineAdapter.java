@@ -64,103 +64,6 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
         holder.garage1.setText(l.getGarage1());
         holder.garage2.setText(l.getGarage2());
 
-        if(login.s_id!=null){
-
-            String url = url_serverName.serverName + "isAdminOrDriver.php";
-            StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject object = new JSONObject(response);
-                        JSONArray jsonArray = object.getJSONArray("A_D");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject reader = jsonArray.getJSONObject(i);
-                            String check = reader.getString("check");
-                            if(check.equals("d")){
-                              holder.iconDelete.setVisibility(View.GONE);
-                            }else{
-
-                            }
-
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                    error.printStackTrace();
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> myMap = new HashMap<>();
-                    myMap.put("s_id", login.s_id);
-                    return myMap;
-                }
-            };
-            my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
-        }
-        else{
-            holder.iconDelete.setVisibility(View.GONE);
-        }
-
-        holder.iconDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(con);
-                alert.setTitle("تأكيد الحذف");
-                alert.setMessage("هل تريد تأكيد الحذف؟");
-
-                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                       // Toast.makeText(line_status_list_item.this, "تم الحذف",Toast.LENGTH_SHORT).show();
-
-
-                            String url = url_serverName.serverName + "deleteIconline.php";
-                            StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Toast.makeText(con, response, Toast.LENGTH_SHORT).show();
-                                }
-                            }, new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                                    error.printStackTrace();
-                                }
-                            }) {
-                                @Override
-                                protected Map<String, String> getParams() {
-                                    Map<String, String> params = new HashMap<>();
-
-                                    params.put("garage1", holder.garage1.getText().toString());
-                                    params.put("garage2", holder.garage2.getText().toString());
-
-
-                                    return params;
-                                }
-                            };
-                            my_singleton.getInstance(con).addToRequestQueue(stringRequest2);
-
-                        }
-
-
-                });
-                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                       // Toast.makeText(line_status_list_item.this, "تم التراجع",Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alert.create().show();
-            }
-        });
     }
 
     @Override
@@ -171,7 +74,6 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
 
     public class lineViewHolder extends RecyclerView.ViewHolder {
         TextView lineFare, noOfCars, garage1,garage2;
-        TextView iconDelete;
 
 
         public lineViewHolder(@NonNull View itemView) {
@@ -180,7 +82,6 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
             noOfCars = itemView.findViewById(R.id.lineItem_noOfCar);
             garage1= itemView.findViewById(R.id.lineItem_garage1);
             garage2= itemView.findViewById(R.id.lineItem_garage2);
-            iconDelete = itemView.findViewById(R.id.lineItem_deleteIcon);
 
 
 
