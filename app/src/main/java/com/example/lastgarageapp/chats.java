@@ -152,8 +152,11 @@ public class chats extends AppCompatActivity {
                         if(check.equals("d")){
                             Intent intent = new Intent(chats.this, personal_page.class);
                             startActivity(intent);
-                        }else{
+                        }else if(check.equals("a")){
                             Intent intent = new Intent(chats.this, admin_personal_page.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(chats.this, boss_personal_page.class);
                             startActivity(intent);
                         }
 

@@ -152,8 +152,10 @@ public class notifications extends AppCompatActivity {
                         Intent intent;
                         if(check.equals("d")){
                             intent = new Intent(notifications.this, personal_page.class);
-                        }else{
+                        }else if(check.equals("a")){
                             intent = new Intent(notifications.this, admin_personal_page.class);
+                        }else{
+                            intent = new Intent(notifications.this, boss_personal_page.class);
                         }
                         startActivity(intent);
 

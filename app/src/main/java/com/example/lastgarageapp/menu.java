@@ -33,7 +33,7 @@ public class menu extends AppCompatActivity {
             showDrivers, readComplains,writecomplains,
             aboutapp, settings,logout,login1;
     TextView other,add,edit;
-    View divider,div4,div10,div19;
+    View divider,div4,div10,div19,div3,div6;
     LinearLayout personalLayout, addLayout, editLayout;
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
@@ -48,6 +48,8 @@ public class menu extends AppCompatActivity {
         div4=findViewById(R.id.divider4);
         div10=findViewById(R.id.divider10);
         div19=findViewById(R.id.divider19);
+        div3=findViewById(R.id.divider3);
+        div6=findViewById(R.id.divider6);
 
 
 
@@ -602,7 +604,13 @@ public class menu extends AppCompatActivity {
                                 login1.setVisibility(View.GONE);
                                 div19.setVisibility(View.GONE);
 
-                            } else {
+                            } else if(check.equals("a")) {
+                                addManager.setVisibility(View.GONE);
+                                addnewgarage.setVisibility(View.GONE);
+                                login1.setVisibility(View.GONE);
+                                div19.setVisibility(View.GONE);
+                            }
+                            else{
                                 login1.setVisibility(View.GONE);
                                 div19.setVisibility(View.GONE);
                             }
@@ -640,6 +648,8 @@ public class menu extends AppCompatActivity {
             settings.setVisibility(View.GONE);
             div4.setVisibility(View.GONE);
             logout.setVisibility(View.GONE);
+           /// showDrivers.setVisibility(View.GONE);
+          //  div10.setVisibility(View.GONE);
             div19.setVisibility(View.GONE);
             other.setVisibility(View.GONE);
 
@@ -662,8 +672,12 @@ public class menu extends AppCompatActivity {
                         if(check.equals("d")){
                             Intent intent = new Intent(menu.this, personal_page.class);
                             startActivity(intent);
-                        }else{
+                        }else if(check.equals("a")){
                             Intent intent = new Intent(menu.this, admin_personal_page.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Intent intent = new Intent(menu.this, boss_personal_page.class);
                             startActivity(intent);
                         }
 

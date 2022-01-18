@@ -144,6 +144,10 @@
             android:exported="true"  >
 
         </activity>
+        <activity android:name=".boss_personal_page"
+            android:exported="true"  >
+
+        </activity>
 
     </application>
 
