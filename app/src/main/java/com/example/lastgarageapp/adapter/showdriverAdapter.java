@@ -54,9 +54,13 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(con, conversation.class);
-                con.startActivity(intent);
+                Intent intent = new Intent(con, conversation.class);
 
+                intent.putExtra("chat_id", "");
+                intent.putExtra("receiver_name", holder.NameText.getText().toString());
+                intent.putExtra("receiver_id", holder.id.getText().toString());
+
+                con.startActivity(intent);
 
             }
         });
