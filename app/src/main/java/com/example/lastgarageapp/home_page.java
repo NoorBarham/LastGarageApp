@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 //import android.util.Log;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,7 +51,7 @@ public class home_page extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayout news;
     String nameGarage="";
-    String d_or_a="";
+    public String d_or_a="";
 
 
     //my actionbar
@@ -131,9 +132,7 @@ public class home_page extends AppCompatActivity {
 
         if(login.s_id!=null){
             isAdminOrDriver();
-            if(d_or_a.equals("a")){
-                nameGarage= garageAdmin();
-            }
+
         }else{
             personalIcon.setVisibility(View.GONE);
             messagesIcon.setVisibility(View.GONE);
@@ -142,8 +141,6 @@ public class home_page extends AppCompatActivity {
         sourceSpinner();
         dest.setEnabled(false);
         selectNews();
-
-//        getLogin();
         flage=0;
 
         is_available.add("الكل");
@@ -361,8 +358,10 @@ public class home_page extends AppCompatActivity {
                 Intent intent;
                 if(d_or_a.equals("d")){
                     intent = new Intent(home_page.this, personal_page.class);
-                }else{
+                }else if(d_or_a.equals("a")){
                     intent = new Intent(home_page.this, admin_personal_page.class);
+                }else{
+                    intent = new Intent(home_page.this, boss_personal_page.class);
                 }
                 startActivity(intent);
             }
@@ -382,12 +381,16 @@ public class home_page extends AppCompatActivity {
             }
         });
     }
+
+    private void setCheck(String check){
+        Log.e("c",check);
+        d_or_a= check;
+    }
     private void if_garage(){
-        if(d_or_a.equals("d")||d_or_a.equals("")){
-            garageLineStatusLayout.setVisibility(View.GONE);
-        }else if (d_or_a.equals("a")){
-            //هاي للادمن الكبير المفروض لكن حاليا ما عنا
+        if(d_or_a.equals("b")){
             garageLineStatusLayout.setVisibility(View.VISIBLE);
+        }else {
+            garageLineStatusLayout.setVisibility(View.GONE);
         }
         carStatusLayout.setVisibility(View.GONE);
     }
@@ -395,11 +398,14 @@ public class home_page extends AppCompatActivity {
         if(d_or_a.equals("d")||d_or_a.equals("")){
             garageLineStatusLayout.setVisibility(View.GONE);
         }else if (d_or_a.equals("a")){
+            Log.d("hi",nameGarage);
             if(sour.getSelectedItem().toString().equals(nameGarage)){
                 garageLineStatusLayout.setVisibility(View.VISIBLE);
             }else{
                 garageLineStatusLayout.setVisibility(View.GONE);
             }
+        }else if(d_or_a.equals("b")){
+            garageLineStatusLayout.setVisibility(View.VISIBLE);
         }
         carStatusLayout.setVisibility(View.GONE);
     }
@@ -413,6 +419,8 @@ public class home_page extends AppCompatActivity {
             }else{
                 iconAddcar.setVisibility(View.GONE);
             }
+        }else if(d_or_a.equals("b")){
+            iconAddcar.setVisibility(View.VISIBLE);
         }
         garageLineStatusLayout.setVisibility(View.GONE);
     }
@@ -428,7 +436,13 @@ public class home_page extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
                         String check = reader.getString("check");
-                        d_or_a=check;
+                        setCheck(check);
+                        if(d_or_a.equals("a")){
+                            garageAdmin();
+                            Log.e("hhhhhhhhhhhh","d_or_a");
+
+                        }
+                        Log.e("v",check);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -796,7 +810,10 @@ public class home_page extends AppCompatActivity {
         }
         return index;
     }
-    private String garageAdmin() {
+    private void setGarageName(String garage_name) {
+        nameGarage=garage_name;
+    }
+    private void garageAdmin() {
         String url = url_serverName.serverName + "selectGarageNameByAdmin.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -806,8 +823,9 @@ public class home_page extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("deleteGarageLine");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
-                        nameGarage = reader.getString("garage_name");
-
+                        String garage_name = reader.getString("garage_name");
+                        Log.e("hhh",garage_name);
+                        setGarageName(garage_name);
                     }
 
                 } catch (JSONException e) {
@@ -829,7 +847,6 @@ public class home_page extends AppCompatActivity {
             }
         };
         my_singleton.getInstance(home_page.this).addToRequestQueue(myStringRequest);
-        return nameGarage;
     }
 
 

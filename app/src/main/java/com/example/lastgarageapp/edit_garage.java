@@ -52,8 +52,12 @@ public class edit_garage extends AppCompatActivity {
         saveChange = (Button) findViewById(R.id.editGarage_saveChange);
         cancel = (Button) findViewById(R.id.editGarage_cancel);
 
+        //if boss
         garageNameSpinner();
         adminNameSpinner();
+
+        //if normal Admin
+        garage_and_admin();
 
         garageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -204,6 +208,7 @@ finish();
     }
 
     private void garageNameSpinner() {
+        //if boss
         garageName_arr.clear();
         garageName_arr.add(0,"لم يحدد");
 
@@ -238,6 +243,44 @@ finish();
         });
         my_singleton.getInstance(edit_garage.this).addToRequestQueue(myStringRequest);
     }
+
+    private void garage_and_admin() {
+        String url = url_serverName.serverName + "selectGarageNameByAdmin.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("deleteGarageLine");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String garage_name = reader.getString("garage_name");
+                        garageName_arr.add(garage_name);
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_garage.this,android.R.layout.simple_spinner_item, garageName_arr);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    garageName.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(edit_garage.this).addToRequestQueue(myStringRequest);
+    }
+
     private void adminNameSpinner() {
         adminName_arr.clear();
         adminName_arr.add(0,"لم يحدد");
@@ -253,8 +296,8 @@ finish();
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String cityName
-                        String cityName = reader.getString("admin_name");
-                        adminName_arr.add(cityName);
+                        String admin_name = reader.getString("admin_name");
+                        adminName_arr.add(admin_name);
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_garage.this,android.R.layout.simple_spinner_item, adminName_arr);

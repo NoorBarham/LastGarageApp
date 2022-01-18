@@ -23,35 +23,32 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class admin_personal_page extends AppCompatActivity {
+public class boss_personal_page extends AppCompatActivity {
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
     TextView editData, changePass, u_id,u_name, u_city, u_phone, u_garage;
 
-//    ImageView textMessage;
-
+    ImageView textMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_personal_page);
+        setContentView(R.layout.activity_boss_personal_page);
 
-        //views in adminPersonalPage
-        editData = findViewById(R.id.adminPersonalPage_editData);
-        changePass = findViewById(R.id.adminPersonalPage_changePass);
-//        textMessage = findViewById(R.id.adminPersonalPage_messageIcon);
-        u_id = (TextView) findViewById(R.id.adminPersonalPage_idintitynum);
-        u_name = (TextView) findViewById(R.id.adminPersonalPage_name);
-        u_city = findViewById(R.id.adminPersonalPage_placeVal);
-        u_phone = findViewById(R.id.adminPersonalPage_phoneNumVal);
-        u_garage = findViewById(R.id.adminPersonalPage_workplaceVal);
-
-
-        selectadminPersonaldata();
+        //views in bossPersonalPage
+        editData = findViewById(R.id.bossPersonalPage_editData);
+        changePass = findViewById(R.id.bossPersonalPage_changePass);
+        textMessage = findViewById(R.id.bossPersonalPage_messageIcon);
+        u_id = (TextView) findViewById(R.id.bossPersonalPage_idVal);
+        u_name = (TextView) findViewById(R.id.bossPersonalPage_name);
+        u_city = findViewById(R.id.bossPersonalPage_placeVal);
+        u_phone = findViewById(R.id.bossPersonalPage_phoneNumVal);
 
 
+        selectBossData();
+        /////////////////////هون فيه بدنا نعمل صفحة تعديل للادمن
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(admin_personal_page.this, edit_admin_personal_data.class);
+                Intent intent = new Intent(boss_personal_page.this, edit_admin_personal_data.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +56,15 @@ public class admin_personal_page extends AppCompatActivity {
         changePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(admin_personal_page.this, change_password.class);
+                Intent intent = new Intent(boss_personal_page.this, change_password.class);
+                startActivity(intent);
+            }
+        });
+
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(boss_personal_page.this, conversation.class);
                 startActivity(intent);
             }
         });
@@ -76,7 +81,7 @@ public class admin_personal_page extends AppCompatActivity {
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(admin_personal_page.this, home_page.class);
+                Intent intent = new Intent(boss_personal_page.this, home_page.class);
                 startActivity(intent);
             }
         });
@@ -90,7 +95,7 @@ public class admin_personal_page extends AppCompatActivity {
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent = new Intent(admin_personal_page.this, notifications.class);
+                Intent intent = new Intent(boss_personal_page.this, notifications.class);
                 startActivity(intent);
             }
         });
@@ -116,7 +121,7 @@ public class admin_personal_page extends AppCompatActivity {
                 homeIcon.setBackgroundColor(0xFFFF6F00);
                 menuIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent = new Intent(admin_personal_page.this, chats.class);
+                Intent intent = new Intent(boss_personal_page.this, chats.class);
                 startActivity(intent);
             }
         });
@@ -132,34 +137,31 @@ public class admin_personal_page extends AppCompatActivity {
                 messagesIcon.setBackgroundColor(0xFFFF6F00);
                 homeIcon.setBackgroundColor(0xFFFF6F00);
 
-                Intent intent = new Intent(admin_personal_page.this, menu.class);
+                Intent intent = new Intent(boss_personal_page.this, menu.class);
                 startActivity(intent);
             }
-        });
-    }
+        });    }
 
-    public void selectadminPersonaldata() {
-        String url = url_serverName.serverName + "adminPersonalpage.php";
+    private void selectBossData() {
+        String url = url_serverName.serverName + "bossPersonalPage.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("personal_admin");
+                    JSONArray jsonArray = object.getJSONArray("personal_boss");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         String id = reader.getString("id");
-                        String name = reader.getString("admin_name");
+                        String name = reader.getString("name");
                         String phone = reader.getString("phone");
                         String city = reader.getString("city");
-                        String garage = reader.getString("garage_name");
 
                         u_id.setText(id);
                         u_name.setText(name);
                         u_phone.setText(phone);
                         u_city.setText(city);
-                        u_garage.setText(garage);
                     }
 
                 } catch (JSONException e) {
@@ -180,7 +182,7 @@ public class admin_personal_page extends AppCompatActivity {
                 return myMap;
             }
         };
-        my_singleton.getInstance(admin_personal_page.this).addToRequestQueue(myStringRequest);
+        my_singleton.getInstance(boss_personal_page.this).addToRequestQueue(myStringRequest);
 
     }
 }
