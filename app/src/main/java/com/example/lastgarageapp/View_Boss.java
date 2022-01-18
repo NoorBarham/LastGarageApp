@@ -2,6 +2,7 @@ package com.example.lastgarageapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +42,17 @@ public class View_Boss extends AppCompatActivity {
         u_id.setText(str);
 
         selectBossData();
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(View_Boss.this, conversation.class);
+                intent.putExtra("chat_id", "");
+                intent.putExtra("receiver_id", u_id.getText().toString());
+                intent.putExtra("receiver_name", u_name.getText().toString());
 
+                startActivity(intent);
+            }
+        });
     }
 
     private void selectBossData() {

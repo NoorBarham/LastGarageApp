@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,23 +42,25 @@ public class View_Admin extends AppCompatActivity {
         u_fun=findViewById(R.id.ViewAdminPersonalPage_function);
         u_garage=findViewById(R.id.ViewAdminPersonalPage_workplaceVal);
 
-        if(flag.equals("1")) {
 
             Intent intent = getIntent();
             String str = intent.getStringExtra("message_key");
             u_id.setText(str);
 
             selectdriverdata();
-        }
-        else{
-            Intent intent = getIntent();
-            String str = intent.getStringExtra("message_key");
-            u_id.setText(str);
-
-            selectdriverdata();
-        }
 
 
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(View_Admin.this, conversation.class);
+                intent.putExtra("chat_id", "");
+                intent.putExtra("receiver_id", u_id.getText().toString());
+                intent.putExtra("receiver_name", u_name.getText().toString());
+
+                startActivity(intent);
+            }
+        });
     }
     public void selectdriverdata() {
         String url = url_serverName.serverName + "view_admin.php";
