@@ -138,6 +138,7 @@ public class notifications extends AppCompatActivity {
             }
         });
     }
+    //
     private void isAdminOrDriver() {
         String url = url_serverName.serverName + "isAdminOrDriver.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

@@ -51,7 +51,7 @@ public class menu extends AppCompatActivity {
         div3=findViewById(R.id.divider3);
         div6=findViewById(R.id.divider6);
 
-
+/////
 
         add=findViewById(R.id.add);
         addDriver=findViewById(R.id.add_new_driver);

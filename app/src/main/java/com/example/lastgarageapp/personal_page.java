@@ -105,6 +105,7 @@ public class personal_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //
         personalIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
