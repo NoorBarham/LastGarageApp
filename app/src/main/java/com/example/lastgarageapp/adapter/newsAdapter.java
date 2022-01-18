@@ -22,11 +22,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.View_Admin;
+import com.example.lastgarageapp.View_Boss;
 import com.example.lastgarageapp.View_Driver;
+import com.example.lastgarageapp.admin_personal_page;
 import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.newsItem;
 import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
+import com.example.lastgarageapp.personal_page;
 import com.example.lastgarageapp.url_serverName;
 import com.example.lastgarageapp.view_notification;
 
@@ -143,17 +146,38 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                                 JSONObject reader = jsonArray.getJSONObject(i);
                                 String check = reader.getString("check");
                                 if(check.equals("d")){
-                                    Intent intent = new Intent(con, View_Driver.class);
-                                    intent.putExtra("message_key",iid);
-                                    con.startActivity(intent);                                }
+                                    if(iid.equals(login.myUser_id)){
+                                        Intent intent = new Intent(con, personal_page.class);
+                                        con.startActivity(intent);
+                                    }
+                                    else {
+                                        Intent intent = new Intent(con, View_Driver.class);
+                                        intent.putExtra("message_key", iid);
+                                        con.startActivity(intent);
+                                    }
+                                    }
                                 else if(check.equals("a")){
-                                    Intent intent = new Intent(con, View_Admin.class);
-                                    intent.putExtra("message_key",iid);
-                                    con.startActivity(intent);
+                                    if(iid.equals(login.myUser_id)){
+                                        Intent intent = new Intent(con, admin_personal_page.class);
+                                        con.startActivity(intent);
+                                    }
+                                    else {
+                                        Intent intent = new Intent(con, View_Admin.class);
+                                        intent.putExtra("message_key", iid);
+                                        con.startActivity(intent);
+                                    }
 
                                 }
                                 else {
-
+                                    if(iid.equals(login.myUser_id)){
+                                        Intent intent = new Intent(con, personal_page.class);
+                                        con.startActivity(intent);
+                                    }
+                                    else {
+                                        Intent intent = new Intent(con, View_Boss.class);
+                                        intent.putExtra("message_key", iid);
+                                        con.startActivity(intent);
+                                    }
                                 }
                             }
                         } catch (JSONException e) {

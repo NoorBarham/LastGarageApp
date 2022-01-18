@@ -16,6 +16,7 @@ import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.itemClasses.showDriversItem;
+import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.personal_page;
 
 import java.util.ArrayList;
@@ -103,11 +104,17 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     iid=id.getText().toString();
-                    Intent intent=new Intent(con, View_Driver.class);
-                    intent.putExtra("message_key",iid);
-                    con.startActivity(intent);
+
+                    if(iid.equals(login.myUser_id)){
+                        Intent intent = new Intent(con, personal_page.class);
+                        con.startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(con, View_Driver.class);
+                        intent.putExtra("message_key", iid);
+                        con.startActivity(intent);
+                    }
 
                 }
             });

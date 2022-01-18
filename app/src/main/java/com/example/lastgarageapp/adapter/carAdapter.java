@@ -24,6 +24,7 @@ import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
+import com.example.lastgarageapp.personal_page;
 import com.example.lastgarageapp.url_serverName;
 
 import org.json.JSONArray;
@@ -170,11 +171,17 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         holder.nameDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                iid = holder.u_id.getText().toString();
 
-                iid=holder.u_id.getText().toString();
-                Intent intent=new Intent(con, View_Driver.class);
-                intent.putExtra("message_key",iid);
-                con.startActivity(intent);
+                if(iid.equals(login.myUser_id)){
+                    Intent intent = new Intent(con, personal_page.class);
+                    con.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(con, View_Driver.class);
+                    intent.putExtra("message_key", iid);
+                    con.startActivity(intent);
+                }
 
             }
         });

@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.View_Admin;
 import com.example.lastgarageapp.View_Driver;
+import com.example.lastgarageapp.admin_personal_page;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.edit_garage;
 import com.example.lastgarageapp.home_page;
@@ -172,12 +173,17 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
         holder.adminName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 iid=holder.id.getText().toString();
-                Intent intent=new Intent(con, View_Admin.class);
-                intent.putExtra("message_key",iid);
-                con.startActivity(intent);
 
+                if(iid.equals(login.myUser_id)){
+                    Intent intent = new Intent(con, admin_personal_page.class);
+                    con.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(con, View_Admin.class);
+                    intent.putExtra("message_key", iid);
+                    con.startActivity(intent);
+                }
 
             }
         });
