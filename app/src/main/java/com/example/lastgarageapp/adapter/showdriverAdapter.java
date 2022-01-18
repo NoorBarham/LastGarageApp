@@ -109,7 +109,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
                     Intent intent=new Intent(con, View_Driver.class);
                     intent.putExtra("message_key",iid);
                     con.startActivity(intent);
-                    View_Driver.flag="1";
+
 
 
                 }

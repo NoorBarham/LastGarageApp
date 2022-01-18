@@ -28,10 +28,6 @@ public class View_Driver extends AppCompatActivity {
     TextView u_id, u_name, u_city, u_phone, u_car_id, u_sour, u_dest,u_fun;
     String id="";
 
-
-    public static String flag="0";
-
-
     ImageView textMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,30 +44,13 @@ public class View_Driver extends AppCompatActivity {
         u_sour = findViewById(R.id.ViewDriverPersonalPage_sour);
         u_dest = findViewById(R.id.ViewDriverPersonalPage_dest);
         u_fun=findViewById(R.id.ViewDriverPersonalPage_function);
-        if(flag.equals("1")) {
+
 
             Intent intent = getIntent();
             String str = intent.getStringExtra("message_key");
             u_id.setText(str);
 
             selectdriverdata();
-        }
-        else if(flag.equals("2")){
-
-            Intent intent = getIntent();
-            String str = intent.getStringExtra("message_key");
-            u_id.setText(str);
-
-            selectdriverdata();
-        }
-        else{
-
-            Intent intent = getIntent();
-            String str = intent.getStringExtra("message_key");
-            u_id.setText(str);
-
-            selectdriverdata();
-        }
 
 
     }
