@@ -145,9 +145,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                                 if(check.equals("d")){
                                     Intent intent = new Intent(con, View_Driver.class);
                                     intent.putExtra("message_key",iid);
-                                    con.startActivity(intent);
-                                    //  Toast.makeText(con, iid, Toast.LENGTH_SHORT).show();
-                                }
+                                    con.startActivity(intent);                                }
                                 else if(check.equals("a")){
                                     Intent intent = new Intent(con, View_Admin.class);
                                     intent.putExtra("message_key",iid);

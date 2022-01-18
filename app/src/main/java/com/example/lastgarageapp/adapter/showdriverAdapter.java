@@ -99,18 +99,15 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
             iconMessage = itemView.findViewById(R.id.showDriversItem_messageIcon);
 
-          //  View_Driver.getInstance().selectdriverdata(id.getText().toString());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    iid=id.getText().toString();
 
+                    iid=id.getText().toString();
                     Intent intent=new Intent(con, View_Driver.class);
                     intent.putExtra("message_key",iid);
                     con.startActivity(intent);
-
-
 
                 }
             });

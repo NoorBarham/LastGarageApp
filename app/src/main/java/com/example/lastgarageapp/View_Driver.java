@@ -26,7 +26,6 @@ import java.util.Map;
 
 public class View_Driver extends AppCompatActivity {
     TextView u_id, u_name, u_city, u_phone, u_car_id, u_sour, u_dest,u_fun;
-    String id="";
 
     ImageView textMessage;
     @Override

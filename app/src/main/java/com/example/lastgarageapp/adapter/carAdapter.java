@@ -172,7 +172,6 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             public void onClick(View view) {
 
                 iid=holder.u_id.getText().toString();
-
                 Intent intent=new Intent(con, View_Driver.class);
                 intent.putExtra("message_key",iid);
                 con.startActivity(intent);

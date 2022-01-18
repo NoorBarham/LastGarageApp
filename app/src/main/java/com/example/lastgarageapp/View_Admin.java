@@ -24,7 +24,6 @@ import java.util.Map;
 public class View_Admin extends AppCompatActivity {
     TextView u_id, u_name, u_city, u_phone, u_fun,u_garage;
     String id="";
-    private static View_Driver instance;
     ImageView textMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

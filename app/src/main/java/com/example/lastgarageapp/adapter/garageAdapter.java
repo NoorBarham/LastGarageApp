@@ -174,7 +174,6 @@ public class garageAdapter extends RecyclerView.Adapter<garageAdapter.garageView
             public void onClick(View view) {
 
                 iid=holder.id.getText().toString();
-
                 Intent intent=new Intent(con, View_Admin.class);
                 intent.putExtra("message_key",iid);
                 con.startActivity(intent);
