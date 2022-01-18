@@ -86,8 +86,14 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
                             String check = reader.getString("check");
                             if(check.equals("d")){
                                 holder.iconDelet.setVisibility(View.GONE);
-                            }else{
-
+//                            } else if (check.equals("a")){
+//                                if(sour.getSelectedItem().toString().equals(nameGarage)||dest.getSelectedItem().toString().equals(nameGarage)){
+//                                    holder.iconDelet.setVisibility(View.VISIBLE);
+//                                }else{
+//                                    holder.iconDelet.setVisibility(View.GONE);
+//                                }
+                            }else if(check.equals("b")){
+                                holder.iconDelet.setVisibility(View.VISIBLE);
                             }
 
                         }
