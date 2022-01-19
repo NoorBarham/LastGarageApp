@@ -56,7 +56,7 @@ public class View_Boss extends AppCompatActivity {
     }
 
     private void selectBossData() {
-        String url = url_serverName.serverName + "bossPersonalPage.php";
+        String url = url_serverName.serverName + "view_boss.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -91,7 +91,7 @@ public class View_Boss extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> myMap = new HashMap<>();
-                myMap.put("s_id", u_id.getText().toString());
+                myMap.put("boss_id", u_id.getText().toString());
                 return myMap;
             }
         };
