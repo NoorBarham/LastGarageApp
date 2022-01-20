@@ -144,16 +144,16 @@ android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
-
                     <Spinner
-                        android:id="@+id/editCarData_destination"
+                        android:id="@+id/editCarData_source"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:entries="@array/destination"
-                        android:text="المكان الحالي"
                         android:backgroundTint="#ff6f00"
+                        android:entries="@array/source"
+                        android:text="الوجهة"
                         android:textAlignment="viewEnd" />
+
 
                     <TextView
                         android:id="@+id/editdatacar_sourcename"
@@ -172,15 +172,15 @@ android:padding="10dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                    <Spinner
-                        android:id="@+id/editCarData_source"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:backgroundTint="#ff6f00"
-                        android:entries="@array/source"
-                        android:text="الوجهة"
-                        android:textAlignment="viewEnd" />
+                        <Spinner
+                            android:id="@+id/editCarData_destination"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/destination"
+                            android:text="المكان الحالي"
+                            android:backgroundTint="#ff6f00"
+                            android:textAlignment="viewEnd" />
                         <TextView
                             android:id="@+id/editdatacar_destinationname"
                             android:layout_width="match_parent"
