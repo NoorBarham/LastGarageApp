@@ -1,6 +1,7 @@
 package com.example.lastgarageapp.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,21 +11,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.conversation;
 import com.example.lastgarageapp.itemClasses.showDriversItem;
 import com.example.lastgarageapp.login;
+import com.example.lastgarageapp.my_singleton;
 import com.example.lastgarageapp.personal_page;
+import com.example.lastgarageapp.url_serverName;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.showDriversViewHolder>{
     private ArrayList<showDriversItem> myshowDriversItems;
 
     private Context con;
+
+    public String iid;
 
 
     public showdriverAdapter(Context context, ArrayList<showDriversItem> showDriversItems) {
@@ -64,10 +76,78 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
             }
         });
-        holder.NameText.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                AlertDialog.Builder alert = new AlertDialog.Builder(con);
+                alert.setTitle("تأكيد الحذف");
+                alert.setMessage("هل تريد تأكيد الحذف؟");
+
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Toast.makeText(line_status_list_item.this, "تم الحذف",Toast.LENGTH_SHORT).show();
+
+
+                        String url = url_serverName.serverName + "deleteIcondriver.php";
+                        StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(con, response, Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                                error.printStackTrace();
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> params = new HashMap<>();
+
+                                params.put("user_id", holder.id.getText().toString());
+
+
+                                return params;
+                            }
+                        };
+                        my_singleton.getInstance(con).addToRequestQueue(stringRequest2);
+
+                    }
+
+
+                });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Toast.makeText(line_status_list_item.this, "تم التراجع",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.create().show();
+
+            }
+        });
+
+        holder.NameText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iid=holder.id.getText().toString();
+
+                if(iid.equals(login.myUser_id)){
+                    Intent intent = new Intent(con, personal_page.class);
+                    con.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(con, View_Driver.class);
+                    intent.putExtra("message_key", iid);
+                    con.startActivity(intent);
+                }
 
 
             }
@@ -85,7 +165,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
         TextView NameText, sour, dest, id;
         RelativeLayout show;
-        TextView iconMessage;
+        TextView iconMessage,iconDelet;
         public String iid;
 
 
@@ -104,6 +184,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
 
             iconMessage = itemView.findViewById(R.id.showDriversItem_messageIcon);
 
+            iconDelet = itemView.findViewById(R.id.showDriversItem_deleteIcon);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
