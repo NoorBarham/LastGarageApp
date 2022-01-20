@@ -51,12 +51,14 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         this.con = context;
     }
 
+
     @NonNull
     @Override
     public carViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_car_status_list_item, parent, false);
         carViewHolder holder = new carViewHolder(view);
         return holder;
+
     }
 
     @Override
@@ -78,7 +80,10 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         holder.capacity.setText(c.getCapacity());
         holder.arrivalTime.setText(c.getArrivalTime());
 
+
+
         if(login.s_id!=null){
+
 
             String url = url_serverName.serverName + "isAdminOrDriver.php";
             StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -103,7 +108,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
                                 holder.iconDelet.setVisibility(View.VISIBLE);
                             }
 
-                        }
+                        }/////////
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -230,7 +235,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     private void setGarageName(String garage_name) {
         nameGarage=garage_name;
     }
-    private void setLineCar(String source,String destination) {
+   private void setLineCar(String source,String destination) {
         sour=source;
         dest=destination;
     }
