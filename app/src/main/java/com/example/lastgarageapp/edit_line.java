@@ -35,6 +35,8 @@ public class edit_line extends AppCompatActivity {
     private Spinner sour, dest;
     private EditText fare;
     private TextView noOfCar;
+    public String d_or_a="";
+
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
 
@@ -51,7 +53,7 @@ public class edit_line extends AppCompatActivity {
         noOfCar = findViewById(R.id.editLine_noOfCar);
 
         //default
-        sourceSpinner();
+        isAdminOrDriver();
         dest.setEnabled(false);
 
         sour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -149,6 +151,48 @@ finish();
         });
     }
 
+    private void isAdminOrDriver() {
+        String url = url_serverName.serverName + "isAdminOrDriver.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("A_D");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String check = reader.getString("check");
+                        setCheck(check);
+                        if(d_or_a.equals("a")){
+                            sourceSpinner_admin();
+                        }else{
+                            sourceSpinner();
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(edit_line.this).addToRequestQueue(myStringRequest);
+    }
+    private void setCheck(String check){
+        d_or_a= check;
+    }
+
     public String getData(EditText t){
         String myString =t.getText().toString();
         return myString;
@@ -186,6 +230,49 @@ finish();
                 error.printStackTrace();
             }
         });
+        my_singleton.getInstance(edit_line.this).addToRequestQueue(myStringRequest);
+    }
+    private void sourceSpinner_admin() {
+        //if admin
+        source_array.clear();
+        source_array.add(0,"المكان الحالي");
+
+        String url = url_serverName.serverName + "adminPersonalpage.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("personal_admin");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+
+                        String garage_name = reader.getString("garage_name");
+
+                        source_array.add(garage_name);
+
+                    }
+                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_line.this,android.R.layout.simple_spinner_item, source_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sour.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
         my_singleton.getInstance(edit_line.this).addToRequestQueue(myStringRequest);
     }
     public void destinationSpinner() {
