@@ -33,7 +33,7 @@ public class menu extends AppCompatActivity {
             showDrivers, readComplains,writecomplains,
             aboutapp, settings,logout,login1;
     TextView other,add,edit;
-    View divider,div4,div10,div19,div3,div6;
+    View divider,div4,div10,div19,div3,div6,div18;
     LinearLayout personalLayout, addLayout, editLayout;
 
     ImageView homeIcon,notificationIcon,personalIcon,messagesIcon,menuIcon;
@@ -50,6 +50,8 @@ public class menu extends AppCompatActivity {
         div19=findViewById(R.id.divider19);
         div3=findViewById(R.id.divider3);
         div6=findViewById(R.id.divider6);
+        div18=findViewById(R.id.divider18);
+
 
 /////
 
@@ -609,6 +611,8 @@ public class menu extends AppCompatActivity {
                                 addnewgarage.setVisibility(View.GONE);
                                 login1.setVisibility(View.GONE);
                                 div19.setVisibility(View.GONE);
+                               // div18.setVisibility(View.GONE);
+                                div3.setVisibility(View.GONE);
                             }
                             else{
                                 login1.setVisibility(View.GONE);

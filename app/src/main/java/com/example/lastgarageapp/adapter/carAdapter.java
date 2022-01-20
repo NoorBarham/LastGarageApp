@@ -4,6 +4,7 @@ package com.example.lastgarageapp.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lastgarageapp.R;
 import com.example.lastgarageapp.View_Driver;
+import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
@@ -39,6 +41,10 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     ArrayList<carItem> myCarItem;
     Context con;
     String iid="";
+    public String sour="";
+    public String dest="";
+    public String nameGarage="";
+    String id="";
 
     public carAdapter(Context context, ArrayList<carItem> myCarItem) {
         this.myCarItem = myCarItem;
@@ -86,12 +92,13 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
                             String check = reader.getString("check");
                             if(check.equals("d")){
                                 holder.iconDelet.setVisibility(View.GONE);
-//                            } else if (check.equals("a")){
-//                                if(sour.getSelectedItem().toString().equals(nameGarage)||dest.getSelectedItem().toString().equals(nameGarage)){
-//                                    holder.iconDelet.setVisibility(View.VISIBLE);
-//                                }else{
-//                                    holder.iconDelet.setVisibility(View.GONE);
-//                                }
+                           }
+                            else if (check.equals("a")){
+                              if(sour.equals(nameGarage)||dest.equals(nameGarage)){
+                                   holder.iconDelet.setVisibility(View.VISIBLE);
+                               }else{
+                                    holder.iconDelet.setVisibility(View.GONE);
+                               }
                             }else if(check.equals("b")){
                                 holder.iconDelet.setVisibility(View.VISIBLE);
                             }
@@ -215,9 +222,90 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             iconDelet = itemView.findViewById(R.id.carItem_deleteIcon);
             arrivalLayout = itemView.findViewById(R.id.carItem_arrivalLayout);
             u_id=itemView.findViewById(R.id.carItem_showcaruserid);
-
+            id=carNumber.getText().toString();
 
         }
 
     }
+    private void setGarageName(String garage_name) {
+        nameGarage=garage_name;
+    }
+    private void setLineCar(String source,String destination) {
+        sour=source;
+        dest=destination;
+    }
+    private void garageAdmin() {
+        String url = url_serverName.serverName + "selectGarageNameByAdmin.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("deleteGarageLine");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String garage_name = reader.getString("garage_name");
+                        Log.e("hhh",garage_name);
+                        setGarageName(garage_name);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("s_id", login.s_id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
+    }
+    private void lineCar() {
+        String url = url_serverName.serverName + "SelectSourAndDestOfCar.php";
+        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("lines");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject reader = jsonArray.getJSONObject(i);
+                        String source = reader.getString("sour");
+                        String destination = reader.getString("dst");
+                        Log.e("hhh",source);
+                        Log.e("hhhhh",destination);
+
+                        setLineCar(source,destination);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> myMap = new HashMap<>();
+                myMap.put("c_id", id);
+                return myMap;
+            }
+        };
+        my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
+    }
+
 }
