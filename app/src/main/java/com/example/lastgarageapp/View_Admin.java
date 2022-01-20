@@ -24,11 +24,8 @@ import java.util.Map;
 
 public class View_Admin extends AppCompatActivity {
     TextView u_id, u_name, u_city, u_phone, u_fun,u_garage;
-    String id="";
-    private static View_Driver instance;
     ImageView textMessage;
 
-    public static String flag="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +40,15 @@ public class View_Admin extends AppCompatActivity {
         u_garage=findViewById(R.id.ViewAdminPersonalPage_workplaceVal);
 
 
-            Intent intent = getIntent();
-            String str = intent.getStringExtra("message_key");
-            u_id.setText(str);
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("message_key");
+        u_id.setText(str);
 
-            selectdriverdata();
+        if(login.s_id==null){
+            textMessage.setVisibility(View.GONE);
+        }
+
+        selectdriverdata();
 
 
         textMessage.setOnClickListener(new View.OnClickListener() {

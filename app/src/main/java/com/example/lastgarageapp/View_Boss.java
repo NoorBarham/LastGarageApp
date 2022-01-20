@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class View_Boss extends AppCompatActivity {
-    TextView editData, changePass, u_id,u_name, u_city, u_phone, u_garage;
+    TextView u_job, u_id,u_name, u_city, u_phone, u_garage;
 
     ImageView textMessage;
     @Override
@@ -35,12 +35,17 @@ public class View_Boss extends AppCompatActivity {
         u_name = (TextView) findViewById(R.id.ViewBoss_name);
         u_city = findViewById(R.id.ViewBoss_placeVal);
         u_phone = findViewById(R.id.ViewBoss_phoneNumVal);
+        u_job = findViewById(R.id.ViewBoss_namejob);
 
+        u_job.setText("المسؤول");
 
         Intent intent = getIntent();
         String str = intent.getStringExtra("message_key");
         u_id.setText(str);
 
+        if(login.s_id==null){
+            textMessage.setVisibility(View.GONE);
+        }
         selectBossData();
         textMessage.setOnClickListener(new View.OnClickListener() {
             @Override
