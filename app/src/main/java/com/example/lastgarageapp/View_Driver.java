@@ -46,24 +46,27 @@ public class View_Driver extends AppCompatActivity {
         u_fun=findViewById(R.id.ViewDriverPersonalPage_function);
 
 
-            Intent intent = getIntent();
-            String str = intent.getStringExtra("message_key");
-            u_id.setText(str);
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("message_key");
+        u_id.setText(str);
 
-            selectdriverdata();
+        if(login.s_id==null){
+            textMessage.setVisibility(View.GONE);
+        }
 
-            textMessage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(View_Driver.this, conversation.class);
-                    intent.putExtra("chat_id", "");
-                    intent.putExtra("receiver_id", u_id.getText().toString());
-                    intent.putExtra("receiver_name", u_name.getText().toString());
+        selectdriverdata();
 
-                    startActivity(intent);
-                }
-            });
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(View_Driver.this, conversation.class);
+                intent.putExtra("chat_id", "");
+                intent.putExtra("receiver_id", u_id.getText().toString());
+                intent.putExtra("receiver_name", u_name.getText().toString());
 
+                startActivity(intent);
+            }
+        });
 
     }
 
