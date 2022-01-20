@@ -51,7 +51,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_show_drivers_list_item, parent, false);
         showdriverAdapter.showDriversViewHolder holder = new showdriverAdapter.showDriversViewHolder(view);
         return holder;
-    }
+    }//////
 
     @Override
     public void onBindViewHolder(showdriverAdapter.showDriversViewHolder holder, int position) {

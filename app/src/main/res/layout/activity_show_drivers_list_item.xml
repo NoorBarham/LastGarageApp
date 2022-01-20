@@ -40,11 +40,12 @@
                         android:layout_height="match_parent"
                         android:gravity="right"
                         android:visibility="gone"
+
+
                         android:textColor="#9E9E9E"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:text="-"/>
-
 
                     <TextView
                         android:id="@+id/showDriversItem_messageIcon"
