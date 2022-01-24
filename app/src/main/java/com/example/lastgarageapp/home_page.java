@@ -162,15 +162,14 @@ public class home_page extends AppCompatActivity {
                     }
                     if (g.size()==0){
                         Toast.makeText(getBaseContext(), "لا يوجد سيارات متوفرة لعرضها", Toast.LENGTH_SHORT).show();
+                        spinnerFilterCar.setSelection(0);
                     }else{
                         myCarAdapter = new carAdapter(home_page.this, g);
                         recyclerView.setAdapter(myCarAdapter);
                     }
                 }else if(selectedItem.equals("الكل")){
                     myCarAdapter = new carAdapter(home_page.this, myCars);
-                    myCarAdapter.notifyItemChanged(1);
                     recyclerView.setAdapter(myCarAdapter);
-
                 }
             }
             @Override
@@ -239,6 +238,7 @@ public class home_page extends AppCompatActivity {
 
                     if(flage==1){
                         newsLayout.setVisibility(View.GONE);
+
                         if_car();
                         clearCar();
                         selectCar(sour.getSelectedItem().toString(),selectedItem);
@@ -314,19 +314,6 @@ public class home_page extends AppCompatActivity {
                         if_car();
                         clearCar();
                         selectCar(sour.getSelectedItem().toString(),dest.getSelectedItem().toString());
-//                        if(spinnerFilterCar.getSelectedItem().toString().equals("المتوفرة فقط")){
-//                            ArrayList<carItem> g=myCars;
-//                            for(carItem myItem : g) {
-//                                if(myItem.getAvailability().equals("0")){
-//                                    g.remove(myItem);
-//                                }
-//                            }
-//                            myCarAdapter = new carAdapter(home_page.this, g);
-//                            recyclerView.setAdapter(myCarAdapter);
-//                        }else if(spinnerFilterCar.getSelectedItem().toString().equals("الكل")){
-//                            myCarAdapter = new carAdapter(home_page.this, myCars);
-//                            recyclerView.setAdapter(myCarAdapter);
-//                        }
                     } else {
                         if_line();
                         clearLine();
@@ -416,6 +403,7 @@ public class home_page extends AppCompatActivity {
     }
     private void if_car(){
         carStatusLayout.setVisibility(View.VISIBLE);
+        spinnerFilterCar.setSelection(0);
         if(d_or_a.equals("d")||d_or_a.equals("")){
             iconAddcar.setVisibility(View.GONE);
         }else if (d_or_a.equals("a")){
