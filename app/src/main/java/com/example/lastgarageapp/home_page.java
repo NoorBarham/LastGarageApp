@@ -154,18 +154,23 @@ public class home_page extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
                 if(selectedItem.equals("المتوفرة فقط")){
-                    ArrayList<carItem> g=myCars;
-                    for(carItem myItem : g) {
-                        if(myItem.getAvailability().equals("0")){
-                            g.remove(myItem);
+                    ArrayList<carItem> g=new ArrayList<>();
+                    for(carItem myItem : myCars) {
+                        if(myItem.getAvailability().equals("1")){
+                            g.add(myItem);
                         }
                     }
-                    myCarAdapter = new carAdapter(home_page.this, g);
-                    recyclerView.setAdapter(myCarAdapter);
+                    if (g.size()==0){
+                        Toast.makeText(getBaseContext(), "لا يوجد سيارات متوفرة لعرضها", Toast.LENGTH_SHORT).show();
+                    }else{
+                        myCarAdapter = new carAdapter(home_page.this, g);
+                        recyclerView.setAdapter(myCarAdapter);
+                    }
                 }else if(selectedItem.equals("الكل")){
                     myCarAdapter = new carAdapter(home_page.this, myCars);
+                    myCarAdapter.notifyItemChanged(1);
                     recyclerView.setAdapter(myCarAdapter);
-                    myCarAdapter.notifyDataSetChanged();
+
                 }
             }
             @Override
