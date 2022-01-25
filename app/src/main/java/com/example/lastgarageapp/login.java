@@ -100,7 +100,7 @@ public class login extends AppCompatActivity {
                                     JSONObject reader = jsonArray.getJSONObject(i);
                                     phon = reader.getString("phone_number");
 
-                                    phon="0"+phon;
+                                   // phon="0"+phon;
                                     AlertDialog.Builder alert = new AlertDialog.Builder(login.this);
                                     alert.setTitle("استرجاع كلمة السر ");
                                     alert.setMessage("هل تريد ارسال الرقم السري على رقم الجوال " + "" +phon);
@@ -225,8 +225,8 @@ public class login extends AppCompatActivity {
                         try {
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(phon, null, SMS, null, null);
-                           Toast.makeText(getBaseContext(), SMS, Toast.LENGTH_SHORT).show();
-                            /// Toast.makeText(getBaseContext(), "تم ارسال الرسالة", Toast.LENGTH_SHORT).show();
+                    //       Toast.makeText(getBaseContext(), SMS, Toast.LENGTH_SHORT).show();
+                             Toast.makeText(getBaseContext(), "تم ارسال الرسالة", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
                             Toast.makeText(getBaseContext(), "فشل الارسال", Toast.LENGTH_SHORT).show();
