@@ -97,7 +97,7 @@ public class lineAdapter extends RecyclerView.Adapter<lineAdapter.lineViewHolder
                  //   }
 
                   // else{
-                      home_page.getInstance().MoveFromLineToCar(garage2.getText().toString(), garage1.getText().toString());
+                    //  home_page.getInstance().MoveFromLineToCar(garage2.getText().toString(), garage1.getText().toString());
                  //  }
 
                 }

@@ -45,11 +45,16 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
     public String dest="";
     public String nameGarage="";
     String id="";
+    private Intent intent;
 
     public carAdapter(Context context, ArrayList<carItem> myCarItem) {
         this.myCarItem = myCarItem;
         this.con = context;
+
     }
+
+
+
 
 
     @NonNull
@@ -58,6 +63,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_car_status_list_item, parent, false);
         carViewHolder holder = new carViewHolder(view);
         return holder;
+
 
     }
 
@@ -82,6 +88,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
 
 
 
+
         if(login.s_id!=null){
 
 
@@ -99,11 +106,12 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
                                 holder.iconDelet.setVisibility(View.GONE);
                            }
                             else if (check.equals("a")){
-                              if(sour.equals(nameGarage)||dest.equals(nameGarage)){
+                             if(home_page.source.equals(home_page.nameGarage)||home_page.destination.equals(home_page.nameGarage)){
                                    holder.iconDelet.setVisibility(View.VISIBLE);
                                }else{
                                     holder.iconDelet.setVisibility(View.GONE);
                                }
+
                             }else if(check.equals("b")){
                                 holder.iconDelet.setVisibility(View.VISIBLE);
                             }
@@ -232,85 +240,6 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         }
 
     }
-    private void setGarageName(String garage_name) {
-        nameGarage=garage_name;
-    }
-   private void setLineCar(String source,String destination) {
-        sour=source;
-        dest=destination;
-    }
-    private void garageAdmin() {
-        String url = url_serverName.serverName + "selectGarageNameByAdmin.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("deleteGarageLine");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-                        String garage_name = reader.getString("garage_name");
-                        Log.e("hhh",garage_name);
-                        setGarageName(garage_name);
-                    }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> myMap = new HashMap<>();
-                myMap.put("s_id", login.s_id);
-                return myMap;
-            }
-        };
-        my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
-    }
-    private void lineCar() {
-        String url = url_serverName.serverName + "SelectSourAndDestOfCar.php";
-        StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("lines");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject reader = jsonArray.getJSONObject(i);
-                        String source = reader.getString("sour");
-                        String destination = reader.getString("dst");
-                        Log.e("hhh",source);
-                        Log.e("hhhhh",destination);
-
-                        setLineCar(source,destination);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(con, error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> myMap = new HashMap<>();
-                myMap.put("c_id", id);
-                return myMap;
-            }
-        };
-        my_singleton.getInstance(con).addToRequestQueue(myStringRequest);
-    }
 
 }
