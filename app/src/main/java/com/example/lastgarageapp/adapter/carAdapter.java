@@ -77,6 +77,11 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
         if(c.getAvailability().equals("0")){
             holder.availability.setText("غير متاحة");
             holder.arrivalLayout.setVisibility(View.VISIBLE);
+            if(!c.getArrivalTime().equals("0")){
+                holder.arrivalTime.setText(c.getArrivalTime());
+            }else{
+                holder.arrivalTime.setText("في طريقها للكراج الآخر");
+            }
         }else if(c.getAvailability().equals("1")){
             holder.availability.setText("متاحة");
             holder.arrivalLayout.setVisibility(View.GONE);
@@ -84,7 +89,7 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
 
         holder.noOfPassenger.setText(c.getNoOfPassenger());
         holder.capacity.setText(c.getCapacity());
-        holder.arrivalTime.setText(c.getArrivalTime());
+//        holder.arrivalTime.setText(c.getArrivalTime());
 
 
 
