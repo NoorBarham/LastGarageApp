@@ -50,8 +50,10 @@ public class home_page extends AppCompatActivity {
     EditText addNewstext;
     RecyclerView recyclerView;
     LinearLayout news;
-    String nameGarage="";
+    public static String nameGarage="";
     public String d_or_a="";
+    public static String source;
+    public static String destination;
 
 
     //my actionbar
@@ -186,7 +188,8 @@ public class home_page extends AppCompatActivity {
                     dest.setEnabled(true);
                     destinationSpinner();
                     dest.setSelection(0);
-
+                    source=sour.getSelectedItem().toString();
+                  //  caradap=new carAdapter(sour.getSelectedItem().toString(),getIntent().getStringExtra("key"));
                    iconAddGarageLine.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -235,7 +238,7 @@ public class home_page extends AppCompatActivity {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
 
                 if (!selectedItem.equals("الوجهة")) {
-
+                    destination=dest.getSelectedItem().toString();
                     if(flage==1){
                         newsLayout.setVisibility(View.GONE);
 
