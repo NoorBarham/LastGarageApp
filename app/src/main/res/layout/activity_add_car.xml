@@ -84,6 +84,17 @@
                     android:orientation="horizontal">
 
                     <Spinner
+                        android:id="@+id/addCar_Iddriverval"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FF6F00"
+                        android:entries="@array/driver"
+                        android:text="لم يحدد"
+                        android:visibility="gone"
+                        android:textAlignment="viewEnd" />
+
+                    <Spinner
                         android:id="@+id/addCar_namedriverval"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -28,13 +28,14 @@ import java.util.Map;
 
 public class add_car extends AppCompatActivity {
     private TextView car_no;
-    private Spinner driver_name,capacity,sour,dest;
+    private Spinner driver_name,driver_id,capacity,sour,dest;
     private Button addCar_add,addCar_cancel;
 
     //Arrays
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
     ArrayList name_array =new ArrayList();
+    ArrayList driver_array =new ArrayList();
     ArrayList capacity_array =new ArrayList();
 
     @Override
@@ -43,6 +44,7 @@ public class add_car extends AppCompatActivity {
         setContentView(R.layout.activity_add_car);
         car_no = findViewById(R.id.addCar_carNumVal);
         driver_name=(Spinner) findViewById(R.id.addCar_namedriverval);
+        driver_id=(Spinner) findViewById(R.id.addCar_Iddriverval);
         capacity=(Spinner) findViewById(R.id.addCar_sizeVal);
         sour=(Spinner) findViewById(R.id.addCar_source);
         dest=(Spinner) findViewById(R.id.addCar_destination);
@@ -64,6 +66,21 @@ public class add_car extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("لم يحدد")) {
+                    driver_id.setSelection(getIndexByString(driver_name,driver_name.getSelectedItem().toString()));
+                }else{
+
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        driver_id.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -74,6 +91,7 @@ public class add_car extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -117,7 +135,7 @@ public class add_car extends AppCompatActivity {
                 alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (car_no.getText().length() == 0) {
+                        if (car_no.getText().length() == 0||driver_name.getSelectedItem().toString().equals("لم يحدد")||sour.getSelectedItem().toString().equals("المكان الحالي")||dest.getSelectedItem().toString().equals("الوجهة")) {
                             Toast.makeText(getBaseContext(), "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                         } else {
                             String url = url_serverName.serverName + "addCar.php";
@@ -136,10 +154,10 @@ public class add_car extends AppCompatActivity {
                                 @Override
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<>();
-                                    //driver_id.setSelection(driver_name.getIndex())
-                                    //driver_id.getSelectedItem().toString
+
                                     params.put("car_id", car_no.getText().toString());
                                     params.put("driver_name", driver_name.getSelectedItem().toString());
+                                    params.put("driver_id", driver_id.getSelectedItem().toString());
                                     params.put("car_size", capacity.getSelectedItem().toString());
                                     params.put("source", sour.getSelectedItem().toString());
                                     params.put("destination", dest.getSelectedItem().toString());
@@ -261,6 +279,8 @@ public class add_car extends AppCompatActivity {
     public void driverSpinner() {
 
         name_array.add(0,"لم يحدد");
+        driver_array.add(0,"لم يحدد");
+
 
         String url = url_serverName.serverName + "nameSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -272,14 +292,21 @@ public class add_car extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
-                        //String cityName
                         String driverName = reader.getString("driver_name");
+                        String driverId = reader.getString("driver_id");
+
                         name_array.add(driverName);
+                        driver_array.add(driverId);
+
+
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, name_array);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     driver_name.setAdapter(adapter);
+                    ArrayAdapter<CharSequence> adapter1 = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, driver_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    driver_id.setAdapter(adapter1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -370,6 +397,17 @@ public class add_car extends AppCompatActivity {
             }
         };
         my_singleton.getInstance(add_car.this).addToRequestQueue(myStringRequest);
+    }
+    public int getIndexByString(Spinner spinner, String string) {
+        int index = 0;
+
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(string)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     }
