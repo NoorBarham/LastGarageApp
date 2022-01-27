@@ -66,15 +66,6 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-//        textMessage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(personal_page.this, conversation.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
         //views in my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);
         notificationIcon = findViewById(R.id.myActionBar_notificationsIcon);
@@ -159,14 +150,11 @@ public class personal_page extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-                  //  Log.d("sss",response);
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("personal_driver");
-                    notificationItem myItem;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
-                        //String textName, String textNews, String textHour
                         String id = reader.getString("id");
                         String name = reader.getString("driver_name");
                         String phone = reader.getString("phone");

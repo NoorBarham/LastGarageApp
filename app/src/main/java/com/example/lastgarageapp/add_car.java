@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -53,8 +52,8 @@ public class add_car extends AppCompatActivity {
         capacity_array.add(7);
 
 
-        nameSpinner();
-        isAdminOrDriver();
+        driverSpinner();
+        isAdminOrBoss();
         dest.setEnabled(false);
 
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_car.this,android.R.layout.simple_spinner_item, capacity_array);
@@ -137,6 +136,8 @@ public class add_car extends AppCompatActivity {
                                 @Override
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<>();
+                                    //driver_id.setSelection(driver_name.getIndex())
+                                    //driver_id.getSelectedItem().toString
                                     params.put("car_id", car_no.getText().toString());
                                     params.put("driver_name", driver_name.getSelectedItem().toString());
                                     params.put("car_size", capacity.getSelectedItem().toString());
@@ -175,7 +176,7 @@ public class add_car extends AppCompatActivity {
         });
     }
 
-    private void isAdminOrDriver() {
+    private void isAdminOrBoss() {
         String url = url_serverName.serverName + "isAdminOrDriver.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -257,7 +258,7 @@ public class add_car extends AppCompatActivity {
         };
         my_singleton.getInstance(add_car.this).addToRequestQueue(myStringRequest);
     }
-    public void nameSpinner() {
+    public void driverSpinner() {
 
         name_array.add(0,"لم يحدد");
 

@@ -189,7 +189,6 @@ public class home_page extends AppCompatActivity {
                     destinationSpinner();
                     dest.setSelection(0);
                     source=sour.getSelectedItem().toString();
-                  //  caradap=new carAdapter(sour.getSelectedItem().toString(),getIntent().getStringExtra("key"));
                    iconAddGarageLine.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -276,7 +275,7 @@ public class home_page extends AppCompatActivity {
                 if(d_or_a.equals("")){
                     newsLayout.setVisibility(View.GONE);
                 }else{
-                newsLayout.setVisibility(View.VISIBLE);
+                    newsLayout.setVisibility(View.VISIBLE);
                 }
                 garageLineStatusLayout.setVisibility(View.GONE);
                 carStatusLayout.setVisibility(View.GONE);

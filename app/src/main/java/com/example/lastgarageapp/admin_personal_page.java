@@ -37,7 +37,6 @@ public class admin_personal_page extends AppCompatActivity {
         //views in adminPersonalPage
         editData = findViewById(R.id.adminPersonalPage_editData);
         changePass = findViewById(R.id.adminPersonalPage_changePass);
-//        textMessage = findViewById(R.id.adminPersonalPage_messageIcon);
         u_id = (TextView) findViewById(R.id.adminPersonalPage_idintitynum);
         u_name = (TextView) findViewById(R.id.adminPersonalPage_name);
         u_city = findViewById(R.id.adminPersonalPage_placeVal);

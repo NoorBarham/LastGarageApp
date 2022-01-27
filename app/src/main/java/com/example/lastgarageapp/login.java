@@ -60,7 +60,7 @@ public class login extends AppCompatActivity {
 
                 String idUser = idNumber.getText().toString();
                 String tex_password = password.getText().toString();
-                if (TextUtils.isEmpty(idUser) || TextUtils.isEmpty(tex_password)) {
+                if (idUser.isEmpty() || tex_password.isEmpty()) {
                     Toast.makeText(login.this, "قم بإدخال جميع البيانات", Toast.LENGTH_SHORT).show();
                 } else {
                     login(idUser, tex_password);
