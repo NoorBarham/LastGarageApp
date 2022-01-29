@@ -31,13 +31,14 @@ import java.util.Map;
 public class edit_garage extends AppCompatActivity {
 
     private EditText openHour, closeHour, Location;
-    private Spinner garageName, adminName;
+    private Spinner garageName, adminName,  idSpinner;
     private Button cancel, saveChange;
 
     private TimePickerDialog timePickerDialog;
-    public String garageNameAdmin, d_or_a="";
+    public String d_or_a="";
     ArrayList garageName_arr =new ArrayList();
     ArrayList adminName_arr =new ArrayList();
+    ArrayList adminID_arr =new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +52,24 @@ public class edit_garage extends AppCompatActivity {
         Location =findViewById(R.id.editGarage_newLocation);
         saveChange = (Button) findViewById(R.id.editGarage_saveChange);
         cancel = (Button) findViewById(R.id.editGarage_cancel);
+        idSpinner= findViewById(R.id.editGarage_IDAdmin);
 
         isAdminOrDriver();
+        adminName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("لم يحدد")) {
+                    idSpinner.setSelection(getIndexByString(adminName,adminName.getSelectedItem().toString()));
+                }else{
 
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
         garageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -188,7 +204,7 @@ public class edit_garage extends AppCompatActivity {
                 myMap.put("open_hour", removeSpaces(getData(openHour)));
                 myMap.put("close_hour", removeSpaces(getData(closeHour)));
                 myMap.put("location", getData(Location));
-                myMap.put("admin_name", adminName.getSelectedItem().toString());
+                myMap.put("admin_id", idSpinner.getSelectedItem().toString());
                 return myMap;
             }
         };
@@ -280,11 +296,23 @@ public class edit_garage extends AppCompatActivity {
         });
         my_singleton.getInstance(edit_garage.this).addToRequestQueue(myStringRequest);
     }
+    public int getIndexByString(Spinner spinner, String string) {
+        int index = 0;
 
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(string)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
     private void adminNameSpinner_boss() {
         //if boss
         adminName_arr.clear();
         adminName_arr.add(0,"لم يحدد");
+        adminID_arr.clear();
+        adminID_arr.add(0,"لم يحدد");
 
         String url = url_serverName.serverName + "adminSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -298,12 +326,17 @@ public class edit_garage extends AppCompatActivity {
 
                         //String cityName
                         String admin_name = reader.getString("admin_name");
+                        String admin_id = reader.getString("admin_id");
                         adminName_arr.add(admin_name);
+                        adminID_arr.add(admin_id);
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_garage.this,android.R.layout.simple_spinner_item, adminName_arr);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adminName.setAdapter(adapter);
+                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter(edit_garage.this,android.R.layout.simple_spinner_item, adminID_arr);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    idSpinner.setAdapter(adapter2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
