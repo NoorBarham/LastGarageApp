@@ -28,10 +28,8 @@ import java.util.Map;
 
 public class add_admin extends AppCompatActivity {
   private TextView name,city,identity_no,phone_no,pass;
-  private  Spinner garageName;
   private Button addAdmin_add,addAdmin_cancel;
 
-    ArrayList garage_name_array =new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

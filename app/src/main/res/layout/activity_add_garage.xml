@@ -71,6 +71,16 @@
                 android:backgroundTint="#ff6f00"
                 android:layout_weight="1"
                 android:entries="@array/garage_admin"/>
+            <Spinner
+                android:id="@+id/addGarage_IDAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FF6F00"
+                android:entries="@array/driver"
+                android:text="لم يحدد"
+                android:textAlignment="viewEnd"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/adminText"
