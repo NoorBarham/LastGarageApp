@@ -127,6 +127,16 @@ android:padding="10dp"
                         android:entries="@array/driver"
                         android:text="لم يحدد"
                         android:textAlignment="viewEnd" />
+                    <Spinner
+                        android:id="@+id/editCar_IDDriver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FF6F00"
+                        android:entries="@array/driver"
+                        android:text="لم يحدد"
+                        android:textAlignment="viewEnd"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/editdatacar_drivername"
