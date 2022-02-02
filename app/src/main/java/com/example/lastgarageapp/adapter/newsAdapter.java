@@ -25,6 +25,7 @@ import com.example.lastgarageapp.View_Admin;
 import com.example.lastgarageapp.View_Boss;
 import com.example.lastgarageapp.View_Driver;
 import com.example.lastgarageapp.admin_personal_page;
+import com.example.lastgarageapp.boss_personal_page;
 import com.example.lastgarageapp.home_page;
 import com.example.lastgarageapp.itemClasses.newsItem;
 import com.example.lastgarageapp.login;
@@ -170,7 +171,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.newViewHolder>
                                 }
                                 else {
                                     if(iid.equals(login.myUser_id)){
-                                        Intent intent = new Intent(con, personal_page.class);
+                                        Intent intent = new Intent(con, boss_personal_page.class);
                                         con.startActivity(intent);
                                     }
                                     else {
