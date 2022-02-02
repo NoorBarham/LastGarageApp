@@ -93,8 +93,11 @@ public class settings extends AppCompatActivity {
                         if(check.equals("d")){
                             Intent intent = new Intent(settings.this, edit_personal_data.class);
                             startActivity(intent);
-                        }else{
+                        }else if(check.equals("a")){
                             Intent intent = new Intent(settings.this, edit_admin_personal_data.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(settings.this, edit_boss_personal_data.class);
                             startActivity(intent);
                         }
 

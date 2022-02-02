@@ -149,6 +149,10 @@
             android:exported="true"  >
 
         </activity>
+        <activity android:name=".edit_boss_personal_data"
+            android:exported="true"  >
+
+        </activity>
 
     </application>
 
