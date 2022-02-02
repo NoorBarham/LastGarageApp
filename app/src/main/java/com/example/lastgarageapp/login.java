@@ -161,7 +161,7 @@ public class login extends AppCompatActivity {
 
         });
     }
-
+///////////
 
     public void login(final String id, final String password) {
         String uRl = url_serverName.serverName + "login1.php";
