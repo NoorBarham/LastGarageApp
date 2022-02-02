@@ -27,6 +27,7 @@ import com.example.lastgarageapp.itemClasses.carItem;
 import com.example.lastgarageapp.login;
 import com.example.lastgarageapp.my_singleton;
 import com.example.lastgarageapp.personal_page;
+import com.example.lastgarageapp.show_drivers;
 import com.example.lastgarageapp.url_serverName;
 
 import org.json.JSONArray;
@@ -199,6 +200,8 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
                 alert.create().show();
             }
         });
+
+
         holder.nameDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -241,6 +244,10 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.carViewHolder> {
             arrivalLayout = itemView.findViewById(R.id.carItem_arrivalLayout);
             u_id=itemView.findViewById(R.id.carItem_showcaruserid);
             id=carNumber.getText().toString();
+
+
+
+
 
         }
 
