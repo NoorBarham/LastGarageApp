@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,10 +32,11 @@ public class add_garage extends AppCompatActivity {
 
     private EditText cityName,openHoure,closeHoure,location;
     private Button cancelButt,addButt;
-    private Spinner adminSpinner;
+    private Spinner adminSpinner, idSpinner;
     TimePickerDialog timePickerDialog;
 
     ArrayList adminName_arr =new ArrayList();
+    ArrayList adminID_arr =new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +50,24 @@ public class add_garage extends AppCompatActivity {
         adminSpinner =findViewById(R.id.addGarage_adminSpinner);
         cancelButt = findViewById(R.id.addGarage_cancelButt);
         addButt= findViewById(R.id.addGarage_addButt);
+        idSpinner= findViewById(R.id.addGarage_IDAdmin);
 
         adminNameSpinner();
+        adminSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("لم يحدد")) {
+                    idSpinner.setSelection(getIndexByString(adminSpinner,adminSpinner.getSelectedItem().toString()));
+                }else{
 
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
         addButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +100,7 @@ public class add_garage extends AppCompatActivity {
                             Map<String, String> myMap = new HashMap<>();
 
                             myMap.put("garage_name", getData(cityName));
-                            myMap.put("admin_name", adminSpinner.getSelectedItem().toString());
+                            myMap.put("admin_id", idSpinner.getSelectedItem().toString());
                             myMap.put("open_hour", removeSpaces(getData(openHoure)));
                             myMap.put("close_hour", removeSpaces(getData(closeHoure)));
                             myMap.put("location", getData(location));
@@ -141,6 +158,17 @@ public class add_garage extends AppCompatActivity {
                 timePickerDialog.show();
             } });
     }
+    public int getIndexByString(Spinner spinner, String string) {
+        int index = 0;
+
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(string)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
     public String getData(EditText t){
         String myString =t.getText().toString();
         return myString;
@@ -157,6 +185,8 @@ public class add_garage extends AppCompatActivity {
     private void adminNameSpinner() {
         adminName_arr.clear();
         adminName_arr.add(0,"لم يحدد");
+        adminID_arr.clear();
+        adminID_arr.add(0,"لم يحدد");
 
         String url = url_serverName.serverName + "adminSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -169,13 +199,18 @@ public class add_garage extends AppCompatActivity {
                         JSONObject reader = jsonArray.getJSONObject(i);
 
                         //String cityName
-                        String cityName = reader.getString("admin_name");
-                        adminName_arr.add(cityName);
+                        String admin_name = reader.getString("admin_name");
+                        String admin_id = reader.getString("admin_id");
+                        adminName_arr.add(admin_name);
+                        adminID_arr.add(admin_id);
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(add_garage.this,android.R.layout.simple_spinner_item, adminName_arr);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adminSpinner.setAdapter(adapter);
+                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter(add_garage.this,android.R.layout.simple_spinner_item, adminID_arr);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    idSpinner.setAdapter(adapter2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

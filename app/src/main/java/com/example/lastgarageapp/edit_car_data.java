@@ -29,13 +29,14 @@ import java.util.Map;
 public class edit_car_data extends AppCompatActivity {
 
     private Button cancel, saveChange;
-    private Spinner car_no,driver_name,sour,dest,new_sour,new_dest;
+    private Spinner car_no,driver_name,sour,dest,new_sour,new_dest, driver_id;
 
     // Arrays
     ArrayList car_array =new ArrayList();
     ArrayList source_array =new ArrayList();
     ArrayList destination_array =new ArrayList();
     ArrayList name_array =new ArrayList();
+    ArrayList id_array =new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class edit_car_data extends AppCompatActivity {
         dest = (Spinner) findViewById(R.id.editCarData_destination1);
         new_sour = (Spinner) findViewById(R.id.editCarData_source);
         new_dest = (Spinner) findViewById(R.id.editCarData_destination);
+        driver_id = (Spinner) findViewById(R.id.editCar_IDDriver);
 
         dest.setEnabled(false);
         car_no.setEnabled(false);
@@ -146,7 +148,7 @@ public class edit_car_data extends AppCompatActivity {
                                 Map<String, String> myMap = new HashMap<>();
 
                                 myMap.put("car_no",car_no.getSelectedItem().toString());
-                                myMap.put("driver_name",driver_name.getSelectedItem().toString());
+                                myMap.put("driver_id",driver_id.getSelectedItem().toString());
                                 myMap.put("source",sour.getSelectedItem().toString());
                                 myMap.put("destination",dest.getSelectedItem().toString());
                                 return myMap;
@@ -182,6 +184,9 @@ public class edit_car_data extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
+                if (!selectedItem.equals("لم يحدد")) {
+                    driver_id.setSelection(getIndexByString(driver_name,driver_name.getSelectedItem().toString()));
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -296,6 +301,7 @@ public class edit_car_data extends AppCompatActivity {
     public void driverNameSpinner() {
 
         name_array.add(0,"لم يحدد");
+        id_array.add(0,"لم يحدد");
 
         String url = url_serverName.serverName + "nameSpinner.php";
         StringRequest myStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -309,12 +315,17 @@ public class edit_car_data extends AppCompatActivity {
 
                         //String cityName
                         String driverName = reader.getString("driver_name");
+                        String driverID = reader.getString("driver_id");
                         name_array.add(driverName);
+                        id_array.add(driverID);
 
                     }
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(edit_car_data.this,android.R.layout.simple_spinner_item, name_array);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     driver_name.setAdapter(adapter);
+                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter(edit_car_data.this,android.R.layout.simple_spinner_item, id_array);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    driver_id.setAdapter(adapter2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

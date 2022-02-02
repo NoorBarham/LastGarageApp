@@ -133,6 +133,7 @@ public class showdriverAdapter extends RecyclerView.Adapter<showdriverAdapter.sh
         }
         else{
             holder.iconDelet.setVisibility(View.GONE);
+            holder.iconMessage.setVisibility(View.GONE);
         }
         holder.iconDelet.setOnClickListener(new View.OnClickListener() {
             @Override
