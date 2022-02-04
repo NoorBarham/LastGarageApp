@@ -3,9 +3,8 @@
     package="com.example.lastgarageapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +23,6 @@
         <activity
             android:name=".add_admin"
             android:exported="true" />
-
         <activity
             android:name=".settings"
             android:exported="true" />
@@ -46,24 +44,22 @@
         <activity
             android:name=".home_page"
             android:exported="true" />
-
         <activity
             android:name=".login"
-            android:exported="true"/>
+            android:exported="true" />
+        <activity
+            android:name=".first_page"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <activity android:name=".first_page"
-                android:exported="true"  >
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".add_line"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".personal_page"
             android:exported="true" />
@@ -82,7 +78,6 @@
         <activity
             android:name=".news_list_item"
             android:exported="true" />
-
         <activity
             android:name=".edit_car_data"
             android:exported="true" />
@@ -107,7 +102,7 @@
         <activity
             android:name=".line_status_list_item"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".garage_status_list_item"
             android:exported="true" />
@@ -129,31 +124,24 @@
         <activity
             android:name=".view_notification"
             android:exported="true" />
-        <activity android:name=".reset_password"
-            android:exported="true"  >
-
-        </activity>
-        <activity android:name=".View_Driver"
-            android:exported="true"  >
-
-        </activity>
-        <activity android:name=".View_Admin"
-            android:exported="true"  >
-
-        </activity>
-        <activity android:name=".View_Boss"
-            android:exported="true"  >
-
-        </activity>
-        <activity android:name=".boss_personal_page"
-            android:exported="true"  >
-
-        </activity>
-        <activity android:name=".edit_boss_personal_data"
-            android:exported="true"  >
-
-        </activity>
-
+        <activity
+            android:name=".reset_password"
+            android:exported="true"/>
+        <activity
+            android:name=".View_Driver"
+            android:exported="true"/>
+        <activity
+            android:name=".View_Admin"
+            android:exported="true"/>
+        <activity
+            android:name=".View_Boss"
+            android:exported="true"/>
+        <activity
+            android:name=".boss_personal_page"
+            android:exported="true"/>
+        <activity
+            android:name=".edit_boss_personal_data"
+            android:exported="true"/>
         <activity android:name=".about"
             android:exported="true"  >
 
