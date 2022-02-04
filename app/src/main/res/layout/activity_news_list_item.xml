@@ -37,11 +37,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <ImageView
                         android:id="@+id/newsItem_delet"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/delete_icon"/>
+                        android:src="@drawable/delete_icon" />
                 </LinearLayout>
 
 
@@ -57,12 +58,13 @@
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/newsItem_personalId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
 

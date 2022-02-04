@@ -435,6 +435,10 @@ public class menu extends AppCompatActivity {
                 logout.setBackgroundColor(Color.WHITE);
 
 
+                Intent intent= new Intent(menu.this ,about.class);
+                startActivity(intent);
+
+
             }
         });
         settings.setOnClickListener(new View.OnClickListener() {
