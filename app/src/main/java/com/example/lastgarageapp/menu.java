@@ -618,6 +618,8 @@ public class menu extends AppCompatActivity {
                             else{
                                 login1.setVisibility(View.GONE);
                                 div19.setVisibility(View.GONE);
+                                writecomplains.setVisibility(View.GONE);
+                                div10.setVisibility(View.GONE);
                             }
 
                         }
