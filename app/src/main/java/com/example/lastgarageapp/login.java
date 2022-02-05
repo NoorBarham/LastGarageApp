@@ -100,10 +100,11 @@ public class login extends AppCompatActivity {
                                     JSONObject reader = jsonArray.getJSONObject(i);
                                     phon = reader.getString("phone_number");
 
-                                   // phon="0"+phon;
+                                    // phon="0"+phon;
                                     AlertDialog.Builder alert = new AlertDialog.Builder(login.this);
                                     alert.setTitle("استرجاع كلمة السر ");
-                                    alert.setMessage("هل تريد ارسال الرقم السري على رقم الجوال " + "" +phon);
+                                    alert.setMessage("هل تريد ارسال الرقم السري على رقم الجوال " + "" +
+                                            phon.substring(phon.length()-3,phon.length())+"****"+phon.substring(0,3));
 
                                     alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
                                         @Override

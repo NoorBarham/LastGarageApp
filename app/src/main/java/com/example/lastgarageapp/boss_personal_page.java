@@ -27,7 +27,6 @@ public class boss_personal_page extends AppCompatActivity {
     ImageView homeIcon, notificationIcon, personalIcon, messagesIcon, menuIcon;
     TextView editData, changePass, u_id,u_name, u_city, u_phone, u_garage;
 
-    ImageView textMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,6 @@ public class boss_personal_page extends AppCompatActivity {
         //views in bossPersonalPage
         editData = findViewById(R.id.bossPersonalPage_editData);
         changePass = findViewById(R.id.bossPersonalPage_changePass);
-        textMessage = findViewById(R.id.bossPersonalPage_messageIcon);
         u_id = (TextView) findViewById(R.id.bossPersonalPage_idVal);
         u_name = (TextView) findViewById(R.id.bossPersonalPage_name);
         u_city = findViewById(R.id.bossPersonalPage_placeVal);
@@ -44,11 +42,10 @@ public class boss_personal_page extends AppCompatActivity {
 
 
         selectBossData();
-        /////////////////////هون فيه بدنا نعمل صفحة تعديل للادمن
         editData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(boss_personal_page.this, edit_admin_personal_data.class);
+                Intent intent = new Intent(boss_personal_page.this, edit_boss_personal_data.class);
                 startActivity(intent);
             }
         });
@@ -61,13 +58,7 @@ public class boss_personal_page extends AppCompatActivity {
             }
         });
 
-        textMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(boss_personal_page.this, conversation.class);
-                startActivity(intent);
-            }
-        });
+
 
         //views in my actionbarPage
         homeIcon = findViewById(R.id.myActionBar_homeIcon);

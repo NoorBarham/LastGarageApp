@@ -65,12 +65,13 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/drawable/search_icon.xml" value="0.2703125" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/drawable/send_icon.xml" value="0.2703125" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/drawable/white_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_about.xml" value="0.25" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_add_car.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_add_driver.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_add_garage.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_add_line.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_admin_personal_page.xml" value="0.1" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_boss_personal_page.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_boss_personal_page.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_car_status.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_car_status_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_change_password.xml" value="0.25416666666666665" />
@@ -92,7 +93,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_line_status_list_item.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_menu.xml" value="0.152" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_menu.xml" value="0.22641509433962265" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_message_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_messages.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_my_actionbar.xml" value="0.264" />
@@ -103,6 +104,7 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_personal_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_read_complaints.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_read_complaints_list_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_show_drivers.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_view_admin.xml" value="0.264" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_view_boss.xml" value="0.1" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/LastGarageApp/app/src/main/res/layout/activity_view_driver.xml" value="0.1" />
