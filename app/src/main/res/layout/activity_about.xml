@@ -52,8 +52,8 @@
             android:id="@+id/login_forgetPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="من واقع معاناتنا في استخدام المواصلات العامة بين المدن ، خاصة كطلاب جامعيين ، توصلنا إلى فكرة لتقليل هذه المعاناة ، وهي تجنب الأزمة وتنظيم حركة المرور والسيارات في الكراجات."
+            android:layout_margin="1dp"
+            android:text="من واقع معاناتنا في استخدام المواصلات العامة بين المدن خاصة كطلاب جامعيين، توصلنا إلى فكرة هذا التطبيق لتقليل هذه المعاناة وتجنب الأزمة وتنظيم حركة المرور والسيارات في الكراجات."
             android:textAlignment="center"
             android:textColor="#090909"
             android:textColorHint="#040303"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:text="التطبيق يحتوي على عدة مزايا تجعله سهل الاستخدام لدى جميع الناس
-ومن الاهداف التي يقوم بها أنه يوضح الحالة الحالية للكراجات والسيارات وهذه ميزة مهمة لتنظيم الوقت خصوصا لدى غالبية الطلاب والموظفين."
+ومن الاهداف التي يقوم بها أنه يوضح الحالة الحالية للكراجات والسيارات وهذه ميزة مهمة لتنظيم الوقت خصوصاً لدى غالبية الطلاب والموظفين."
             android:textAlignment="center"
             android:textColor="#090909"
             android:textColorHint="#040303"
@@ -99,7 +99,8 @@
             android:gravity="center"
             android:textColor="#090909"
             android:textColorHint="#040303"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
 
 
@@ -146,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="سيرين اسماعيل "
+            android:text="سيرين إسماعيل "
             android:gravity="center"
             android:textColor="#090909"
             android:textColorHint="#040303"
