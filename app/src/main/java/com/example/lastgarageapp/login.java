@@ -178,8 +178,11 @@ public class login extends AppCompatActivity {
 
                         JSONObject reader = jsonArray.getJSONObject(i);
                         s_id = reader.getString("s_id");
+                        if(s_id.equals("null")){
+                            Toast.makeText(getBaseContext(), "خطأ في رقم الهوية أو الرقم السري", Toast.LENGTH_SHORT).show();
+                        }else{
                         startActivity(new Intent(login.this, home_page.class));
-                        login.myUser_id = idNumber.getText().toString();
+                        login.myUser_id = idNumber.getText().toString();}
 
                     }
                 } catch (JSONException e) {

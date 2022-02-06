@@ -18,11 +18,11 @@
             android:id="@+id/sendMessageItem_messageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="310dp"
-            android:textColor="@color/black"
-            android:textSize="18dp"
             android:layout_marginBottom="3dp"
-            android:text="مرحبا كيفك ؟ ..."/>
+            android:maxWidth="310dp"
+            android:text="مرحبا كيفك ؟ ..."
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="12:00" />
-
 
 
         </LinearLayout>
